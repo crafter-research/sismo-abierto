@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - name: Lint y formato
+        run: bunx biome ci .
+      - name: Typecheck
+        run: bun run typecheck
+      - name: Tests (offline)
+        run: bun run test
+        env:
+          SISMO_OFFLINE: "true"
+      - name: Build
+        run: bun run build
