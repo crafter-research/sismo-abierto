@@ -95,31 +95,6 @@ export default async function CatalogPage({
             options={RANGE_PRESETS}
             defaultValue={presetValue}
           />
-          <details className="mt-1">
-            <summary className="cursor-pointer text-gray-800 text-xs">
-              Fechas exactas
-            </summary>
-            <div className="mt-2 flex flex-wrap gap-3">
-              <label className="flex flex-col gap-1 text-sm">
-                <span className="text-gray-900">Desde</span>
-                <input
-                  type="date"
-                  name="since"
-                  defaultValue={presetValue === since ? "" : (since ?? "")}
-                  className="rounded border border-gray-300 px-2 py-1.5 font-mono text-sm"
-                />
-              </label>
-              <label className="flex flex-col gap-1 text-sm">
-                <span className="text-gray-900">Hasta</span>
-                <input
-                  type="date"
-                  name="until"
-                  defaultValue={until ?? ""}
-                  className="rounded border border-gray-300 px-2 py-1.5 font-mono text-sm"
-                />
-              </label>
-            </div>
-          </details>
         </div>
         <GlassRange
           name="minMagnitude"
@@ -154,6 +129,31 @@ export default async function CatalogPage({
             Filtrar
           </button>
         </div>
+        <details className="col-span-full">
+          <summary className="w-fit cursor-pointer rounded text-gray-800 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-1000 focus-visible:ring-offset-2">
+            Fechas exactas
+          </summary>
+          <div className="mt-2 flex flex-wrap gap-4">
+            <label className="flex flex-col gap-1 text-sm">
+              <span className="text-gray-900">Desde</span>
+              <input
+                type="date"
+                name="since"
+                defaultValue={presetValue === since ? "" : (since ?? "")}
+                className="rounded border border-gray-300 px-2 py-1.5 font-mono text-sm"
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-sm">
+              <span className="text-gray-900">Hasta</span>
+              <input
+                type="date"
+                name="until"
+                defaultValue={until ?? ""}
+                className="rounded border border-gray-300 px-2 py-1.5 font-mono text-sm"
+              />
+            </label>
+          </div>
+        </details>
       </form>
 
       {result ? (

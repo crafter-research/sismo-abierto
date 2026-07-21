@@ -131,6 +131,9 @@ export function GlassToggleGroup({
             domeDepth: 5,
           }}
           x={lensX}
+          strength={0.07}
+          chroma={0.15}
+          blur={0.15}
         >
           <div className="relative h-full">
             <div

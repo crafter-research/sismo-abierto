@@ -5,6 +5,7 @@ import { Glass } from "./glass";
 
 const LENS = { lensW: 22, lensH: 22, borderRadius: 11, depth: 6, domeDepth: 6 };
 const TRACK_W = 46;
+const PAD = 8;
 const TRACK_H = 26;
 const THUMB = 22;
 const EASE = [0.175, 0.885, 0.32, 1.1] as const;
@@ -86,21 +87,29 @@ export function GlassSwitch({
         className="group relative inline-block"
         style={{ width: TRACK_W, height: TRACK_H }}
       >
-        <Glass
-          lens={LENS}
-          x={progress}
-          strength={0.5}
-          chroma={0.35}
-          blur={0.4}
-          className="h-full w-full rounded-full"
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute"
+          style={{ inset: -PAD }}
         >
-          <div className="relative h-full w-full overflow-hidden rounded-full bg-gray-300">
-            <div
-              className="absolute inset-0 rounded-full bg-gray-1000 transition-opacity duration-200"
-              style={{ opacity: checked ? 1 : 0 }}
-            />
-          </div>
-        </Glass>
+          <Glass
+            lens={LENS}
+            x={0.2 + 0.6 * progress}
+            strength={0.22}
+            chroma={0.25}
+            blur={0.25}
+            className="h-full w-full"
+          >
+            <div className="h-full w-full" style={{ padding: PAD }}>
+              <div className="relative h-full w-full overflow-hidden rounded-full bg-gray-300">
+                <div
+                  className="absolute inset-0 rounded-full bg-gray-1000 transition-opacity duration-200"
+                  style={{ opacity: checked ? 1 : 0 }}
+                />
+              </div>
+            </div>
+          </Glass>
+        </div>
         <div
           aria-hidden="true"
           className={`pointer-events-none absolute top-1/2 rounded-full border transition-[background-color,backdrop-filter,border-color,box-shadow] duration-200 group-focus-within:ring-2 group-focus-within:ring-gray-1000 group-focus-within:ring-offset-2 group-focus-within:ring-offset-background-100 ${
