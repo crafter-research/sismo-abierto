@@ -1,14 +1,11 @@
 import type { PredictionVerdict } from "@sismo/contracts";
 
 export const VERDICT_STYLES: Record<PredictionVerdict, string> = {
-  PENDING: "bg-[#f0f7ff] text-[#0059ec] dark:bg-[#0e1f38] dark:text-[#48aeff]",
-  STRICT_HIT:
-    "bg-[#ecfdec] text-[#107d32] dark:bg-[#0f2e17] dark:text-[#4ce15e]",
+  PENDING: "bg-sem-blue-soft text-sem-blue",
+  STRICT_HIT: "bg-sem-green-soft text-sem-green",
   NO_MATCH: "bg-gray-100 text-gray-900",
-  AMBIGUOUS_GEOGRAPHY:
-    "bg-[#fff6de] text-[#aa4d00] dark:bg-[#332100] dark:text-[#ffc543]",
-  SOURCE_DISAGREEMENT:
-    "bg-[#faf0ff] text-[#7d00cc] dark:bg-[#26103a] dark:text-[#c979ff]",
+  AMBIGUOUS_GEOGRAPHY: "bg-sem-amber-soft text-sem-amber",
+  SOURCE_DISAGREEMENT: "bg-sem-purple-soft text-sem-purple",
 };
 
 export function VerdictBadge({ verdict }: { verdict: PredictionVerdict }) {

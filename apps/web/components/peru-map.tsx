@@ -175,10 +175,10 @@ function VolcanoTriangle({
   level?: string;
 }) {
   const LEVEL_FILLS: Record<string, string> = {
-    verde: "#28a948",
-    amarillo: "#ffc543",
-    naranja: "#ff9300",
-    rojo: "#ea001d",
+    verde: "var(--color-glyph-verde)",
+    amarillo: "var(--color-glyph-amarillo)",
+    naranja: "var(--color-glyph-naranja)",
+    rojo: "var(--color-glyph-rojo)",
   };
   const fill =
     LEVEL_FILLS[(level ?? "").trim().toLowerCase()] ??
@@ -300,7 +300,7 @@ export function PeruMap({
           );
         })}
       </svg>
-      <figcaption className="mt-1 font-mono text-[10px] text-gray-600">
+      <figcaption className="mt-1 font-mono text-[10px] text-gray-900">
         Límites INEI simplificados · coordenadas oficiales de la fuente
       </figcaption>
     </figure>
