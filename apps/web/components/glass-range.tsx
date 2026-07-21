@@ -25,6 +25,7 @@ export function GlassRange({
   prefix = "",
 }: GlassRangeProps) {
   const [value, setValue] = useState(defaultValue);
+  const [dragging, setDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const progress = Math.min(1, Math.max(0, (value - min) / (max - min)));
   const display = `${prefix}${value.toFixed(1)}`;
@@ -50,7 +51,11 @@ export function GlassRange({
         </Glass>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 h-[26px] w-[44px] rounded-[13px] border border-black/10 bg-white/75 shadow-[0_1px_2px_rgba(0,0,0,0.10),0_4px_10px_rgba(0,0,0,0.18)] backdrop-blur-[2px] transition-shadow group-focus-within:ring-2 group-focus-within:ring-gray-1000 group-focus-within:ring-offset-2 group-focus-within:ring-offset-background-100 dark:border-white/20 dark:bg-white/85"
+          className={`pointer-events-none absolute top-1/2 h-[26px] w-[44px] rounded-[13px] border transition-[background-color,backdrop-filter,border-color,box-shadow] duration-200 group-focus-within:ring-2 group-focus-within:ring-gray-1000 group-focus-within:ring-offset-2 group-focus-within:ring-offset-background-100 ${
+            dragging
+              ? "border-black/15 bg-white/10 shadow-[0_1px_2px_rgba(0,0,0,0.08)] backdrop-blur-0 dark:border-white/30 dark:bg-white/10"
+              : "border-black/10 bg-white/75 shadow-[0_1px_2px_rgba(0,0,0,0.10),0_4px_10px_rgba(0,0,0,0.18)] backdrop-blur-[2px] dark:border-white/20 dark:bg-white/85"
+          }`}
           style={{
             left: `calc(${progress} * (100% - 44px))`,
             transform: "translateY(-50%)",
@@ -66,7 +71,12 @@ export function GlassRange({
           value={value}
           aria-label={label}
           onChange={(changeEvent) => setValue(Number(changeEvent.target.value))}
-          onPointerUp={() => inputRef.current?.form?.requestSubmit()}
+          onPointerDown={() => setDragging(true)}
+          onPointerCancel={() => setDragging(false)}
+          onPointerUp={() => {
+            setDragging(false);
+            inputRef.current?.form?.requestSubmit();
+          }}
           onKeyUp={(keyEvent) => {
             if (
               [
