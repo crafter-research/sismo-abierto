@@ -1,15 +1,40 @@
 {
-  "name": "sismo-cli",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@crafter/sismo-cli",
+  "version": "1.0.0",
   "type": "module",
   "bin": {
-    "sismo": "./src/main.ts"
+    "sismo": "./dist/sismo.js"
   },
   "dependencies": {
     "@sismo/contracts": "workspace:*",
     "@sismo/data": "workspace:*",
+    "@sismo/source-health": "workspace:*",
     "@sismo/waveforms": "workspace:*",
-    "@sismo/source-health": "workspace:*"
+    "nanospinner": "^1.2.2",
+    "picocolors": "^1.1.1"
+  },
+  "description": "Datos s\u00edsmicos y volc\u00e1nicos p\u00fablicos del Per\u00fa (IGP) desde terminal, con procedencia trazable. Agent-first: --json, exit codes estables, sismo skill.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crafter-station/sismo-abierto.git",
+    "directory": "apps/cli"
+  },
+  "homepage": "https://sismo.crafter.run/developers",
+  "keywords": [
+    "peru",
+    "sismos",
+    "earthquakes",
+    "igp",
+    "cli",
+    "agent-first",
+    "open-data"
+  ],
+  "files": [
+    "dist",
+    "SKILL.md"
+  ],
+  "scripts": {
+    "build": "cp ../../skills/sismo-cli/SKILL.md ./SKILL.md && bun build src/main.ts --outfile dist/sismo.js --target bun --minify"
   }
 }
