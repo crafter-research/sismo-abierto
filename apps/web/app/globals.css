@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --color-background-100: #ffffff;
+  --color-background-200: #fafafa;
+  --color-gray-100: #f2f2f2;
+  --color-gray-200: #ebebeb;
+  --color-gray-300: #e6e6e6;
+  --color-gray-400: #eaeaea;
+  --color-gray-500: #c9c9c9;
+  --color-gray-600: #a8a8a8;
+  --color-gray-700: #8f8f8f;
+  --color-gray-800: #7d7d7d;
+  --color-gray-900: #4d4d4d;
+  --color-gray-1000: #171717;
+
+  --color-official: #171717;
+  --color-official-soft: #f2f2f2;
+  --color-derived: #4d4d4d;
+  --color-derived-soft: #fafafa;
+  --color-explanation: #4d4d4d;
+  --color-explanation-soft: #fafafa;
+  --color-missing: #8f8f8f;
+  --color-missing-soft: #f2f2f2;
+  --color-loaderror: #ea001d;
+  --color-loaderror-soft: #ffeeef;
+
+  --color-map-land: #ededed;
+  --color-map-border: #8f8f8f;
+  --color-map-subborder: #d4d4d4;
+  --color-map-ink: #171717;
+  --color-map-paper: #ffffff;
+}
+
+.dark {
+  --color-background-100: #0a0a0a;
+  --color-background-200: #000000;
+  --color-gray-100: #1a1a1a;
+  --color-gray-200: #1f1f1f;
+  --color-gray-300: #292929;
+  --color-gray-400: #2e2e2e;
+  --color-gray-500: #454545;
+  --color-gray-600: #6e6e6e;
+  --color-gray-700: #8f8f8f;
+  --color-gray-800: #a1a1a1;
+  --color-gray-900: #a1a1a1;
+  --color-gray-1000: #ededed;
+
+  --color-official: #ededed;
+  --color-official-soft: #1f1f1f;
+  --color-derived: #a1a1a1;
+  --color-derived-soft: #161616;
+  --color-explanation: #a1a1a1;
+  --color-explanation-soft: #161616;
+  --color-missing: #8f8f8f;
+  --color-missing-soft: #1a1a1a;
+  --color-loaderror: #ff6166;
+  --color-loaderror-soft: #2a1214;
+
+  --color-map-land: #161616;
+  --color-map-border: #6e6e6e;
+  --color-map-subborder: #2e2e2e;
+  --color-map-ink: #ededed;
+  --color-map-paper: #0a0a0a;
+}
+
+body {
+  @apply bg-background-100 font-sans text-gray-1000 antialiased;
+}
+
+.map-pulse {
+  animation: map-pulse 2.4s cubic-bezier(0.175, 0.885, 0.32, 1.1) infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes map-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.45;
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 0.08;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-pulse {
+    animation: none;
+  }
+}
