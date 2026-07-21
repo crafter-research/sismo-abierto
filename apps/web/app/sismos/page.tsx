@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ClassBadge, SourceBadge } from "../../components/badges";
 import { CopyLinkButton } from "../../components/copy-link-button";
 import { SourceErrorState } from "../../components/error-state";
+import { GlassRange } from "../../components/glass-range";
 import { PeruMap } from "../../components/peru-map";
 import { formatLimaDateTime, formatMagnitude } from "../../lib/format";
 
@@ -73,30 +74,24 @@ export default async function CatalogPage({
             className="rounded border border-gray-300 px-2 py-1.5 font-mono text-sm"
           />
         </label>
-        <label className="flex flex-col gap-1 text-sm">
-          <span className="text-gray-900">Magnitud mínima</span>
-          <input
-            type="number"
-            step="0.1"
-            min="1"
-            max="9"
-            name="minMagnitude"
-            defaultValue={params.minMagnitude ?? ""}
-            className="rounded border border-gray-300 px-2 py-1.5 font-mono text-sm"
-          />
-        </label>
-        <label className="flex flex-col gap-1 text-sm">
-          <span className="text-gray-900">Magnitud máxima</span>
-          <input
-            type="number"
-            step="0.1"
-            min="1"
-            max="9"
-            name="maxMagnitude"
-            defaultValue={params.maxMagnitude ?? ""}
-            className="rounded border border-gray-300 px-2 py-1.5 font-mono text-sm"
-          />
-        </label>
+        <GlassRange
+          name="minMagnitude"
+          label="Magnitud mínima"
+          min={1}
+          max={9}
+          step={0.1}
+          defaultValue={params.minMagnitude ? Number(params.minMagnitude) : 1}
+          prefix="M ≥ "
+        />
+        <GlassRange
+          name="maxMagnitude"
+          label="Magnitud máxima"
+          min={1}
+          max={9}
+          step={0.1}
+          defaultValue={params.maxMagnitude ? Number(params.maxMagnitude) : 9}
+          prefix="M ≤ "
+        />
         <div className="flex items-end">
           <button
             type="submit"
