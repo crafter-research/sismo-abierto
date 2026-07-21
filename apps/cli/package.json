@@ -1,17 +1,9 @@
 {
   "name": "@crafter/sismo-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "bin": {
     "sismo": "./dist/sismo.js"
-  },
-  "dependencies": {
-    "@sismo/contracts": "workspace:*",
-    "@sismo/data": "workspace:*",
-    "@sismo/source-health": "workspace:*",
-    "@sismo/waveforms": "workspace:*",
-    "nanospinner": "^1.2.2",
-    "picocolors": "^1.1.1"
   },
   "description": "Datos s\u00edsmicos y volc\u00e1nicos p\u00fablicos del Per\u00fa (IGP) desde terminal, con procedencia trazable. Agent-first: --json, exit codes estables, sismo skill.",
   "license": "MIT",
@@ -35,6 +27,15 @@
     "SKILL.md"
   ],
   "scripts": {
-    "build": "cp ../../skills/sismo-cli/SKILL.md ./SKILL.md && bun build src/main.ts --outfile dist/sismo.js --target bun --minify"
+    "build": "cp ../../skills/sismo-cli/SKILL.md ./SKILL.md && bun build src/main.ts --outfile dist/sismo.js --target bun --minify",
+    "prepublishOnly": "bun run build"
+  },
+  "devDependencies": {
+    "@sismo/contracts": "workspace:*",
+    "@sismo/data": "workspace:*",
+    "@sismo/source-health": "workspace:*",
+    "@sismo/waveforms": "workspace:*",
+    "nanospinner": "^1.2.2",
+    "picocolors": "^1.1.1"
   }
 }

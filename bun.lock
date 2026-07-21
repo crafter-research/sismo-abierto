@@ -12,11 +12,11 @@
     },
     "apps/cli": {
       "name": "@crafter/sismo-cli",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "bin": {
         "sismo": "./dist/sismo.js",
       },
-      "dependencies": {
+      "devDependencies": {
         "@sismo/contracts": "workspace:*",
         "@sismo/data": "workspace:*",
         "@sismo/source-health": "workspace:*",
