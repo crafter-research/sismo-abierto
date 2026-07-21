@@ -50,7 +50,7 @@ export function GlassRange({
         </Glass>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 h-[26px] w-[44px] rounded-[13px] border border-gray-500 shadow-[0_2px_6px_rgba(0,0,0,0.12)] transition-shadow group-focus-within:ring-2 group-focus-within:ring-gray-1000 group-focus-within:ring-offset-2 group-focus-within:ring-offset-background-100"
+          className="pointer-events-none absolute top-1/2 h-[26px] w-[44px] rounded-[13px] border border-black/10 bg-white/75 shadow-[0_1px_2px_rgba(0,0,0,0.10),0_4px_10px_rgba(0,0,0,0.18)] backdrop-blur-[2px] transition-shadow group-focus-within:ring-2 group-focus-within:ring-gray-1000 group-focus-within:ring-offset-2 group-focus-within:ring-offset-background-100 dark:border-white/20 dark:bg-white/85"
           style={{
             left: `calc(${progress} * (100% - 44px))`,
             transform: "translateY(-50%)",
