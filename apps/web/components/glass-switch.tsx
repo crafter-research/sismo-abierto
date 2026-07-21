@@ -90,26 +90,27 @@ export function GlassSwitch({
         <div className="absolute inset-0 rounded-full bg-gray-300" />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute"
-          style={{ inset: -PAD }}
+          className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
         >
-          <Glass
-            lens={LENS}
-            x={0.2 + 0.6 * progress}
-            strength={0.22}
-            chroma={0.25}
-            blur={0.25}
-            className="h-full w-full"
-          >
-            <div className="h-full w-full" style={{ padding: PAD }}>
-              <div className="relative h-full w-full">
-                <div
-                  className="absolute inset-0 rounded-full bg-gray-1000 transition-opacity duration-200 dark:bg-gray-600"
-                  style={{ opacity: checked ? 1 : 0 }}
-                />
+          <div className="absolute" style={{ inset: -PAD }}>
+            <Glass
+              lens={LENS}
+              x={0.2 + 0.6 * progress}
+              strength={0.22}
+              chroma={0.25}
+              blur={0.25}
+              className="h-full w-full"
+            >
+              <div className="h-full w-full" style={{ padding: PAD }}>
+                <div className="relative h-full w-full">
+                  <div
+                    className="absolute inset-0 rounded-full bg-gray-1000 transition-opacity duration-200 dark:bg-gray-600"
+                    style={{ opacity: checked ? 1 : 0 }}
+                  />
+                </div>
               </div>
-            </div>
-          </Glass>
+            </Glass>
+          </div>
         </div>
         <div
           aria-hidden="true"

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
+import { Logo } from "../components/logo";
 import { ThemeToggle } from "../components/theme-toggle";
 import "./globals.css";
 
@@ -48,10 +49,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 href="/"
                 className="flex items-center gap-2 font-semibold text-[15px] text-gray-1000 tracking-tight"
               >
-                <span
-                  aria-hidden
-                  className="inline-block h-2 w-2 rounded-full bg-gray-1000"
-                />
+                <Logo size={22} />
                 Sismo Abierto
               </Link>
               <nav
