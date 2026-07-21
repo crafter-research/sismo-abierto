@@ -26,19 +26,30 @@ import {
 } from "@sismo/waveforms";
 import { numberFlag, type ParsedArgs, parseArgs, stringFlag } from "./args.ts";
 import { CliError, EXIT_CODES, renderTable, toCsv } from "./output.ts";
+import {
+  colorizeStatus,
+  dim,
+  maybeOpen,
+  readSkillDocument,
+  withSpinner,
+} from "./ux.ts";
 
 const HELP = `sismo — datos sísmicos y volcánicos públicos del IGP, con procedencia
 
 Uso:
-  sismo latest [--json]
+  sismo latest [--json] [--open]
   sismo events [--since 7d] [--until YYYY-MM-DD] [--min-magnitude N] [--max-magnitude N] [--format table|json|geojson|csv] [--output archivo]
-  sismo inspect EVENT_ID [--json]
+  sismo inspect EVENT_ID [--json] [--open]
   sismo stations EVENT_ID [--sort distance|pga] [--json]
-  sismo waveform EVENT_ID STATION_ID [--format csv|json] [--output archivo]
+  sismo waveform EVENT_ID STATION_ID [--format csv|json] [--output archivo] [--open]
   sismo volcanoes [--json]
-  sismo volcano VOLCANO_SLUG [--json]
+  sismo volcano VOLCANO_SLUG [--json] [--open]
   sismo sources [--probe] [--json]
   sismo source SOURCE_ID [--evidence] [--json]
+  sismo skill
+
+--open abre la fuente oficial (provenance) en el navegador.
+Sin TTY o con --json la salida es máquina pura: sin colores ni spinners.
 
 Proyecto comunitario. Fuente de datos: IGP. No es un sistema de alerta ni de predicción.`;
 
@@ -91,7 +102,12 @@ async function writeOutput(content: string, args: ParsedArgs): Promise<void> {
 }
 
 async function commandLatest(args: ParsedArgs): Promise<void> {
-  const response = await buildLatestEventResponse();
+  const response = await withSpinner(
+    args,
+    "Consultando último sismo oficial",
+    () => buildLatestEventResponse(),
+  );
+  await maybeOpen(args, response.event.provenance.source.url);
   if (args.flags.get("json")) {
     console.log(JSON.stringify(response, null, 2));
     return;
@@ -116,12 +132,14 @@ async function commandLatest(args: ParsedArgs): Promise<void> {
 
 async function commandEvents(args: ParsedArgs): Promise<void> {
   const format = stringFlag(args, "format") ?? "table";
-  const response = await buildEventListResponse({
-    since: stringFlag(args, "since"),
-    until: stringFlag(args, "until"),
-    minMagnitude: numberFlag(args, "min-magnitude"),
-    maxMagnitude: numberFlag(args, "max-magnitude"),
-  });
+  const response = await withSpinner(args, "Consultando catálogo CENSIS", () =>
+    buildEventListResponse({
+      since: stringFlag(args, "since"),
+      until: stringFlag(args, "until"),
+      minMagnitude: numberFlag(args, "min-magnitude"),
+      maxMagnitude: numberFlag(args, "max-magnitude"),
+    }),
+  );
   const metadata = {
     source: response.provenance.source.name,
     sourceUrl: response.provenance.source.url,
@@ -138,7 +156,9 @@ async function commandEvents(args: ParsedArgs): Promise<void> {
         ),
       );
       console.log(
-        `\n${response.events.length} eventos · Fuente: ${metadata.source} · Consultado: ${metadata.fetchedAt}`,
+        dim(
+          `\n${response.events.length} eventos · Fuente: ${metadata.source} · Consultado: ${metadata.fetchedAt}`,
+        ),
       );
       return;
     case "json":
@@ -193,7 +213,10 @@ async function commandInspect(args: ParsedArgs): Promise<void> {
       "Falta EVENT_ID. Uso: sismo inspect EVENT_ID",
       EXIT_CODES.invalidInput,
     );
-  const response = await buildEventDetailResponse(eventId);
+  const response = await withSpinner(args, "Consultando evento", () =>
+    buildEventDetailResponse(eventId),
+  );
+  await maybeOpen(args, response.event.provenance.source.url);
   if (args.flags.get("json")) {
     console.log(JSON.stringify(response, null, 2));
     return;
@@ -246,7 +269,11 @@ async function commandStations(args: ParsedArgs): Promise<void> {
       EXIT_CODES.invalidInput,
     );
   const sort = stringFlag(args, "sort") ?? "distance";
-  const response = await buildStationListResponse(eventId);
+  const response = await withSpinner(
+    args,
+    "Consultando estaciones ACELDAT",
+    () => buildStationListResponse(eventId),
+  );
   let stations = [...response.stations];
   const pgaByStation = new Map<string, number>();
 
@@ -326,7 +353,9 @@ async function commandStations(args: ParsedArgs): Promise<void> {
     ),
   );
   console.log(
-    `\nFuente: ${response.provenance.source.name} · Consultado: ${response.provenance.fetchedAt}`,
+    dim(
+      `\nFuente: ${response.provenance.source.name} · Consultado: ${response.provenance.fetchedAt}`,
+    ),
   );
 }
 
@@ -340,7 +369,10 @@ async function commandWaveform(args: ParsedArgs): Promise<void> {
     );
   }
   const format = stringFlag(args, "format") ?? "csv";
-  const response = await buildWaveformResponse(eventId, stationId);
+  const response = await withSpinner(args, "Descargando onda ACELDAT", () =>
+    buildWaveformResponse(eventId, stationId),
+  );
+  await maybeOpen(args, response.waveform.sourceFileUrl);
   if (format === "json") {
     await writeOutput(JSON.stringify(response, null, 2), args);
     return;
@@ -378,7 +410,9 @@ async function commandWaveform(args: ParsedArgs): Promise<void> {
 }
 
 async function commandVolcanoes(args: ParsedArgs): Promise<void> {
-  const response = await buildVolcanoListResponse();
+  const response = await withSpinner(args, "Consultando capa volcánica", () =>
+    buildVolcanoListResponse(),
+  );
   if (args.flags.get("json")) {
     console.log(JSON.stringify(response, null, 2));
     return;
@@ -396,9 +430,11 @@ async function commandVolcanoes(args: ParsedArgs): Promise<void> {
     ),
   );
   console.log(
-    `\n${response.volcanoes.length} volcanes · Fuente: ${response.provenance.source.name} · Consultado: ${response.provenance.fetchedAt}`,
+    dim(
+      `\n${response.volcanoes.length} volcanes · Fuente: ${response.provenance.source.name} · Consultado: ${response.provenance.fetchedAt}`,
+    ),
   );
-  console.log(`Aviso: ${response.limitations[0]}`);
+  console.log(dim(`Aviso: ${response.limitations[0]}`));
 }
 
 async function commandVolcano(args: ParsedArgs): Promise<void> {
@@ -408,7 +444,10 @@ async function commandVolcano(args: ParsedArgs): Promise<void> {
       "Uso: sismo volcano VOLCANO_SLUG",
       EXIT_CODES.invalidInput,
     );
-  const response = await buildVolcanoDetailResponse(slug);
+  const response = await withSpinner(args, "Consultando volcán", () =>
+    buildVolcanoDetailResponse(slug),
+  );
+  await maybeOpen(args, response?.volcano.provenance.source.url ?? null);
   if (!response) {
     throw new CliError(
       `No existe el volcán "${slug}" en la capa publicada`,
@@ -440,7 +479,9 @@ async function commandVolcano(args: ParsedArgs): Promise<void> {
 
 async function commandSources(args: ParsedArgs): Promise<void> {
   if (args.flags.get("probe")) {
-    await runSourceChecks();
+    await withSpinner(args, "Ejecutando probes contra las fuentes", () =>
+      runSourceChecks(),
+    );
   }
   const overview = await getSourceOverview();
   if (args.flags.get("json")) {
@@ -448,17 +489,19 @@ async function commandSources(args: ParsedArgs): Promise<void> {
     return;
   }
   console.log(
-    renderTable(
-      ["Fuente", "Estado", "Latencia", "Último chequeo"],
-      overview.sources.map((source) => [
-        source.sourceId,
-        source.status,
-        source.latencyMs !== null ? `${source.latencyMs} ms` : "—",
-        source.lastCheckAt ?? "sin chequeos aún (usa --probe)",
-      ]),
+    colorizeStatuses(
+      renderTable(
+        ["Fuente", "Estado", "Latencia", "Último chequeo"],
+        overview.sources.map((source) => [
+          source.sourceId,
+          source.status,
+          source.latencyMs !== null ? `${source.latencyMs} ms` : "—",
+          source.lastCheckAt ?? "sin chequeos aún (usa --probe)",
+        ]),
+      ),
     ),
   );
-  console.log(`\n${overview.disclaimer}`);
+  console.log(dim(`\n${overview.disclaimer}`));
 }
 
 async function commandSource(args: ParsedArgs): Promise<void> {
@@ -466,7 +509,9 @@ async function commandSource(args: ParsedArgs): Promise<void> {
   if (!sourceId)
     throw new CliError("Uso: sismo source SOURCE_ID", EXIT_CODES.invalidInput);
   if (args.flags.get("probe")) {
-    await runSourceChecks();
+    await withSpinner(args, "Ejecutando probes contra las fuentes", () =>
+      runSourceChecks(),
+    );
   }
   const history = await getSourceHistory(sourceId);
   if (!history) {
@@ -480,40 +525,62 @@ async function commandSource(args: ParsedArgs): Promise<void> {
     return;
   }
   console.log(
-    renderTable(
-      ["Campo", "Valor"],
-      [
-        ["Fuente", history.source.source.name],
-        ["Estado", history.source.status],
+    colorizeStatuses(
+      renderTable(
+        ["Campo", "Valor"],
         [
-          "Último chequeo",
-          history.source.lastCheckAt ?? "sin chequeos aún (usa --probe)",
+          ["Fuente", history.source.source.name],
+          ["Estado", history.source.status],
+          [
+            "Último chequeo",
+            history.source.lastCheckAt ?? "sin chequeos aún (usa --probe)",
+          ],
+          [
+            "Latencia",
+            history.source.latencyMs !== null
+              ? `${history.source.latencyMs} ms`
+              : "—",
+          ],
         ],
-        [
-          "Latencia",
-          history.source.latencyMs !== null
-            ? `${history.source.latencyMs} ms`
-            : "—",
-        ],
-      ],
+      ),
     ),
   );
   if (args.flags.get("evidence") && history.recentChecks.length > 0) {
     console.log("\nEvidencia de chequeos recientes:");
     console.log(
-      renderTable(
-        ["Hora", "Estado", "HTTP", "ms", "Evidencia"],
-        history.recentChecks.map((check) => [
-          check.checkedAt,
-          check.status,
-          check.httpStatus?.toString() ?? "—",
-          check.durationMs.toString(),
-          check.evidence,
-        ]),
+      colorizeStatuses(
+        renderTable(
+          ["Hora", "Estado", "HTTP", "ms", "Evidencia"],
+          history.recentChecks.map((check) => [
+            check.checkedAt,
+            check.status,
+            check.httpStatus?.toString() ?? "—",
+            check.durationMs.toString(),
+            check.evidence,
+          ]),
+        ),
       ),
     );
   }
-  console.log(`\n${history.disclaimer}`);
+  console.log(dim(`\n${history.disclaimer}`));
+}
+
+const STATUS_PATTERN =
+  /\b(OPERATIONAL|DEGRADED|UNAVAILABLE|SCHEMA_CHANGED|FRESHNESS_UNKNOWN)\b/g;
+
+function colorizeStatuses(text: string): string {
+  return text.replace(STATUS_PATTERN, (status) => colorizeStatus(status));
+}
+
+async function commandSkill(): Promise<void> {
+  const document = await readSkillDocument();
+  if (!document) {
+    throw new CliError(
+      "No se encontró skills/sismo-cli/SKILL.md. Corre el comando dentro del repositorio o reinstala el paquete.",
+      EXIT_CODES.notFound,
+    );
+  }
+  console.log(document.trim());
 }
 
 const COMMANDS: Record<string, (args: ParsedArgs) => Promise<void>> = {
@@ -526,6 +593,7 @@ const COMMANDS: Record<string, (args: ParsedArgs) => Promise<void>> = {
   volcano: commandVolcano,
   sources: commandSources,
   source: commandSource,
+  skill: commandSkill,
 };
 
 async function main(): Promise<number> {
