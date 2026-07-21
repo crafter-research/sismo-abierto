@@ -84,7 +84,12 @@ export function Glass({
       className={className}
       style={{ position: "relative" }}
     >
-      <div style={active ? { filter: `url(#${filterId})` } : undefined}>
+      <div
+        style={{
+          height: "100%",
+          ...(active ? { filter: `url(#${filterId})` } : {}),
+        }}
+      >
         {children}
       </div>
       {active ? (

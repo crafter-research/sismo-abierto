@@ -2,6 +2,7 @@
 
 import type { WaveformView } from "@sismo/contracts";
 import { useId, useState } from "react";
+import { GlassScrub } from "./glass-scrub";
 
 const COMPONENTS: Array<{
   key: "z" | "n" | "e";
@@ -46,7 +47,7 @@ export function WaveformViewer({ waveform }: { waveform: WaveformView }) {
     e: true,
   });
   const [startPct, setStartPct] = useState(0);
-  const [widthPct, setWidthPct] = useState(100);
+  const [widthPct, setWidthPct] = useState(40);
   const tableId = useId();
 
   const peak = Math.max(
@@ -134,47 +135,60 @@ export function WaveformViewer({ waveform }: { waveform: WaveformView }) {
         <legend className="px-1 text-xs font-semibold uppercase text-gray-800">
           Zoom horizontal compartido
         </legend>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <label className="flex flex-col gap-1">
-            <span>
-              Inicio de la ventana:{" "}
-              <span className="font-mono">
-                {windowStartSeconds.toFixed(1)} s
+        <GlassScrub
+          series={waveform.reducedComponents.n}
+          startPct={startPct}
+          widthPct={widthPct}
+          durationSeconds={durationSeconds}
+          onStartChange={setStartPct}
+          label="Ventana de zoom sobre la señal completa"
+        />
+        <details className="mt-3">
+          <summary className="cursor-pointer text-gray-900 text-xs">
+            Control fino de la ventana
+          </summary>
+          <div className="mt-2 grid gap-3 sm:grid-cols-2">
+            <label className="flex flex-col gap-1">
+              <span>
+                Inicio de la ventana:{" "}
+                <span className="font-mono">
+                  {windowStartSeconds.toFixed(1)} s
+                </span>
               </span>
-            </span>
-            <input
-              type="range"
-              min={0}
-              max={95}
-              step={1}
-              value={startPct}
-              onChange={(changeEvent) => {
-                const value = Number(changeEvent.target.value);
-                setStartPct(value);
-                if (value + widthPct > 100) setWidthPct(100 - value);
-              }}
-            />
-          </label>
-          <label className="flex flex-col gap-1">
-            <span>
-              Ancho de la ventana:{" "}
-              <span className="font-mono">
-                {((widthPct / 100) * durationSeconds).toFixed(1)} s
+              <input
+                type="range"
+                min={0}
+                max={95}
+                step={1}
+                value={startPct}
+                onChange={(changeEvent) => {
+                  const value = Number(changeEvent.target.value);
+                  setStartPct(value);
+                  if (value + widthPct > 100) setWidthPct(100 - value);
+                }}
+              />
+            </label>
+            <label className="flex flex-col gap-1">
+              <span>
+                Ancho de la ventana:{" "}
+                <span className="font-mono">
+                  {((widthPct / 100) * durationSeconds).toFixed(1)} s
+                </span>
               </span>
-            </span>
-            <input
-              type="range"
-              min={5}
-              max={100}
-              step={1}
-              value={widthPct}
-              onChange={(changeEvent) => {
-                const value = Number(changeEvent.target.value);
-                setWidthPct(Math.min(value, 100 - startPct));
-              }}
-            />
-          </label>
-        </div>
+              <input
+                type="range"
+                min={5}
+                max={100}
+                step={1}
+                value={widthPct}
+                onChange={(changeEvent) => {
+                  const value = Number(changeEvent.target.value);
+                  setWidthPct(Math.min(value, 100 - startPct));
+                }}
+              />
+            </label>
+          </div>
+        </details>
       </fieldset>
 
       <details className="rounded border border-gray-200 p-3">
