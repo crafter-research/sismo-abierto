@@ -20,7 +20,13 @@ export function ThemeToggle() {
       className="flex h-8 w-8 items-center justify-center rounded-md border border-gray-400 text-gray-900 hover:border-gray-500 hover:text-gray-1000"
     >
       {isDark ? (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
           <circle
             cx="12"
             cy="12"
@@ -36,7 +42,13 @@ export function ThemeToggle() {
           />
         </svg>
       ) : (
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
           <path
             d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"
             stroke="currentColor"
