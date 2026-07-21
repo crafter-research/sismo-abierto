@@ -82,7 +82,17 @@ bun apps/cli/src/main.ts sources --probe
 
 Salida humana en tablas; `--json`, `--geojson` y `--csv` sin decoración. Errores a stderr
 con códigos de salida estables (`0` ok · `2` input inválido · `3` no encontrado · `4` fuente
-caída o contrato roto).
+caída o contrato roto). `--open` abre la fuente oficial del dato en el navegador.
+
+### Coding agents
+
+```bash
+npx skills add crafter-station/sismo-abierto
+```
+
+Instala la skill [`sismo-cli`](skills/sismo-cli/SKILL.md) para que tu agente (Claude Code,
+Cursor, Codex…) sepa operar cada vertical con salida JSON, exit codes estables y procedencia
+en cada respuesta. En runtime, `sismo skill` imprime la misma documentación.
 
 ## Linter de contratos externos
 

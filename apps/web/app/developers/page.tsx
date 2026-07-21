@@ -49,6 +49,33 @@ export default function DevelopersPage() {
           </li>
         ))}
       </ul>
+      <section
+        aria-labelledby="agents-titulo"
+        className="rounded-lg border border-gray-1000 p-4"
+        data-testid="coding-agents"
+      >
+        <h2
+          id="agents-titulo"
+          className="font-semibold text-[16px] text-gray-1000"
+        >
+          Úsalo con coding agents
+        </h2>
+        <p className="mt-1 text-[14px] text-gray-900">
+          Instala la skill de `sismo` y tu agente (Claude Code, Cursor, Codex…)
+          aprende a operar cada vertical — sismos, ondas, volcanes, verificación
+          y salud de fuentes — con salida JSON, exit codes estables y
+          procedencia en cada respuesta.
+        </p>
+        <pre className="mt-3 overflow-x-auto rounded-md bg-gray-1000 p-3 font-mono text-[13px] text-background-100">
+          {`npx skills add crafter-station/sismo-abierto`}
+        </pre>
+        <p className="mt-2 font-mono text-[11px] text-gray-700">
+          Introspección en runtime: `sismo skill` imprime la documentación
+          agent-first completa · `--open` abre la fuente oficial de cualquier
+          dato
+        </p>
+      </section>
+
       <section aria-labelledby="cli-titulo">
         <h2 id="cli-titulo" className="mb-2 font-semibold text-gray-1000">
           CLI `sismo`
