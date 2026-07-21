@@ -9,3 +9,5 @@ apps/web/playwright-report/
 .trigger/
 docs/evidence/
 apps/web/next-env.d.ts
+.vercel
+.env*
