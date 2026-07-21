@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     "@sismo/aula-content",
     "@sismo/contracts",
     "@sismo/data",
+    "@sismo/geo",
     "@sismo/waveforms",
     "@sismo/audit",
     "@sismo/volcanoes",

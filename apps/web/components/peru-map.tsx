@@ -1,17 +1,4 @@
-import departamentos from "../lib/geo/peru-departamentos.json";
-import provincias from "../lib/geo/peru-provincias.json";
-
-interface GeoFeature {
-  properties: { name: string };
-  geometry: {
-    type: string;
-    coordinates: number[][][] | number[][][][];
-  };
-}
-
-interface GeoCollection {
-  features: GeoFeature[];
-}
+import { departamentos, type GeoFeature, provincias } from "@sismo/geo";
 
 const BOUNDS = { minLon: -81.6, maxLon: -68.4, minLat: -18.6, maxLat: 0.3 };
 const LON_SCALE = Math.cos(
@@ -51,19 +38,15 @@ function featureToPath(feature: GeoFeature): string {
   return "";
 }
 
-const DEPARTMENT_PATHS = (departamentos as GeoCollection).features.map(
-  (feature) => ({
-    name: feature.properties.name,
-    d: featureToPath(feature),
-  }),
-);
+const DEPARTMENT_PATHS = departamentos.features.map((feature) => ({
+  name: feature.properties.name,
+  d: featureToPath(feature),
+}));
 
-const PROVINCE_PATHS = (provincias as GeoCollection).features.map(
-  (feature) => ({
-    name: feature.properties.name,
-    d: featureToPath(feature),
-  }),
-);
+const PROVINCE_PATHS = provincias.features.map((feature) => ({
+  name: feature.properties.name,
+  d: featureToPath(feature),
+}));
 
 export interface MapMarker {
   longitude: number;

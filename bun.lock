@@ -34,6 +34,7 @@
         "@sismo/aula-content": "workspace:*",
         "@sismo/contracts": "workspace:*",
         "@sismo/data": "workspace:*",
+        "@sismo/geo": "workspace:*",
         "@sismo/source-health": "workspace:*",
         "@sismo/volcanoes": "workspace:*",
         "@sismo/waveforms": "workspace:*",
@@ -66,6 +67,7 @@
       "dependencies": {
         "@sismo/contracts": "workspace:*",
         "@sismo/data": "workspace:*",
+        "@sismo/geo": "workspace:*",
       },
     },
     "packages/contracts": {
@@ -82,6 +84,10 @@
         "@sismo/contracts": "workspace:*",
         "fflate": "^0.8.2",
       },
+    },
+    "packages/geo": {
+      "name": "@sismo/geo",
+      "version": "0.1.0",
     },
     "packages/source-health": {
       "name": "@sismo/source-health",
@@ -404,6 +410,8 @@
     "@sismo/contracts": ["@sismo/contracts@workspace:packages/contracts"],
 
     "@sismo/data": ["@sismo/data@workspace:packages/data"],
+
+    "@sismo/geo": ["@sismo/geo@workspace:packages/geo"],
 
     "@sismo/source-health": ["@sismo/source-health@workspace:packages/source-health"],
 
