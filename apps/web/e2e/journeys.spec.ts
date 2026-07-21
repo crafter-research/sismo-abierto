@@ -64,7 +64,9 @@ test.describe("V3: catálogo reproducible", () => {
   }) => {
     await page.goto("/sismos?since=2026-07-14&minMagnitude=4");
     await expect(page.getByTestId("catalog-table")).toBeVisible();
-    await expect(page.locator('input[name="since"]')).toHaveValue("2026-07-14");
+    await expect(page.locator('input[type="date"][name="since"]')).toHaveValue(
+      "2026-07-14",
+    );
     await expect(page.locator('input[name="minMagnitude"]')).toHaveValue("4");
     const count = await page
       .getByTestId("catalog-table")
