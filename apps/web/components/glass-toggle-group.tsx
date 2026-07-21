@@ -128,7 +128,7 @@ export function GlassToggleGroup({
         <Glass
           className="h-full"
           lens={{
-            lensW: pillWidth,
+            lensW: Math.max(1, optionWidth),
             lensH: 30,
             borderRadius: 8,
             depth: 7,
