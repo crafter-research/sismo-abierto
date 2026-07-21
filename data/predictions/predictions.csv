@@ -1,0 +1,9 @@
+prediction_id,origin,origin_magnitude,target_regions,predicted_magnitude_min,predicted_magnitude_max,max_days,start_date,deadline_end_lima
+P1,"Michoacán, México",4.1,"Ica; Lima-Callao",3.9,4.4,6,2026-07-20,2026-07-26T23:59:59-05:00
+P2,"Neiafu, Tonga",4.9,"Chile central y frontera con Argentina; Perú central",4.6,5.2,8,2026-07-20,2026-07-28T23:59:59-05:00
+P3,"Costa de El Salvador",4.0,"Tumbes o Piura, incluyendo Loreto; La Libertad o Áncash",3.9,4.4,6,2026-07-20,2026-07-26T23:59:59-05:00
+P4,"Levuka, Fiji",5.6,"Norte de Colombia o Venezuela; norte de Perú y sur de Ecuador; México o Panamá e islas del Caribe; Japón, Filipinas o Indonesia",5.3,5.9,10,2026-07-20,2026-07-30T23:59:59-05:00
+P5,"Islas Sandwich",4.7,"Arequipa-Tacna; frontera Cusco-Puno; norte de Chile",4.5,5.1,8,2026-07-20,2026-07-28T23:59:59-05:00
+P6,"Islas Sandwich",5.7,"Norte de Chile y sur de Perú; Nueva Zelanda, Vanuatu, Fiji o Tonga; Filipinas, Indonesia o Papúa Nueva Guinea",5.4,6.0,12,2026-07-20,2026-08-01T23:59:59-05:00
+P7,"Tayikistán",4.3,"Norte de Venezuela o norte de Colombia",4.2,4.6,7,2026-07-20,2026-07-27T23:59:59-05:00
+P8,"Islas Ascensión",4.6,"República Dominicana o Puerto Rico; Panamá o Costa Rica",4.5,5.0,7,2026-07-20,2026-07-27T23:59:59-05:00
