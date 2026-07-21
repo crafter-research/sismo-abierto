@@ -72,6 +72,7 @@ export interface MapMarker {
   kind: "epicenter" | "station-acc" | "station-sis" | "volcano";
   href?: string;
   magnitude?: number;
+  level?: string;
 }
 
 function EpicenterRings({
@@ -166,21 +167,44 @@ function VolcanoTriangle({
   x,
   y,
   label,
+  level,
 }: {
   x: number;
   y: number;
   label: string;
+  level?: string;
 }) {
-  const size = 6;
+  const LEVEL_FILLS: Record<string, string> = {
+    verde: "#28a948",
+    amarillo: "#ffc543",
+    naranja: "#ff9300",
+    rojo: "#ea001d",
+  };
+  const fill =
+    LEVEL_FILLS[(level ?? "").trim().toLowerCase()] ??
+    "var(--color-map-border)";
+  const w = 7.5;
+  const h = 6;
+  const crater = 2.4;
+  const path = `M${x - w},${y + h}L${x - crater},${y - h}L${x},${y - h + 2.2}L${x + crater},${y - h}L${x + w},${y + h}Z`;
   return (
     <g>
       <title>{label}</title>
       <path
-        d={`M${x},${y - size}L${x + size},${y + size}L${x - size},${y + size}Z`}
-        fill="var(--color-map-paper)"
-        stroke="var(--color-map-ink)"
+        d={path}
+        fill={fill}
+        fillOpacity="0.9"
+        stroke="var(--color-map-paper)"
         strokeWidth="1.5"
         strokeLinejoin="round"
+      />
+      <path
+        d={path}
+        fill="none"
+        stroke="var(--color-map-ink)"
+        strokeWidth="0.75"
+        strokeLinejoin="round"
+        opacity="0.5"
       />
     </g>
   );
@@ -248,7 +272,13 @@ export function PeruMap({
             );
           } else if (marker.kind === "volcano") {
             shape = (
-              <VolcanoTriangle key="s" x={x} y={y} label={marker.label} />
+              <VolcanoTriangle
+                key="s"
+                x={x}
+                y={y}
+                label={marker.label}
+                level={marker.level}
+              />
             );
           } else {
             shape = (

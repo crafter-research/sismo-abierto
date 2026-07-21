@@ -39,6 +39,7 @@ export default async function VolcanoesPage() {
               latitude: volcano.latitude,
               label: `${volcano.name} · nivel publicado: ${volcano.publishedLevel}`,
               kind: "volcano" as const,
+              level: volcano.publishedLevel,
               href: `/volcanes/${volcano.slug}`,
             }))}
           />
