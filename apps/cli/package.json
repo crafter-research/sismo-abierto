@@ -1,0 +1,15 @@
+{
+  "name": "sismo-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "sismo": "./src/main.ts"
+  },
+  "dependencies": {
+    "@sismo/contracts": "workspace:*",
+    "@sismo/data": "workspace:*",
+    "@sismo/waveforms": "workspace:*",
+    "@sismo/source-health": "workspace:*"
+  }
+}
