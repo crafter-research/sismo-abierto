@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ClassBadge, SourceBadge } from "../../../components/badges";
 import { CopyLinkButton } from "../../../components/copy-link-button";
 import { SourceErrorState } from "../../../components/error-state";
+import { GlassQr } from "../../../components/glass-qr";
 import { type MapMarker, PeruMap } from "../../../components/peru-map";
 import { formatLimaDateTime, formatMagnitude } from "../../../lib/format";
 
@@ -81,45 +82,56 @@ export default async function EventDetailPage({
       </nav>
 
       <header
-        className="rounded-lg border border-gray-200 p-4"
+        className="flex flex-wrap items-start justify-between gap-4 rounded-lg border border-gray-200 p-4"
         data-testid="event-header"
       >
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap items-baseline gap-x-3">
-            <h1 className="text-2xl font-bold text-official">
-              {formatMagnitude(event.magnitude)}
-            </h1>
-            <span className="text-lg">
-              {event.reference ?? "Sin referencia publicada"}
-            </span>
-            <ClassBadge value="official" />
-          </div>
-          <CopyLinkButton />
-        </div>
-        <dl className="mt-3 grid gap-x-8 gap-y-1 text-sm sm:grid-cols-2">
-          <div className="flex gap-2">
-            <dt className="text-gray-800">Hora de origen:</dt>
-            <dd className="font-mono">{formatLimaDateTime(event.timeLocal)}</dd>
-          </div>
-          <div className="flex gap-2">
-            <dt className="text-gray-800">Profundidad:</dt>
-            <dd className="font-mono">{event.depthKm} km</dd>
-          </div>
-          <div className="flex gap-2">
-            <dt className="text-gray-800">Coordenadas:</dt>
-            <dd className="font-mono">
-              {event.latitude}, {event.longitude}
-            </dd>
-          </div>
-          {event.intensity ? (
-            <div className="flex gap-2">
-              <dt className="text-gray-800">Intensidad:</dt>
-              <dd className="font-mono">{event.intensity}</dd>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap items-baseline gap-x-3">
+              <h1 className="text-2xl font-bold text-official">
+                {formatMagnitude(event.magnitude)}
+              </h1>
+              <span className="text-lg">
+                {event.reference ?? "Sin referencia publicada"}
+              </span>
+              <ClassBadge value="official" />
             </div>
-          ) : null}
-        </dl>
-        <div className="mt-3">
-          <SourceBadge provenance={event.provenance} />
+            <CopyLinkButton />
+          </div>
+          <dl className="mt-3 grid gap-x-8 gap-y-1 text-sm sm:grid-cols-2">
+            <div className="flex gap-2">
+              <dt className="text-gray-800">Hora de origen:</dt>
+              <dd className="font-mono">
+                {formatLimaDateTime(event.timeLocal)}
+              </dd>
+            </div>
+            <div className="flex gap-2">
+              <dt className="text-gray-800">Profundidad:</dt>
+              <dd className="font-mono">{event.depthKm} km</dd>
+            </div>
+            <div className="flex gap-2">
+              <dt className="text-gray-800">Coordenadas:</dt>
+              <dd className="font-mono">
+                {event.latitude}, {event.longitude}
+              </dd>
+            </div>
+            {event.intensity ? (
+              <div className="flex gap-2">
+                <dt className="text-gray-800">Intensidad:</dt>
+                <dd className="font-mono">{event.intensity}</dd>
+              </div>
+            ) : null}
+          </dl>
+          <div className="mt-3">
+            <SourceBadge provenance={event.provenance} />
+          </div>
+        </div>
+        <div className="hidden shrink-0 sm:block">
+          <GlassQr
+            value={`https://sismo.crafter.run/sismos/${event.id}`}
+            size={124}
+            label={`Código QR del enlace permanente del evento ${event.id}`}
+          />
         </div>
       </header>
 
