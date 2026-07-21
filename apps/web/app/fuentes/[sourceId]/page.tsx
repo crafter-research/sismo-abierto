@@ -16,7 +16,7 @@ export default async function SourceDetailPage({
   const { sourceId } = await params;
   if (!isPublicSourcesPageEnabled()) {
     return (
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-900">
         Esta vista pública todavía no está activada.{" "}
         <Link href="/" className="text-official underline">
           Volver al inicio
@@ -28,7 +28,7 @@ export default async function SourceDetailPage({
   const history = await getSourceHistory(sourceId, getDefaultStore());
   if (!history) {
     return (
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-900">
         Fuente desconocida.{" "}
         <Link href="/fuentes" className="text-official underline">
           Ver todas las fuentes
@@ -39,7 +39,7 @@ export default async function SourceDetailPage({
 
   return (
     <div className="space-y-6">
-      <nav className="text-xs text-gray-500">
+      <nav className="text-xs text-gray-800">
         <Link href="/fuentes" className="hover:underline">
           Estado de Fuentes
         </Link>{" "}
@@ -49,19 +49,19 @@ export default async function SourceDetailPage({
       <header className="rounded-lg border border-gray-200 p-4">
         <h1 className="text-xl font-bold">{history.source.source.name}</h1>
         <p className="mt-1 flex flex-wrap items-center gap-2 text-sm">
-          <span className="text-gray-500">Estado observado:</span>
+          <span className="text-gray-800">Estado observado:</span>
           <span
             className={`rounded px-1.5 py-0.5 font-mono text-xs ${statusChip(history.source.status)}`}
           >
             {history.source.status}
           </span>
           {history.source.latencyMs !== null ? (
-            <span className="font-mono text-xs text-gray-600">
+            <span className="font-mono text-xs text-gray-900">
               {history.source.latencyMs} ms
             </span>
           ) : null}
         </p>
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-gray-800">
           Fuente oficial:{" "}
           <a
             href={history.source.source.url}
@@ -72,7 +72,7 @@ export default async function SourceDetailPage({
           </a>
         </p>
         <p
-          className="mt-2 font-mono text-xs text-gray-600"
+          className="mt-2 font-mono text-xs text-gray-900"
           data-testid="cli-example"
         >
           sismo source {sourceId} --evidence
@@ -90,7 +90,7 @@ export default async function SourceDetailPage({
                 Chequeos recientes con evidencia
               </caption>
               <thead>
-                <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-500">
+                <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
                   <th scope="col" className="py-1.5 pr-2">
                     Hora
                   </th>
@@ -133,7 +133,7 @@ export default async function SourceDetailPage({
             </table>
           </div>
         ) : (
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-900">
             Aún no hay chequeos registrados para esta fuente en este entorno.
           </p>
         )}
@@ -156,18 +156,18 @@ export default async function SourceDetailPage({
                     ? ` · cerrado ${change.closedAt}`
                     : " · abierto"}
                 </p>
-                <p className="mt-1 text-xs text-gray-600">{change.reason}</p>
+                <p className="mt-1 text-xs text-gray-900">{change.reason}</p>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-900">
             Sin cambios de estado observados.
           </p>
         )}
       </section>
 
-      <p className="text-xs text-gray-500">{history.disclaimer}</p>
+      <p className="text-xs text-gray-800">{history.disclaimer}</p>
     </div>
   );
 }

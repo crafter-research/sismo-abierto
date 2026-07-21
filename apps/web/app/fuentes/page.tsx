@@ -14,7 +14,7 @@ export const metadata = { title: "Estado de Fuentes" };
 export default async function SourcesPage() {
   if (!isPublicSourcesPageEnabled()) {
     return (
-      <div className="rounded-lg border border-gray-200 bg-missing-soft p-6 text-sm text-gray-700">
+      <div className="rounded-lg border border-gray-200 bg-missing-soft p-6 text-sm text-gray-800">
         <h1 className="text-lg font-bold text-gray-900">Estado de Fuentes</h1>
         <p className="mt-2">
           Esta vista pública todavía no está activada. El monitor opera
@@ -36,7 +36,7 @@ export default async function SourcesPage() {
     <div className="space-y-6">
       <header>
         <h1 className="text-xl font-bold">Estado de Fuentes</h1>
-        <p className="text-sm text-gray-600" data-testid="scope-disclaimer">
+        <p className="text-sm text-gray-900" data-testid="scope-disclaimer">
           Lo observado por el consumidor de este proyecto sobre las fuentes
           públicas que usa. No representa el estado interno ni una alerta del
           IGP.
@@ -49,7 +49,7 @@ export default async function SourcesPage() {
             Estado observado por fuente pública
           </caption>
           <thead>
-            <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-500">
+            <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
               <th scope="col" className="py-1.5 pr-2">
                 Fuente
               </th>
@@ -99,7 +99,7 @@ export default async function SourcesPage() {
       </div>
 
       <section
-        className="rounded-lg border border-gray-200 p-4 text-xs text-gray-600"
+        className="rounded-lg border border-gray-200 p-4 text-xs text-gray-900"
         data-testid="status-legend"
       >
         <h2 className="text-sm font-semibold text-gray-900">

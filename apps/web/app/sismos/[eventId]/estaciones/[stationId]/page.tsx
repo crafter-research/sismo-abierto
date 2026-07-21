@@ -24,7 +24,7 @@ export default async function StationWaveformPage({
   if (!waveform) {
     return (
       <div className="space-y-4">
-        <nav className="text-xs text-gray-500">
+        <nav className="text-xs text-gray-800">
           <Link href="/" className="hover:underline">
             Sismos
           </Link>{" "}
@@ -46,7 +46,7 @@ export default async function StationWaveformPage({
 
   return (
     <div className="space-y-6">
-      <nav className="text-xs text-gray-500">
+      <nav className="text-xs text-gray-800">
         <Link href="/" className="hover:underline">
           Sismos
         </Link>{" "}
@@ -68,32 +68,32 @@ export default async function StationWaveformPage({
               {header.stationCode}
             </span>
           </h1>
-          <span className="text-gray-700">{header.stationName}</span>
+          <span className="text-gray-800">{header.stationName}</span>
           <ClassBadge value="official" />
         </div>
         <dl className="mt-3 grid gap-x-8 gap-y-1 text-sm sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex gap-2">
-            <dt className="text-gray-500">Muestreo:</dt>
+            <dt className="text-gray-800">Muestreo:</dt>
             <dd className="font-mono">{header.sampleRateHz} muestras/s</dd>
           </div>
           <div className="flex gap-2">
-            <dt className="text-gray-500">Muestras:</dt>
+            <dt className="text-gray-800">Muestras:</dt>
             <dd className="font-mono">{header.sampleCount}</dd>
           </div>
           <div className="flex gap-2">
-            <dt className="text-gray-500">Unidades:</dt>
+            <dt className="text-gray-800">Unidades:</dt>
             <dd className="font-mono">{header.units}</dd>
           </div>
           <div className="flex gap-2">
-            <dt className="text-gray-500">Inicio del registro:</dt>
+            <dt className="text-gray-800">Inicio del registro:</dt>
             <dd className="font-mono">{header.startTimeUtc}</dd>
           </div>
           <div className="flex gap-2">
-            <dt className="text-gray-500">Distancia epicentral:</dt>
+            <dt className="text-gray-800">Distancia epicentral:</dt>
             <dd className="font-mono">{header.epicentralDistanceKm} km</dd>
           </div>
           <div className="flex gap-2">
-            <dt className="text-gray-500">Corrección de línea base:</dt>
+            <dt className="text-gray-800">Corrección de línea base:</dt>
             <dd>{header.baselineCorrected ? "Sí" : "No"}</dd>
           </div>
         </dl>
@@ -126,7 +126,7 @@ export default async function StationWaveformPage({
             Componentes Z, N y E
           </h2>
           <ClassBadge value="derived" />
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-gray-800">
             Reducción visual 1:{waveform.reductionFactor}. Las métricas se
             calculan sobre la serie completa.
           </span>

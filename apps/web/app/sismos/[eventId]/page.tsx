@@ -73,7 +73,7 @@ export default async function EventDetailPage({
 
   return (
     <div className="space-y-6">
-      <nav className="text-xs text-gray-500">
+      <nav className="text-xs text-gray-800">
         <Link href="/" className="hover:underline">
           Sismos
         </Link>{" "}
@@ -98,22 +98,22 @@ export default async function EventDetailPage({
         </div>
         <dl className="mt-3 grid gap-x-8 gap-y-1 text-sm sm:grid-cols-2">
           <div className="flex gap-2">
-            <dt className="text-gray-500">Hora de origen:</dt>
+            <dt className="text-gray-800">Hora de origen:</dt>
             <dd className="font-mono">{formatLimaDateTime(event.timeLocal)}</dd>
           </div>
           <div className="flex gap-2">
-            <dt className="text-gray-500">Profundidad:</dt>
+            <dt className="text-gray-800">Profundidad:</dt>
             <dd className="font-mono">{event.depthKm} km</dd>
           </div>
           <div className="flex gap-2">
-            <dt className="text-gray-500">Coordenadas:</dt>
+            <dt className="text-gray-800">Coordenadas:</dt>
             <dd className="font-mono">
               {event.latitude}, {event.longitude}
             </dd>
           </div>
           {event.intensity ? (
             <div className="flex gap-2">
-              <dt className="text-gray-500">Intensidad:</dt>
+              <dt className="text-gray-800">Intensidad:</dt>
               <dd className="font-mono">{event.intensity}</dd>
             </div>
           ) : null}
@@ -124,15 +124,20 @@ export default async function EventDetailPage({
       </header>
 
       <section
-        className="grid gap-6 md:grid-cols-2"
+        className={
+          stations.length > 0
+            ? "grid gap-6 md:grid-cols-[minmax(0,440px)_minmax(0,1fr)]"
+            : "grid gap-6 md:grid-cols-[minmax(0,280px)_minmax(0,1fr)]"
+        }
         aria-labelledby="estaciones-titulo"
       >
         <div>
           <h2 id="estaciones-titulo" className="mb-2 font-semibold">
-            Mapa de estaciones
+            {stations.length > 0 ? "Mapa de estaciones" : "Epicentro"}
           </h2>
           <PeruMap
-            showProvinces
+            showProvinces={stations.length > 0}
+            className="max-w-[440px]"
             title={`Epicentro y estaciones del evento ${event.id}`}
             markers={markers}
           />
@@ -149,7 +154,7 @@ export default async function EventDetailPage({
                   disponibilidad de ondas
                 </caption>
                 <thead>
-                  <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-500">
+                  <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
                     <th scope="col" className="py-1.5 pr-2">
                       Código
                     </th>
@@ -192,7 +197,7 @@ export default async function EventDetailPage({
                   ))}
                 </tbody>
               </table>
-              <p className="mt-2 text-xs text-gray-500">
+              <p className="mt-2 text-xs text-gray-800">
                 {accStations.length} estaciones acelerométricas con archivo
                 descargable · {stations.length - accStations.length} estaciones
                 sísmicas de contexto.
@@ -201,19 +206,36 @@ export default async function EventDetailPage({
           ) : stationsError ? (
             isSourceError(stationsError) &&
             stationsError.kind === "not_found" ? (
-              <div
-                className="rounded-lg border border-gray-200 bg-missing-soft p-4 text-sm text-gray-700"
-                data-testid="no-stations"
-              >
-                <p className="flex items-center gap-2">
-                  <ClassBadge value="unavailable" />
-                  ACELDAT no publica un reporte acelerométrico para este evento.
-                </p>
-                <p className="mt-1 text-xs text-gray-500">
-                  ACELDAT-PERÚ publica reportes para sismos de magnitud
-                  aproximadamente 4.5 o superior. Este evento no tiene
-                  estaciones con archivo público.
-                </p>
+              <div className="space-y-4">
+                <div
+                  className="rounded-lg border border-gray-200 bg-background-200 p-4 text-gray-900 text-sm"
+                  data-testid="no-stations"
+                >
+                  <p className="flex items-center gap-2 font-medium text-gray-1000">
+                    <ClassBadge value="unavailable" />
+                    Sin registros acelerométricos para este evento
+                  </p>
+                  <p className="mt-2">
+                    ACELDAT-PERÚ publica reportes por estación para sismos de
+                    magnitud aproximadamente 4.5 o superior. Este evento (M{" "}
+                    {event.magnitude.toFixed(1)}) quedó por debajo de ese
+                    umbral, así que solo existe el registro del catálogo.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href="/sismos?minMagnitude=4.5"
+                    className="flex h-9 items-center rounded-md bg-gray-1000 px-3 font-medium text-[13px] text-background-100 hover:bg-gray-900"
+                  >
+                    Ver Eventos con Ondas
+                  </Link>
+                  <Link
+                    href="/sismos"
+                    className="flex h-9 items-center rounded-md border border-gray-400 px-3 font-medium text-[13px] text-gray-1000 hover:bg-background-200"
+                  >
+                    Explorar Catálogo
+                  </Link>
+                </div>
               </div>
             ) : (
               <SourceErrorState

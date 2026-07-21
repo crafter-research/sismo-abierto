@@ -43,7 +43,7 @@ export default async function CatalogPage({
       <header className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <h1 className="text-xl font-bold">Catálogo sísmico</h1>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-900">
             Consulta reproducible del catálogo CENSIS. Los filtros viven en la
             URL: compártela y cualquiera verá la misma consulta.
           </p>
@@ -56,7 +56,7 @@ export default async function CatalogPage({
         className="grid gap-3 rounded-lg border border-gray-200 p-4 sm:grid-cols-2 lg:grid-cols-5"
       >
         <label className="flex flex-col gap-1 text-sm">
-          <span className="text-gray-600">Desde</span>
+          <span className="text-gray-900">Desde</span>
           <input
             type="date"
             name="since"
@@ -65,7 +65,7 @@ export default async function CatalogPage({
           />
         </label>
         <label className="flex flex-col gap-1 text-sm">
-          <span className="text-gray-600">Hasta</span>
+          <span className="text-gray-900">Hasta</span>
           <input
             type="date"
             name="until"
@@ -74,7 +74,7 @@ export default async function CatalogPage({
           />
         </label>
         <label className="flex flex-col gap-1 text-sm">
-          <span className="text-gray-600">Magnitud mínima</span>
+          <span className="text-gray-900">Magnitud mínima</span>
           <input
             type="number"
             step="0.1"
@@ -86,7 +86,7 @@ export default async function CatalogPage({
           />
         </label>
         <label className="flex flex-col gap-1 text-sm">
-          <span className="text-gray-600">Magnitud máxima</span>
+          <span className="text-gray-900">Magnitud máxima</span>
           <input
             type="number"
             step="0.1"
@@ -111,7 +111,7 @@ export default async function CatalogPage({
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
           <section aria-label="Resultados">
             <p
-              className="mb-2 text-sm text-gray-600"
+              className="mb-2 text-sm text-gray-900"
               data-testid="result-count"
             >
               {result.events.length} eventos · <ClassBadge value="official" />
@@ -122,7 +122,7 @@ export default async function CatalogPage({
                   Eventos del catálogo CENSIS con filtros aplicados
                 </caption>
                 <thead>
-                  <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-500">
+                  <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
                     <th scope="col" className="py-1.5 pr-2">
                       Fecha y hora (Lima)
                     </th>

@@ -37,7 +37,7 @@ export default async function VolcanoDetailPage({
   }
   if (!result) {
     return (
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-900">
         No existe el volcán "{slug}" en la capa publicada.{" "}
         <Link href="/volcanes" className="text-official underline">
           Volver al índice
@@ -51,7 +51,7 @@ export default async function VolcanoDetailPage({
 
   return (
     <div className="space-y-6">
-      <nav className="text-xs text-gray-500">
+      <nav className="text-xs text-gray-800">
         <Link href="/volcanes" className="hover:underline">
           Volcanes
         </Link>{" "}
@@ -64,10 +64,10 @@ export default async function VolcanoDetailPage({
       >
         <div className="flex flex-wrap items-center gap-3">
           <h1 className="text-2xl font-bold">{volcano.name}</h1>
-          <span className="text-gray-600">{volcano.region}</span>
+          <span className="text-gray-900">{volcano.region}</span>
         </div>
         <p className="mt-3 flex flex-wrap items-center gap-2 text-sm">
-          <span className="text-gray-500">PUBLISHED_STATE:</span>
+          <span className="text-gray-800">PUBLISHED_STATE:</span>
           <span
             className={`rounded px-2 py-0.5 font-semibold ${levelChip(volcano.publishedLevel)}`}
           >
@@ -79,11 +79,11 @@ export default async function VolcanoDetailPage({
           className="mt-1 flex flex-wrap items-center gap-2 text-sm"
           data-testid="freshness-state"
         >
-          <span className="text-gray-500">Vigencia:</span>
+          <span className="text-gray-800">Vigencia:</span>
           <span className="rounded bg-missing-soft px-2 py-0.5 font-mono text-xs text-missing">
             FRESHNESS_UNKNOWN
           </span>
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-gray-800">
             La fuente no publica fecha de actualización por registro.
           </span>
         </p>
@@ -97,22 +97,22 @@ export default async function VolcanoDetailPage({
           <h2 className="font-semibold">Ubicación y reseña</h2>
           <dl className="mt-2 space-y-1 text-sm">
             <div className="flex gap-2">
-              <dt className="text-gray-500">Coordenadas:</dt>
+              <dt className="text-gray-800">Coordenadas:</dt>
               <dd className="font-mono">
                 {volcano.latitude}, {volcano.longitude}
               </dd>
             </div>
             <div className="flex gap-2">
-              <dt className="text-gray-500">Actividad publicada:</dt>
+              <dt className="text-gray-800">Actividad publicada:</dt>
               <dd>
                 {volcano.publishedActivity || "Sin descripción publicada"}
               </dd>
             </div>
           </dl>
-          <p className="mt-3 text-sm text-gray-700">
+          <p className="mt-3 text-sm text-gray-800">
             {volcano.publishedReview}
           </p>
-          <p className="mt-2 flex items-center gap-2 text-xs text-gray-500">
+          <p className="mt-2 flex items-center gap-2 text-xs text-gray-800">
             <ClassBadge value="official" /> Texto recibido de la fuente, sin
             edición.
           </p>
@@ -131,7 +131,7 @@ export default async function VolcanoDetailPage({
                 ? explanation.meaning
                 : "No tenemos una explicación educativa para este nivel publicado."}
             </p>
-            <p className="mt-2 text-xs text-gray-600">
+            <p className="mt-2 text-xs text-gray-900">
               {EXPLANATION_DISCLAIMER}
             </p>
           </div>
@@ -144,8 +144,8 @@ export default async function VolcanoDetailPage({
               <ClassBadge value="unavailable" /> Publicaciones oficiales
               fechadas
             </h2>
-            <p className="mt-2 text-sm text-gray-700">{VA3_BLOCKED_NOTICE}</p>
-            <p className="mt-2 text-xs text-gray-600">
+            <p className="mt-2 text-sm text-gray-800">{VA3_BLOCKED_NOTICE}</p>
+            <p className="mt-2 text-xs text-gray-900">
               Mientras tanto puedes buscar publicaciones sobre este volcán
               directamente en el{" "}
               <a

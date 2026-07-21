@@ -17,7 +17,7 @@ export function CopyLinkButton() {
       >
         Copiar enlace
       </button>
-      <span role="status" aria-live="polite" className="text-xs text-gray-600">
+      <span role="status" aria-live="polite" className="text-xs text-gray-900">
         {copied ? "Enlace copiado" : ""}
       </span>
     </span>

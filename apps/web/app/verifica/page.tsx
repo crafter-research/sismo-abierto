@@ -37,12 +37,12 @@ export default async function VerificaPage() {
     <div className="space-y-6">
       <header>
         <h1 className="text-xl font-bold">Verifica Sismos</h1>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-900">
           Afirmaciones guardadas antes de conocer el resultado. Este registro
           evalúa afirmaciones concretas contra catálogos oficiales; no ataca
           personas ni valida teorías generales.
         </p>
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-gray-800">
           Origen de esta tanda: Reel de Instagram DbAK4jKpyxP (cuenta
           sismos.en.peru), congelado el 20 de julio de 2026. Ventanas desde el
           20 de julio de 2026, hora de Lima.{" "}
@@ -72,7 +72,7 @@ export default async function VerificaPage() {
             Afirmaciones congeladas con su estado actual
           </caption>
           <thead>
-            <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-500">
+            <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
               <th scope="col" className="py-1.5 pr-2">
                 ID
               </th>
@@ -127,7 +127,7 @@ export default async function VerificaPage() {
         </table>
       </div>
 
-      <div className="rounded-lg border border-gray-200 p-4 text-sm text-gray-700">
+      <div className="rounded-lg border border-gray-200 p-4 text-sm text-gray-800">
         <h2 className="font-semibold text-gray-900">
           ¿Quieres registrar una afirmación?
         </h2>

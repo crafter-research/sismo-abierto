@@ -33,7 +33,7 @@ const FRESHNESS_LABELS: Record<Provenance["freshness"], string> = {
 
 export function SourceBadge({ provenance }: { provenance: Provenance }) {
   return (
-    <div className="text-xs text-gray-600" data-testid="source-badge">
+    <div className="text-xs text-gray-900" data-testid="source-badge">
       <p>
         Fuente:{" "}
         <a
@@ -53,7 +53,7 @@ export function SourceBadge({ provenance }: { provenance: Provenance }) {
         {FRESHNESS_LABELS[provenance.freshness]}
       </p>
       {provenance.note ? (
-        <p className="mt-0.5 text-gray-500">{provenance.note}</p>
+        <p className="mt-0.5 text-gray-800">{provenance.note}</p>
       ) : null}
     </div>
   );

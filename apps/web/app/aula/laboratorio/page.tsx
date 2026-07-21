@@ -129,7 +129,7 @@ export default async function LabPage({
 
   return (
     <div className="space-y-6">
-      <nav className="text-xs text-gray-500">
+      <nav className="text-xs text-gray-800">
         <Link href="/aula" className="hover:underline">
           Aula
         </Link>{" "}
@@ -141,7 +141,7 @@ export default async function LabPage({
           <h1 className="text-xl font-bold">
             Laboratorio: compara dos estaciones
           </h1>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-900">
             Un mismo sismo, dos registros distintos. El estado del laboratorio
             vive en la URL.
           </p>
@@ -167,7 +167,7 @@ export default async function LabPage({
         >
           <input type="hidden" name="evento" value={eventId ?? ""} />
           <label className="flex flex-col gap-1 text-sm">
-            <span className="text-gray-600">Estación A</span>
+            <span className="text-gray-900">Estación A</span>
             <select
               name="a"
               defaultValue={stationA ?? ""}
@@ -182,7 +182,7 @@ export default async function LabPage({
             </select>
           </label>
           <label className="flex flex-col gap-1 text-sm">
-            <span className="text-gray-600">Estación B</span>
+            <span className="text-gray-900">Estación B</span>
             <select
               name="b"
               defaultValue={stationB ?? ""}
@@ -229,7 +229,7 @@ export default async function LabPage({
                 Distancia y aceleración máxima por estación comparada
               </caption>
               <thead>
-                <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-500">
+                <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
                   <th scope="col" className="py-1.5 pr-2">
                     Estación
                   </th>
@@ -273,7 +273,7 @@ export default async function LabPage({
           <div className="grid gap-4 sm:grid-cols-2">
             {[waveformA, waveformB].map((waveform) => (
               <figure key={waveform.stationId}>
-                <figcaption className="mb-1 text-xs text-gray-600">
+                <figcaption className="mb-1 text-xs text-gray-900">
                   <span className="font-mono font-semibold">
                     {waveform.header.stationCode}
                   </span>{" "}
@@ -299,14 +299,14 @@ export default async function LabPage({
                 ? `${comparison.nearer.header.stationCode} está más cerca del epicentro (${comparison.nearer.header.epicentralDistanceKm} km contra ${comparison.farther.header.epicentralDistanceKm} km) y registró mayor aceleración máxima. Ese es el patrón general: la sacudida tiende a atenuarse con la distancia.`
                 : `${comparison.farther.header.stationCode} está más lejos del epicentro y aun así registró mayor aceleración máxima. La distancia no es el único factor: el tipo de suelo, la profundidad del sismo y la dirección de la ruptura también cambian lo que registra cada estación.`}
             </p>
-            <p className="mt-2 text-xs text-gray-600">
+            <p className="mt-2 text-xs text-gray-900">
               Explicación comunitaria pendiente de revisión científica. No es
               una evaluación de peligro ni una recomendación.
             </p>
           </div>
         </section>
       ) : !loadError ? (
-        <p className="text-sm text-gray-600" data-testid="lab-empty">
+        <p className="text-sm text-gray-900" data-testid="lab-empty">
           Elige dos estaciones distintas para comparar sus registros.
         </p>
       ) : null}

@@ -19,7 +19,7 @@ export default async function ClaimAuditPage({
   const prediction = await getPrediction(predictionId);
   if (!prediction) {
     return (
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-900">
         No existe la afirmación {predictionId}.{" "}
         <Link href="/verifica" className="text-official underline">
           Volver al registro
@@ -38,7 +38,7 @@ export default async function ClaimAuditPage({
 
   return (
     <div className="space-y-6">
-      <nav className="text-xs text-gray-500">
+      <nav className="text-xs text-gray-800">
         <Link href="/verifica" className="hover:underline">
           Verifica
         </Link>{" "}
@@ -55,7 +55,7 @@ export default async function ClaimAuditPage({
           </h1>
           {audit ? <VerdictBadge verdict={audit.verdict} /> : null}
         </div>
-        <p className="mt-2 text-sm text-gray-700">
+        <p className="mt-2 text-sm text-gray-800">
           El Reel proyecta que el evento de <strong>{prediction.origin}</strong>{" "}
           (M
           {prediction.originMagnitude.toFixed(1)}) "migra" hacia:{" "}
@@ -66,7 +66,7 @@ export default async function ClaimAuditPage({
           </span>{" "}
           en un máximo de {prediction.maxDays} días.
         </p>
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-gray-800">
           Congelada el 2026-07-20 antes de conocer resultados (archivo
           `data/predictions/predictions.csv`, verificable en git). Fuente
           original: Reel DbAK4jKpyxP de sismos.en.peru.
@@ -78,21 +78,21 @@ export default async function ClaimAuditPage({
           <h2 className="font-semibold">Criterios publicados</h2>
           <dl className="mt-2 space-y-1.5 text-sm" data-testid="criteria-table">
             <div className="flex gap-2">
-              <dt className="text-gray-500">Ventana:</dt>
+              <dt className="text-gray-800">Ventana:</dt>
               <dd className="font-mono text-xs">
                 {prediction.startDate} 00:00 → {prediction.deadlineEndLima}{" "}
                 (Lima)
               </dd>
             </div>
             <div className="flex gap-2">
-              <dt className="text-gray-500">Magnitud:</dt>
+              <dt className="text-gray-800">Magnitud:</dt>
               <dd className="font-mono">
                 [{prediction.predictedMagnitudeMin},{" "}
                 {prediction.predictedMagnitudeMax}] inclusivo
               </dd>
             </div>
             <div className="flex flex-col gap-1">
-              <dt className="text-gray-500">
+              <dt className="text-gray-800">
                 Destinos con límites inequívocos:
               </dt>
               <dd>
@@ -108,7 +108,7 @@ export default async function ClaimAuditPage({
               </dd>
             </div>
             <div className="flex flex-col gap-1">
-              <dt className="text-gray-500">
+              <dt className="text-gray-800">
                 Destinos vagos (sin frontera inventada):
               </dt>
               <dd>
@@ -122,7 +122,7 @@ export default async function ClaimAuditPage({
                     ))}
                   </ul>
                 ) : (
-                  <span className="text-xs text-gray-500">Ninguno</span>
+                  <span className="text-xs text-gray-800">Ninguno</span>
                 )}
               </dd>
             </div>
@@ -137,13 +137,13 @@ export default async function ClaimAuditPage({
                 Estado: <VerdictBadge verdict={audit.verdict} />
               </p>
               {audit.verdict === "PENDING" ? (
-                <p className="text-gray-600">
+                <p className="text-gray-900">
                   La ventana sigue abierta. El protocolo congelado no busca
                   coincidencias ni declara resultados hasta el deadline.
                 </p>
               ) : (
                 <div data-testid="matching-events">
-                  <p className="text-gray-600">
+                  <p className="text-gray-900">
                     Eventos candidatos:{" "}
                     <span className="font-mono">{audit.candidates.length}</span>
                   </p>
@@ -174,7 +174,7 @@ export default async function ClaimAuditPage({
                   <p className="flex items-center gap-2 text-xs font-semibold text-derived">
                     <ClassBadge value="derived" /> Control contra azar
                   </p>
-                  <p className="mt-1 text-xs text-gray-700">
+                  <p className="mt-1 text-xs text-gray-800">
                     En los {audit.baseline.lookbackDays} días previos a la
                     ventana hubo{" "}
                     <span className="font-mono">
@@ -195,7 +195,7 @@ export default async function ClaimAuditPage({
                     </span>
                     .
                   </p>
-                  <p className="mt-1 text-[11px] text-gray-500">
+                  <p className="mt-1 text-[11px] text-gray-800">
                     Un acierto observado con probabilidad base alta no es
                     evidencia de capacidad predictiva.
                   </p>
@@ -228,7 +228,7 @@ export default async function ClaimAuditPage({
             {audit.evidence.map((entry) => (
               <li
                 key={`${entry.at}-${entry.action}-${entry.url}`}
-                className="text-gray-600"
+                className="text-gray-900"
               >
                 <span className="font-mono">{entry.at}</span> · {entry.action} ·{" "}
                 {entry.detail}
@@ -250,7 +250,7 @@ export default async function ClaimAuditPage({
         </section>
       ) : null}
 
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-gray-800">
         {GEOGRAPHY_METHOD_NOTE}{" "}
         <Link href="/verifica/metodologia" className="text-official underline">
           Ver metodología completa

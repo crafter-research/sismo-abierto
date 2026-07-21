@@ -17,7 +17,7 @@ export default async function LessonPage({
   const lesson = getLesson(slug);
   if (!lesson) {
     return (
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-900">
         Esta lección no existe.{" "}
         <Link href="/aula" className="text-official underline">
           Volver al Aula
@@ -50,7 +50,7 @@ export default async function LessonPage({
 
   return (
     <div className="space-y-6">
-      <nav className="text-xs text-gray-500">
+      <nav className="text-xs text-gray-800">
         <Link href="/aula" className="hover:underline">
           Aula
         </Link>{" "}
@@ -59,8 +59,8 @@ export default async function LessonPage({
 
       <header>
         <h1 className="text-xl font-bold">{lesson.title}</h1>
-        <p className="mt-1 text-sm text-gray-600">{lesson.summary}</p>
-        <p className="mt-2 flex items-center gap-2 text-xs text-gray-500">
+        <p className="mt-1 text-sm text-gray-900">{lesson.summary}</p>
+        <p className="mt-2 flex items-center gap-2 text-xs text-gray-800">
           <ClassBadge value="explanation" />
           Contenido comunitario v{lesson.version}, pendiente de revisión
           científica. Cada afirmación enlaza su fuente.
@@ -78,7 +78,7 @@ export default async function LessonPage({
               className="rounded-lg border border-gray-200 p-3 text-sm"
             >
               <p>{claim.text}</p>
-              <p className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+              <p className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-gray-800">
                 <ClassBadge value="explanation" />
                 {claim.sourceUrl ? (
                   <a
@@ -113,10 +113,10 @@ export default async function LessonPage({
               <span>{realEvent.reference}</span>
               <ClassBadge value="official" />
             </p>
-            <p className="mt-1 font-mono text-xs text-gray-600">
+            <p className="mt-1 font-mono text-xs text-gray-900">
               {formatLimaDateTime(realEvent.timeLocal)}
             </p>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-900">
               Este evento tiene registros acelerométricos: al abrirlo verás que
               la magnitud es una sola, pero cada estación registró aceleraciones
               distintas.

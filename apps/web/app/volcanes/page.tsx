@@ -23,7 +23,7 @@ export default async function VolcanoesPage() {
     <div className="space-y-6">
       <header>
         <h1 className="text-xl font-bold">Volcanes Abiertos</h1>
-        <p className="text-sm text-gray-600" data-testid="scope-notice">
+        <p className="text-sm text-gray-900" data-testid="scope-notice">
           Datos publicados por la IDE del IGP. La fuente no publica fecha de
           actualización por registro, así que la vigencia del nivel no está
           confirmada. Esto no es un canal de alertas.
@@ -50,7 +50,7 @@ export default async function VolcanoesPage() {
                   Volcanes publicados por la IDE del IGP con su nivel publicado
                 </caption>
                 <thead>
-                  <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-500">
+                  <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
                     <th scope="col" className="py-1.5 pr-2">
                       Volcán
                     </th>

@@ -75,7 +75,7 @@ export function WaveformViewer({ waveform }: { waveform: WaveformView }) {
               }
             />
             <span className="font-mono font-semibold">{component.label}</span>
-            <span className="text-gray-500">{component.description}</span>
+            <span className="text-gray-800">{component.description}</span>
           </label>
         ))}
       </div>
@@ -87,7 +87,7 @@ export function WaveformViewer({ waveform }: { waveform: WaveformView }) {
               key={component.key}
               data-testid={`waveform-${component.key}`}
             >
-              <figcaption className="mb-1 flex items-baseline gap-3 text-xs text-gray-600">
+              <figcaption className="mb-1 flex items-baseline gap-3 text-xs text-gray-900">
                 <span className="font-mono text-sm font-bold text-gray-900">
                   {component.label} · {component.description}
                 </span>
@@ -131,7 +131,7 @@ export function WaveformViewer({ waveform }: { waveform: WaveformView }) {
       </div>
 
       <fieldset className="rounded border border-gray-200 p-3 text-sm">
-        <legend className="px-1 text-xs font-semibold uppercase text-gray-500">
+        <legend className="px-1 text-xs font-semibold uppercase text-gray-800">
           Zoom horizontal compartido
         </legend>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -181,7 +181,7 @@ export function WaveformViewer({ waveform }: { waveform: WaveformView }) {
         <summary className="cursor-pointer text-sm font-medium">
           Alternativa tabular accesible de las gráficas
         </summary>
-        <p className="mt-2 text-xs text-gray-600">
+        <p className="mt-2 text-xs text-gray-900">
           Resumen numérico calculado sobre la serie completa (
           {waveform.header.sampleCount} muestras a{" "}
           {waveform.header.sampleRateHz} muestras/segundo).
@@ -195,7 +195,7 @@ export function WaveformViewer({ waveform }: { waveform: WaveformView }) {
             Métricas por componente calculadas sobre la serie completa
           </caption>
           <thead>
-            <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-500">
+            <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
               <th scope="col" className="py-1 pr-2">
                 Componente
               </th>

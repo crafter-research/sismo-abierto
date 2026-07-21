@@ -75,7 +75,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   GitHub
                 </a>
               </nav>
-              <span className="ml-auto hidden font-mono text-[11px] text-gray-700 lg:block">
+              <span className="ml-auto hidden font-mono text-[11px] text-gray-800 lg:block">
                 Proyecto comunitario · Fuente: IGP · No es un canal de alerta
               </span>
               <span className="ml-auto lg:ml-0">
@@ -86,7 +86,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-5">
             {children}
           </main>
-          <footer className="border-gray-200 border-t px-4 py-3 text-center font-mono text-[11px] text-gray-700">
+          <footer className="border-gray-200 border-t px-4 py-3 text-center font-mono text-[11px] text-gray-800">
             Datos consultados en las fuentes públicas del Instituto Geofísico
             del Perú · cada valor indica fuente, hora de consulta y limitaciones
           </footer>

@@ -28,7 +28,7 @@ export default function DevelopersPage() {
     <div className="space-y-6">
       <header>
         <h1 className="text-xl font-bold">Developers</h1>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-900">
           API, CLI y Estado de Fuentes sobre el mismo núcleo normalizado con
           procedencia.
         </p>
@@ -45,7 +45,7 @@ export default function DevelopersPage() {
             >
               {resource.title}
             </Link>
-            <p className="mt-1 text-sm text-gray-600">{resource.description}</p>
+            <p className="mt-1 text-sm text-gray-900">{resource.description}</p>
           </li>
         ))}
       </ul>
@@ -69,7 +69,7 @@ export default function DevelopersPage() {
         <pre className="mt-3 overflow-x-auto rounded-md bg-gray-1000 p-3 font-mono text-[13px] text-background-100">
           {`npx skills add crafter-station/sismo-abierto`}
         </pre>
-        <p className="mt-2 font-mono text-[11px] text-gray-700">
+        <p className="mt-2 font-mono text-[11px] text-gray-800">
           Introspección en runtime: `sismo skill` imprime la documentación
           agent-first completa · `--open` abre la fuente oficial de cualquier
           dato
@@ -95,7 +95,7 @@ sismo volcano VOLCANO_SLUG
 sismo sources
 sismo source SOURCE_ID --evidence`}
         </pre>
-        <p className="mt-2 font-mono text-[11px] text-gray-700">
+        <p className="mt-2 font-mono text-[11px] text-gray-800">
           Salida humana en tablas · --json, --geojson y --csv sin decoración ·
           errores a stderr con códigos de salida estables
         </p>

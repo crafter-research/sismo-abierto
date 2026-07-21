@@ -6,7 +6,7 @@ export const metadata = { title: "Metodología · Verifica Sismos" };
 export default function MethodologyPage() {
   return (
     <div className="prose-sm max-w-3xl space-y-5 text-sm text-gray-800">
-      <nav className="text-xs text-gray-500">
+      <nav className="text-xs text-gray-800">
         <Link href="/verifica" className="hover:underline">
           Verifica
         </Link>{" "}

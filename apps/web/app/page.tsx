@@ -24,7 +24,7 @@ export default async function HomePage() {
       >
         <p
           id="ultimo-sismo-titulo"
-          className="font-mono text-[11px] text-gray-700 uppercase tracking-widest"
+          className="font-mono text-[11px] text-gray-800 uppercase tracking-widest"
         >
           Último sismo oficial
         </p>
@@ -42,7 +42,7 @@ export default async function HomePage() {
             </h1>
             <dl className="mt-4 grid max-w-md grid-cols-2 gap-x-6 gap-y-1.5 font-mono text-[13px] text-gray-900">
               <div>
-                <dt className="text-[11px] text-gray-700 uppercase">
+                <dt className="text-[11px] text-gray-800 uppercase">
                   Hora local
                 </dt>
                 <dd>
@@ -53,13 +53,13 @@ export default async function HomePage() {
                 </dd>
               </div>
               <div>
-                <dt className="text-[11px] text-gray-700 uppercase">
+                <dt className="text-[11px] text-gray-800 uppercase">
                   Profundidad
                 </dt>
                 <dd>{latest.depthKm} km</dd>
               </div>
               <div>
-                <dt className="text-[11px] text-gray-700 uppercase">
+                <dt className="text-[11px] text-gray-800 uppercase">
                   Coordenadas
                 </dt>
                 <dd>
@@ -68,7 +68,7 @@ export default async function HomePage() {
               </div>
               {latest.intensity ? (
                 <div>
-                  <dt className="text-[11px] text-gray-700 uppercase">
+                  <dt className="text-[11px] text-gray-800 uppercase">
                     Intensidad
                   </dt>
                   <dd>{latest.intensity}</dd>

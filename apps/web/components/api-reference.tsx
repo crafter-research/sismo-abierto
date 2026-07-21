@@ -11,7 +11,7 @@ export function ApiReference() {
   useEffect(() => setMounted(true), []);
   if (!mounted) {
     return (
-      <p className="p-6 font-mono text-[13px] text-gray-700">
+      <p className="p-6 font-mono text-[13px] text-gray-800">
         Cargando referencia…
       </p>
     );

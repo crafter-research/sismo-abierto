@@ -16,7 +16,7 @@ export default function AulaPage() {
     <div className="space-y-6">
       <header>
         <h1 className="text-xl font-bold">Aula Sísmica</h1>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-900">
           Lecciones cortas construidas sobre eventos reales del IGP. Sin
           cuentas: el progreso vive en tu navegador.
         </p>
@@ -37,8 +37,8 @@ export default function AulaPage() {
             >
               {lesson.title}
             </Link>
-            <p className="mt-1 text-sm text-gray-600">{lesson.summary}</p>
-            <p className="mt-2 flex items-center gap-2 text-xs text-gray-500">
+            <p className="mt-1 text-sm text-gray-900">{lesson.summary}</p>
+            <p className="mt-2 flex items-center gap-2 text-xs text-gray-800">
               <ClassBadge value="explanation" />
               Contenido comunitario v{lesson.version}, pendiente de revisión
               científica.
@@ -50,15 +50,15 @@ export default function AulaPage() {
             key={title}
             className="rounded-lg border border-dashed border-gray-300 p-4"
           >
-            <p className="font-semibold text-gray-400">{title}</p>
-            <p className="mt-1 text-xs text-gray-400">Próximamente.</p>
+            <p className="font-semibold text-gray-800">{title}</p>
+            <p className="mt-1 text-xs text-gray-800">Próximamente.</p>
           </li>
         ))}
       </ul>
 
       <div className="rounded-lg border border-gray-200 p-4">
         <h2 className="font-semibold">Laboratorio sísmico</h2>
-        <p className="mt-1 text-sm text-gray-600">
+        <p className="mt-1 text-sm text-gray-900">
           Compara dos estaciones de un evento real y observa cómo cambian la
           aceleración y la distancia. El estado del laboratorio se comparte por
           URL.

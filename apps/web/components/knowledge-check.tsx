@@ -93,7 +93,7 @@ export function KnowledgeCheck({
         <span
           role="status"
           aria-live="polite"
-          className="text-sm text-gray-600"
+          className="text-sm text-gray-900"
         >
           {completed ? "Lección completada (guardado en este navegador)" : ""}
         </span>
@@ -108,7 +108,7 @@ export function AulaProgress({ totalLessons }: { totalLessons: number }) {
     setCompletedCount(Object.values(readProgress()).filter(Boolean).length);
   }, []);
   return (
-    <p className="text-sm text-gray-600" data-testid="aula-progress">
+    <p className="text-sm text-gray-900" data-testid="aula-progress">
       Progreso local: {completedCount ?? 0}/{totalLessons} lecciones. Se guarda
       solo en este navegador, sin cuentas.
     </p>
