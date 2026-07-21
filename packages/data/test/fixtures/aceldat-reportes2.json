@@ -1,0 +1,68 @@
+[
+ {
+  "_id": "6a5c764a6fbf393e01744cff",
+  "numeroReporte": 20260468,
+  "fechaHora": {
+   "$date": {
+    "$numberLong": 1784427874000
+   }
+  },
+  "magnitud": 5.1,
+  "referencia": "7 km al S de Chupaca, Chupaca - Junín"
+ },
+ {
+  "_id": "6a5781616fbf393e01744ce9",
+  "numeroReporte": 20260447,
+  "fechaHora": {
+   "$date": {
+    "$numberLong": 1784083225000
+   }
+  },
+  "magnitud": 4.6,
+  "referencia": "108 km al SO de Ica, Ica - Ica"
+ },
+ {
+  "_id": "6a5630d96fbf393e01744cde",
+  "numeroReporte": 20260439,
+  "fechaHora": {
+   "$date": {
+    "$numberLong": 1784017263000
+   }
+  },
+  "magnitud": 5.4,
+  "referencia": "17 km al N de Huayhuahuasi, Espinar - Cusco"
+ },
+ {
+  "_id": "6a52ae7a6fbf393e01744cd6",
+  "numeroReporte": 20260432,
+  "fechaHora": {
+   "$date": {
+    "$numberLong": 1783756699000
+   }
+  },
+  "magnitud": 5.2,
+  "referencia": "170 km al SO de Huarmey, Huarmey - Áncash"
+ },
+ {
+  "_id": "6a4f985e6fbf393e01744cd2",
+  "numeroReporte": 20260428,
+  "fechaHora": {
+   "$date": {
+    "$numberLong": 1783598290000
+   }
+  },
+  "magnitud": 4.5,
+  "referencia": "44 km al NE de Satipo, Satipo - Junín"
+ },
+ {
+  "_id": "6a4e47c76fbf393e01744ccf",
+  "numeroReporte": 20260426,
+  "fechaHora": {
+   "$date": {
+    "$numberLong": 1783486829000
+   }
+  },
+  "magnitud": 4.5,
+  "referencia": "45 km al NO de Satipo, Satipo - Junín"
+ }
+]
