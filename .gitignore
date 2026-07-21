@@ -8,3 +8,4 @@ apps/web/test-results/
 apps/web/playwright-report/
 .trigger/
 docs/evidence/
+apps/web/next-env.d.ts
