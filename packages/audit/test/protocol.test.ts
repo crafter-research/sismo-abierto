@@ -90,14 +90,18 @@ describe("fronteras de tiempo (hora de origen, Lima)", () => {
 
 describe("geografía determinista", () => {
   const ica = matchersForTarget("Ica")[0] as RegionMatcher;
-  test("interior claro del departamento", () => {
-    expect(matchRegion(ica, -14.0, -75.5)).toBe("inside");
+  test("interior claro del departamento (Ica ciudad)", () => {
+    expect(matchRegion(ica, -14.07, -75.73)).toBe("inside");
   });
-  test("epicentro a menos de 0.25° del borde es frontera, no acierto", () => {
-    expect(matchRegion(ica, -13.0, -75.5)).toBe("boundary");
+  test("epicentro a menos de 0.25° del límite es frontera, no acierto (Nazca)", () => {
+    expect(matchRegion(ica, -14.83, -74.94)).toBe("boundary");
   });
-  test("fuera del departamento", () => {
-    expect(matchRegion(ica, -5.0, -75.5)).toBe("outside");
+  test("fuera del departamento (Cusco ciudad)", () => {
+    expect(matchRegion(ica, -13.52, -71.97)).toBe("outside");
+  });
+  test("el borde interno de una unión no es frontera (Callao ciudad en Lima-Callao)", () => {
+    const limaCallao = matchersForTarget("Lima-Callao")[0] as RegionMatcher;
+    expect(matchRegion(limaCallao, -12.06, -77.13)).toBe("inside");
   });
   test("las zonas vagas no reciben frontera inventada", () => {
     const vagueMatcher = matchersForTarget("Perú central")[0] as RegionMatcher;

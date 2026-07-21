@@ -13,8 +13,8 @@ Orden aproximado. Los gates de seguridad y revisión científica no se negocian 
 
 ## Siguiente
 
-- [ ] Veredictos de Verifica con point-in-polygon real sobre límites administrativos, en
-      reemplazo de las cajas geográficas documentadas (manteniendo el margen de frontera).
+- [x] Veredictos de Verifica con point-in-polygon real sobre límites INEI para departamentos
+      del Perú, con banda de frontera simétrica de 0.25°; países siguen en cajas documentadas.
 - [ ] Espectrograma y espectro de Fourier por estación en el visor de ondas.
 - [ ] Comparador de eventos (mismo lugar, distinta magnitud/profundidad) en Aula.
 - [ ] Más lecciones: profundidad y distancia; qué son Z/N/E y PGA; predicción vs pronóstico

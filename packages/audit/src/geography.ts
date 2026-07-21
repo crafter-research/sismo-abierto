@@ -1,7 +1,10 @@
+import { classifyDepartmentPoint } from "@sismo/geo";
+
 export interface RegionMatcher {
   key: string;
   label: string;
   kind: "peru-department" | "country" | "vague";
+  departments?: string[];
   bbox: {
     minLat: number;
     maxLat: number;
@@ -15,54 +18,63 @@ const BOUNDARY_MARGIN_DEG = 0.25;
 const REGION_CATALOG: Record<string, RegionMatcher> = {
   ica: {
     key: "ica",
+    departments: ["Ica"],
     label: "Ica (departamento)",
     kind: "peru-department",
     bbox: { minLat: -15.7, maxLat: -12.9, minLon: -76.6, maxLon: -74.6 },
   },
   "lima-callao": {
     key: "lima-callao",
+    departments: ["Lima", "Callao"],
     label: "Lima y Callao (departamentos)",
     kind: "peru-department",
     bbox: { minLat: -13.6, maxLat: -10.2, minLon: -78.0, maxLon: -75.4 },
   },
   tumbes: {
     key: "tumbes",
+    departments: ["Tumbes"],
     label: "Tumbes (departamento)",
     kind: "peru-department",
     bbox: { minLat: -4.3, maxLat: -3.4, minLon: -81.1, maxLon: -80.1 },
   },
   piura: {
     key: "piura",
+    departments: ["Piura"],
     label: "Piura (departamento)",
     kind: "peru-department",
     bbox: { minLat: -6.6, maxLat: -4.0, minLon: -81.4, maxLon: -79.1 },
   },
   loreto: {
     key: "loreto",
+    departments: ["Loreto"],
     label: "Loreto (departamento)",
     kind: "peru-department",
     bbox: { minLat: -8.7, maxLat: -0.03, minLon: -77.9, maxLon: -69.9 },
   },
   "la-libertad": {
     key: "la-libertad",
+    departments: ["La Libertad"],
     label: "La Libertad (departamento)",
     kind: "peru-department",
     bbox: { minLat: -8.99, maxLat: -6.9, minLon: -79.7, maxLon: -76.8 },
   },
   ancash: {
     key: "ancash",
+    departments: ["Ancash"],
     label: "Áncash (departamento)",
     kind: "peru-department",
     bbox: { minLat: -10.8, maxLat: -8.0, minLon: -78.7, maxLon: -76.7 },
   },
   arequipa: {
     key: "arequipa",
+    departments: ["Arequipa"],
     label: "Arequipa (departamento)",
     kind: "peru-department",
     bbox: { minLat: -17.3, maxLat: -14.6, minLon: -75.1, maxLon: -70.8 },
   },
   tacna: {
     key: "tacna",
+    departments: ["Tacna"],
     label: "Tacna (departamento)",
     kind: "peru-department",
     bbox: { minLat: -18.35, maxLat: -16.9, minLon: -71.2, maxLon: -69.5 },
@@ -268,6 +280,14 @@ export function matchRegion(
   longitude: number,
 ): GeoMatch {
   if (matcher.kind === "vague" || !matcher.bbox) return "vague";
+  if (matcher.kind === "peru-department" && matcher.departments) {
+    return classifyDepartmentPoint(
+      matcher.departments,
+      longitude,
+      latitude,
+      BOUNDARY_MARGIN_DEG,
+    );
+  }
   const { minLat, maxLat, minLon, maxLon } = matcher.bbox;
   const inside =
     latitude >= minLat &&
@@ -284,4 +304,4 @@ export function matchRegion(
 }
 
 export const GEOGRAPHY_METHOD_NOTE =
-  "Los límites administrativos se aproximan con cajas geográficas (bounding boxes) documentadas en el código. Un epicentro a menos de 0.25° del borde de la caja se trata como coincidencia de frontera y no cuenta como acierto estricto. Las expresiones territoriales vagas del texto original no reciben una frontera inventada.";
+  "Los departamentos del Perú se evalúan con punto-en-polígono sobre límites INEI simplificados; un epicentro a menos de 0.25° (~25 km) del límite, hacia adentro o hacia afuera, se trata como coincidencia de frontera y no cuenta como acierto estricto. Los países se aproximan con cajas geográficas documentadas en el código, con el mismo margen de frontera. Las expresiones territoriales vagas del texto original no reciben una frontera inventada.";

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@sismo/contracts": "workspace:*",
-    "@sismo/data": "workspace:*"
+    "@sismo/data": "workspace:*",
+    "@sismo/geo": "workspace:*"
   }
 }
