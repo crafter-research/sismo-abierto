@@ -4,6 +4,7 @@ import {
   isPublicSourcesPageEnabled,
 } from "@sismo/source-health";
 import Link from "next/link";
+import { statusChip } from "../../../lib/status-ui";
 
 export const dynamic = "force-dynamic";
 
@@ -49,7 +50,9 @@ export default async function SourceDetailPage({
         <h1 className="text-xl font-bold">{history.source.source.name}</h1>
         <p className="mt-1 flex flex-wrap items-center gap-2 text-sm">
           <span className="text-gray-500">Estado observado:</span>
-          <span className="rounded bg-missing-soft px-1.5 py-0.5 font-mono text-xs">
+          <span
+            className={`rounded px-1.5 py-0.5 font-mono text-xs ${statusChip(history.source.status)}`}
+          >
             {history.source.status}
           </span>
           {history.source.latencyMs !== null ? (

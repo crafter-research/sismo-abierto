@@ -5,18 +5,11 @@ import {
   runSourceChecks,
 } from "@sismo/source-health";
 import Link from "next/link";
+import { statusChip } from "../../lib/status-ui";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = { title: "Estado de Fuentes" };
-
-const STATUS_STYLES: Record<string, string> = {
-  OPERATIONAL: "bg-official-soft text-official",
-  DEGRADED: "bg-explanation-soft text-explanation",
-  UNAVAILABLE: "bg-loaderror-soft text-loaderror",
-  SCHEMA_CHANGED: "bg-explanation-soft text-explanation",
-  FRESHNESS_UNKNOWN: "bg-missing-soft text-missing",
-};
 
 export default async function SourcesPage() {
   if (!isPublicSourcesPageEnabled()) {
@@ -80,7 +73,7 @@ export default async function SourcesPage() {
                 <td className="py-1.5 pr-2">{source.source.name}</td>
                 <td className="py-1.5 pr-2">
                   <span
-                    className={`rounded px-1.5 py-0.5 font-mono text-xs ${STATUS_STYLES[source.status] ?? ""}`}
+                    className={`rounded px-1.5 py-0.5 font-mono text-xs ${statusChip(source.status)}`}
                   >
                     {source.status}
                   </span>
