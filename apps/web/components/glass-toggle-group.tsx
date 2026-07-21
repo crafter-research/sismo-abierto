@@ -3,10 +3,28 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Glass } from "./glass";
 
-const SPRING_STIFFNESS = 170;
-const SPRING_DAMPING = 22;
-const SPRING_MASS = 1;
-const SPRING_SETTLE_EPSILON = 0.001;
+const GLIDE_MS = 220;
+const EASE = [0.175, 0.885, 0.32, 1.1] as const;
+
+function cubicBezier(t: number, [x1, y1, x2, y2]: readonly number[]): number {
+  const cx = 3 * (x1 ?? 0);
+  const bx = 3 * ((x2 ?? 0) - (x1 ?? 0)) - cx;
+  const ax = 1 - cx - bx;
+  const cy = 3 * (y1 ?? 0);
+  const by = 3 * ((y2 ?? 0) - (y1 ?? 0)) - cy;
+  const ay = 1 - cy - by;
+  const sampleX = (u: number) => ((ax * u + bx) * u + cx) * u;
+  const sampleY = (u: number) => ((ay * u + by) * u + cy) * u;
+  const sampleDerivativeX = (u: number) => (3 * ax * u + 2 * bx) * u + cx;
+  let u = t;
+  for (let i = 0; i < 8; i++) {
+    const x = sampleX(u) - t;
+    const derivative = sampleDerivativeX(u);
+    if (Math.abs(derivative) < 1e-6) break;
+    u -= x / derivative;
+  }
+  return sampleY(u);
+}
 
 export interface GlassToggleGroupOption {
   value: string;
@@ -39,8 +57,6 @@ export function GlassToggleGroup({
   const containerRef = useRef<HTMLFieldSetElement>(null);
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const frameRef = useRef<number | null>(null);
-  const velocityRef = useRef(0);
-  const lastTimeRef = useRef(0);
 
   const defaultIndex = Math.max(
     0,
@@ -48,6 +64,7 @@ export function GlassToggleGroup({
   );
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
   const [progress, setProgress] = useState(defaultIndex);
+  const progressRef = useRef(defaultIndex);
   const [containerWidth, setContainerWidth] = useState(0);
 
   const optionCount = options.length;
@@ -65,45 +82,31 @@ export function GlassToggleGroup({
 
   useEffect(() => {
     const target = selectedIndex;
+    const from = progressRef.current;
+    if (from === target) return;
 
     if (prefersReducedMotion()) {
+      progressRef.current = target;
       setProgress(target);
       return;
     }
 
     if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
-    lastTimeRef.current = performance.now();
+    const startedAt = performance.now();
 
     const step = (time: number) => {
-      const deltaSeconds = Math.min(0.032, (time - lastTimeRef.current) / 1000);
-      lastTimeRef.current = time;
-
-      setProgress((current) => {
-        const displacement = current - target;
-        const springForce = -SPRING_STIFFNESS * displacement;
-        const dampingForce = -SPRING_DAMPING * velocityRef.current;
-        const acceleration = (springForce + dampingForce) / SPRING_MASS;
-        const nextVelocity = velocityRef.current + acceleration * deltaSeconds;
-        const next = current + nextVelocity * deltaSeconds;
-        velocityRef.current = nextVelocity;
-
-        const settled =
-          Math.abs(next - target) < SPRING_SETTLE_EPSILON &&
-          Math.abs(nextVelocity) < SPRING_SETTLE_EPSILON;
-
-        if (settled) {
-          frameRef.current = null;
-          velocityRef.current = 0;
-          return target;
-        }
-
+      const t = Math.min(1, (time - startedAt) / GLIDE_MS);
+      const next = from + (target - from) * cubicBezier(t, EASE);
+      progressRef.current = next;
+      setProgress(next);
+      if (t < 1) {
         frameRef.current = requestAnimationFrame(step);
-        return next;
-      });
+      } else {
+        frameRef.current = null;
+      }
     };
 
     frameRef.current = requestAnimationFrame(step);
-
     return () => {
       if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
     };

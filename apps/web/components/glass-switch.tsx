@@ -87,6 +87,7 @@ export function GlassSwitch({
         className="group relative inline-block"
         style={{ width: TRACK_W, height: TRACK_H }}
       >
+        <div className="absolute inset-0 rounded-full bg-gray-300" />
         <div
           aria-hidden="true"
           className="pointer-events-none absolute"
@@ -101,7 +102,7 @@ export function GlassSwitch({
             className="h-full w-full"
           >
             <div className="h-full w-full" style={{ padding: PAD }}>
-              <div className="relative h-full w-full overflow-hidden rounded-full bg-gray-300">
+              <div className="relative h-full w-full">
                 <div
                   className="absolute inset-0 rounded-full bg-gray-1000 transition-opacity duration-200"
                   style={{ opacity: checked ? 1 : 0 }}
