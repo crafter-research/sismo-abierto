@@ -8,12 +8,21 @@ import { ThemeToggle } from "../components/theme-toggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sismo.crafter.run"),
   title: {
     default: "Sismo Abierto",
     template: "%s · Sismo Abierto",
   },
   description:
     "Del epicentro oficial a cómo se movió realmente el suelo. Proyecto comunitario sobre datos públicos del IGP.",
+  openGraph: {
+    siteName: "Sismo Abierto",
+    type: "website",
+    locale: "es_PE",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 const NAV_ITEMS = [
