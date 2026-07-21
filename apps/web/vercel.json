@@ -1,4 +1,10 @@
 {
   "installCommand": "bun install",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "crons": [
+    {
+      "path": "/api/cron/source-checks",
+      "schedule": "*/30 * * * *"
+    }
+  ]
 }

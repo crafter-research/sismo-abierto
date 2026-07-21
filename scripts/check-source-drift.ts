@@ -1,11 +1,11 @@
 #!/usr/bin/env bun
 import {
   buildProbeConfigs,
-  MemorySourceHealthStore,
+  getDefaultStore,
   runSourceChecks,
 } from "../packages/source-health/src/index.ts";
 
-const store = new MemorySourceHealthStore();
+const store = getDefaultStore();
 const checks = await runSourceChecks(store, buildProbeConfigs());
 
 const EXPECTED_UNKNOWN = new Set(["igp-wfs-volcanes"]);

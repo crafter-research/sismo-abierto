@@ -16,3 +16,5 @@ jobs:
       - run: bun install --frozen-lockfile
       - name: Linter de contratos contra fuentes en vivo
         run: bun run drift
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}

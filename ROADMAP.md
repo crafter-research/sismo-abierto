@@ -4,12 +4,12 @@ Orden aproximado. Los gates de seguridad y revisión científica no se negocian 
 
 ## Ahora
 
-- [ ] Deploy público (Vercel) con dominio propio.
+- [x] Deploy público en Vercel (sismo-abierto.vercel.app). Falta dominio propio.
 - [ ] Veredictos reales de Verifica cuando venzan las ventanas congeladas (26 jul → 1 ago
       2026): correr el evaluador, publicar candidatos, desacuerdos de fuentes y tasa base.
 - [ ] Revisión científica externa de la interpretación ACELDAT (componentes Z/N/E, PGA,
       distancia epicentral) antes de difundir la demo.
-- [ ] Jobs en producción: probes de fuentes (Trigger.dev) + Neon para historial persistente.
+- [x] Probes en producción: Vercel Cron cada 30 min + Neon para historial persistente, y drift check en GitHub Actions cada 6 h.
 
 ## Siguiente
 
