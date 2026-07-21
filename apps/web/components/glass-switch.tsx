@@ -104,7 +104,7 @@ export function GlassSwitch({
             <div className="h-full w-full" style={{ padding: PAD }}>
               <div className="relative h-full w-full">
                 <div
-                  className="absolute inset-0 rounded-full bg-gray-1000 transition-opacity duration-200"
+                  className="absolute inset-0 rounded-full bg-gray-1000 transition-opacity duration-200 dark:bg-gray-600"
                   style={{ opacity: checked ? 1 : 0 }}
                 />
               </div>

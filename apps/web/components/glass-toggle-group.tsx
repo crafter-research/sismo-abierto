@@ -54,7 +54,7 @@ export function GlassToggleGroup({
   submitOnChange = true,
 }: GlassToggleGroupProps) {
   const reactId = useId();
-  const containerRef = useRef<HTMLFieldSetElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const frameRef = useRef<number | null>(null);
 
@@ -117,12 +117,13 @@ export function GlassToggleGroup({
   const pillLeft = progress * optionWidth + 3;
 
   return (
-    <fieldset
+    <div
+      role="radiogroup"
+      aria-label={legend}
       ref={containerRef}
       className="relative grid h-9 rounded-lg border border-gray-300 bg-background-200 focus-within:ring-2 focus-within:ring-gray-1000 focus-within:ring-offset-2 focus-within:ring-offset-background-100"
       style={{ gridTemplateColumns: `repeat(${optionCount}, minmax(0, 1fr))` }}
     >
-      <legend className="sr-only">{legend}</legend>
       <div aria-hidden="true" className="absolute inset-0">
         <Glass
           className="h-full"
@@ -177,6 +178,6 @@ export function GlassToggleGroup({
           </label>
         );
       })}
-    </fieldset>
+    </div>
   );
 }
