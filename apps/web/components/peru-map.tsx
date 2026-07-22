@@ -1,52 +1,156 @@
 import { departamentos, type GeoFeature, provincias } from "@sismo/geo";
 
-const BOUNDS = { minLon: -81.6, maxLon: -68.4, minLat: -18.6, maxLat: 0.3 };
-const LON_SCALE = Math.cos(
-  (((BOUNDS.minLat + BOUNDS.maxLat) / 2) * Math.PI) / 180,
-);
-const WIDTH = 640;
-const HEIGHT = Math.round(
-  (WIDTH * (BOUNDS.maxLat - BOUNDS.minLat)) /
-    ((BOUNDS.maxLon - BOUNDS.minLon) * LON_SCALE),
-);
+interface Bounds {
+  minLon: number;
+  maxLon: number;
+  minLat: number;
+  maxLat: number;
+}
 
-function project(lon: number, lat: number): [number, number] {
-  const x = ((lon - BOUNDS.minLon) / (BOUNDS.maxLon - BOUNDS.minLon)) * WIDTH;
-  const y = ((BOUNDS.maxLat - lat) / (BOUNDS.maxLat - BOUNDS.minLat)) * HEIGHT;
+const BASE_BOUNDS: Bounds = {
+  minLon: -81.6,
+  maxLon: -68.4,
+  minLat: -18.6,
+  maxLat: 0.3,
+};
+const MAX_EXTENSION_DEG = 3;
+const MARKER_PADDING_DEG = 0.6;
+const WIDTH = 640;
+
+function heightFor(bounds: Bounds): number {
+  const lonScale = Math.cos(
+    (((bounds.minLat + bounds.maxLat) / 2) * Math.PI) / 180,
+  );
+  return Math.round(
+    (WIDTH * (bounds.maxLat - bounds.minLat)) /
+      ((bounds.maxLon - bounds.minLon) * lonScale),
+  );
+}
+
+function projectWith(
+  bounds: Bounds,
+  height: number,
+  lon: number,
+  lat: number,
+): [number, number] {
+  const x = ((lon - bounds.minLon) / (bounds.maxLon - bounds.minLon)) * WIDTH;
+  const y = ((bounds.maxLat - lat) / (bounds.maxLat - bounds.minLat)) * height;
   return [Math.round(x * 100) / 100, Math.round(y * 100) / 100];
 }
 
-function ringToPath(ring: number[][]): string {
+function ringToPath(bounds: Bounds, height: number, ring: number[][]): string {
   return `${ring
     .map((point, index) => {
-      const [x, y] = project(point[0] as number, point[1] as number);
+      const [x, y] = projectWith(
+        bounds,
+        height,
+        point[0] as number,
+        point[1] as number,
+      );
       return `${index === 0 ? "M" : "L"}${x},${y}`;
     })
     .join("")}Z`;
 }
 
-function featureToPath(feature: GeoFeature): string {
+function featureToPath(
+  bounds: Bounds,
+  height: number,
+  feature: GeoFeature,
+): string {
   const { type, coordinates } = feature.geometry;
   if (type === "Polygon") {
-    return (coordinates as number[][][]).map(ringToPath).join("");
+    return (coordinates as number[][][])
+      .map((ring) => ringToPath(bounds, height, ring))
+      .join("");
   }
   if (type === "MultiPolygon") {
     return (coordinates as number[][][][])
-      .flatMap((polygon) => polygon.map(ringToPath))
+      .flatMap((polygon) =>
+        polygon.map((ring) => ringToPath(bounds, height, ring)),
+      )
       .join("");
   }
   return "";
 }
 
-const DEPARTMENT_PATHS = departamentos.features.map((feature) => ({
-  name: feature.properties.name,
-  d: featureToPath(feature),
-}));
+const pathCache = new Map<
+  string,
+  {
+    departments: Array<{ name: string; d: string }>;
+    provinces: Array<{ name: string; d: string }>;
+  }
+>();
 
-const PROVINCE_PATHS = provincias.features.map((feature) => ({
-  name: feature.properties.name,
-  d: featureToPath(feature),
-}));
+function pathsFor(bounds: Bounds, height: number) {
+  const key = `${bounds.minLon},${bounds.maxLon},${bounds.minLat},${bounds.maxLat}`;
+  const cached = pathCache.get(key);
+  if (cached) return cached;
+  const built = {
+    departments: departamentos.features.map((feature) => ({
+      name: feature.properties.name,
+      d: featureToPath(bounds, height, feature),
+    })),
+    provinces: provincias.features.map((feature) => ({
+      name: feature.properties.name,
+      d: featureToPath(bounds, height, feature),
+    })),
+  };
+  if (pathCache.size > 12) pathCache.clear();
+  pathCache.set(key, built);
+  return built;
+}
+
+function boundsForMarkers(markers: MapMarker[]): Bounds {
+  const bounds = { ...BASE_BOUNDS };
+  for (const marker of markers) {
+    bounds.minLon = Math.min(
+      bounds.minLon,
+      Math.max(
+        marker.longitude - MARKER_PADDING_DEG,
+        BASE_BOUNDS.minLon - MAX_EXTENSION_DEG,
+      ),
+    );
+    bounds.maxLon = Math.max(
+      bounds.maxLon,
+      Math.min(
+        marker.longitude + MARKER_PADDING_DEG,
+        BASE_BOUNDS.maxLon + MAX_EXTENSION_DEG,
+      ),
+    );
+    bounds.minLat = Math.min(
+      bounds.minLat,
+      Math.max(
+        marker.latitude - MARKER_PADDING_DEG,
+        BASE_BOUNDS.minLat - MAX_EXTENSION_DEG,
+      ),
+    );
+    bounds.maxLat = Math.max(
+      bounds.maxLat,
+      Math.min(
+        marker.latitude + MARKER_PADDING_DEG,
+        BASE_BOUNDS.maxLat + MAX_EXTENSION_DEG,
+      ),
+    );
+  }
+  const snap = (value: number) => Math.round(value * 2) / 2;
+  return {
+    minLon: snap(bounds.minLon),
+    maxLon: snap(bounds.maxLon),
+    minLat: snap(bounds.minLat),
+    maxLat: snap(bounds.maxLat),
+  };
+}
+
+function clampToBounds(
+  bounds: Bounds,
+  lon: number,
+  lat: number,
+): [number, number] {
+  return [
+    Math.min(bounds.maxLon, Math.max(bounds.minLon, lon)),
+    Math.min(bounds.maxLat, Math.max(bounds.minLat, lat)),
+  ];
+}
 
 export interface MapMarker {
   longitude: number;
@@ -206,17 +310,21 @@ export function PeruMap({
   showProvinces?: boolean;
   className?: string;
 }) {
+  const bounds = boundsForMarkers(markers);
+  const height = heightFor(bounds);
+  const paths = pathsFor(bounds, height);
+
   return (
     <figure data-testid="peru-map" className={className}>
       <svg
-        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+        viewBox={`0 0 ${WIDTH} ${height}`}
         role="img"
         aria-label={title}
         aria-describedby={descriptionId}
         className="h-auto max-h-full w-full"
       >
         {showProvinces
-          ? PROVINCE_PATHS.map((province) => (
+          ? paths.provinces.map((province) => (
               <path
                 key={province.name}
                 d={province.d}
@@ -228,7 +336,7 @@ export function PeruMap({
               </path>
             ))
           : null}
-        {DEPARTMENT_PATHS.map((department) => (
+        {paths.departments.map((department) => (
           <path
             key={department.name}
             d={department.d}
@@ -241,7 +349,12 @@ export function PeruMap({
           </path>
         ))}
         {markers.map((marker) => {
-          const [x, y] = project(marker.longitude, marker.latitude);
+          const [clampedLon, clampedLat] = clampToBounds(
+            bounds,
+            marker.longitude,
+            marker.latitude,
+          );
+          const [x, y] = projectWith(bounds, height, clampedLon, clampedLat);
           let shape: React.ReactNode;
           if (marker.kind === "epicenter") {
             shape = (
