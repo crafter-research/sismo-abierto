@@ -1,3 +1,4 @@
+import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -62,8 +63,12 @@ export async function openUrl(url: string): Promise<void> {
       : process.platform === "win32"
         ? ["cmd", "/c", "start", "", url]
         : ["xdg-open", url];
-  const proc = Bun.spawn(opener, { stdout: "ignore", stderr: "ignore" });
-  await proc.exited;
+  const [cmd, ...cmdArgs] = opener;
+  await new Promise<void>((resolve) => {
+    const proc = spawn(cmd as string, cmdArgs, { stdio: "ignore" });
+    proc.on("exit", () => resolve());
+    proc.on("error", () => resolve());
+  });
 }
 
 export async function maybeOpen(
@@ -86,10 +91,11 @@ export function resolveRepoFile(relativePath: string): string | null {
     if (parent === dir) break;
     dir = parent;
   }
+  const moduleDir = dirname(new URL(import.meta.url).pathname);
   const candidates = [
-    join(import.meta.dir, "../../..", relativePath),
-    join(import.meta.dir, "..", "SKILL.md"),
-    join(import.meta.dir, "SKILL.md"),
+    join(moduleDir, "../../..", relativePath),
+    join(moduleDir, "..", "SKILL.md"),
+    join(moduleDir, "SKILL.md"),
   ];
   return candidates.find((candidate) => existsSync(candidate)) ?? null;
 }

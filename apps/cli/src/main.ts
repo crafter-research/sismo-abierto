@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+import { writeFile } from "node:fs/promises";
 import type { NormalizedEvent } from "@sismo/contracts";
 import {
   buildEventDetailResponse,
@@ -94,7 +95,7 @@ function eventsToGeoJson(
 async function writeOutput(content: string, args: ParsedArgs): Promise<void> {
   const output = stringFlag(args, "output");
   if (output) {
-    await Bun.write(output, `${content}\n`);
+    await writeFile(output, `${content}\n`);
     console.log(`Exportado a ${output}`);
   } else {
     console.log(content);
