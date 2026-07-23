@@ -1,11 +1,11 @@
 {
   "name": "@crafter/sismo-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "bin": {
     "sismo": "./dist/sismo.js"
   },
-  "description": "Datos s\u00edsmicos y volc\u00e1nicos p\u00fablicos del Per\u00fa (IGP) desde terminal, con procedencia trazable. Agent-first: --json, exit codes estables, sismo skill.",
+  "description": "Datos sísmicos y volcánicos públicos del Perú (IGP) desde terminal, con procedencia trazable. Agent-first: --json, exit codes estables, sismo skill.",
   "license": "MIT",
   "repository": {
     "type": "git",
