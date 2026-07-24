@@ -12,4 +12,5 @@ export * from "./geo.ts";
 export * from "./http.ts";
 export * from "./lima-time.ts";
 export * from "./service.ts";
+export * from "./summary.ts";
 export * from "./xlsx.ts";

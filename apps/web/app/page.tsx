@@ -83,10 +83,10 @@ export default async function HomePage() {
                 Ver Estaciones y Ondas
               </Link>
               <Link
-                href="/sismos"
+                href="/sismos?range=ytd"
                 className="flex h-10 items-center rounded-md border border-gray-400 bg-background-100 px-4 font-medium text-[14px] text-gray-1000 hover:border-gray-500 hover:bg-background-200"
               >
-                Explorar Catálogo
+                Ver actividad del año
               </Link>
               <span className="flex items-center gap-2">
                 <ClassBadge value="official" />
@@ -103,10 +103,10 @@ export default async function HomePage() {
               context="No pudimos obtener el último sismo desde las fuentes públicas del IGP."
             />
             <Link
-              href="/sismos"
+              href="/sismos?range=ytd"
               className="mt-4 inline-flex h-10 items-center rounded-md border border-gray-400 px-4 font-medium text-[14px] text-gray-1000 hover:bg-background-200"
             >
-              Explorar Catálogo
+              Ver actividad del año
             </Link>
           </div>
         )}

@@ -37,6 +37,7 @@ export interface GlassToggleGroupProps {
   options: GlassToggleGroupOption[];
   defaultValue: string;
   submitOnChange?: boolean;
+  clearInputNames?: string[];
 }
 
 function prefersReducedMotion(): boolean {
@@ -52,19 +53,20 @@ export function GlassToggleGroup({
   options,
   defaultValue,
   submitOnChange = true,
+  clearInputNames = [],
 }: GlassToggleGroupProps) {
   const reactId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const frameRef = useRef<number | null>(null);
 
-  const defaultIndex = Math.max(
-    0,
-    options.findIndex((option) => option.value === defaultValue),
+  const defaultIndex = options.findIndex(
+    (option) => option.value === defaultValue,
   );
+  const initialProgress = Math.max(0, defaultIndex);
   const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
-  const [progress, setProgress] = useState(defaultIndex);
-  const progressRef = useRef(defaultIndex);
+  const [progress, setProgress] = useState(initialProgress);
+  const progressRef = useRef(initialProgress);
   const [containerWidth, setContainerWidth] = useState(0);
 
   const optionCount = options.length;
@@ -82,6 +84,11 @@ export function GlassToggleGroup({
 
   useEffect(() => {
     const target = selectedIndex;
+    if (target < 0) {
+      progressRef.current = 0;
+      setProgress(0);
+      return;
+    }
     const from = progressRef.current;
     if (from === target) return;
 
@@ -124,7 +131,10 @@ export function GlassToggleGroup({
       className="relative grid h-9 rounded-lg border border-gray-300 bg-background-200 focus-within:ring-2 focus-within:ring-gray-1000 focus-within:ring-offset-2 focus-within:ring-offset-background-100"
       style={{ gridTemplateColumns: `repeat(${optionCount}, minmax(0, 1fr))` }}
     >
-      <div aria-hidden="true" className="absolute inset-0">
+      <div
+        aria-hidden="true"
+        className={`absolute inset-0 ${selectedIndex < 0 ? "opacity-0" : ""}`}
+      >
         <Glass
           className="h-full"
           lens={{
@@ -149,12 +159,17 @@ export function GlassToggleGroup({
       </div>
       {options.map((option, index) => {
         const inputId = `${reactId}-${option.value}`;
+        const isSelected = index === selectedIndex;
         return (
           <label
             key={option.value}
             htmlFor={inputId}
             className={`relative z-10 flex cursor-pointer select-none items-center justify-center whitespace-nowrap px-3 text-sm transition-colors duration-150 ${
-              index === selectedIndex ? "text-background-100" : "text-gray-900"
+              isSelected ? "text-background-100" : "text-gray-900"
+            } ${
+              isSelected && containerWidth === 0
+                ? "m-[3px] rounded-md bg-gray-1000"
+                : ""
             }`}
           >
             <input
@@ -169,8 +184,18 @@ export function GlassToggleGroup({
               className="sr-only"
               onChange={() => {
                 setSelectedIndex(index);
+                const form = inputRefs.current[index]?.form;
+                for (const inputName of clearInputNames) {
+                  form
+                    ?.querySelectorAll<HTMLInputElement>(
+                      `input[name="${inputName}"]`,
+                    )
+                    .forEach((input) => {
+                      input.value = "";
+                    });
+                }
                 if (submitOnChange) {
-                  inputRefs.current[index]?.form?.requestSubmit();
+                  form?.requestSubmit();
                 }
               }}
             />

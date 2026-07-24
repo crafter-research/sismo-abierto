@@ -59,6 +59,20 @@ test.describe("V2: del evento a las ondas", () => {
 });
 
 test.describe("V3: catálogo reproducible", () => {
+  test("el catálogo abre con el resumen del año y su procedencia", async ({
+    page,
+  }) => {
+    await page.goto("/sismos");
+    const summary = page.getByTestId("activity-summary");
+    await expect(summary).toBeVisible();
+    await expect(summary).toContainText("Actividad en cifras");
+    await expect(summary).toContainText("DERIVADO");
+    await expect(summary.getByTestId("source-badge")).toContainText(
+      "Consultado:",
+    );
+    await expect(page.getByLabel("Este año")).toBeChecked();
+  });
+
   test("una URL con filtros restaura exactamente la consulta", async ({
     page,
   }) => {
