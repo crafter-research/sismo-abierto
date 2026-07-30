@@ -67,7 +67,7 @@ export default function DevelopersPage() {
           procedencia en cada respuesta.
         </p>
         <pre className="mt-3 overflow-x-auto rounded-md bg-gray-1000 p-3 font-mono text-[13px] text-background-100">
-          {`npx skills add crafter-station/sismo-abierto`}
+          {`npx skills add crafter-research/sismo-abierto`}
         </pre>
         <p className="mt-2 font-mono text-[11px] text-gray-800">
           Introspección en runtime: `sismo skill` imprime la documentación

@@ -13,7 +13,7 @@ predicción ni información de seguridad. Conservar los disclaimers al citar dat
 
 ```bash
 # En el repo (Bun requerido)
-git clone https://github.com/crafter-station/sismo-abierto && cd sismo-abierto && bun install
+git clone https://github.com/crafter-research/sismo-abierto && cd sismo-abierto && bun install
 alias sismo="bun apps/cli/src/main.ts"
 
 # O instalado como paquete

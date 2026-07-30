@@ -137,7 +137,7 @@ export default async function VerificaPage() {
           quedan auditadas en git.
         </p>
         <a
-          href="https://github.com/crafter-station/sismo-abierto/issues/new"
+          href="https://github.com/crafter-research/sismo-abierto/issues/new"
           className="mt-2 inline-block text-official underline"
           rel="noreferrer"
         >

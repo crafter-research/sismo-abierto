@@ -11,8 +11,8 @@
   </p>
 
   <p>
-    <a href="https://github.com/crafter-station/sismo-abierto/actions/workflows/ci.yml"><img src="https://github.com/crafter-station/sismo-abierto/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-    <a href="https://github.com/crafter-station/sismo-abierto/actions/workflows/source-drift.yml"><img src="https://github.com/crafter-station/sismo-abierto/actions/workflows/source-drift.yml/badge.svg" alt="Source Drift" /></a>
+    <a href="https://github.com/crafter-research/sismo-abierto/actions/workflows/ci.yml"><img src="https://github.com/crafter-research/sismo-abierto/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+    <a href="https://github.com/crafter-research/sismo-abierto/actions/workflows/source-drift.yml"><img src="https://github.com/crafter-research/sismo-abierto/actions/workflows/source-drift.yml/badge.svg" alt="Source Drift" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-black" alt="MIT" /></a>
   </p>
 
@@ -56,7 +56,7 @@ Seis productos sobre un mismo núcleo de datos normalizado y trazable:
 Requiere [Bun](https://bun.sh).
 
 ```bash
-git clone https://github.com/crafter-station/sismo-abierto
+git clone https://github.com/crafter-research/sismo-abierto
 cd sismo-abierto
 bun install
 bun run dev        # web en http://localhost:3000
@@ -87,7 +87,7 @@ caída o contrato roto). `--open` abre la fuente oficial del dato en el navegado
 ### Coding agents
 
 ```bash
-npx skills add crafter-station/sismo-abierto
+npx skills add crafter-research/sismo-abierto
 ```
 
 Instala la skill [`sismo-cli`](skills/sismo-cli/SKILL.md) para que tu agente (Claude Code,
@@ -138,5 +138,5 @@ afirmaciones para Verifica entran por PR con evidencia temporal previa al result
 
 ## Licencia
 
-[MIT](LICENSE) © Crafter Station. Los datos pertenecen a sus fuentes oficiales y se
+[MIT](LICENSE) © Crafter Research. Los datos pertenecen a sus fuentes oficiales y se
 consultan en origen.

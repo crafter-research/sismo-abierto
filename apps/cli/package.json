@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/crafter-station/sismo-abierto.git",
+    "url": "git+https://github.com/crafter-research/sismo-abierto.git",
     "directory": "apps/cli"
   },
   "homepage": "https://sismo.crafter.run/developers",

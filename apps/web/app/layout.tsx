@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   </Link>
                 ))}
                 <a
-                  href="https://github.com/crafter-station/sismo-abierto"
+                  href="https://github.com/crafter-research/sismo-abierto"
                   className="hover:text-gray-1000"
                   rel="noreferrer"
                 >
