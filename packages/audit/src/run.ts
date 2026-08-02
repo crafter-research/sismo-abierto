@@ -97,14 +97,27 @@ export function renderFinalAudit(
       audits.filter((audit) => audit.verdict === verdict).length,
     ]),
   ) as Record<PredictionVerdict, number>;
-  const summaryRows = VERDICTS.filter((verdict) => counts[verdict] > 0).map(
+  const summaryRows = VERDICTS.map(
     (verdict) => `| ${verdict} | ${counts[verdict]} |`,
   );
   const results = audits.map((audit) => {
     const baseline = audit.baseline
       ? `${(audit.baseline.probabilityAtLeastOne * 100).toFixed(1)}% de probabilidad base de al menos un evento en ${audit.baseline.windowDays} días, estimada con ${audit.baseline.matchingEventCount} eventos en los 365 días previos.`
       : "Tasa base no disponible para una geografía inequívoca.";
-    return `### ${audit.predictionId} · ${audit.verdict}\n\n- Candidatos: ${audit.candidates.length}\n- Ventana: ${audit.windowStartLima} a ${audit.windowEndLima}\n- Control contra azar: ${baseline}`;
+    const candidates =
+      audit.candidates.length === 0
+        ? "- Ningún evento candidato."
+        : audit.candidates
+            .map(
+              (candidate) =>
+                `- ${candidate.eventTimeUtc} · M${candidate.magnitude} · ${candidate.place} · ${candidate.matchedRegion} · ${candidate.sourceId}`,
+            )
+            .join("\n");
+    const ambiguousRegions =
+      audit.ambiguousRegions.length === 0
+        ? "Ninguna."
+        : audit.ambiguousRegions.join("; ");
+    return `### ${audit.predictionId} · ${audit.verdict}\n\n- Ventana: ${audit.windowStartLima} a ${audit.windowEndLima}\n- Geografías ambiguas conservadas: ${ambiguousRegions}\n- Control contra azar: ${baseline}\n\n#### Candidatos (${audit.candidates.length})\n\n${candidates}`;
   });
   return `# Auditoría final de predicciones sísmicas\n\nCorrida UTC: \`${runAt}\`\n\nEste informe aplica el protocolo congelado antes de conocer los resultados. Evalúa esta tanda de afirmaciones y no valida ni refuta por sí solo una teoría o capacidad predictiva.\n\n## Resumen\n\n| Veredicto | Cantidad |\n| --- | ---: |\n${summaryRows.join("\n")}\n\n## Resultados\n\n${results.join("\n\n")}\n\n## Interpretación\n\nUn \`STRICT_HIT\` describe una coincidencia con los criterios publicados. No demuestra capacidad predictiva, especialmente cuando la tasa base de al menos un evento en la ventana es alta. Los casos ambiguos y los desacuerdos entre fuentes se conservan como categorías separadas.\n`;
 }

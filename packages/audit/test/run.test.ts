@@ -46,7 +46,18 @@ describe("artefactos de auditoría final", () => {
   });
 
   test("genera CSV, log e informe con tasa base y evidencia", () => {
-    const audits = [audit("P1", "STRICT_HIT"), audit("P2", "NO_MATCH")];
+    const strictHit = audit("P1", "STRICT_HIT");
+    strictHit.candidates.push({
+      sourceId: "us7000test",
+      eventTimeUtc: "2026-07-24T16:51:37.514Z",
+      magnitude: 5.7,
+      latitude: -38.8,
+      longitude: 175.5,
+      place: "49 km W of Turangi, New Zealand",
+      matchedRegion: "Nueva Zelanda",
+      regionIsAmbiguous: false,
+    });
+    const audits = [strictHit, audit("P2", "NO_MATCH")];
     const runAt = "2026-08-02T05:00:00.000Z";
 
     expect(renderAuditCsv(runAt, audits)).toContain(
@@ -56,6 +67,13 @@ describe("artefactos de auditoría final", () => {
       "[Consulta CENSIS](https://example.test/evidence)",
     );
     expect(renderFinalAudit(runAt, audits)).toContain("| STRICT_HIT | 1 |");
+    expect(renderFinalAudit(runAt, audits)).toContain(
+      "| SOURCE_DISAGREEMENT | 0 |",
+    );
+    expect(renderFinalAudit(runAt, audits)).toContain("| PENDING | 0 |");
+    expect(renderFinalAudit(runAt, audits)).toContain(
+      "49 km W of Turangi, New Zealand",
+    );
     expect(renderFinalAudit(runAt, audits)).toContain(
       "7.1% de probabilidad base",
     );

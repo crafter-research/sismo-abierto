@@ -1,0 +1,821 @@
+{
+  "runAt": "2026-08-02T05:16:26.218Z",
+  "audits": [
+    {
+      "predictionId": "P1",
+      "verdict": "STRICT_HIT",
+      "evaluatedAt": "2026-08-02T05:16:26.218Z",
+      "windowStartLima": "2026-07-20T00:00:00-05:00",
+      "windowEndLima": "2026-07-26T23:59:59-05:00",
+      "candidates": [
+        {
+          "sourceId": "igp-censis-catalogo",
+          "eventTimeUtc": "2026-07-20T11:51:15Z",
+          "magnitude": 4.3,
+          "latitude": -14.46,
+          "longitude": -75.79,
+          "place": "CENSIS",
+          "matchedRegion": "Ica (departamento)",
+          "regionIsAmbiguous": true,
+          "match": "boundary",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "igp-censis-catalogo",
+          "eventTimeUtc": "2026-07-25T02:48:11Z",
+          "magnitude": 4,
+          "latitude": -11.52,
+          "longitude": -77.63,
+          "place": "CENSIS",
+          "matchedRegion": "Lima y Callao (departamentos)",
+          "regionIsAmbiguous": true,
+          "match": "boundary",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "igp-censis-catalogo",
+          "eventTimeUtc": "2026-07-22T12:25:57Z",
+          "magnitude": 4.1,
+          "latitude": -11.94,
+          "longitude": -76.64,
+          "place": "CENSIS",
+          "matchedRegion": "Lima y Callao (departamentos)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        }
+      ],
+      "ambiguousRegions": [],
+      "unambiguousRegions": [
+        "Ica (departamento)",
+        "Lima y Callao (departamentos)"
+      ],
+      "baseline": {
+        "lookbackDays": 365,
+        "matchingEventCount": 4,
+        "eventsPerDay": 0.011,
+        "probabilityAtLeastOne": 0.074,
+        "windowDays": 7
+      },
+      "evidence": [
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Ica (departamento)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-28&orderby=time&minmagnitude=3.4&minlatitude=-15.7&maxlatitude=-12.9&minlongitude=-76.6&maxlongitude=-74.6",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta CENSIS para Ica (departamento)",
+          "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-07-20&fechaFin=2026-07-28&minimaMagnitud=3.4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382",
+          "detail": "32 eventos devueltos en el rango"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Lima y Callao (departamentos)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-28&orderby=time&minmagnitude=3.4&minlatitude=-13.6&maxlatitude=-10.2&minlongitude=-78&maxlongitude=-75.4",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta CENSIS para Lima y Callao (departamentos)",
+          "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-07-20&fechaFin=2026-07-28&minimaMagnitud=3.4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382",
+          "detail": "32 eventos devueltos en el rango"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-15.7&maxlatitude=-12.9&minlongitude=-76.6&maxlongitude=-74.6",
+          "detail": "4 eventos históricos en esta geografía y rango; 4 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-13.6&maxlatitude=-10.2&minlongitude=-78&maxlongitude=-75.4",
+          "detail": "0 eventos históricos en esta geografía y rango; 4 únicos en el conjunto de destinos"
+        }
+      ]
+    },
+    {
+      "predictionId": "P2",
+      "verdict": "AMBIGUOUS_GEOGRAPHY",
+      "evaluatedAt": "2026-08-02T05:16:26.218Z",
+      "windowStartLima": "2026-07-20T00:00:00-05:00",
+      "windowEndLima": "2026-07-28T23:59:59-05:00",
+      "candidates": [],
+      "ambiguousRegions": [
+        "Chile central y frontera con Argentina (sin límites definidos)",
+        "Perú central (sin límites definidos)"
+      ],
+      "unambiguousRegions": [],
+      "baseline": null,
+      "evidence": []
+    },
+    {
+      "predictionId": "P3",
+      "verdict": "AMBIGUOUS_GEOGRAPHY",
+      "evaluatedAt": "2026-08-02T05:16:26.218Z",
+      "windowStartLima": "2026-07-20T00:00:00-05:00",
+      "windowEndLima": "2026-07-26T23:59:59-05:00",
+      "candidates": [
+        {
+          "sourceId": "igp-censis-catalogo",
+          "eventTimeUtc": "2026-07-26T15:49:41Z",
+          "magnitude": 4.1,
+          "latitude": -5.54,
+          "longitude": -77.1,
+          "place": "CENSIS",
+          "matchedRegion": "Loreto (departamento)",
+          "regionIsAmbiguous": true,
+          "match": "boundary",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        }
+      ],
+      "ambiguousRegions": [],
+      "unambiguousRegions": [
+        "Tumbes (departamento)",
+        "Piura (departamento)",
+        "Loreto (departamento)",
+        "La Libertad (departamento)",
+        "Áncash (departamento)"
+      ],
+      "baseline": {
+        "lookbackDays": 365,
+        "matchingEventCount": 16,
+        "eventsPerDay": 0.0438,
+        "probabilityAtLeastOne": 0.264,
+        "windowDays": 7
+      },
+      "evidence": [
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Tumbes (departamento)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-28&orderby=time&minmagnitude=3.4&minlatitude=-4.3&maxlatitude=-3.4&minlongitude=-81.1&maxlongitude=-80.1",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta CENSIS para Tumbes (departamento)",
+          "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-07-20&fechaFin=2026-07-28&minimaMagnitud=3.4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382",
+          "detail": "32 eventos devueltos en el rango"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Piura (departamento)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-28&orderby=time&minmagnitude=3.4&minlatitude=-6.6&maxlatitude=-4&minlongitude=-81.4&maxlongitude=-79.1",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta CENSIS para Piura (departamento)",
+          "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-07-20&fechaFin=2026-07-28&minimaMagnitud=3.4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382",
+          "detail": "32 eventos devueltos en el rango"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Loreto (departamento)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-28&orderby=time&minmagnitude=3.4&minlatitude=-8.7&maxlatitude=-0.03&minlongitude=-77.9&maxlongitude=-69.9",
+          "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta CENSIS para Loreto (departamento)",
+          "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-07-20&fechaFin=2026-07-28&minimaMagnitud=3.4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382",
+          "detail": "32 eventos devueltos en el rango"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para La Libertad (departamento)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-28&orderby=time&minmagnitude=3.4&minlatitude=-8.99&maxlatitude=-6.9&minlongitude=-79.7&maxlongitude=-76.8",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta CENSIS para La Libertad (departamento)",
+          "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-07-20&fechaFin=2026-07-28&minimaMagnitud=3.4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382",
+          "detail": "32 eventos devueltos en el rango"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Áncash (departamento)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-28&orderby=time&minmagnitude=3.4&minlatitude=-10.8&maxlatitude=-8&minlongitude=-78.7&maxlongitude=-76.7",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta CENSIS para Áncash (departamento)",
+          "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-07-20&fechaFin=2026-07-28&minimaMagnitud=3.4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382",
+          "detail": "32 eventos devueltos en el rango"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-4.3&maxlatitude=-3.4&minlongitude=-81.1&maxlongitude=-80.1",
+          "detail": "5 eventos históricos en esta geografía y rango; 16 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-6.6&maxlatitude=-4&minlongitude=-81.4&maxlongitude=-79.1",
+          "detail": "5 eventos históricos en esta geografía y rango; 16 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-8.7&maxlatitude=-0.03&minlongitude=-77.9&maxlongitude=-69.9",
+          "detail": "8 eventos históricos en esta geografía y rango; 16 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-8.99&maxlatitude=-6.9&minlongitude=-79.7&maxlongitude=-76.8",
+          "detail": "0 eventos históricos en esta geografía y rango; 16 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-10.8&maxlatitude=-8&minlongitude=-78.7&maxlongitude=-76.7",
+          "detail": "0 eventos históricos en esta geografía y rango; 16 únicos en el conjunto de destinos"
+        }
+      ]
+    },
+    {
+      "predictionId": "P4",
+      "verdict": "STRICT_HIT",
+      "evaluatedAt": "2026-08-02T05:16:26.218Z",
+      "windowStartLima": "2026-07-20T00:00:00-05:00",
+      "windowEndLima": "2026-07-30T23:59:59-05:00",
+      "candidates": [
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-29T13:19:36.661Z",
+          "magnitude": 5.4,
+          "latitude": 32.34,
+          "longitude": 130.4881,
+          "place": "11 km N of Tsunagi, Japan",
+          "matchedRegion": "Japón (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-28T08:08:35.421Z",
+          "magnitude": 5.6,
+          "latitude": 32.3529,
+          "longitude": 130.5868,
+          "place": "16 km NE of Tsunagi, Japan",
+          "matchedRegion": "Japón (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-29T15:10:02.995Z",
+          "magnitude": 5.4,
+          "latitude": 13.1384,
+          "longitude": 124.6138,
+          "place": "53 km E of Rapu-Rapu, Philippines",
+          "matchedRegion": "Filipinas (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-30T04:42:12.667Z",
+          "magnitude": 5.4,
+          "latitude": -2.6018,
+          "longitude": 138.8205,
+          "place": "201 km W of Abepura, Indonesia",
+          "matchedRegion": "Indonesia (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-26T10:57:37.061Z",
+          "magnitude": 5.3,
+          "latitude": -10.007,
+          "longitude": 123.4402,
+          "place": "25 km NW of Kupang, Indonesia",
+          "matchedRegion": "Indonesia (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-24T12:14:28.267Z",
+          "magnitude": 5.4,
+          "latitude": -2.5572,
+          "longitude": 138.8159,
+          "place": "202 km W of Abepura, Indonesia",
+          "matchedRegion": "Indonesia (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-24T11:11:34.234Z",
+          "magnitude": 5.3,
+          "latitude": -2.5436,
+          "longitude": 138.8612,
+          "place": "197 km W of Abepura, Indonesia",
+          "matchedRegion": "Indonesia (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-23T22:58:36.362Z",
+          "magnitude": 5.8,
+          "latitude": 0.592,
+          "longitude": 126.2244,
+          "place": "130 km W of Ternate, Indonesia",
+          "matchedRegion": "Indonesia (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        }
+      ],
+      "ambiguousRegions": [
+        "Norte de Colombia (sin límites definidos)",
+        "Norte de Perú y sur de Ecuador (sin límites definidos)",
+        "Islas del Caribe (sin límites definidos)"
+      ],
+      "unambiguousRegions": [
+        "Venezuela (país)",
+        "México (país)",
+        "Panamá (país)",
+        "Japón (país)",
+        "Filipinas (país)",
+        "Indonesia (país)"
+      ],
+      "baseline": {
+        "lookbackDays": 365,
+        "matchingEventCount": 170,
+        "eventsPerDay": 0.4658,
+        "probabilityAtLeastOne": 0.994,
+        "windowDays": 11
+      },
+      "evidence": [
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Venezuela (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=0.6&maxlatitude=12.2&minlongitude=-73.4&maxlongitude=-59.8",
+          "detail": "2 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para México (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=14.5&maxlatitude=32.7&minlongitude=-118.4&maxlongitude=-86.7",
+          "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Panamá (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Japón (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
+          "detail": "8 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Filipinas (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
+          "detail": "9 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Indonesia (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141",
+          "detail": "23 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=0.6&maxlatitude=12.2&minlongitude=-73.4&maxlongitude=-59.8",
+          "detail": "2 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=14.5&maxlatitude=32.7&minlongitude=-118.4&maxlongitude=-86.7",
+          "detail": "12 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
+          "detail": "0 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
+          "detail": "63 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
+          "detail": "37 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141",
+          "detail": "73 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos"
+        }
+      ]
+    },
+    {
+      "predictionId": "P5",
+      "verdict": "STRICT_HIT",
+      "evaluatedAt": "2026-08-02T05:16:26.218Z",
+      "windowStartLima": "2026-07-20T00:00:00-05:00",
+      "windowEndLima": "2026-07-28T23:59:59-05:00",
+      "candidates": [
+        {
+          "sourceId": "igp-censis-catalogo+usgs-fdsn",
+          "eventTimeUtc": "2026-07-23T02:38:25Z",
+          "magnitude": 4.5,
+          "latitude": -16.33,
+          "longitude": -72.68,
+          "place": "CENSIS",
+          "matchedRegion": "Arequipa (departamento)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        }
+      ],
+      "ambiguousRegions": [
+        "Frontera Cusco-Puno (zona limítrofe sin límites definidos)",
+        "Norte de Chile (sin límites definidos)"
+      ],
+      "unambiguousRegions": [
+        "Arequipa (departamento)",
+        "Tacna (departamento)"
+      ],
+      "baseline": {
+        "lookbackDays": 365,
+        "matchingEventCount": 19,
+        "eventsPerDay": 0.0521,
+        "probabilityAtLeastOne": 0.374,
+        "windowDays": 9
+      },
+      "evidence": [
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Arequipa (departamento)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-30&orderby=time&minmagnitude=4&minlatitude=-17.3&maxlatitude=-14.6&minlongitude=-75.1&maxlongitude=-70.8",
+          "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta CENSIS para Arequipa (departamento)",
+          "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-07-20&fechaFin=2026-07-30&minimaMagnitud=4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382",
+          "detail": "15 eventos devueltos en el rango"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Tacna (departamento)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-30&orderby=time&minmagnitude=4&minlatitude=-18.35&maxlatitude=-16.9&minlongitude=-71.2&maxlongitude=-69.5",
+          "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta CENSIS para Tacna (departamento)",
+          "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-07-20&fechaFin=2026-07-30&minimaMagnitud=4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382",
+          "detail": "15 eventos devueltos en el rango"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5.1&minlatitude=-17.3&maxlatitude=-14.6&minlongitude=-75.1&maxlongitude=-70.8",
+          "detail": "12 eventos históricos en esta geografía y rango; 19 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5.1&minlatitude=-18.35&maxlatitude=-16.9&minlongitude=-71.2&maxlongitude=-69.5",
+          "detail": "7 eventos históricos en esta geografía y rango; 19 únicos en el conjunto de destinos"
+        }
+      ]
+    },
+    {
+      "predictionId": "P6",
+      "verdict": "STRICT_HIT",
+      "evaluatedAt": "2026-08-02T05:16:26.218Z",
+      "windowStartLima": "2026-07-20T00:00:00-05:00",
+      "windowEndLima": "2026-08-01T23:59:59-05:00",
+      "candidates": [
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-24T16:51:37.514Z",
+          "magnitude": 5.7,
+          "latitude": -38.9621,
+          "longitude": 175.2332,
+          "place": "49 km W of Turangi, New Zealand",
+          "matchedRegion": "Nueva Zelanda (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-24T21:37:56.459Z",
+          "magnitude": 6,
+          "latitude": -14.0205,
+          "longitude": 166.8006,
+          "place": "82 km W of Sola, Vanuatu",
+          "matchedRegion": "Vanuatu (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-29T15:10:02.995Z",
+          "magnitude": 5.4,
+          "latitude": 13.1384,
+          "longitude": 124.6138,
+          "place": "53 km E of Rapu-Rapu, Philippines",
+          "matchedRegion": "Filipinas (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-30T04:42:12.667Z",
+          "magnitude": 5.4,
+          "latitude": -2.6018,
+          "longitude": 138.8205,
+          "place": "201 km W of Abepura, Indonesia",
+          "matchedRegion": "Indonesia (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-24T12:14:28.267Z",
+          "magnitude": 5.4,
+          "latitude": -2.5572,
+          "longitude": 138.8159,
+          "place": "202 km W of Abepura, Indonesia",
+          "matchedRegion": "Indonesia (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-23T22:58:36.362Z",
+          "magnitude": 5.8,
+          "latitude": 0.592,
+          "longitude": 126.2244,
+          "place": "130 km W of Ternate, Indonesia",
+          "matchedRegion": "Indonesia (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        },
+        {
+          "sourceId": "usgs-fdsn",
+          "eventTimeUtc": "2026-07-28T20:27:57.268Z",
+          "magnitude": 5.4,
+          "latitude": -5.7602,
+          "longitude": 153.5437,
+          "place": "211 km SE of Kokopo, Papua New Guinea",
+          "matchedRegion": "Papúa Nueva Guinea (país)",
+          "regionIsAmbiguous": false,
+          "match": "inside",
+          "sourceDisagreement": false,
+          "disagreementDetail": null
+        }
+      ],
+      "ambiguousRegions": [
+        "Norte de Chile y sur de Perú (sin límites definidos)"
+      ],
+      "unambiguousRegions": [
+        "Nueva Zelanda (país)",
+        "Vanuatu (país)",
+        "Fiji (país)",
+        "Tonga (país)",
+        "Filipinas (país)",
+        "Indonesia (país)",
+        "Papúa Nueva Guinea (país)"
+      ],
+      "baseline": {
+        "lookbackDays": 365,
+        "matchingEventCount": 112,
+        "eventsPerDay": 0.3068,
+        "probabilityAtLeastOne": 0.981,
+        "windowDays": 13
+      },
+      "evidence": [
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Nueva Zelanda (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
+          "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Vanuatu (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
+          "detail": "5 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Fiji (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Tonga (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
+          "detail": "3 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Filipinas (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
+          "detail": "8 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Indonesia (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141",
+          "detail": "21 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Papúa Nueva Guinea (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
+          "detail": "3 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
+          "detail": "2 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
+          "detail": "14 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
+          "detail": "0 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
+          "detail": "7 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
+          "detail": "31 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141",
+          "detail": "56 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
+          "detail": "15 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos"
+        }
+      ]
+    },
+    {
+      "predictionId": "P7",
+      "verdict": "AMBIGUOUS_GEOGRAPHY",
+      "evaluatedAt": "2026-08-02T05:16:26.218Z",
+      "windowStartLima": "2026-07-20T00:00:00-05:00",
+      "windowEndLima": "2026-07-27T23:59:59-05:00",
+      "candidates": [],
+      "ambiguousRegions": [
+        "Norte de Venezuela (sin límites definidos)",
+        "Norte de Colombia (sin límites definidos)"
+      ],
+      "unambiguousRegions": [],
+      "baseline": null,
+      "evidence": []
+    },
+    {
+      "predictionId": "P8",
+      "verdict": "NO_MATCH",
+      "evaluatedAt": "2026-08-02T05:16:26.218Z",
+      "windowStartLima": "2026-07-20T00:00:00-05:00",
+      "windowEndLima": "2026-07-27T23:59:59-05:00",
+      "candidates": [],
+      "ambiguousRegions": [],
+      "unambiguousRegions": [
+        "República Dominicana (país)",
+        "Puerto Rico (territorio)",
+        "Panamá (país)",
+        "Costa Rica (país)"
+      ],
+      "baseline": {
+        "lookbackDays": 365,
+        "matchingEventCount": 26,
+        "eventsPerDay": 0.0712,
+        "probabilityAtLeastOne": 0.434,
+        "windowDays": 8
+      },
+      "evidence": [
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para República Dominicana (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-29&orderby=time&minmagnitude=4&minlatitude=17.5&maxlatitude=19.9&minlongitude=-72&maxlongitude=-68.3",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Puerto Rico (territorio)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-29&orderby=time&minmagnitude=4&minlatitude=17.9&maxlatitude=18.5&minlongitude=-67.3&maxlongitude=-65.2",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Panamá (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-29&orderby=time&minmagnitude=4&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta USGS para Costa Rica (país)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-29&orderby=time&minmagnitude=4&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
+          "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5&minlatitude=17.5&maxlatitude=19.9&minlongitude=-72&maxlongitude=-68.3",
+          "detail": "2 eventos históricos en esta geografía y rango; 26 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5&minlatitude=17.9&maxlatitude=18.5&minlongitude=-67.3&maxlongitude=-65.2",
+          "detail": "0 eventos históricos en esta geografía y rango; 26 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
+          "detail": "8 eventos históricos en esta geografía y rango; 26 únicos en el conjunto de destinos"
+        },
+        {
+          "at": "2026-08-02T05:16:26.218Z",
+          "action": "Consulta de tasa base (365 días previos a la ventana)",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
+          "detail": "20 eventos históricos en esta geografía y rango; 26 únicos en el conjunto de destinos"
+        }
+      ]
+    }
+  ]
+}

@@ -7,7 +7,10 @@ export const BASELINE_LOOKBACK_DAYS = 365;
 
 export async function calculateBackgroundRate(
   prediction: FrozenPrediction,
-): Promise<{ baseline: BaselineEstimate; queryUrls: string[] } | null> {
+): Promise<{
+  baseline: BaselineEstimate;
+  queries: Array<{ url: string; matchingEventCount: number }>;
+} | null> {
   const matchers = prediction.targetRegions
     .flatMap((target) => matchersForTarget(target))
     .filter((matcher) => matcher.bbox !== null);
@@ -20,7 +23,7 @@ export async function calculateBackgroundRate(
     .toISOString()
     .slice(0, 10);
 
-  const queryUrls: string[] = [];
+  const queries: Array<{ url: string; matchingEventCount: number }> = [];
   const seenEventIds = new Set<string>();
   for (const matcher of matchers) {
     const bbox = matcher.bbox;
@@ -35,12 +38,14 @@ export async function calculateBackgroundRate(
       minLongitude: bbox.minLon,
       maxLongitude: bbox.maxLon,
     });
-    queryUrls.push(queryUrl);
+    const matchingIds = new Set<string>();
     for (const event of events) {
       if (matchRegion(matcher, event.latitude, event.longitude) !== "outside") {
+        matchingIds.add(event.id);
         seenEventIds.add(event.id);
       }
     }
+    queries.push({ url: queryUrl, matchingEventCount: matchingIds.size });
   }
 
   const matchingEventCount = seenEventIds.size;
@@ -56,6 +61,6 @@ export async function calculateBackgroundRate(
       probabilityAtLeastOne: Math.round(probabilityAtLeastOne * 1_000) / 1_000,
       windowDays: Math.round(days * 100) / 100,
     },
-    queryUrls,
+    queries,
   };
 }

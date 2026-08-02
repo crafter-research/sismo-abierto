@@ -221,12 +221,12 @@ export async function evaluatePrediction(
     const result = await calculateBackgroundRate(prediction);
     if (result) {
       baseline = result.baseline;
-      for (const url of result.queryUrls) {
+      for (const query of result.queries) {
         evidence.push({
           at: nowIso,
           action: "Consulta de tasa base (365 días previos a la ventana)",
-          url,
-          detail: `${baseline.matchingEventCount} eventos históricos en la geografía y rango publicados`,
+          url: query.url,
+          detail: `${query.matchingEventCount} eventos históricos en esta geografía y rango; ${baseline.matchingEventCount} únicos en el conjunto de destinos`,
         });
       }
     }

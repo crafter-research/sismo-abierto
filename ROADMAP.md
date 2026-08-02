@@ -6,7 +6,7 @@ Orden aproximado. Los gates de seguridad y revisión científica no se negocian 
 
 - [x] Deploy público en Vercel con dominio propio: `sismo.crafter.run`.
 - [x] Vercel Analytics y Speed Insights en producción.
-- [ ] [Veredictos reales de Verifica](https://github.com/crafter-research/sismo-abierto/issues/1)
+- [x] [Veredictos reales de Verifica](https://github.com/crafter-research/sismo-abierto/issues/1)
       cuando venzan las ventanas congeladas (26 jul → 1 ago 2026): correr el evaluador,
       publicar candidatos, desacuerdos de fuentes y tasa base.
 - [ ] [Revisión científica externa de la interpretación ACELDAT](https://github.com/crafter-research/sismo-abierto/issues/2)

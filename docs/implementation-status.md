@@ -1,6 +1,6 @@
 # Implementation status
 
-Última actualización: 2026-07-20 23:59 aprox. (America/Lima). Implementación completa; ver checklist. Este documento separa Evidence, Inference y Unknown, y lleva el checklist de slices.
+Última actualización: 2026-08-02 00:16 aprox. (America/Lima). Implementación completa; ver checklist. Este documento separa Evidence, Inference y Unknown, y lleva el checklist de slices.
 
 ## Evidence (observado en vivo, 2026-07-20/21 UTC)
 
@@ -39,7 +39,7 @@ Notas de evidencia:
 - SLA y rate limits → frecuencias conservadoras, timeouts, user-agent identificable.
 - Fuente autoritativa y fecha del nivel volcánico → `FRESHNESS_UNKNOWN`; VA3 BLOQUEADO (spike corrido: DescribeFeatureType sin campo de fecha; no existe mapeo determinista registro→boletín).
 - Revisión científica del lenguaje y de las gráficas ACELDAT → el paquete de revisión técnica externa se mantiene fuera del repositorio hasta su envío.
-- Outcomes de predicciones: ventanas empiezan 2026-07-20; todas `PENDING` hasta su deadline.
+- Outcomes de predicciones: las ocho ventanas cerraron. La auditoría final reproducible está publicada en `data/audits/`.
 
 ## Slice checklist
 
@@ -52,8 +52,8 @@ Notas de evidencia:
 | V5 CLI científico exportable | DONE | `docs/evidence/v3-v5/cli-stations-pga.txt`; GeoJSON con metadatos y CSV de onda con serie completa (39,635 líneas) verificados | `--sort pga` descarga los archivos crudos de las estaciones acc (costo de red alto la primera vez) |
 | V6 Primera lección real | DONE | `docs/evidence/v6-v7/lesson-answered-completed.png`; lección con evento real M5.1 Chupaca, pregunta evaluada y completada | Contenido marcado EXPLICACIÓN pendiente de revisión científica |
 | V7 Laboratorio sísmico | DONE | `docs/evidence/v6-v7/lab-comparison.png`, `aula-progress.png`; SCHYO (9.7 km, PGA 64.77) vs PNEG (166.5 km, PGA 3.76), URL compartible, progreso local 1/4 | — |
-| V8 Registro de afirmaciones | DONE | `docs/evidence/v8-v9/registry.png`; CSV congelado importado sin alterar (sha256 a8cb2aea…), 8 afirmaciones PENDING | — |
-| V9 Auditoría contra evidencia y azar | DONE (motor) / PENDING (outcomes) | `docs/evidence/v8-v9/claim-p1.png`; motor determinista + tasa base real (P1: 9 eventos/365d → 15.9%); 18 tests de frontera del protocolo | Los veredictos reales esperan los deadlines (26 jul - 1 ago 2026) |
+| V8 Registro de afirmaciones | DONE | `docs/evidence/v8-v9/registry.png`; CSV congelado importado sin alterar (sha256 a8cb2aea…), 8 afirmaciones evaluadas | — |
+| V9 Auditoría contra evidencia y azar | DONE | `data/audits/`; 4 `STRICT_HIT`, 3 `AMBIGUOUS_GEOGRAPHY`, 1 `NO_MATCH`, 0 `SOURCE_DISAGREEMENT`, 0 `PENDING`; P6 tiene 7 candidatos y tasa base de 98.1% | Un acierto estricto no demuestra capacidad predictiva, especialmente con una tasa base alta |
 | VA1 Mapa publicado | DONE | `docs/evidence/va1-va3/volcano-index.png`; 16 registros en vivo con aviso de vigencia | — |
 | VA2 Ficha segura | DONE | `docs/evidence/va1-va3/volcano-sabancaya.png`; PUBLISHED_STATE + FRESHNESS_UNKNOWN + explicación EXPLICACIÓN separada | Lenguaje científico sin revisar (paquete de revisión externo, fuera del repo) |
 | VA3 Historia documentada | BLOCKED | `docs/spike-volcano-freshness-results.md`, `volcano-describe.json` | Sin timestamp autoritativo ni mapeo determinista de boletines; estado honesto visible en la ficha |
@@ -61,17 +61,17 @@ Notas de evidencia:
 | EF2 Historia explicable | DONE | `docs/evidence/ef1-ef3/source-aceldat-history.png`, `cli-source-aceldat-evidence.txt`; 10 tests de transiciones y cambios observados | — |
 | EF3 Contrato público | CODE-COMPLETE (flag OFF) | `/fuentes` + `/v1/sources` + CLI + Neon store + jobs Trigger.dev | Publicación requiere revisión institucional del lenguaje; `SISMO_FUENTES_PUBLIC` apagado en producción |
 
-## Verificación final (2026-07-20/21)
+## Verificación final (2026-08-02)
 
 - `bun run check` → biome + tsc limpios (root y apps/web).
-- `bun run test` → 72 tests, 0 fallos (parsers con fixtures reales, contrato OpenAPI vs respuestas capturadas, protocolo de auditoría, frescura volcánica, transiciones de estados, CLI).
-- `bun run test:e2e` → 13 journeys Playwright, 0 fallos (V1-V4, V6-V9, VA1-VA2, EF).
-- `bun run build` → next build en verde con 27 rutas.
+- `bun run test` → 107 tests, 0 fallos.
+- `bun run test:e2e` → 18 journeys Playwright, 0 fallos.
+- `bun run build` → Next.js build en verde.
+- `bun packages/audit/src/run.ts` → 8 veredictos finales y cinco artefactos reproducibles en `data/audits/`.
 - CLI verificado en vivo: latest, events (tabla/json/geojson/csv), inspect, stations --sort pga, waveform (CSV serie completa 39,635 líneas), volcanoes, volcano, sources --probe, source --evidence. Exit codes 0/2/3/4.
 
 ## Deuda y gates abiertos
 
-1. Deadlines de predicciones: correr `bun packages/audit/src/run.ts` después del 26 jul / 1 ago para los veredictos reales (o desplegar el job Trigger.dev).
-2. VA3 bloqueado (ver spike). EF3 tras flag. Revisión científica pendiente (paquete de revisión externo al repo).
-3. Términos de redistribución sin confirmar → publicación source-only se mantiene.
-4. Sin deploy a producción, sin commits (por instrucción de esta sesión), sin outreach.
+1. VA3 bloqueado (ver spike). EF3 tras flag. Revisión científica pendiente (paquete de revisión externo al repo).
+2. Términos de redistribución sin confirmar → publicación source-only se mantiene.
+3. Alias no scoped `bunx sismo` pendiente de autenticación npm.

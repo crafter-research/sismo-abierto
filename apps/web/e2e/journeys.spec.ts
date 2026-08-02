@@ -216,9 +216,10 @@ test.describe("V8-V9: Verifica Sismos", () => {
       page.getByTestId("claim-list").locator("tbody tr"),
     ).toHaveCount(8);
     const summary = page.getByTestId("audit-summary");
-    await expect(summary).toContainText("PENDING");
     await expect(summary).toContainText("STRICT_HIT");
+    await expect(summary).toContainText("AMBIGUOUS_GEOGRAPHY");
     await expect(summary).toContainText("NO_MATCH");
+    await expect(summary).toContainText("PENDING 0");
   });
 
   test("una afirmación muestra criterios congelados, tasa base y evidencia", async ({
