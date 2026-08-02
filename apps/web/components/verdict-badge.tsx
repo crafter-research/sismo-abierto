@@ -12,11 +12,19 @@ export const OUTCOME_STYLES: Record<PredictionMatchOutcome, string> = {
   SOURCE_DISAGREEMENT: "bg-sem-purple-soft text-sem-purple",
 };
 
+const OUTCOME_TEXT_STYLES: Record<PredictionMatchOutcome, string> = {
+  PENDING: "text-gray-900",
+  STRICT_MATCH: "text-sem-blue",
+  NO_MATCH: "text-gray-900",
+  AMBIGUOUS_GEOGRAPHY: "text-sem-amber",
+  SOURCE_DISAGREEMENT: "text-sem-purple",
+};
+
 const BASELINE_STYLES: Record<BaselineProbabilityBand, string> = {
   VERY_HIGH: "border-gray-300 bg-gray-100 text-gray-900",
   HIGH: "border-gray-300 bg-gray-100 text-gray-900",
-  MODERATE: "border-sem-amber bg-sem-amber-soft text-sem-amber",
-  LOW: "border-sem-purple bg-sem-purple-soft text-sem-purple",
+  MODERATE: "border-gray-300 bg-gray-100 text-gray-900",
+  LOW: "border-gray-300 bg-gray-100 text-gray-900",
   UNAVAILABLE: "border-gray-300 bg-background-200 text-gray-800",
 };
 
@@ -25,6 +33,14 @@ export function OutcomeBadge({ outcome }: { outcome: PredictionMatchOutcome }) {
     <span
       className={`rounded px-1.5 py-0.5 text-xs font-semibold ${OUTCOME_STYLES[outcome]}`}
     >
+      {MATCH_OUTCOME_LABELS[outcome]}
+    </span>
+  );
+}
+
+export function OutcomeLabel({ outcome }: { outcome: PredictionMatchOutcome }) {
+  return (
+    <span className={`text-xs font-semibold ${OUTCOME_TEXT_STYLES[outcome]}`}>
       {MATCH_OUTCOME_LABELS[outcome]}
     </span>
   );

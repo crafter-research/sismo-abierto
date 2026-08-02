@@ -212,23 +212,26 @@ test.describe("V8-V9: Verifica Sismos", () => {
     page,
   }) => {
     await page.goto("/verifica");
+    const ledger = page.getByTestId("claim-ledger");
+    await expect(ledger.locator("tbody tr")).toHaveCount(8);
+    await expect(ledger).toContainText("Coincidencia estricta");
+    await expect(ledger).toContainText("Geografía ambigua");
+    await expect(ledger).toContainText("Sin coincidencia");
+    await expect(ledger).toContainText("99.4%");
+    await expect(ledger).toContainText("98.1%");
+    await expect(ledger).toContainText("26 jul 2026");
+    await expect(ledger).not.toContainText("T23:59:59");
+    await expect(ledger).not.toContainText("STRICT_HIT");
     await expect(
-      page.getByTestId("claim-list").locator("tbody tr"),
-    ).toHaveCount(8);
-    const summary = page.getByTestId("audit-summary");
-    await expect(summary).toContainText("Coincidencia estricta 4");
-    await expect(summary).toContainText("Geografía ambigua 3");
-    await expect(summary).toContainText("Sin coincidencia 1");
-    await expect(summary).toContainText("Pendiente 0");
-    await expect(summary).not.toContainText("STRICT_HIT");
-    const context = page.getByTestId("strict-match-context");
-    await expect(context).toContainText("P4");
-    await expect(context).toContainText("99.4%");
-    await expect(context).toContainText("P6");
-    await expect(context).toContainText("98.1%");
-    await expect(context).toContainText(
+      page.getByTestId("prediction-interpretation-note"),
+    ).toContainText(
       "Ninguna coincidencia aislada establece capacidad predictiva",
     );
+
+    const p4 = page.getByTestId("claim-row").filter({ hasText: "P4" });
+    await expect(p4).toContainText("+3 destinos");
+    await p4.getByText("+3 destinos").click();
+    await expect(p4).toContainText("Japón, Filipinas o Indonesia");
   });
 
   test("una afirmación muestra criterios congelados, tasa base y evidencia", async ({

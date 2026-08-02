@@ -1,227 +1,242 @@
 import {
+  BASELINE_BAND_LABELS,
   evaluatePrediction,
   loadPredictionRegistry,
-  MATCH_OUTCOME_LABELS,
   windowHasClosed,
 } from "@sismo/audit";
-import type { PredictionMatchOutcome } from "@sismo/contracts";
 import Link from "next/link";
-import {
-  BaselineBadge,
-  OUTCOME_STYLES,
-  OutcomeBadge,
-} from "../../components/verdict-badge";
+import { OutcomeLabel } from "../../components/verdict-badge";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = { title: "Verifica Sismos" };
 
-const OUTCOMES: PredictionMatchOutcome[] = [
-  "PENDING",
-  "STRICT_MATCH",
-  "NO_MATCH",
-  "AMBIGUOUS_GEOGRAPHY",
-  "SOURCE_DISAGREEMENT",
-];
+function formatDeadlineLima(value: string): string {
+  return new Intl.DateTimeFormat("es-PE", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "America/Lima",
+  })
+    .format(new Date(value))
+    .replaceAll(".", "");
+}
+
+function splitTargets(targets: string[]): {
+  visible: string[];
+  hidden: string[];
+} {
+  if (targets.length < 2) return { visible: targets, hidden: [] };
+
+  const firstTwo = targets.slice(0, 2);
+  const visible =
+    firstTwo.join(" · ").length <= 60 ? firstTwo : targets.slice(0, 1);
+
+  return { visible, hidden: targets.slice(visible.length) };
+}
 
 export default async function VerificaPage() {
   const registry = await loadPredictionRegistry();
   const now = Date.now();
-
-  const counts: Record<PredictionMatchOutcome, number> = {
-    PENDING: 0,
-    STRICT_MATCH: 0,
-    NO_MATCH: 0,
-    AMBIGUOUS_GEOGRAPHY: 0,
-    SOURCE_DISAGREEMENT: 0,
-  };
   const audits = [];
+
   for (const prediction of registry) {
     let audit: Awaited<ReturnType<typeof evaluatePrediction>> | null = null;
     if (windowHasClosed(prediction, now)) {
       audit = await evaluatePrediction(prediction, now).catch(() => null);
     }
-    const outcome = audit?.interpretation.matchOutcome ?? "PENDING";
-    counts[outcome] += 1;
-    audits.push({ prediction, audit, outcome });
+    audits.push({
+      prediction,
+      audit,
+      outcome: audit?.interpretation.matchOutcome ?? "PENDING",
+    });
   }
 
-  const strictMatches = audits.filter(
-    ({ outcome }) => outcome === "STRICT_MATCH",
-  );
-
   return (
-    <div className="space-y-6">
-      <header>
-        <h1 className="text-xl font-bold">Verifica Sismos</h1>
-        <p className="text-sm text-gray-900">
-          Afirmaciones guardadas antes de conocer el resultado. Este registro
-          evalúa afirmaciones concretas contra catálogos oficiales; no ataca
-          personas ni valida teorías generales.
-        </p>
-        <p className="mt-1 text-xs text-gray-800">
-          <strong>Estas afirmaciones no fueron emitidas por el IGP.</strong>{" "}
-          Provienen del Reel de Instagram DbAK4jKpyxP de sismos.en.peru,
-          congelado el 20 de julio de 2026. IGP/CENSIS y USGS se usan como
-          fuentes para comprobar los resultados.{" "}
-          <Link
-            href="/verifica/metodologia"
-            className="text-official underline"
-          >
+    <div className="w-[min(88rem,calc(100vw-2rem))] self-center">
+      <header className="space-y-2">
+        <h1 className="text-2xl font-bold tracking-tight">Verifica Sismos</h1>
+        <div
+          className="space-y-1.5 text-[13px] text-gray-900"
+          data-testid="prediction-interpretation-note"
+        >
+          <p>
+            <strong className="text-gray-1000">
+              Coincidencia no equivale a predicción.
+            </strong>{" "}
+            Coincidir con tiempo, magnitud y geografía no equivale a predecir.
+            La tasa base estima qué tan probable era obtener al menos una
+            coincidencia aun sin un método predictivo.
+          </p>
+          <p>
+            <strong className="text-gray-1000">
+              Capacidad predictiva no establecida.
+            </strong>{" "}
+            Ninguna coincidencia aislada establece capacidad predictiva.
+          </p>
+        </div>
+        <p className="text-xs text-gray-800">
+          Estas afirmaciones no fueron emitidas por el IGP. Provienen del Reel
+          de Instagram DbAK4jKpyxP de sismos.en.peru, congelado el 20 de julio
+          de 2026. IGP/CENSIS y USGS se usan para comprobar los resultados.{" "}
+          <Link href="/verifica/metodologia" className="underline">
             Metodología completa
           </Link>
         </p>
       </header>
 
-      <div className="flex flex-wrap gap-3 text-sm" data-testid="audit-summary">
-        {OUTCOMES.map((outcome) => (
-          <span
-            key={outcome}
-            className={`rounded px-2 py-1 text-xs font-semibold ${OUTCOME_STYLES[outcome]}`}
-          >
-            {MATCH_OUTCOME_LABELS[outcome]} {counts[outcome]}
-          </span>
-        ))}
-      </div>
-
-      <section
-        className="rounded-lg border border-gray-300 bg-background-200 p-4"
-        data-testid="strict-match-context"
-      >
-        <h2 className="font-semibold text-gray-1000">
-          Cómo leer las {strictMatches.length} coincidencias estrictas
-        </h2>
-        <p className="mt-1 text-sm text-gray-900">
-          Coincidir con tiempo, magnitud y geografía no equivale a predecir. La
-          tasa base estima qué tan probable era obtener al menos una
-          coincidencia aun sin un método predictivo.
-        </p>
-        <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-          {strictMatches.map(({ prediction, audit }) => (
-            <Link
-              key={prediction.predictionId}
-              href={`/verifica/${prediction.predictionId}`}
-              className="rounded border border-gray-300 bg-background-100 p-3 hover:border-gray-600"
-            >
-              <div className="flex items-center justify-between gap-2">
-                <span className="font-mono text-xs font-semibold">
-                  {prediction.predictionId}
-                </span>
-                {audit ? (
-                  <BaselineBadge band={audit.interpretation.baselineBand} />
-                ) : null}
-              </div>
-              <p className="mt-2 font-mono text-2xl font-bold">
-                {audit?.interpretation.baselineProbability === null ||
-                audit?.interpretation.baselineProbability === undefined
-                  ? "Sin tasa"
-                  : `${(audit.interpretation.baselineProbability * 100).toFixed(1)}%`}
-              </p>
-              <p className="text-xs text-gray-800">probabilidad base</p>
-            </Link>
-          ))}
-        </div>
-        <p className="mt-3 text-xs font-semibold text-gray-900">
-          Ninguna coincidencia aislada establece capacidad predictiva.
-        </p>
-      </section>
-
-      <div className="overflow-x-auto">
-        <table className="w-full text-sm" data-testid="claim-list">
+      <div className="mt-6 overflow-x-auto">
+        <table
+          className="w-full min-w-[70rem] table-fixed text-sm"
+          data-testid="claim-ledger"
+        >
           <caption className="sr-only">
-            Afirmaciones congeladas con su estado actual
+            Afirmaciones congeladas con su resultado y tasa base
           </caption>
+          <colgroup>
+            <col className="w-[15%]" />
+            <col className="w-[9%]" />
+            <col className="w-[29%]" />
+            <col className="w-[12%]" />
+            <col className="w-[35%]" />
+          </colgroup>
           <thead>
-            <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
-              <th scope="col" className="py-1.5 pr-2">
-                ID
+            <tr className="border-gray-300 border-b text-left text-xs text-gray-900">
+              <th scope="col" className="pb-2 pr-5 font-semibold">
+                ID y origen
               </th>
-              <th scope="col" className="py-1.5 pr-2">
-                Origen declarado
-              </th>
-              <th scope="col" className="py-1.5 pr-2">
+              <th scope="col" className="pb-2 pr-5 font-semibold">
                 Magnitud
               </th>
-              <th scope="col" className="py-1.5 pr-2">
-                Destinos
+              <th scope="col" className="pb-2 pr-5 font-semibold">
+                Destinos (resumen)
               </th>
-              <th scope="col" className="py-1.5 pr-2">
+              <th scope="col" className="pb-2 pr-5 font-semibold">
                 Deadline (Lima)
               </th>
-              <th scope="col" className="py-1.5">
-                Estado
-              </th>
-              <th scope="col" className="py-1.5 pl-2">
-                Tasa base
+              <th scope="col" className="pb-2 font-semibold">
+                Resultado y tasa base
               </th>
             </tr>
           </thead>
           <tbody>
-            {audits.map(({ prediction, audit, outcome }) => (
-              <tr
-                key={prediction.predictionId}
-                className="border-b border-gray-100"
-              >
-                <td className="py-1.5 pr-2">
-                  <Link
-                    href={`/verifica/${prediction.predictionId}`}
-                    className="font-mono font-semibold text-official underline"
-                  >
-                    {prediction.predictionId}
-                  </Link>
-                </td>
-                <td className="py-1.5 pr-2">{prediction.origin}</td>
-                <td className="py-1.5 pr-2 font-mono">
-                  {prediction.predictedMagnitudeMin}–
-                  {prediction.predictedMagnitudeMax}
-                </td>
-                <td className="py-1.5 pr-2 text-xs">
-                  {prediction.targetRegions.join(" · ")}
-                </td>
-                <td className="py-1.5 pr-2 font-mono text-xs">
-                  {prediction.deadlineEndLima}
-                </td>
-                <td className="py-1.5">
-                  <OutcomeBadge outcome={outcome} />
-                </td>
-                <td className="py-1.5 pl-2">
-                  {audit?.interpretation.baselineProbability === null ||
-                  audit?.interpretation.baselineProbability === undefined ? (
-                    <span className="text-xs text-gray-800">No disponible</span>
-                  ) : (
-                    <div className="flex flex-col items-start gap-1">
-                      <span className="font-mono text-xs font-bold">
-                        {(
-                          audit.interpretation.baselineProbability * 100
-                        ).toFixed(1)}
-                        %
-                      </span>
-                      <BaselineBadge band={audit.interpretation.baselineBand} />
+            {audits.map(({ prediction, audit, outcome }) => {
+              const { visible, hidden } = splitTargets(
+                prediction.targetRegions,
+              );
+              const probability = audit?.interpretation.baselineProbability;
+              const percentage =
+                probability === null || probability === undefined
+                  ? null
+                  : Number((probability * 100).toFixed(1));
+              const baselineLabel = audit
+                ? BASELINE_BAND_LABELS[audit.interpretation.baselineBand]
+                : "Tasa base no disponible";
+
+              return (
+                <tr
+                  key={prediction.predictionId}
+                  className="border-gray-200 border-b align-middle"
+                  data-testid="claim-row"
+                >
+                  <td className="py-3.5 pr-5">
+                    <div className="flex items-start gap-3">
+                      <Link
+                        href={`/verifica/${prediction.predictionId}`}
+                        className="shrink-0 font-mono font-semibold underline underline-offset-2"
+                      >
+                        {prediction.predictionId}
+                      </Link>
+                      <span className="leading-5">{prediction.origin}</span>
                     </div>
-                  )}
-                </td>
-              </tr>
-            ))}
+                  </td>
+                  <td className="py-3.5 pr-5 font-mono text-[13px] tabular-nums">
+                    {prediction.predictedMagnitudeMin.toFixed(1)}–
+                    {prediction.predictedMagnitudeMax.toFixed(1)}
+                  </td>
+                  <td className="py-3.5 pr-5">
+                    <p className="leading-5">{visible.join(" · ")}</p>
+                    {hidden.length > 0 ? (
+                      <details className="mt-1.5 text-xs">
+                        <summary className="w-fit cursor-pointer rounded border border-gray-300 bg-background-100 px-2 py-1 text-gray-900 hover:border-gray-600">
+                          +{hidden.length}{" "}
+                          {hidden.length === 1 ? "destino" : "destinos"}
+                        </summary>
+                        <ul className="mt-2 space-y-1 border-gray-300 border-l pl-3 text-gray-900">
+                          {hidden.map((target) => (
+                            <li key={target}>{target}</li>
+                          ))}
+                        </ul>
+                      </details>
+                    ) : null}
+                  </td>
+                  <td className="py-3.5 pr-5">
+                    <time
+                      dateTime={prediction.deadlineEndLima}
+                      className="font-mono text-[13px] tabular-nums"
+                    >
+                      {formatDeadlineLima(prediction.deadlineEndLima)}
+                    </time>
+                    <span className="mt-1 block text-xs text-gray-800">
+                      Lima
+                    </span>
+                  </td>
+                  <td className="py-3.5">
+                    <div className="grid grid-cols-[minmax(8.5rem,0.9fr)_minmax(8rem,1.15fr)_minmax(8.5rem,0.95fr)] items-center gap-4">
+                      <div>
+                        <OutcomeLabel outcome={outcome} />
+                        <p className="mt-1 font-mono text-2xl font-bold tabular-nums leading-none">
+                          {percentage === null
+                            ? "—"
+                            : `${percentage.toFixed(1)}%`}
+                        </p>
+                      </div>
+                      <div
+                        aria-label={
+                          percentage === null
+                            ? "Tasa base no disponible"
+                            : `Tasa base ${percentage.toFixed(1)}%`
+                        }
+                        aria-valuemax={100}
+                        aria-valuemin={0}
+                        aria-valuenow={percentage ?? undefined}
+                        className="h-1 overflow-hidden rounded-full bg-gray-200"
+                        role="progressbar"
+                      >
+                        {percentage !== null ? (
+                          <div
+                            className="h-full rounded-full bg-gray-1000"
+                            style={{ width: `${percentage}%` }}
+                          />
+                        ) : null}
+                      </div>
+                      <p className="text-xs leading-5 text-gray-900">
+                        {baselineLabel}
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
 
-      <div className="rounded-lg border border-gray-200 p-4 text-sm text-gray-800">
+      <div className="mt-5 border-gray-200 border-t pt-4 text-sm text-gray-800">
         <h2 className="font-semibold text-gray-900">
           ¿Quieres registrar una afirmación?
         </h2>
         <p className="mt-1">
           Una nueva afirmación entra por Pull Request o Issue con evidencia
-          temporal (captura y fecha anteriores al resultado). Las modificaciones
-          quedan auditadas en git.
+          temporal. Las modificaciones quedan auditadas en git.{" "}
+          <a
+            href="https://github.com/crafter-research/sismo-abierto/issues/new"
+            className="text-gray-1000 underline"
+            rel="noreferrer"
+          >
+            Abrir plantilla de issue
+          </a>
         </p>
-        <a
-          href="https://github.com/crafter-research/sismo-abierto/issues/new"
-          className="mt-2 inline-block text-official underline"
-          rel="noreferrer"
-        >
-          Abrir plantilla de issue →
-        </a>
       </div>
     </div>
   );
