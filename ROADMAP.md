@@ -19,8 +19,10 @@ Orden aproximado. Los gates de seguridad y revisión científica no se negocian 
       del Perú, con banda de frontera simétrica de 0.25°; países siguen en cajas documentadas.
 - [ ] [Espectrograma y espectro de Fourier por estación](https://github.com/crafter-research/sismo-abierto/issues/3)
       en el visor de ondas.
-- [ ] [Comparador de eventos y lecciones pendientes](https://github.com/crafter-research/sismo-abierto/issues/4)
-      en Aula.
+- [x] Lecciones de profundidad/distancia, Z/N/E/PGA y
+      predicción/pronóstico/alerta temprana en Aula.
+- [ ] [Comparador de eventos](https://github.com/crafter-research/sismo-abierto/issues/4)
+      por lugar, magnitud y profundidad en Aula.
 - [x] CLI instalable como `@crafter/sismo-cli`, con `sismo schema <cmd>` para
       introspección de agentes.
 - [ ] [Alias no scoped `bunx sismo`](https://github.com/crafter-research/sismo-abierto/issues/6),

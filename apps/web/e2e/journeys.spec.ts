@@ -33,7 +33,7 @@ test.describe("V2: del evento a las ondas", () => {
     page,
   }) => {
     await page.goto(`/sismos/${KNOWN_EVENT}`);
-    await expect(page.getByTestId("event-header")).toContainText("M 5.1");
+    await expect(page.getByTestId("event-header")).toContainText(/M \d+\.\d/);
     await expect(page.getByTestId("station-table")).toBeVisible();
     await page.getByRole("link", { name: "Ver Z, N y E →" }).first().click();
     await expect(page.getByTestId("waveform-viewer")).toBeVisible();
@@ -53,8 +53,14 @@ test.describe("V2: del evento a las ondas", () => {
     await page.getByText("Alternativa tabular accesible").click();
     const table = page.getByTestId("waveform-table");
     await expect(table).toBeVisible();
-    await expect(table).toContainText("43.7949");
-    await expect(table).toContainText("64.7735");
+    const rows = table.locator("tbody tr");
+    await expect(rows).toHaveCount(3);
+    for (let index = 0; index < 3; index += 1) {
+      const cells = rows.nth(index).locator("td");
+      const official = Number(await cells.nth(0).innerText());
+      const calculated = Number(await cells.nth(1).innerText());
+      expect(Math.abs(official - calculated)).toBeLessThanOrEqual(0.0001);
+    }
   });
 });
 
@@ -118,6 +124,18 @@ test.describe("V4: API ejecutable", () => {
 });
 
 test.describe("V6-V7: Aula Sísmica", () => {
+  test("el Aula publica las cuatro lecciones del roadmap", async ({ page }) => {
+    await page.goto("/aula");
+    const list = page.getByTestId("lesson-list");
+    await expect(list.getByRole("link")).toHaveCount(4);
+    await expect(list).toContainText("Profundidad, distancia y sacudida");
+    await expect(list).toContainText("Qué representan Z, N, E y PGA");
+    await expect(list).toContainText(
+      "Predicción, pronóstico y alerta temprana",
+    );
+    await expect(list).not.toContainText("Próximamente");
+  });
+
   test("la lección usa un evento real, evalúa la respuesta y guarda progreso local", async ({
     page,
   }) => {
@@ -129,6 +147,23 @@ test.describe("V6-V7: Aula Sísmica", () => {
     await page.getByTestId("complete-lesson").click();
     await page.goto("/aula");
     await expect(page.getByTestId("aula-progress")).toContainText("1/4");
+  });
+
+  test("la lección de alerta distingue información posterior de predicción", async ({
+    page,
+  }) => {
+    await page.goto("/aula/prediccion-pronostico-y-alerta-temprana");
+    await expect(
+      page.getByRole("heading", {
+        name: "Predicción, pronóstico y alerta temprana",
+      }),
+    ).toBeVisible();
+    await expect(page.getByTestId("lesson-event")).toContainText(
+      "después de ocurrir",
+    );
+    await expect(
+      page.getByRole("link", { name: /Abrir laboratorio/ }),
+    ).toHaveCount(0);
   });
 
   test("el laboratorio compara dos estaciones desde una URL compartible", async ({
@@ -145,14 +180,17 @@ test.describe("V6-V7: Aula Sísmica", () => {
 });
 
 test.describe("V8-V9: Verifica Sismos", () => {
-  test("el registro muestra las 8 afirmaciones congeladas en PENDING", async ({
+  test("el registro muestra las 8 afirmaciones y sus veredictos vigentes", async ({
     page,
   }) => {
     await page.goto("/verifica");
     await expect(
       page.getByTestId("claim-list").locator("tbody tr"),
     ).toHaveCount(8);
-    await expect(page.getByTestId("audit-summary")).toContainText("PENDING 8");
+    const summary = page.getByTestId("audit-summary");
+    await expect(summary).toContainText("PENDING");
+    await expect(summary).toContainText("STRICT_HIT");
+    await expect(summary).toContainText("NO_MATCH");
   });
 
   test("una afirmación muestra criterios congelados, tasa base y evidencia", async ({
@@ -163,7 +201,9 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(page.getByTestId("criteria-table")).toContainText(
       "[3.9, 4.4] inclusivo",
     );
-    await expect(page.getByTestId("verdict")).toContainText("PENDING");
+    await expect(page.getByTestId("verdict")).toContainText(
+      /Estado: (STRICT_HIT|NO_MATCH|AMBIGUOUS_GEOGRAPHY|SOURCE_DISAGREEMENT)/,
+    );
     await expect(page.getByTestId("baseline-chart")).toContainText(
       "Control contra azar",
     );

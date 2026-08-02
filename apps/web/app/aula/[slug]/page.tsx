@@ -116,11 +116,7 @@ export default async function LessonPage({
             <p className="mt-1 font-mono text-xs text-gray-900">
               {formatLimaDateTime(realEvent.timeLocal)}
             </p>
-            <p className="mt-2 text-sm text-gray-900">
-              Este evento tiene registros acelerométricos: al abrirlo verás que
-              la magnitud es una sola, pero cada estación registró aceleraciones
-              distintas.
-            </p>
+            <p className="mt-2 text-sm text-gray-900">{lesson.eventPrompt}</p>
             <div className="mt-3 flex flex-wrap gap-3">
               <Link
                 href={`/sismos/${realEvent.id}`}
@@ -128,12 +124,14 @@ export default async function LessonPage({
               >
                 Ver el evento
               </Link>
-              <Link
-                href={`/aula/laboratorio?evento=${realEvent.id}`}
-                className="rounded bg-official px-3 py-1.5 text-sm font-medium text-background-100 hover:bg-gray-900"
-              >
-                Abrir laboratorio con este evento →
-              </Link>
+              {lesson.showLaboratory ? (
+                <Link
+                  href={`/aula/laboratorio?evento=${realEvent.id}`}
+                  className="rounded bg-official px-3 py-1.5 text-sm font-medium text-background-100 hover:bg-gray-900"
+                >
+                  Abrir laboratorio con este evento →
+                </Link>
+              ) : null}
             </div>
           </div>
         ) : (

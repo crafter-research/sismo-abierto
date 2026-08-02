@@ -5,12 +5,6 @@ import { AulaProgress } from "../../components/knowledge-check";
 
 export const metadata = { title: "Aula Sísmica" };
 
-const UPCOMING = [
-  "Profundidad, distancia y por qué cambia lo que sentimos",
-  "Qué representan Z, N, E y PGA",
-  "Predicción, pronóstico y alerta temprana no son lo mismo",
-];
-
 export default function AulaPage() {
   return (
     <div className="space-y-6">
@@ -21,7 +15,7 @@ export default function AulaPage() {
           cuentas: el progreso vive en tu navegador.
         </p>
         <div className="mt-2">
-          <AulaProgress totalLessons={LESSONS.length + UPCOMING.length} />
+          <AulaProgress totalLessons={LESSONS.length} />
         </div>
       </header>
 
@@ -43,15 +37,6 @@ export default function AulaPage() {
               Contenido comunitario v{lesson.version}, pendiente de revisión
               científica.
             </p>
-          </li>
-        ))}
-        {UPCOMING.map((title) => (
-          <li
-            key={title}
-            className="rounded-lg border border-dashed border-gray-300 p-4"
-          >
-            <p className="font-semibold text-gray-800">{title}</p>
-            <p className="mt-1 text-xs text-gray-800">Próximamente.</p>
           </li>
         ))}
       </ul>

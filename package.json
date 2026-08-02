@@ -11,8 +11,8 @@
     "dev": "bun run --cwd apps/web dev",
     "check": "biome check . && bun run typecheck",
     "typecheck": "tsc --noEmit -p tsconfig.json && bun run --cwd apps/web typecheck",
-    "test": "bun test packages apps/cli",
-    "test:e2e": "bun run --cwd apps/web test:e2e",
+    "test": "bun test packages apps/cli content",
+    "test:e2e": "bun run build && bun run --cwd apps/web test:e2e",
     "build": "bun run --cwd apps/web build",
     "drift": "bun scripts/check-source-drift.ts"
   },
