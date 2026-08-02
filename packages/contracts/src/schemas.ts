@@ -81,6 +81,38 @@ export const waveformViewSchema = z.object({
     n: z.array(z.number()),
     e: z.array(z.number()),
   }),
+  frequencyAnalysis: z
+    .object({
+      spectrum: z.object({
+        windowSizeSamples: z.number(),
+        overlapSamples: z.number(),
+        frequencyResolutionHz: z.number(),
+        amplitudeUnit: z.string(),
+        frequenciesHz: z.array(z.number()),
+        amplitudes: z.object({
+          z: z.array(z.number()),
+          n: z.array(z.number()),
+          e: z.array(z.number()),
+        }),
+      }),
+      spectrogram: z.object({
+        windowSizeSamples: z.number(),
+        overlapSamples: z.number(),
+        timeResolutionSeconds: z.number(),
+        frequencyResolutionHz: z.number(),
+        powerUnit: z.literal("dB rel."),
+        minDb: z.number(),
+        maxDb: z.number(),
+        timesSeconds: z.array(z.number()),
+        frequenciesHz: z.array(z.number()),
+        powerDb: z.object({
+          z: z.array(z.array(z.number())),
+          n: z.array(z.array(z.number())),
+          e: z.array(z.array(z.number())),
+        }),
+      }),
+    })
+    .optional(),
   reductionFactor: z.number(),
   sourceFileUrl: z.string(),
   provenance: provenanceSchema,

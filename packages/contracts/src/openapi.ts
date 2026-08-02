@@ -112,7 +112,7 @@ const ENDPOINTS: EndpointSpec[] = [
     path: "/v1/events/{eventId}/stations/{stationId}/waveform",
     summary: "Ondas de una estación",
     description:
-      "Componentes Z, N y E con métricas calculadas sobre la serie completa y reducción solo para visualización.",
+      "Componentes Z, N y E con métricas calculadas sobre la serie completa, espectro de Fourier y espectrograma derivados, y reducción solo para visualización.",
     parameters: [
       {
         name: "eventId",

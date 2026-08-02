@@ -61,6 +61,19 @@ test.describe("V2: del evento a las ondas", () => {
       const calculated = Number(await cells.nth(1).innerText());
       expect(Math.abs(official - calculated)).toBeLessThanOrEqual(0.0001);
     }
+    await expect(
+      page.getByRole("heading", { name: "Análisis de frecuencia" }),
+    ).toBeVisible();
+    await expect(page.getByTestId("frequency-spectrum")).toContainText(
+      "Espectro de Fourier",
+    );
+    await expect(page.getByTestId("spectrogram")).toContainText(
+      "Espectrograma",
+    );
+    await page.getByText("Alternativa tabular del análisis").click();
+    await expect(page.getByTestId("frequency-table")).toContainText(
+      "Frecuencia dominante",
+    );
   });
 });
 

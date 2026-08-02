@@ -9,7 +9,12 @@ import {
   SourceError,
   waveformFileUrl,
 } from "@sismo/data";
-import { computePga, parseAceldatFile, reduceForView } from "@sismo/waveforms";
+import {
+  computeFrequencyAnalysis,
+  computePga,
+  parseAceldatFile,
+  reduceForView,
+} from "@sismo/waveforms";
 
 const VIEW_BUCKETS = 900;
 
@@ -64,6 +69,11 @@ export async function getWaveformView(
   const rawText = await fetchAceldatRawFile(fileUrl);
   const parsed = parseAceldatFile(rawText);
   const computedPga = computePga(parsed.components);
+  const frequencyAnalysis = computeFrequencyAnalysis(
+    parsed.components,
+    parsed.header.sampleRateHz,
+    parsed.header.units,
+  );
   const sampleCount = parsed.components.z.length;
   const reduced = {
     z: reduceForView(parsed.components.z, VIEW_BUCKETS),
@@ -78,12 +88,13 @@ export async function getWaveformView(
     computedPga,
     computedOverFullSeries: true,
     reducedComponents: reduced,
+    frequencyAnalysis,
     reductionFactor:
       Math.round((sampleCount / (reduced.z.length || 1)) * 100) / 100,
     sourceFileUrl: fileUrl,
     provenance: derivedProvenance(
       detail.provenance,
-      "Series reducidas solo para visualización; PGA y métricas calculadas sobre la serie completa del archivo oficial.",
+      "Series reducidas solo para visualización; PGA, espectro de Fourier y espectrograma calculados sobre la serie completa del archivo oficial.",
     ),
   };
 }
@@ -97,6 +108,7 @@ export async function buildWaveformResponse(
     waveform,
     limitations: [
       "Las series se reducen solo para visualización; PGA y métricas se calculan sobre la serie completa.",
+      "El espectro de Fourier y el espectrograma son cálculos derivados con ventana Hann y 50% de superposición.",
       "Los endpoints de ACELDAT no están documentados oficialmente y pueden cambiar sin aviso.",
     ],
   };

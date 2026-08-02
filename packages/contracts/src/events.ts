@@ -49,6 +49,29 @@ export interface WaveformHeader {
   pga: { z: number; n: number; e: number };
 }
 
+export interface FrequencyAnalysis {
+  spectrum: {
+    windowSizeSamples: number;
+    overlapSamples: number;
+    frequencyResolutionHz: number;
+    amplitudeUnit: string;
+    frequenciesHz: number[];
+    amplitudes: { z: number[]; n: number[]; e: number[] };
+  };
+  spectrogram: {
+    windowSizeSamples: number;
+    overlapSamples: number;
+    timeResolutionSeconds: number;
+    frequencyResolutionHz: number;
+    powerUnit: "dB rel.";
+    minDb: number;
+    maxDb: number;
+    timesSeconds: number[];
+    frequenciesHz: number[];
+    powerDb: { z: number[][]; n: number[][]; e: number[][] };
+  };
+}
+
 export interface WaveformView {
   eventId: string;
   stationId: string;
@@ -56,6 +79,7 @@ export interface WaveformView {
   computedPga: { z: number; n: number; e: number };
   computedOverFullSeries: boolean;
   reducedComponents: { z: number[]; n: number[]; e: number[] };
+  frequencyAnalysis: FrequencyAnalysis;
   reductionFactor: number;
   sourceFileUrl: string;
   provenance: Provenance;

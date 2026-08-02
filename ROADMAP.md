@@ -17,7 +17,7 @@ Orden aproximado. Los gates de seguridad y revisión científica no se negocian 
 
 - [x] Veredictos de Verifica con point-in-polygon real sobre límites INEI para departamentos
       del Perú, con banda de frontera simétrica de 0.25°; países siguen en cajas documentadas.
-- [ ] [Espectrograma y espectro de Fourier por estación](https://github.com/crafter-research/sismo-abierto/issues/3)
+- [x] [Espectrograma y espectro de Fourier por estación](https://github.com/crafter-research/sismo-abierto/issues/3)
       en el visor de ondas.
 - [x] Lecciones de profundidad/distancia, Z/N/E/PGA y
       predicción/pronóstico/alerta temprana en Aula.
