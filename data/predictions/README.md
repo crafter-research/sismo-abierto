@@ -10,6 +10,18 @@
 - Este registro evalúa afirmaciones, no personas. Una coincidencia estricta no equivale a
   evidencia de capacidad predictiva y siempre se presenta junto a su tasa base.
 
+## Panoramas semanales
+
+- `panorama-reports.json` reúne cinco Reels semanales publicados entre el 29 de junio y
+  el 27 de julio de 2026, con 37 predicciones evaluables por separado.
+- Los Reels `DaLGrbGpoQm`, `Dac4KZ8J7-J`, `DauJiOZppMr` y `DbSLv__pBz9` se incorporaron
+  retrospectivamente el 2026-08-02 a partir de transcripciones hechas con `trx` y una
+  revisión del texto visible.
+- El panorama del 20 de julio conserva las ocho afirmaciones ya congeladas en
+  `predictions.csv`. No se duplica su fuente de verdad para la auditoría.
+- Cada registro incluye la URL y la hora pública del Reel en Lima. Esa marca temporal
+  documenta cuándo apareció la fuente, pero no elimina las limitaciones del backfill.
+
 ## Informes históricos incorporados retrospectivamente
 
 - `historical-reports.json` transcribe los informes 244, 245, 246 y 249 al 254 desde

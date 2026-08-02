@@ -40,6 +40,23 @@ export interface FrozenPrediction {
   deadlineEndLima: string;
 }
 
+export interface PanoramaPoint extends FrozenPrediction {
+  pointNumber: number;
+  sourceText: string;
+}
+
+export interface PanoramaReport {
+  slug: string;
+  title: string;
+  periodStart: string;
+  periodEnd: string;
+  sourceUrl: string;
+  sourcePublishedAtLima: string;
+  sourceEvidence: string;
+  backfilledAt: string;
+  points: PanoramaPoint[];
+}
+
 export interface HistoricalReportPoint {
   pointNumber: number;
   claimedProbability: number;
