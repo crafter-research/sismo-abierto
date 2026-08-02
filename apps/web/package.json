@@ -16,18 +16,20 @@
     "@sismo/aula-content": "workspace:*",
     "@sismo/contracts": "workspace:*",
     "@sismo/data": "workspace:*",
+    "@sismo/geo": "workspace:*",
     "@sismo/source-health": "workspace:*",
     "@sismo/volcanoes": "workspace:*",
     "@sismo/waveforms": "workspace:*",
     "@trigger.dev/sdk": "^4.0.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "geist": "^1.7.2",
     "next": "^16.2.10",
     "next-themes": "^0.4.6",
     "qrcode-generator": "^2.0.4",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "zod": "^4.0.5",
-    "@sismo/geo": "workspace:*"
+    "zod": "^4.0.5"
   },
   "devDependencies": {
     "@playwright/test": "^1.53.0",

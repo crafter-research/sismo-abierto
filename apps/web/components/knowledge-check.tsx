@@ -1,6 +1,7 @@
 "use client";
 
 import type { LessonQuestion } from "@sismo/aula-content";
+import { track } from "@vercel/analytics";
 import { useEffect, useState } from "react";
 
 const PROGRESS_KEY = "aula-progress";
@@ -83,6 +84,9 @@ export function KnowledgeCheck({
             const progress = readProgress();
             progress[lessonSlug] = true;
             localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+            if (!completed) {
+              track("Aula Lesson Completed", { lesson: lessonSlug });
+            }
             setCompleted(true);
           }}
           className="rounded border border-official px-3 py-1.5 text-sm font-medium text-official hover:bg-official-soft"
