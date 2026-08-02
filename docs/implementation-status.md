@@ -1,6 +1,6 @@
 # Implementation status
 
-Última actualización: 2026-08-02 00:16 aprox. (America/Lima). Implementación completa; ver checklist. Este documento separa Evidence, Inference y Unknown, y lleva el checklist de slices.
+Última actualización: 2026-08-02 00:38 aprox. (America/Lima). Implementación completa; ver checklist. Este documento separa Evidence, Inference y Unknown, y lleva el checklist de slices.
 
 ## Evidence (observado en vivo, 2026-07-20/21 UTC)
 
@@ -74,4 +74,3 @@ Notas de evidencia:
 
 1. VA3 bloqueado (ver spike). EF3 tras flag. Revisión científica pendiente (paquete de revisión externo al repo).
 2. Términos de redistribución sin confirmar → publicación source-only se mantiene.
-3. Alias no scoped `bunx sismo` pendiente de autenticación npm.

@@ -73,6 +73,14 @@ bun run drift      # linter de contratos contra las fuentes en vivo
 ### CLI
 
 ```bash
+bunx sismo latest
+bunx sismo events --since 7d --min-magnitude 4 --format geojson
+bunx sismo schema events
+```
+
+Desarrollo local:
+
+```bash
 bun apps/cli/src/main.ts latest
 bun apps/cli/src/main.ts events --since 7d --min-magnitude 4 --format geojson
 bun apps/cli/src/main.ts stations ran-20260468 --sort pga
@@ -118,7 +126,7 @@ Cada fuente expone un badge SVG cacheable en
 ```text
 apps/web                 Next.js (App Router, Server Components, Tailwind)
 apps/cli                 paquete canónico `@crafter/sismo-cli`
-apps/cli-alias           release preparado del alias no scoped `sismo`
+apps/cli-alias           alias no scoped publicado como `sismo`
 packages/contracts       modelo normalizado, esquemas zod y documento OpenAPI
 packages/data            adaptadores server-side con timeouts, retries y caché
 packages/waveforms       parser ACELDAT, métricas sobre serie completa, reducción visual

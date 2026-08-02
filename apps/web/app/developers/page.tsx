@@ -85,16 +85,16 @@ export default function DevelopersPage() {
           esta web y la API.
         </p>
         <pre className="mt-2 overflow-x-auto rounded-md border border-gray-300 bg-background-200 p-3 font-mono text-[13px] text-gray-1000">
-          {`sismo latest
-sismo events --since 7d --min-magnitude 4 --format geojson
-sismo inspect EVENT_ID
-sismo stations EVENT_ID --sort pga
-sismo waveform EVENT_ID STATION_ID --format csv
-sismo volcanoes
-sismo volcano VOLCANO_SLUG
-sismo sources
-sismo source SOURCE_ID --evidence
-sismo schema COMMAND`}
+          {`bunx sismo latest
+bunx sismo events --since 7d --min-magnitude 4 --format geojson
+bunx sismo inspect EVENT_ID
+bunx sismo stations EVENT_ID --sort pga
+bunx sismo waveform EVENT_ID STATION_ID --format csv
+bunx sismo volcanoes
+bunx sismo volcano VOLCANO_SLUG
+bunx sismo sources
+bunx sismo source SOURCE_ID --evidence
+bunx sismo schema COMMAND`}
         </pre>
         <p className="mt-2 font-mono text-[11px] text-gray-800">
           Salida humana en tablas · --json, --geojson y --csv sin decoración ·
