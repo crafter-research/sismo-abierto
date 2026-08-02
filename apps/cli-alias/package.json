@@ -1,0 +1,34 @@
+{
+  "name": "sismo",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Alias corto de @crafter/sismo-cli para consultar datos sísmicos y volcánicos públicos del Perú.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crafter-research/sismo-abierto.git",
+    "directory": "apps/cli-alias"
+  },
+  "homepage": "https://sismo.crafter.run/developers",
+  "keywords": [
+    "peru",
+    "sismos",
+    "earthquakes",
+    "igp",
+    "cli",
+    "open-data"
+  ],
+  "bin": {
+    "sismo": "./bin/sismo.js"
+  },
+  "files": [
+    "bin",
+    "README.md"
+  ],
+  "dependencies": {
+    "@crafter/sismo-cli": "1.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

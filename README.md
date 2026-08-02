@@ -117,7 +117,8 @@ Cada fuente expone un badge SVG cacheable en
 
 ```text
 apps/web                 Next.js (App Router, Server Components, Tailwind)
-apps/cli                 binario `sismo`
+apps/cli                 paquete canónico `@crafter/sismo-cli`
+apps/cli-alias           release preparado del alias no scoped `sismo`
 packages/contracts       modelo normalizado, esquemas zod y documento OpenAPI
 packages/data            adaptadores server-side con timeouts, retries y caché
 packages/waveforms       parser ACELDAT, métricas sobre serie completa, reducción visual

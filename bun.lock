@@ -13,7 +13,7 @@
     },
     "apps/cli": {
       "name": "@crafter/sismo-cli",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "bin": {
         "sismo": "./dist/sismo.js",
       },
@@ -24,6 +24,16 @@
         "@sismo/waveforms": "workspace:*",
         "nanospinner": "^1.2.2",
         "picocolors": "^1.1.1",
+      },
+    },
+    "apps/cli-alias": {
+      "name": "sismo",
+      "version": "1.0.0",
+      "bin": {
+        "sismo": "./bin/sismo.js",
+      },
+      "dependencies": {
+        "@crafter/sismo-cli": "1.0.3",
       },
     },
     "apps/web": {
@@ -937,6 +947,8 @@
     "shebang-regex": ["shebang-regex@3.0.0", "", {}, "sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A=="],
 
     "signal-exit": ["signal-exit@4.1.0", "", {}, "sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw=="],
+
+    "sismo": ["sismo@workspace:apps/cli-alias"],
 
     "sismo-web": ["sismo-web@workspace:apps/web"],
 
