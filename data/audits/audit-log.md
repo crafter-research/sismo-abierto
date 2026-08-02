@@ -1,6 +1,6 @@
 # Log de auditoría
 
-Corrida UTC: `2026-08-02T06:12:34.505Z`
+Corrida UTC: `2026-08-02T18:35:10.830Z`
 
 ## P1 · Coincidencia estricta
 
@@ -68,7 +68,7 @@ Corrida UTC: `2026-08-02T06:12:34.505Z`
 ## P4 · Coincidencia estricta
 
 - Veredicto del protocolo congelado: `STRICT_HIT`
-- Tasa base: 99.4% · Muy esperable sin predicción
+- Tasa base: 99.3% · Muy esperable sin predicción
 - Capacidad predictiva: no establecida
 
 ### Candidatos
@@ -76,11 +76,11 @@ Corrida UTC: `2026-08-02T06:12:34.505Z`
 - 2026-07-29T13:19:36.661Z · M5.4 · 11 km N of Tsunagi, Japan · Japón (país) · usgs-fdsn
 - 2026-07-28T08:08:35.421Z · M5.6 · 16 km NE of Tsunagi, Japan · Japón (país) · usgs-fdsn
 - 2026-07-29T15:10:02.995Z · M5.4 · 53 km E of Rapu-Rapu, Philippines · Filipinas (país) · usgs-fdsn
-- 2026-07-30T04:42:12.667Z · M5.4 · 201 km W of Abepura, Indonesia · Indonesia (país) · usgs-fdsn
-- 2026-07-26T10:57:37.061Z · M5.3 · 25 km NW of Kupang, Indonesia · Indonesia (país) · usgs-fdsn
-- 2026-07-24T12:14:28.267Z · M5.4 · 202 km W of Abepura, Indonesia · Indonesia (país) · usgs-fdsn
-- 2026-07-24T11:11:34.234Z · M5.3 · 197 km W of Abepura, Indonesia · Indonesia (país) · usgs-fdsn
-- 2026-07-23T22:58:36.362Z · M5.8 · 130 km W of Ternate, Indonesia · Indonesia (país) · usgs-fdsn
+- 2026-07-26T10:57:37.061Z · M5.3 · 25 km NW of Kupang, Indonesia · Indonesia (Java, Bali y Nusa Tenggara) · usgs-fdsn
+- 2026-07-23T22:58:36.362Z · M5.8 · 130 km W of Ternate, Indonesia · Indonesia (Maluku) · usgs-fdsn
+- 2026-07-30T04:42:12.667Z · M5.4 · 201 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
+- 2026-07-24T12:14:28.267Z · M5.4 · 202 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
+- 2026-07-24T11:11:34.234Z · M5.3 · 197 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
 
 ### Evidencia
 
@@ -89,13 +89,23 @@ Corrida UTC: `2026-08-02T06:12:34.505Z`
 - [Consulta USGS para Panamá (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Japón (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146): 8 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Filipinas (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 9 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
-- [Consulta USGS para Indonesia (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141): 23 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=0.6&maxlatitude=12.2&minlongitude=-73.4&maxlongitude=-59.8): 2 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=14.5&maxlatitude=32.7&minlongitude=-118.4&maxlongitude=-86.7): 12 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2): 0 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146): 63 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 37 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141): 73 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos
+- [Consulta USGS para Indonesia (Sumatra)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5): 2 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Java, Bali y Nusa Tenggara)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125): 2 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Kalimantan)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Sulawesi)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Maluku)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135): 4 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Papúa occidental)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-01&orderby=time&minmagnitude=4.8&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1): 11 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=0.6&maxlatitude=12.2&minlongitude=-73.4&maxlongitude=-59.8): 2 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=14.5&maxlatitude=32.7&minlongitude=-118.4&maxlongitude=-86.7): 12 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2): 0 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146): 63 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 37 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5): 4 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125): 6 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119): 0 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5): 8 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135): 32 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1): 8 eventos históricos en esta geografía y rango; 165 únicos en el conjunto de destinos
 
 ## P5 · Coincidencia estricta
 
@@ -119,7 +129,7 @@ Corrida UTC: `2026-08-02T06:12:34.505Z`
 ## P6 · Coincidencia estricta
 
 - Veredicto del protocolo congelado: `STRICT_HIT`
-- Tasa base: 98.1% · Muy esperable sin predicción
+- Tasa base: 97.9% · Muy esperable sin predicción
 - Capacidad predictiva: no establecida
 
 ### Candidatos
@@ -127,27 +137,37 @@ Corrida UTC: `2026-08-02T06:12:34.505Z`
 - 2026-07-24T16:51:37.514Z · M5.7 · 49 km W of Turangi, New Zealand · Nueva Zelanda (país) · usgs-fdsn
 - 2026-07-24T21:37:56.459Z · M6 · 82 km W of Sola, Vanuatu · Vanuatu (país) · usgs-fdsn
 - 2026-07-29T15:10:02.995Z · M5.4 · 53 km E of Rapu-Rapu, Philippines · Filipinas (país) · usgs-fdsn
-- 2026-07-30T04:42:12.667Z · M5.4 · 201 km W of Abepura, Indonesia · Indonesia (país) · usgs-fdsn
-- 2026-07-24T12:14:28.267Z · M5.4 · 202 km W of Abepura, Indonesia · Indonesia (país) · usgs-fdsn
-- 2026-07-23T22:58:36.362Z · M5.8 · 130 km W of Ternate, Indonesia · Indonesia (país) · usgs-fdsn
+- 2026-07-23T22:58:36.362Z · M5.8 · 130 km W of Ternate, Indonesia · Indonesia (Maluku) · usgs-fdsn
+- 2026-07-30T04:42:12.667Z · M5.4 · 201 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
+- 2026-07-24T12:14:28.267Z · M5.4 · 202 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
 - 2026-07-28T20:27:57.268Z · M5.4 · 211 km SE of Kokopo, Papua New Guinea · Papúa Nueva Guinea (país) · usgs-fdsn
 
 ### Evidencia
 
-- [Consulta USGS para Nueva Zelanda (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6): 1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Nueva Zelanda (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6): 2 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Vanuatu (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2): 5 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Fiji (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Tonga (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7): 3 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Filipinas (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 8 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
-- [Consulta USGS para Indonesia (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141): 21 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Sumatra)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5): 2 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Java, Bali y Nusa Tenggara)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125): 2 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Kalimantan)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Sulawesi)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Maluku)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135): 4 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Indonesia (Papúa occidental)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1): 9 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Papúa Nueva Guinea (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9): 4 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6): 2 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2): 14 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180): 0 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7): 7 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 31 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141): 56 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9): 15 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6): 2 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2): 14 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180): 0 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7): 7 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 31 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5): 3 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125): 5 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119): 0 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5): 6 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135): 24 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1): 6 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9): 15 eventos históricos en esta geografía y rango; 109 únicos en el conjunto de destinos
 
 ## P7 · Geografía ambigua
 

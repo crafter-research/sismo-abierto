@@ -32,6 +32,7 @@ export function classifyVerdict(options: {
   windowClosed: boolean;
   candidates: RawCandidate[];
   allTargetsVague: boolean;
+  hasVagueTargets?: boolean;
 }): PredictionVerdict {
   if (!options.windowClosed) return "PENDING";
   const strict = options.candidates.filter(
@@ -46,7 +47,7 @@ export function classifyVerdict(options: {
   const boundary = options.candidates.filter(
     (candidate) => candidate.match === "boundary",
   );
-  if (boundary.length > 0 || options.allTargetsVague)
+  if (boundary.length > 0 || options.allTargetsVague || options.hasVagueTargets)
     return "AMBIGUOUS_GEOGRAPHY";
   return "NO_MATCH";
 }
@@ -207,6 +208,14 @@ export async function evaluatePrediction(
         await findCandidatesForMatcher(prediction, matcher, evidence, nowIso),
       );
     }
+    candidates = Array.from(
+      new Map(
+        candidates.map((candidate) => [
+          `${candidate.eventTimeUtc}:${candidate.magnitude}:${candidate.latitude}:${candidate.longitude}`,
+          candidate,
+        ]),
+      ).values(),
+    );
   } else {
     evidence.push({
       at: nowIso,
@@ -245,6 +254,7 @@ export async function evaluatePrediction(
     windowClosed,
     candidates,
     allTargetsVague: unambiguous.length === 0,
+    hasVagueTargets: ambiguousRegions.length > 0,
   });
 
   return {

@@ -1,6 +1,7 @@
 import {
   BASELINE_BAND_LABELS,
   evaluatePrediction,
+  loadHistoricalReportAuditResults,
   loadPredictionRegistry,
   windowHasClosed,
 } from "@sismo/audit";
@@ -36,7 +37,10 @@ function splitTargets(targets: string[]): {
 }
 
 export default async function VerificaPage() {
-  const registry = await loadPredictionRegistry();
+  const [registry, historicalResults] = await Promise.all([
+    loadPredictionRegistry(),
+    loadHistoricalReportAuditResults(),
+  ]);
   const now = Date.now();
   const audits = [];
 
@@ -84,6 +88,73 @@ export default async function VerificaPage() {
           </Link>
         </p>
       </header>
+
+      <section className="mt-6" aria-labelledby="historical-reports-title">
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <h2
+              id="historical-reports-title"
+              className="text-base font-semibold"
+            >
+              Informes históricos
+            </h2>
+            <p className="mt-1 max-w-3xl text-xs leading-5 text-gray-800">
+              Backfill retrospectivo de nueve informes aportados como capturas.
+              Cada punto conserva su porcentaje declarado, ventana y resultado;
+              no equivale a un registro preinscrito.
+            </p>
+          </div>
+          <span className="font-mono text-[11px] text-gray-800">
+            Auditoría {historicalResults.runAt.slice(0, 10)}
+          </span>
+        </div>
+        <div
+          className="mt-3 divide-y divide-gray-200 border-gray-200 border-y"
+          data-testid="historical-report-list"
+        >
+          {historicalResults.reports.map(({ report, points }) => {
+            const strict = points.filter(
+              ({ audit }) =>
+                audit.interpretation.matchOutcome === "STRICT_MATCH",
+            ).length;
+            const pending = points.filter(
+              ({ audit }) => audit.interpretation.matchOutcome === "PENDING",
+            ).length;
+            const ambiguous = points.filter(
+              ({ audit }) =>
+                audit.interpretation.matchOutcome === "AMBIGUOUS_GEOGRAPHY",
+            ).length;
+            const noMatch = points.filter(
+              ({ audit }) => audit.interpretation.matchOutcome === "NO_MATCH",
+            ).length;
+            return (
+              <Link
+                key={report.reportNumber}
+                href={`/verifica/informes/${report.reportNumber}`}
+                className="grid gap-1 py-3 text-sm hover:bg-background-200 sm:grid-cols-[7.5rem_minmax(0,1fr)_minmax(14rem,auto)] sm:items-center sm:gap-4 sm:px-2"
+                data-testid="historical-report-row"
+              >
+                <span className="font-mono font-semibold underline underline-offset-2">
+                  Informe {report.reportNumber}
+                </span>
+                <span className="min-w-0">
+                  <span className="block truncate">{report.origin}</span>
+                  <span className="block text-xs text-gray-800">
+                    M{report.predictedMagnitudeMin.toFixed(1)}–
+                    {report.predictedMagnitudeMax.toFixed(1)} · vence{" "}
+                    {formatDeadlineLima(report.deadlineEndLima)}
+                  </span>
+                </span>
+                <span className="text-xs text-gray-900 sm:text-right">
+                  {pending > 0
+                    ? `${pending} puntos pendientes`
+                    : `${strict} coincidencia${strict === 1 ? "" : "s"} · ${ambiguous} ambiguos · ${noMatch} sin coincidencia`}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
 
       <div className="mt-6 overflow-x-auto">
         <table

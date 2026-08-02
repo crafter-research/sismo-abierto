@@ -4,6 +4,7 @@ import {
   classifyVerdict,
   isInWindow,
   isMagnitudeInRange,
+  loadHistoricalReportRegistry,
   loadPredictionRegistry,
   matchersForTarget,
   matchRegion,
@@ -120,6 +121,33 @@ describe("geografía determinista", () => {
       }
     }
   });
+  test("todo destino histórico tiene mapeo", async () => {
+    const reports = await loadHistoricalReportRegistry();
+    expect(reports).toHaveLength(9);
+    expect(reports.flatMap((report) => report.points)).toHaveLength(36);
+    for (const report of reports) {
+      for (const point of report.points) {
+        for (const target of point.targetRegions) {
+          const matchers = matchersForTarget(target);
+          expect(matchers.length).toBeGreaterThan(0);
+          expect(
+            matchers.some((matcher) => matcher.key.startsWith("sin-mapa-")),
+          ).toBe(false);
+        }
+      }
+    }
+  });
+  test("un evento de Mindanao no se clasifica como Indonesia", () => {
+    const matchers = matchersForTarget(
+      "Islas Sandwich, Indonesia o Papúa Nueva Guinea",
+    ).filter((matcher) => matcher.label.startsWith("Indonesia"));
+    expect(matchers.length).toBeGreaterThan(1);
+    expect(
+      matchers.every(
+        (matcher) => matchRegion(matcher, 5.5994, 125.056) === "outside",
+      ),
+    ).toBe(true);
+  });
 });
 
 describe("clasificación de veredictos", () => {
@@ -184,5 +212,15 @@ describe("clasificación de veredictos", () => {
         allTargetsVague: false,
       }),
     ).toBe("NO_MATCH");
+  });
+  test("una parte territorial vaga impide declarar NO_MATCH", () => {
+    expect(
+      classifyVerdict({
+        windowClosed: true,
+        candidates: [],
+        allTargetsVague: false,
+        hasVagueTargets: true,
+      }),
+    ).toBe("AMBIGUOUS_GEOGRAPHY");
   });
 });

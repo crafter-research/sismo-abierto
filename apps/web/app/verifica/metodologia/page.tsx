@@ -29,6 +29,40 @@ export default function MethodologyPage() {
         respaldado estas afirmaciones.
       </p>
 
+      <h2 className="font-semibold text-gray-900">
+        Backfill de informes históricos
+      </h2>
+      <p>
+        Los informes 244, 245, 246 y 249 al 254 se incorporaron el 2 de agosto
+        de 2026 desde capturas aportadas por el usuario. Se evalúan con los
+        mismos criterios de tiempo, magnitud, geografía y tasa base, pero su
+        incorporación es retrospectiva: varias ventanas ya habían cerrado. No
+        tienen el mismo valor probatorio que las ocho afirmaciones congeladas
+        antes de sus resultados.
+      </p>
+      <ul className="list-inside list-disc space-y-1">
+        <li>Cada punto del informe se evalúa por separado.</li>
+        <li>
+          Los porcentajes 40/30/20/10 se conservan como texto declarado; no se
+          presuponen calibrados.
+        </li>
+        <li>
+          Si la descripción territorial es vaga, no se inventa una frontera para
+          convertirla en acierto o fallo.
+        </li>
+        <li>
+          Un mismo terremoto puede coincidir con varios informes superpuestos y
+          no cuenta como evidencia independiente repetida.
+        </li>
+      </ul>
+      <p>
+        El protocolo específico vive en{" "}
+        <span className="font-mono">
+          data/predictions/historical-audit-protocol.md
+        </span>
+        .
+      </p>
+
       <h2 className="font-semibold text-gray-900">Fuentes</h2>
       <ol className="list-inside list-decimal space-y-1">
         <li>IGP/CENSIS como fuente principal para epicentros en el Perú.</li>

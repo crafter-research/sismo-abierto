@@ -40,6 +40,46 @@ export interface FrozenPrediction {
   deadlineEndLima: string;
 }
 
+export interface HistoricalReportPoint {
+  pointNumber: number;
+  claimedProbability: number;
+  sourceText: string;
+  targetRegions: string[];
+}
+
+export interface HistoricalReport {
+  reportNumber: number;
+  sourceAccount: string;
+  sourceEvidence: string;
+  sourcePostDate: string | null;
+  backfilledAt: string;
+  origin: string;
+  originMagnitude: number;
+  startDate: string;
+  maxDays: number;
+  deadlineEndLima: string;
+  deadlineSourceText: string;
+  predictedMagnitudeMin: number;
+  predictedMagnitudeMax: number;
+  points: HistoricalReportPoint[];
+}
+
+export interface HistoricalPointAudit {
+  point: HistoricalReportPoint;
+  prediction: FrozenPrediction;
+  audit: PredictionAudit;
+}
+
+export interface HistoricalReportAudit {
+  report: HistoricalReport;
+  points: HistoricalPointAudit[];
+}
+
+export interface HistoricalReportAuditResults {
+  runAt: string;
+  reports: HistoricalReportAudit[];
+}
+
 export interface CandidateEvent {
   sourceId: string;
   eventTimeUtc: string;

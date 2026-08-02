@@ -1,0 +1,371 @@
+[
+  {
+    "reportNumber": 244,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario: codex-clipboard-8546c13f-dc68-4256-a2a2-4a752a7ca396.png",
+    "sourcePostDate": null,
+    "backfilledAt": "2026-08-02",
+    "origin": "Yakutat, Alaska",
+    "originMagnitude": 7.0,
+    "startDate": "2025-12-09",
+    "maxDays": 80,
+    "deadlineEndLima": "2026-02-27T23:59:59-05:00",
+    "deadlineSourceText": "70 @ 80 días a partir del 09/12/2025; se usa el límite superior de 80 días",
+    "predictedMagnitudeMin": 6.8,
+    "predictedMagnitudeMax": 7.8,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 40,
+        "sourceText": "Zona aledañas a México (Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes)",
+        "targetRegions": ["Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "China y ubigeos aledaños (Japón, Taiwán, India, Filipinas o Indonesia)",
+        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Zona norte de Perú, frontera con sur de Ecuador, hasta zona sur de Colombia; incluye parte de Venezuela",
+        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 10,
+        "sourceText": "Zona fronteriza a los 5 Stanes incluyendo Afganistán e Irán, o Grecia y Turquía",
+        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+      }
+    ]
+  },
+  {
+    "reportNumber": 245,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario: codex-clipboard-2b308f4e-cea6-4aea-943c-6abd13b3bb26.png",
+    "sourcePostDate": null,
+    "backfilledAt": "2026-08-02",
+    "origin": "Misawa, Japón",
+    "originMagnitude": 7.6,
+    "startDate": "2025-12-11",
+    "maxDays": 85,
+    "deadlineEndLima": "2026-03-06T23:59:59-05:00",
+    "deadlineSourceText": "85 días a partir del 11/12/2025",
+    "predictedMagnitudeMin": 7.0,
+    "predictedMagnitudeMax": 8.5,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 35,
+        "sourceText": "Repite en Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
+        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "Desde zona centro de Perú hasta central de Chile, frontera con Argentina; abarca sur de Perú y norte de Chile",
+        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Nueva Zelanda y zonas colindantes a Fiji, Vanuatu, Tonga e islas aledañas",
+        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 15,
+        "sourceText": "Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
+        "targetRegions": ["Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+      }
+    ]
+  },
+  {
+    "reportNumber": 246,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario: codex-clipboard-5d9ebb34-8eb3-4edd-85c4-12be179d1c44.png",
+    "sourcePostDate": null,
+    "backfilledAt": "2026-08-02",
+    "origin": "Malasia, frontera con Filipinas",
+    "originMagnitude": 7.1,
+    "startDate": "2026-02-25",
+    "maxDays": 80,
+    "deadlineEndLima": "2026-05-16T23:59:59-05:00",
+    "deadlineSourceText": "80 días a partir del 25/02/2026",
+    "predictedMagnitudeMin": 6.8,
+    "predictedMagnitudeMax": 7.8,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 40,
+        "sourceText": "China y ubigeos aledaños (Japón, Taiwán, India, Filipinas o Indonesia)",
+        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "Zona aledañas a México (Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes)",
+        "targetRegions": ["Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Zona norte de Perú, frontera con sur de Ecuador, hasta zona sur de Colombia; incluye parte de Venezuela",
+        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 10,
+        "sourceText": "Zona fronteriza a los 5 Stanes incluyendo Afganistán e Irán, o Grecia y Turquía",
+        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+      }
+    ]
+  },
+  {
+    "reportNumber": 249,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario: codex-clipboard-2895a2c5-506c-4380-b0da-c4892b363ab0.png",
+    "sourcePostDate": null,
+    "backfilledAt": "2026-08-02",
+    "origin": "Luganville, Vanuatu",
+    "originMagnitude": 7.3,
+    "startDate": "2026-04-04",
+    "maxDays": 80,
+    "deadlineEndLima": "2026-06-23T23:59:59-05:00",
+    "deadlineSourceText": "80 días a partir del 04/04/2026",
+    "predictedMagnitudeMin": 6.9,
+    "predictedMagnitudeMax": 7.9,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 40,
+        "sourceText": "Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
+        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "Central de Perú hasta central de Chile, incluyendo sur de Perú, norte de Chile y frontera con Argentina",
+        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Psi Drake, Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
+        "targetRegions": ["Pasaje de Drake, Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 10,
+        "sourceText": "Repite en Nueva Zelanda y zonas aledañas: Fiji, Vanuatu, Tonga e islas aledañas",
+        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+      }
+    ]
+  },
+  {
+    "reportNumber": 250,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario: codex-clipboard-505affbf-b807-4c58-b13c-9397cfb8b5be.png",
+    "sourcePostDate": null,
+    "backfilledAt": "2026-08-02",
+    "origin": "Ternate, Indonesia",
+    "originMagnitude": 7.4,
+    "startDate": "2026-04-06",
+    "maxDays": 85,
+    "deadlineEndLima": "2026-06-30T23:59:59-05:00",
+    "deadlineSourceText": "85 días a partir del 06/04/2026",
+    "predictedMagnitudeMin": 7.0,
+    "predictedMagnitudeMax": 8.0,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 40,
+        "sourceText": "Zona aledañas a México (Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes)",
+        "targetRegions": ["Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "China y ubigeos aledaños (Japón, Taiwán, India, Filipinas o Indonesia)",
+        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Zona norte de Perú, frontera con sur de Ecuador, hasta zona sur de Colombia; incluye parte de Venezuela",
+        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 10,
+        "sourceText": "Zona fronteriza a los 5 Stanes incluyendo Afganistán e Irán, o Grecia y Turquía",
+        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+      }
+    ]
+  },
+  {
+    "reportNumber": 251,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario: codex-clipboard-44ae690f-e83a-4f55-b3ed-464b38928f20.png",
+    "sourcePostDate": null,
+    "backfilledAt": "2026-08-02",
+    "origin": "Miyako, Japón",
+    "originMagnitude": 7.4,
+    "startDate": "2026-04-23",
+    "maxDays": 85,
+    "deadlineEndLima": "2026-07-17T23:59:59-05:00",
+    "deadlineSourceText": "85 días a partir del 23/04/2026",
+    "predictedMagnitudeMin": 7.0,
+    "predictedMagnitudeMax": 8.5,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 35,
+        "sourceText": "Repite en Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
+        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "Desde zona centro de Perú hasta central de Chile, frontera con Argentina; abarca sur de Perú y norte de Chile",
+        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Nueva Zelanda y zonas colindantes a Fiji, Vanuatu, Tonga e islas aledañas",
+        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 15,
+        "sourceText": "Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
+        "targetRegions": ["Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+      }
+    ]
+  },
+  {
+    "reportNumber": 252,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario: codex-clipboard-029503a6-073b-4695-8071-63f966f55c18.png",
+    "sourcePostDate": null,
+    "backfilledAt": "2026-08-02",
+    "origin": "Burias, Filipinas",
+    "originMagnitude": 7.8,
+    "startDate": "2026-06-10",
+    "maxDays": 85,
+    "deadlineEndLima": "2026-09-03T23:59:59-05:00",
+    "deadlineSourceText": "85 días a partir del 10/06/2026",
+    "predictedMagnitudeMin": 7.0,
+    "predictedMagnitudeMax": 8.1,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 40,
+        "sourceText": "Zona aledañas a México (Panamá, Costa Rica, Nicaragua e islas colindantes)",
+        "targetRegions": ["Costa Rica, Nicaragua, Panamá e islas colindantes"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "Zona norte de Perú, frontera con sur de Ecuador, hasta zona sur de Colombia; incluye parte de Venezuela",
+        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Zona fronteriza a los 5 Stanes incluyendo Afganistán e Irán, o Grecia y Turquía",
+        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 10,
+        "sourceText": "China y ubigeos aledaños (Japón, Taiwán, Corea, India, Filipinas y/o Indonesia)",
+        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+      }
+    ]
+  },
+  {
+    "reportNumber": 253,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario: codex-clipboard-03c09b31-072a-45d6-82d9-4b59cf2341f6.png",
+    "sourcePostDate": "2026-07-01",
+    "backfilledAt": "2026-08-02",
+    "origin": "Morón, Venezuela",
+    "originMagnitude": 7.2,
+    "startDate": "2026-06-27",
+    "maxDays": 80,
+    "deadlineEndLima": "2026-09-15T23:59:59-05:00",
+    "deadlineSourceText": "80 días a partir del 27/06/2026",
+    "predictedMagnitudeMin": 7.0,
+    "predictedMagnitudeMax": 8.0,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 40,
+        "sourceText": "Zona aledañas a México (Guatemala, Costa Rica, Nicaragua e islas colindantes)",
+        "targetRegions": ["Guatemala, Costa Rica, Nicaragua e islas colindantes"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "China y ubigeos aledaños (Japón, Taiwán, Corea, India, Filipinas y/o Indonesia)",
+        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Zona fronteriza a Grecia y Turquía o los 5 Stanes e Irán",
+        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 10,
+        "sourceText": "Zona norte sudamericana: Venezuela, frontera con Colombia, hasta zona norte de Perú, frontera con sur de Ecuador",
+        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+      }
+    ]
+  },
+  {
+    "reportNumber": 254,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario: codex-clipboard-172ecb78-aeb3-4f93-bd73-f0b9ab0b46af.png",
+    "sourcePostDate": "2026-07-08",
+    "backfilledAt": "2026-08-02",
+    "origin": "Kuji, Japón",
+    "originMagnitude": 6.9,
+    "startDate": "2026-06-27",
+    "maxDays": 75,
+    "deadlineEndLima": "2026-09-10T23:59:59-05:00",
+    "deadlineSourceText": "75 días a partir del 27/06/2026",
+    "predictedMagnitudeMin": 6.8,
+    "predictedMagnitudeMax": 7.8,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 40,
+        "sourceText": "Nueva Zelanda y zonas colindantes a Fiji, Vanuatu, Tonga e islas aledañas",
+        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "Desde zona centro de Perú hasta central de Chile, frontera con Argentina; abarca sur de Perú y norte de Chile",
+        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Psi Drake, Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
+        "targetRegions": ["Pasaje de Drake, Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 10,
+        "sourceText": "Repite en Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
+        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+      }
+    ]
+  }
+]

@@ -242,8 +242,8 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(ledger).toContainText("Coincidencia estricta");
     await expect(ledger).toContainText("Geografía ambigua");
     await expect(ledger).toContainText("Sin coincidencia");
-    await expect(ledger).toContainText("99.4%");
-    await expect(ledger).toContainText("98.1%");
+    await expect(ledger).toContainText("99.3%");
+    await expect(ledger).toContainText("97.9%");
     await expect(ledger).toContainText("26 jul 2026");
     await expect(ledger).not.toContainText("T23:59:59");
     await expect(ledger).not.toContainText("STRICT_HIT");
@@ -289,12 +289,49 @@ test.describe("V8-V9: Verifica Sismos", () => {
   }) => {
     await page.goto("/verifica/P6");
     const interpretation = page.getByTestId("combined-interpretation");
-    await expect(interpretation).toContainText("98.1%");
+    await expect(interpretation).toContainText("97.9%");
     await expect(interpretation).toContainText("Muy esperable sin predicción");
     await expect(interpretation).toContainText(
       "No aporta evidencia de capacidad predictiva",
     );
     await expect(page.getByTestId("verdict")).not.toContainText("STRICT_HIT");
+  });
+
+  test("el registro separa nueve informes históricos del reel congelado", async ({
+    page,
+  }) => {
+    await page.goto("/verifica");
+    const reports = page.getByTestId("historical-report-list");
+    await expect(reports.getByTestId("historical-report-row")).toHaveCount(9);
+    await expect(reports).toContainText("Informe 244");
+    await expect(reports).toContainText("Informe 254");
+    await expect(reports).toContainText("4 puntos pendientes");
+    await expect(reports).toContainText("1 coincidencia");
+  });
+
+  test("se puede navegar entre informes y revisar la evidencia de cada punto", async ({
+    page,
+  }) => {
+    await page.goto("/verifica/informes/246");
+    await expect(page.getByTestId("historical-report")).toContainText(
+      "Informe 246",
+    );
+    await expect(page.getByTestId("report-point")).toHaveCount(4);
+    await expect(page.getByTestId("historical-candidates")).toContainText(
+      "Miyako",
+    );
+    await expect(page.getByText("58.8%")).toBeVisible();
+
+    await page
+      .getByTestId("report-navigation")
+      .first()
+      .getByText("Informe 249")
+      .click();
+    await expect(page).toHaveURL(/\/verifica\/informes\/249$/);
+    await expect(
+      page.getByRole("heading", { name: "Informe 249" }),
+    ).toBeVisible();
+    await expect(page.getByTestId("report-point")).toHaveCount(4);
   });
 });
 
