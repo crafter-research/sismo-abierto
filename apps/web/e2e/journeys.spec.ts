@@ -233,30 +233,46 @@ test.describe("V8-V9: Verifica Sismos", () => {
     ).toBe(true);
   });
 
-  test("el registro muestra las 8 afirmaciones y sus veredictos vigentes", async ({
-    page,
-  }) => {
+  test("el índice separa los reportes de sus tablas", async ({ page }) => {
     await page.goto("/verifica");
-    const ledger = page.getByTestId("claim-ledger");
-    await expect(ledger.locator("tbody tr")).toHaveCount(8);
-    await expect(ledger).toContainText("Coincidencia estricta");
-    await expect(ledger).toContainText("Geografía ambigua");
-    await expect(ledger).toContainText("Sin coincidencia");
-    await expect(ledger).toContainText("99.3%");
-    await expect(ledger).toContainText("97.9%");
-    await expect(ledger).toContainText("26 jul 2026");
-    await expect(ledger).not.toContainText("T23:59:59");
-    await expect(ledger).not.toContainText("STRICT_HIT");
+    await expect(page.getByTestId("claim-ledger")).toHaveCount(0);
+    const panoramas = page.getByTestId("panorama-report-list");
+    await expect(panoramas.getByTestId("panorama-report-row")).toHaveCount(5);
+    await expect(panoramas).toContainText("27 de julio al 4 de agosto");
+    await expect(page.getByText("37 predicciones")).toBeVisible();
     await expect(
       page.getByTestId("prediction-interpretation-note"),
     ).toContainText(
       "Ninguna coincidencia aislada establece capacidad predictiva",
     );
+  });
+
+  test("un panorama muestra su tabla y permite cambiar de reporte", async ({
+    page,
+  }) => {
+    await page.goto("/verifica/panoramas/2026-07-20");
+    const ledger = page.getByTestId("claim-ledger");
+    await expect(ledger.locator("tbody tr")).toHaveCount(8);
+    await expect(ledger).toContainText("Coincidencia estricta");
+    await expect(ledger).toContainText("Geografía ambigua");
+    await expect(ledger).toContainText("99.3%");
+    await expect(ledger).toContainText("26 jul 2026");
+    await expect(ledger).not.toContainText("T23:59:59");
+    await expect(ledger).not.toContainText("STRICT_HIT");
 
     const p4 = page.getByTestId("claim-row").filter({ hasText: "P4" });
     await expect(p4).toContainText("+3 destinos");
     await p4.getByText("+3 destinos").click();
     await expect(p4).toContainText("Japón, Filipinas o Indonesia");
+
+    await page
+      .getByRole("combobox", { name: "Cambiar reporte" })
+      .selectOption("/verifica/panoramas/2026-07-27");
+    await expect(page).toHaveURL(/\/verifica\/panoramas\/2026-07-27$/);
+    await expect(page.getByTestId("claim-row")).toHaveCount(8);
+    await expect(page.getByTestId("panorama-report")).toContainText(
+      "Tayikistán",
+    );
   });
 
   test("una afirmación muestra criterios congelados, tasa base y evidencia", async ({
@@ -297,7 +313,7 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(page.getByTestId("verdict")).not.toContainText("STRICT_HIT");
   });
 
-  test("el registro separa nueve informes históricos del reel congelado", async ({
+  test("el registro lista nueve informes históricos aparte de los panoramas", async ({
     page,
   }) => {
     await page.goto("/verifica");
@@ -316,22 +332,20 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(page.getByTestId("historical-report")).toContainText(
       "Informe 246",
     );
-    await expect(page.getByTestId("report-point")).toHaveCount(4);
-    await expect(page.getByTestId("historical-candidates")).toContainText(
-      "Miyako",
-    );
+    await expect(page.getByTestId("claim-row")).toHaveCount(4);
+    const evidence = page.getByText("Ver evidencia").first();
+    await evidence.click();
+    await expect(page.getByTestId("claim-ledger")).toContainText("Miyako");
     await expect(page.getByText("58.8%")).toBeVisible();
 
     await page
-      .getByTestId("report-navigation")
-      .first()
-      .getByText("Informe 249")
-      .click();
+      .getByRole("combobox", { name: "Cambiar reporte" })
+      .selectOption("/verifica/informes/249");
     await expect(page).toHaveURL(/\/verifica\/informes\/249$/);
     await expect(
       page.getByRole("heading", { name: "Informe 249" }),
     ).toBeVisible();
-    await expect(page.getByTestId("report-point")).toHaveCount(4);
+    await expect(page.getByTestId("claim-row")).toHaveCount(4);
   });
 });
 

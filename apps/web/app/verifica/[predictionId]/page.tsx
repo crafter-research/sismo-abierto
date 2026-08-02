@@ -1,5 +1,6 @@
 import {
   evaluatePrediction,
+  findPanoramaByPredictionId,
   GEOGRAPHY_METHOD_NOTE,
   getPrediction,
 } from "@sismo/audit";
@@ -42,7 +43,10 @@ export default async function ClaimAuditPage({
   params: Promise<{ predictionId: string }>;
 }) {
   const { predictionId } = await params;
-  const prediction = await getPrediction(predictionId);
+  const [prediction, panorama] = await Promise.all([
+    getPrediction(predictionId),
+    findPanoramaByPredictionId(predictionId),
+  ]);
   if (!prediction) {
     return (
       <p className="text-sm text-gray-900">
@@ -68,6 +72,17 @@ export default async function ClaimAuditPage({
         <Link href="/verifica" className="hover:underline">
           Verifica
         </Link>{" "}
+        {panorama ? (
+          <>
+            /{" "}
+            <Link
+              href={`/verifica/panoramas/${panorama.slug}`}
+              className="hover:underline"
+            >
+              {panorama.title}
+            </Link>{" "}
+          </>
+        ) : null}
         / <span className="font-mono">{prediction.predictionId}</span>
       </nav>
 
@@ -95,9 +110,19 @@ export default async function ClaimAuditPage({
           en un máximo de {prediction.maxDays} días.
         </p>
         <p className="mt-1 text-xs text-gray-800">
-          Congelada el 2026-07-20 antes de conocer resultados (archivo
-          `data/predictions/predictions.csv`, verificable en git). Fuente
-          original: Reel DbAK4jKpyxP de sismos.en.peru.
+          {panorama?.backfilledAt === "2026-07-20"
+            ? "Congelada el 2026-07-20 antes de conocer resultados en data/predictions/predictions.csv, verificable en git."
+            : `Incorporada retrospectivamente el ${panorama?.backfilledAt ?? "2026-08-02"}; la fecha pública del Reel se conserva como referencia temporal.`}{" "}
+          {panorama ? (
+            <a
+              href={panorama.sourceUrl}
+              className="text-official underline"
+              rel="noreferrer"
+            >
+              Reel original
+            </a>
+          ) : null}
+          .
         </p>
       </header>
 
