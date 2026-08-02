@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import type { FrozenPrediction } from "@sismo/contracts";
+import { loadPanoramaReportRegistry } from "./panoramas.ts";
 import { parseFrozenPredictions } from "./predictions.ts";
 
 function resolvePredictionsPath(): string {
@@ -32,8 +33,14 @@ export async function getPrediction(
   predictionId: string,
 ): Promise<FrozenPrediction | null> {
   const registry = await loadPredictionRegistry();
+  const frozen = registry.find(
+    (prediction) => prediction.predictionId === predictionId,
+  );
+  if (frozen) return frozen;
+  const panoramas = await loadPanoramaReportRegistry();
   return (
-    registry.find((prediction) => prediction.predictionId === predictionId) ??
-    null
+    panoramas
+      .flatMap((report) => report.points)
+      .find((prediction) => prediction.predictionId === predictionId) ?? null
   );
 }

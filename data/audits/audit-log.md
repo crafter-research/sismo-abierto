@@ -1,6 +1,6 @@
 # Log de auditoría
 
-Corrida UTC: `2026-08-02T18:35:10.830Z`
+Corrida UTC: `2026-08-02T19:54:38.660Z`
 
 ## P1 · Coincidencia estricta
 
@@ -183,23 +183,23 @@ Corrida UTC: `2026-08-02T18:35:10.830Z`
 
 - Sin evidencia registrada.
 
-## P8 · Sin coincidencia
+## P8 · Geografía ambigua
 
-- Veredicto del protocolo congelado: `NO_MATCH`
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Tasa base: 43.4% · Posibilidad moderada sin predicción
 - Capacidad predictiva: no establecida
 
 ### Candidatos
 
-- Ningún evento candidato.
+- 2026-07-24T02:42:36.550Z · M4.8 · 54 km NNW of San Antonio, Puerto Rico · Puerto Rico y región sísmica inmediata · usgs-fdsn
 
 ### Evidencia
 
 - [Consulta USGS para República Dominicana (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-29&orderby=time&minmagnitude=4&minlatitude=17.5&maxlatitude=19.9&minlongitude=-72&maxlongitude=-68.3): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
-- [Consulta USGS para Puerto Rico (territorio)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-29&orderby=time&minmagnitude=4&minlatitude=17.9&maxlatitude=18.5&minlongitude=-67.3&maxlongitude=-65.2): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Puerto Rico y región sísmica inmediata](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-29&orderby=time&minmagnitude=4&minlatitude=17.8&maxlatitude=19&minlongitude=-67.5&maxlongitude=-65.2): 1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Panamá (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-29&orderby=time&minmagnitude=4&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Costa Rica (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-07-29&orderby=time&minmagnitude=4&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5&minlatitude=17.5&maxlatitude=19.9&minlongitude=-72&maxlongitude=-68.3): 2 eventos históricos en esta geografía y rango; 26 únicos en el conjunto de destinos
-- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5&minlatitude=17.9&maxlatitude=18.5&minlongitude=-67.3&maxlongitude=-65.2): 0 eventos históricos en esta geografía y rango; 26 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5&minlatitude=17.8&maxlatitude=19&minlongitude=-67.5&maxlongitude=-65.2): 0 eventos históricos en esta geografía y rango; 26 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2): 8 eventos históricos en esta geografía y rango; 26 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55): 20 eventos históricos en esta geografía y rango; 26 únicos en el conjunto de destinos

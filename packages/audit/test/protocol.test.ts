@@ -5,6 +5,7 @@ import {
   isInWindow,
   isMagnitudeInRange,
   loadHistoricalReportRegistry,
+  loadPanoramaReportRegistry,
   loadPredictionRegistry,
   matchersForTarget,
   matchRegion,
@@ -136,6 +137,28 @@ describe("geografía determinista", () => {
         }
       }
     }
+  });
+  test("todo destino de los panoramas semanales tiene mapeo", async () => {
+    const reports = await loadPanoramaReportRegistry();
+    expect(reports).toHaveLength(5);
+    expect(reports.flatMap((report) => report.points)).toHaveLength(37);
+    for (const report of reports) {
+      for (const point of report.points) {
+        for (const target of point.targetRegions) {
+          const matchers = matchersForTarget(target);
+          expect(matchers.length).toBeGreaterThan(0);
+          expect(
+            matchers.some((matcher) => matcher.key.startsWith("sin-mapa-")),
+          ).toBe(false);
+        }
+      }
+    }
+  });
+  test("el evento mar afuera de Puerto Rico queda como frontera", () => {
+    const puertoRico = matchersForTarget(
+      "República Dominicana o Puerto Rico",
+    ).find((matcher) => matcher.key === "puerto-rico") as RegionMatcher;
+    expect(matchRegion(puertoRico, 18.9423, -67.2968)).toBe("boundary");
   });
   test("un evento de Mindanao no se clasifica como Indonesia", () => {
     const matchers = matchersForTarget(

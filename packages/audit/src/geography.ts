@@ -189,9 +189,9 @@ const REGION_CATALOG: Record<string, RegionMatcher> = {
   },
   "puerto-rico": {
     key: "puerto-rico",
-    label: "Puerto Rico (territorio)",
+    label: "Puerto Rico y región sísmica inmediata",
     kind: "country",
-    bbox: { minLat: 17.9, maxLat: 18.5, minLon: -67.3, maxLon: -65.2 },
+    bbox: { minLat: 17.8, maxLat: 19.0, minLon: -67.5, maxLon: -65.2 },
   },
   "costa-rica": {
     key: "costa-rica",
@@ -385,6 +385,23 @@ export const TARGET_MAPPINGS: Record<string, RegionMatcher[]> = {
   "Panamá o Costa Rica": [
     REGION_CATALOG.panama as RegionMatcher,
     REGION_CATALOG["costa-rica"] as RegionMatcher,
+  ],
+  "Nueva Zelanda o islas Kermadec": [
+    REGION_CATALOG["nueva-zelanda"] as RegionMatcher,
+    vague(
+      "islas-kermadec",
+      "Islas Kermadec y zonas aledañas (sin límites definidos)",
+    ),
+  ],
+  "Frontera Ecuador-Colombia": [
+    vague(
+      "frontera-ecuador-colombia",
+      "Frontera Ecuador-Colombia (sin límites definidos)",
+    ),
+  ],
+  "México o Guatemala": [
+    REGION_CATALOG.mexico as RegionMatcher,
+    REGION_CATALOG.guatemala as RegionMatcher,
   ],
   "Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes": [
     REGION_CATALOG.guatemala as RegionMatcher,
