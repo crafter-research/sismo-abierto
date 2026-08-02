@@ -208,6 +208,31 @@ test.describe("V6-V7: Aula Sísmica", () => {
 });
 
 test.describe("V8-V9: Verifica Sismos", () => {
+  test("el header móvil mantiene la marca y agrupa la navegación", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/verifica");
+
+    const header = page.getByTestId("site-header");
+    await expect(header.getByText("Sismo Abierto")).toBeVisible();
+    await expect(page.getByTestId("desktop-nav")).toBeHidden();
+
+    const menu = page.getByTestId("mobile-nav-toggle");
+    await expect(menu).toBeVisible();
+    await menu.click();
+
+    const mobileNav = page.getByTestId("mobile-nav");
+    await expect(mobileNav).toBeVisible();
+    await expect(mobileNav.getByText("Developers")).toBeVisible();
+    await expect(mobileNav.getByText("GitHub")).toBeVisible();
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth === window.innerWidth,
+      ),
+    ).toBe(true);
+  });
+
   test("el registro muestra las 8 afirmaciones y sus veredictos vigentes", async ({
     page,
   }) => {

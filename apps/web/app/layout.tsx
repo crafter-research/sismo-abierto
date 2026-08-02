@@ -45,18 +45,22 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <body className="flex min-h-screen flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header className="border-gray-200 border-b bg-background-100">
-            <div className="mx-auto flex h-12 max-w-6xl items-center gap-x-6 px-4">
+          <header
+            className="relative z-50 border-gray-200 border-b bg-background-100"
+            data-testid="site-header"
+          >
+            <div className="mx-auto flex h-12 max-w-6xl items-center gap-2 px-4 md:gap-x-6">
               <Link
                 href="/"
-                className="flex items-center gap-2 font-semibold text-[15px] text-gray-1000 tracking-tight"
+                className="flex shrink-0 items-center gap-2 whitespace-nowrap font-semibold text-[15px] text-gray-1000 tracking-tight"
               >
                 <Logo size={22} />
                 Sismo Abierto
               </Link>
               <nav
                 aria-label="Navegación principal"
-                className="flex flex-wrap items-center gap-x-4 text-[13px] text-gray-900"
+                className="hidden items-center gap-x-4 text-[13px] text-gray-900 md:flex"
+                data-testid="desktop-nav"
               >
                 {NAV_ITEMS.map((item) => (
                   <Link
@@ -78,7 +82,37 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <span className="ml-auto hidden font-mono text-[11px] text-gray-800 lg:block">
                 Proyecto comunitario · Fuente: IGP · No es un canal de alerta
               </span>
-              <span className="ml-auto lg:ml-0">
+              <details className="relative ml-auto md:hidden">
+                <summary
+                  className="cursor-pointer list-none rounded border border-gray-300 px-2.5 py-1.5 text-[13px] font-medium text-gray-900 hover:border-gray-600"
+                  data-testid="mobile-nav-toggle"
+                >
+                  Menú
+                </summary>
+                <nav
+                  aria-label="Navegación móvil"
+                  className="absolute top-[calc(100%+0.5rem)] right-0 min-w-48 overflow-hidden rounded border border-gray-300 bg-background-100 py-1 text-sm shadow-sm"
+                  data-testid="mobile-nav"
+                >
+                  {NAV_ITEMS.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-3 py-2 text-gray-900 hover:bg-background-200 hover:text-gray-1000"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  <a
+                    href="https://github.com/crafter-research/sismo-abierto"
+                    className="block px-3 py-2 text-gray-900 hover:bg-background-200 hover:text-gray-1000"
+                    rel="noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </nav>
+              </details>
+              <span>
                 <ThemeToggle />
               </span>
             </div>
