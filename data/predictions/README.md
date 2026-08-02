@@ -7,5 +7,5 @@
   (congelado 2026-07-20, previo a los resultados).
 - Ventanas: inician 2026-07-20 00:00:00 hora de Lima. Todos los estados permanecen
   `PENDING` hasta que cada `deadline_end_lima` termine.
-- Este registro evalúa afirmaciones, no personas. Un acierto observado no equivale a
-  evidencia de capacidad predictiva.
+- Este registro evalúa afirmaciones, no personas. Una coincidencia estricta no equivale a
+  evidencia de capacidad predictiva y siempre se presenta junto a su tasa base.

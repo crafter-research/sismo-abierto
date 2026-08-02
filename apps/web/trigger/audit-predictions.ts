@@ -18,7 +18,7 @@ export const auditPredictionsTask = schedules.task({
         continue;
       }
       const audit = await evaluatePrediction(prediction, now);
-      results[prediction.predictionId] = audit.verdict;
+      results[prediction.predictionId] = audit.interpretation.matchOutcome;
     }
     return { evaluatedAt: new Date(now).toISOString(), results };
   },

@@ -216,10 +216,19 @@ test.describe("V8-V9: Verifica Sismos", () => {
       page.getByTestId("claim-list").locator("tbody tr"),
     ).toHaveCount(8);
     const summary = page.getByTestId("audit-summary");
-    await expect(summary).toContainText("STRICT_HIT");
-    await expect(summary).toContainText("AMBIGUOUS_GEOGRAPHY");
-    await expect(summary).toContainText("NO_MATCH");
-    await expect(summary).toContainText("PENDING 0");
+    await expect(summary).toContainText("Coincidencia estricta 4");
+    await expect(summary).toContainText("Geografía ambigua 3");
+    await expect(summary).toContainText("Sin coincidencia 1");
+    await expect(summary).toContainText("Pendiente 0");
+    await expect(summary).not.toContainText("STRICT_HIT");
+    const context = page.getByTestId("strict-match-context");
+    await expect(context).toContainText("P4");
+    await expect(context).toContainText("99.4%");
+    await expect(context).toContainText("P6");
+    await expect(context).toContainText("98.1%");
+    await expect(context).toContainText(
+      "Ninguna coincidencia aislada establece capacidad predictiva",
+    );
   });
 
   test("una afirmación muestra criterios congelados, tasa base y evidencia", async ({
@@ -231,7 +240,13 @@ test.describe("V8-V9: Verifica Sismos", () => {
       "[3.9, 4.4] inclusivo",
     );
     await expect(page.getByTestId("verdict")).toContainText(
-      /Estado: (STRICT_HIT|NO_MATCH|AMBIGUOUS_GEOGRAPHY|SOURCE_DISAGREEMENT)/,
+      "Resultado de coincidencia: Coincidencia estricta",
+    );
+    await expect(page.getByTestId("combined-interpretation")).toContainText(
+      "7.4%",
+    );
+    await expect(page.getByTestId("combined-interpretation")).toContainText(
+      "Poco esperable según el histórico",
     );
     await expect(page.getByTestId("baseline-chart")).toContainText(
       "Control contra azar",
@@ -239,6 +254,19 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(page.getByTestId("evidence-links")).toContainText(
       "Consulta de tasa base",
     );
+  });
+
+  test("una coincidencia muy esperable no parece una predicción validada", async ({
+    page,
+  }) => {
+    await page.goto("/verifica/P6");
+    const interpretation = page.getByTestId("combined-interpretation");
+    await expect(interpretation).toContainText("98.1%");
+    await expect(interpretation).toContainText("Muy esperable sin predicción");
+    await expect(interpretation).toContainText(
+      "No aporta evidencia de capacidad predictiva",
+    );
+    await expect(page.getByTestId("verdict")).not.toContainText("STRICT_HIT");
   });
 });
 

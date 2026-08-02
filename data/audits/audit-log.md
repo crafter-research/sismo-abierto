@@ -1,8 +1,12 @@
 # Log de auditoría
 
-Corrida UTC: `2026-08-02T05:16:26.218Z`
+Corrida UTC: `2026-08-02T06:12:34.505Z`
 
-## P1 · STRICT_HIT
+## P1 · Coincidencia estricta
+
+- Veredicto del protocolo congelado: `STRICT_HIT`
+- Tasa base: 7.4% · Poco esperable según el histórico
+- Capacidad predictiva: no establecida
 
 ### Candidatos
 
@@ -19,7 +23,11 @@ Corrida UTC: `2026-08-02T05:16:26.218Z`
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-15.7&maxlatitude=-12.9&minlongitude=-76.6&maxlongitude=-74.6): 4 eventos históricos en esta geografía y rango; 4 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-13.6&maxlatitude=-10.2&minlongitude=-78&maxlongitude=-75.4): 0 eventos históricos en esta geografía y rango; 4 únicos en el conjunto de destinos
 
-## P2 · AMBIGUOUS_GEOGRAPHY
+## P2 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Tasa base: no disponible · Tasa base no disponible
+- Capacidad predictiva: no establecida
 
 ### Candidatos
 
@@ -29,7 +37,11 @@ Corrida UTC: `2026-08-02T05:16:26.218Z`
 
 - Sin evidencia registrada.
 
-## P3 · AMBIGUOUS_GEOGRAPHY
+## P3 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Tasa base: 26.4% · Posibilidad moderada sin predicción
+- Capacidad predictiva: no establecida
 
 ### Candidatos
 
@@ -53,7 +65,11 @@ Corrida UTC: `2026-08-02T05:16:26.218Z`
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-8.99&maxlatitude=-6.9&minlongitude=-79.7&maxlongitude=-76.8): 0 eventos históricos en esta geografía y rango; 16 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=3.9&maxmagnitude=4.4&minlatitude=-10.8&maxlatitude=-8&minlongitude=-78.7&maxlongitude=-76.7): 0 eventos históricos en esta geografía y rango; 16 únicos en el conjunto de destinos
 
-## P4 · STRICT_HIT
+## P4 · Coincidencia estricta
+
+- Veredicto del protocolo congelado: `STRICT_HIT`
+- Tasa base: 99.4% · Muy esperable sin predicción
+- Capacidad predictiva: no establecida
 
 ### Candidatos
 
@@ -81,7 +97,11 @@ Corrida UTC: `2026-08-02T05:16:26.218Z`
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 37 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.3&maxmagnitude=5.9&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141): 73 eventos históricos en esta geografía y rango; 170 únicos en el conjunto de destinos
 
-## P5 · STRICT_HIT
+## P5 · Coincidencia estricta
+
+- Veredicto del protocolo congelado: `STRICT_HIT`
+- Tasa base: 37.4% · Posibilidad moderada sin predicción
+- Capacidad predictiva: no establecida
 
 ### Candidatos
 
@@ -96,7 +116,11 @@ Corrida UTC: `2026-08-02T05:16:26.218Z`
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5.1&minlatitude=-17.3&maxlatitude=-14.6&minlongitude=-75.1&maxlongitude=-70.8): 12 eventos históricos en esta geografía y rango; 19 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=4.5&maxmagnitude=5.1&minlatitude=-18.35&maxlatitude=-16.9&minlongitude=-71.2&maxlongitude=-69.5): 7 eventos históricos en esta geografía y rango; 19 únicos en el conjunto de destinos
 
-## P6 · STRICT_HIT
+## P6 · Coincidencia estricta
+
+- Veredicto del protocolo congelado: `STRICT_HIT`
+- Tasa base: 98.1% · Muy esperable sin predicción
+- Capacidad predictiva: no establecida
 
 ### Candidatos
 
@@ -116,7 +140,7 @@ Corrida UTC: `2026-08-02T05:16:26.218Z`
 - [Consulta USGS para Tonga (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7): 3 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Filipinas (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 8 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta USGS para Indonesia (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141): 21 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
-- [Consulta USGS para Papúa Nueva Guinea (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9): 3 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Papúa Nueva Guinea (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-20&endtime=2026-08-03&orderby=time&minmagnitude=4.9&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9): 4 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6): 2 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2): 14 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180): 0 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
@@ -125,7 +149,11 @@ Corrida UTC: `2026-08-02T05:16:26.218Z`
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-11&maxlatitude=6.1&minlongitude=95&maxlongitude=141): 56 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-20&endtime=2026-07-20&orderby=time&minmagnitude=5.4&maxmagnitude=6&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9): 15 eventos históricos en esta geografía y rango; 112 únicos en el conjunto de destinos
 
-## P7 · AMBIGUOUS_GEOGRAPHY
+## P7 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Tasa base: no disponible · Tasa base no disponible
+- Capacidad predictiva: no establecida
 
 ### Candidatos
 
@@ -135,7 +163,11 @@ Corrida UTC: `2026-08-02T05:16:26.218Z`
 
 - Sin evidencia registrada.
 
-## P8 · NO_MATCH
+## P8 · Sin coincidencia
+
+- Veredicto del protocolo congelado: `NO_MATCH`
+- Tasa base: 43.4% · Posibilidad moderada sin predicción
+- Capacidad predictiva: no establecida
 
 ### Candidatos
 

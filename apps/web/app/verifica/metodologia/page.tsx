@@ -23,6 +23,11 @@ export default function MethodologyPage() {
         <span className="font-mono">data/predictions/audit-protocol.md</span> y
         su historial en git.
       </p>
+      <p className="rounded border border-gray-300 bg-background-200 p-3">
+        Las afirmaciones auditadas provienen de un Reel de sismos.en.peru, no
+        del IGP. IGP/CENSIS y USGS se usan como fuentes de comprobación y no han
+        respaldado estas afirmaciones.
+      </p>
 
       <h2 className="font-semibold text-gray-900">Fuentes</h2>
       <ol className="list-inside list-decimal space-y-1">
@@ -56,7 +61,8 @@ export default function MethodologyPage() {
       <ul className="list-inside list-disc space-y-1">
         <li>
           <span className="font-mono">STRICT_HIT</span>: coincide tiempo,
-          magnitud y una geografía inequívoca.
+          magnitud y una geografía inequívoca. La interfaz lo presenta como
+          “Coincidencia estricta”, no como acierto predictivo.
         </li>
         <li>
           <span className="font-mono">NO_MATCH</span>: no existe coincidencia en
@@ -76,6 +82,28 @@ export default function MethodologyPage() {
           termina.
         </li>
       </ul>
+
+      <h2 className="font-semibold text-gray-900">
+        Interpretación pública en dos ejes
+      </h2>
+      <p>
+        El veredicto congelado conserva la evaluación original. La interfaz
+        añade una capa separada con{" "}
+        <span className="font-mono">STRICT_MATCH</span>, la probabilidad base y
+        el estado “capacidad predictiva no establecida”. Así se evita presentar
+        una coincidencia como una predicción validada.
+      </p>
+      <ul className="list-inside list-disc space-y-1">
+        <li>80% o más: muy esperable sin predicción.</li>
+        <li>50% a 79.9%: esperable sin predicción.</li>
+        <li>20% a 49.9%: posibilidad moderada sin predicción.</li>
+        <li>Menos de 20%: poco esperable según el histórico.</li>
+      </ul>
+      <p>
+        Estas bandas son ayudas descriptivas. El porcentaje continuo es la señal
+        principal y las bandas no representan umbrales de significancia
+        estadística.
+      </p>
 
       <h2 className="font-semibold text-gray-900">Control contra azar</h2>
       <p>

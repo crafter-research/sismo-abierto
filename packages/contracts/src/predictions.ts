@@ -5,6 +5,29 @@ export type PredictionVerdict =
   | "AMBIGUOUS_GEOGRAPHY"
   | "SOURCE_DISAGREEMENT";
 
+export type PredictionMatchOutcome =
+  | "PENDING"
+  | "STRICT_MATCH"
+  | "NO_MATCH"
+  | "AMBIGUOUS_GEOGRAPHY"
+  | "SOURCE_DISAGREEMENT";
+
+export type BaselineProbabilityBand =
+  | "VERY_HIGH"
+  | "HIGH"
+  | "MODERATE"
+  | "LOW"
+  | "UNAVAILABLE";
+
+export type PredictiveEvidence = "NOT_ESTABLISHED";
+
+export interface PredictionInterpretation {
+  matchOutcome: PredictionMatchOutcome;
+  baselineProbability: number | null;
+  baselineBand: BaselineProbabilityBand;
+  predictiveEvidence: PredictiveEvidence;
+}
+
 export interface FrozenPrediction {
   predictionId: string;
   origin: string;
@@ -39,6 +62,7 @@ export interface BaselineEstimate {
 export interface PredictionAudit {
   predictionId: string;
   verdict: PredictionVerdict;
+  interpretation: PredictionInterpretation;
   evaluatedAt: string | null;
   windowStartLima: string;
   windowEndLima: string;

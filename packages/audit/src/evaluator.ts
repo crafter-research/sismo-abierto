@@ -12,6 +12,7 @@ import {
   matchRegion,
   type RegionMatcher,
 } from "./geography.ts";
+import { interpretPredictionResult } from "./interpretation.ts";
 import {
   isMagnitudeInRange,
   windowEndUtcMs,
@@ -249,6 +250,7 @@ export async function evaluatePrediction(
   return {
     predictionId: prediction.predictionId,
     verdict,
+    interpretation: interpretPredictionResult(verdict, baseline),
     evaluatedAt: windowClosed ? nowIso : null,
     windowStartLima: `${prediction.startDate}T00:00:00-05:00`,
     windowEndLima: prediction.deadlineEndLima,

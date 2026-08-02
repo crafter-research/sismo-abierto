@@ -3,12 +3,38 @@ import {
   GEOGRAPHY_METHOD_NOTE,
   getPrediction,
 } from "@sismo/audit";
+import type {
+  BaselineProbabilityBand,
+  PredictionMatchOutcome,
+} from "@sismo/contracts";
 import Link from "next/link";
 import { ClassBadge } from "../../../components/badges";
 import { SourceErrorState } from "../../../components/error-state";
-import { VerdictBadge } from "../../../components/verdict-badge";
+import { BaselineBadge, OutcomeBadge } from "../../../components/verdict-badge";
 
 export const dynamic = "force-dynamic";
+
+function interpretationMessage(
+  outcome: PredictionMatchOutcome,
+  band: BaselineProbabilityBand,
+): string {
+  if (outcome !== "STRICT_MATCH") {
+    return "La tasa base contextualiza el resultado, pero no transforma esta evaluación en evidencia de capacidad predictiva.";
+  }
+  if (band === "VERY_HIGH") {
+    return "La coincidencia era muy probable aun sin un método predictivo. No aporta evidencia de capacidad predictiva.";
+  }
+  if (band === "HIGH") {
+    return "La coincidencia era probable aun sin un método predictivo. No establece capacidad predictiva.";
+  }
+  if (band === "MODERATE") {
+    return "La tasa base no es baja. Este resultado aislado no establece capacidad predictiva.";
+  }
+  if (band === "LOW") {
+    return "Es menos esperable según el histórico, pero un resultado aislado requiere repetición independiente.";
+  }
+  return "Sin una tasa base honesta no se puede interpretar la coincidencia contra el azar.";
+}
 
 export default async function ClaimAuditPage({
   params,
@@ -53,7 +79,9 @@ export default async function ClaimAuditPage({
           <h1 className="text-xl font-bold">
             {prediction.predictionId} · Afirmación congelada
           </h1>
-          {audit ? <VerdictBadge verdict={audit.verdict} /> : null}
+          {audit ? (
+            <OutcomeBadge outcome={audit.interpretation.matchOutcome} />
+          ) : null}
         </div>
         <p className="mt-2 text-sm text-gray-800">
           El Reel proyecta que el evento de <strong>{prediction.origin}</strong>{" "}
@@ -134,8 +162,40 @@ export default async function ClaimAuditPage({
           {audit ? (
             <div className="mt-2 space-y-3 text-sm" data-testid="verdict">
               <p className="flex items-center gap-2">
-                Estado: <VerdictBadge verdict={audit.verdict} />
+                Resultado de coincidencia:{" "}
+                <OutcomeBadge outcome={audit.interpretation.matchOutcome} />
               </p>
+              {audit.baseline ? (
+                <div
+                  className="rounded-lg border border-gray-300 bg-background-200 p-4"
+                  data-testid="combined-interpretation"
+                >
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <BaselineBadge band={audit.interpretation.baselineBand} />
+                    <span className="font-mono text-3xl font-bold text-gray-1000">
+                      {`${((audit.interpretation.baselineProbability ?? 0) * 100).toFixed(1)}%`}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-xs text-gray-800">
+                    Probabilidad base de al menos una coincidencia durante la
+                    ventana, estimada con los 365 días anteriores.
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-gray-1000">
+                    {interpretationMessage(
+                      audit.interpretation.matchOutcome,
+                      audit.interpretation.baselineBand,
+                    )}
+                  </p>
+                  <p className="mt-2 text-xs text-gray-800">
+                    Capacidad predictiva: <strong>no establecida</strong>.
+                  </p>
+                </div>
+              ) : (
+                <p className="text-xs text-missing">
+                  Sin destinos inequívocos no se puede calcular una tasa base
+                  honesta.
+                </p>
+              )}
               {audit.verdict === "PENDING" ? (
                 <p className="text-gray-900">
                   La ventana sigue abierta. El protocolo congelado no busca
@@ -195,17 +255,8 @@ export default async function ClaimAuditPage({
                     </span>
                     .
                   </p>
-                  <p className="mt-1 text-[11px] text-gray-800">
-                    Un acierto observado con probabilidad base alta no es
-                    evidencia de capacidad predictiva.
-                  </p>
                 </div>
-              ) : (
-                <p className="text-xs text-missing">
-                  Sin destinos inequívocos no se puede calcular una tasa base
-                  honesta.
-                </p>
-              )}
+              ) : null}
             </div>
           ) : (
             <div className="mt-2">

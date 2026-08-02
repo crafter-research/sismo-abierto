@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import type { PredictionAudit } from "@sismo/contracts";
+import { interpretPredictionResult } from "../src/interpretation.ts";
 import {
   assertAllWindowsClosed,
   renderAuditCsv,
@@ -11,22 +12,24 @@ function audit(
   predictionId: string,
   verdict: PredictionAudit["verdict"],
 ): PredictionAudit {
+  const baseline = {
+    lookbackDays: 365,
+    matchingEventCount: 2,
+    eventsPerDay: 0.0055,
+    probabilityAtLeastOne: 0.071,
+    windowDays: 13,
+  };
   return {
     predictionId,
     verdict,
+    interpretation: interpretPredictionResult(verdict, baseline),
     evaluatedAt: verdict === "PENDING" ? null : "2026-08-02T05:00:00.000Z",
     windowStartLima: "2026-07-20T00:00:00-05:00",
     windowEndLima: "2026-08-01T23:59:59-05:00",
     candidates: [],
     ambiguousRegions: [],
     unambiguousRegions: ["Ica"],
-    baseline: {
-      lookbackDays: 365,
-      matchingEventCount: 2,
-      eventsPerDay: 0.0055,
-      probabilityAtLeastOne: 0.071,
-      windowDays: 13,
-    },
+    baseline,
     evidence: [
       {
         at: "2026-08-02T05:00:00.000Z",
@@ -61,12 +64,15 @@ describe("artefactos de auditoría final", () => {
     const runAt = "2026-08-02T05:00:00.000Z";
 
     expect(renderAuditCsv(runAt, audits)).toContain(
-      "P1,STRICT_HIT,2026-08-02T05:00:00.000Z",
+      "P1,STRICT_HIT,STRICT_MATCH,LOW,NOT_ESTABLISHED,2026-08-02T05:00:00.000Z",
     );
     expect(renderAuditLog(runAt, audits)).toContain(
       "[Consulta CENSIS](https://example.test/evidence)",
     );
     expect(renderFinalAudit(runAt, audits)).toContain("| STRICT_HIT | 1 |");
+    expect(renderFinalAudit(runAt, audits)).toContain(
+      "| P1 | 7.1% | Poco esperable según el histórico | No establecida |",
+    );
     expect(renderFinalAudit(runAt, audits)).toContain(
       "| SOURCE_DISAGREEMENT | 0 |",
     );

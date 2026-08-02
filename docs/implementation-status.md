@@ -1,6 +1,6 @@
 # Implementation status
 
-Última actualización: 2026-08-02 00:38 aprox. (America/Lima). Implementación completa; ver checklist. Este documento separa Evidence, Inference y Unknown, y lleva el checklist de slices.
+Última actualización: 2026-08-02 01:12 aprox. (America/Lima). Implementación completa; ver checklist. Este documento separa Evidence, Inference y Unknown, y lleva el checklist de slices.
 
 ## Evidence (observado en vivo, 2026-07-20/21 UTC)
 
@@ -53,7 +53,7 @@ Notas de evidencia:
 | V6 Primera lección real | DONE | `docs/evidence/v6-v7/lesson-answered-completed.png`; lección con evento real M5.1 Chupaca, pregunta evaluada y completada | Contenido marcado EXPLICACIÓN pendiente de revisión científica |
 | V7 Laboratorio sísmico | DONE | `docs/evidence/v6-v7/lab-comparison.png`, `aula-progress.png`; SCHYO (9.7 km, PGA 64.77) vs PNEG (166.5 km, PGA 3.76), URL compartible, progreso local 1/4 | — |
 | V8 Registro de afirmaciones | DONE | `docs/evidence/v8-v9/registry.png`; CSV congelado importado sin alterar (sha256 a8cb2aea…), 8 afirmaciones evaluadas | — |
-| V9 Auditoría contra evidencia y azar | DONE | `data/audits/`; 4 `STRICT_HIT`, 3 `AMBIGUOUS_GEOGRAPHY`, 1 `NO_MATCH`, 0 `SOURCE_DISAGREEMENT`, 0 `PENDING`; P6 tiene 7 candidatos y tasa base de 98.1% | Un acierto estricto no demuestra capacidad predictiva, especialmente con una tasa base alta |
+| V9 Auditoría contra evidencia y azar | DONE | `data/audits/`; 4 coincidencias estrictas, 3 geografías ambiguas, 1 sin coincidencia, 0 desacuerdos y 0 pendientes; P1 7.4%, P4 99.4%, P5 37.4%, P6 98.1% de tasa base | La UI separa `STRICT_MATCH`, tasa base y `NOT_ESTABLISHED`; conserva `STRICT_HIT` solo como veredicto trazable del protocolo congelado |
 | VA1 Mapa publicado | DONE | `docs/evidence/va1-va3/volcano-index.png`; 16 registros en vivo con aviso de vigencia | — |
 | VA2 Ficha segura | DONE | `docs/evidence/va1-va3/volcano-sabancaya.png`; PUBLISHED_STATE + FRESHNESS_UNKNOWN + explicación EXPLICACIÓN separada | Lenguaje científico sin revisar (paquete de revisión externo, fuera del repo) |
 | VA3 Historia documentada | BLOCKED | `docs/spike-volcano-freshness-results.md`, `volcano-describe.json` | Sin timestamp autoritativo ni mapeo determinista de boletines; estado honesto visible en la ficha |
@@ -64,8 +64,8 @@ Notas de evidencia:
 ## Verificación final (2026-08-02)
 
 - `bun run check` → biome + tsc limpios (root y apps/web).
-- `bun run test` → 107 tests, 0 fallos.
-- `bun run test:e2e` → 18 journeys Playwright, 0 fallos.
+- `bun run test` → 109 tests, 0 fallos.
+- `bun run test:e2e` → 19 journeys Playwright, 0 fallos.
 - `bun run build` → Next.js build en verde.
 - `bun packages/audit/src/run.ts` → 8 veredictos finales y cinco artefactos reproducibles en `data/audits/`.
 - CLI verificado en vivo: latest, events (tabla/json/geojson/csv), inspect, stations --sort pga, waveform (CSV serie completa 39,635 líneas), volcanoes, volcano, sources --probe, source --evidence. Exit codes 0/2/3/4.
