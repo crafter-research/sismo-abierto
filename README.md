@@ -108,6 +108,11 @@ El workflow [`source-drift.yml`](.github/workflows/source-drift.yml) lo corre ca
 contra las fuentes reales; si un contrato se rompe, el workflow falla y lo ves antes que tus
 usuarios.
 
+Cada fuente expone un badge SVG cacheable en
+`/api/v1/sources/{sourceId}/badge.svg`, por ejemplo:
+
+![Estado observado de ACELDAT](https://sismo.crafter.run/api/v1/sources/igp-aceldat/badge.svg)
+
 ## Arquitectura
 
 ```text

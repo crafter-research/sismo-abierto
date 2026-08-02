@@ -93,12 +93,26 @@ sismo waveform EVENT_ID STATION_ID --format csv
 sismo volcanoes
 sismo volcano VOLCANO_SLUG
 sismo sources
-sismo source SOURCE_ID --evidence`}
+sismo source SOURCE_ID --evidence
+sismo schema COMMAND`}
         </pre>
         <p className="mt-2 font-mono text-[11px] text-gray-800">
           Salida humana en tablas · --json, --geojson y --csv sin decoración ·
           errores a stderr con códigos de salida estables
         </p>
+      </section>
+
+      <section aria-labelledby="badges-titulo">
+        <h2 id="badges-titulo" className="mb-2 font-semibold text-gray-1000">
+          Badges de fuentes
+        </h2>
+        <p className="text-sm text-gray-900">
+          Cada fuente ofrece un SVG cacheable con el estado observado por
+          nuestro consumidor. No representa el estado interno del IGP.
+        </p>
+        <pre className="mt-2 overflow-x-auto rounded-md border border-gray-300 bg-background-200 p-3 font-mono text-[13px] text-gray-1000">
+          {`/api/v1/sources/igp-aceldat/badge.svg`}
+        </pre>
       </section>
 
       <section className="rounded-lg border border-gray-200 p-4 text-sm text-gray-900">

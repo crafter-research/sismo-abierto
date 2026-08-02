@@ -22,11 +22,12 @@ describe("documento OpenAPI", () => {
     components: { schemas: Record<string, unknown> };
   };
 
-  test("expone los 9 endpoints del contrato", () => {
+  test("expone los 10 endpoints del contrato", () => {
     expect(Object.keys(document.paths).sort()).toEqual(
       [...API_ENDPOINT_PATHS].sort(),
     );
-    expect(API_ENDPOINT_PATHS.length).toBe(9);
+    expect(API_ENDPOINT_PATHS.length).toBe(10);
+    expect(document.paths["/v1/sources/{sourceId}/badge.svg"]).toBeDefined();
   });
 
   test("es OpenAPI 3.1 con esquemas de componentes", () => {

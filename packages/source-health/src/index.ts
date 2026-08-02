@@ -1,3 +1,4 @@
+export * from "./badge.ts";
 export * from "./external-contracts.ts";
 export * from "./neon-store.ts";
 export * from "./observation.ts";

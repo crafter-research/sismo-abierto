@@ -184,6 +184,8 @@ const ENDPOINTS: EndpointSpec[] = [
   },
 ];
 
+const SOURCE_BADGE_PATH = "/v1/sources/{sourceId}/badge.svg";
+
 export function buildOpenApiDocument(): Record<string, unknown> {
   const schemas: Record<string, unknown> = {
     ApiError: z.toJSONSchema(apiErrorSchema, { target: "draft-2020-12" }),
@@ -223,6 +225,37 @@ export function buildOpenApiDocument(): Record<string, unknown> {
     };
   }
 
+  paths[SOURCE_BADGE_PATH] = {
+    get: {
+      summary: "Badge del estado observado de una fuente",
+      description:
+        "SVG cacheable del estado observado por nuestro consumidor. No representa el estado interno del IGP.",
+      parameters: [
+        {
+          name: "sourceId",
+          in: "path",
+          required: true,
+          description: "ID de la fuente, por ejemplo igp-aceldat",
+          schema: { type: "string" },
+        },
+      ],
+      responses: {
+        "200": {
+          description: "Badge SVG accesible",
+          content: {
+            "image/svg+xml": { schema: { type: "string" } },
+          },
+        },
+        "404": {
+          description: "Fuente desconocida representada como badge SVG",
+          content: {
+            "image/svg+xml": { schema: { type: "string" } },
+          },
+        },
+      },
+    },
+  };
+
   return {
     openapi: "3.1.0",
     info: {
@@ -237,7 +270,10 @@ export function buildOpenApiDocument(): Record<string, unknown> {
   };
 }
 
-export const API_ENDPOINT_PATHS = ENDPOINTS.map((endpoint) => endpoint.path);
+export const API_ENDPOINT_PATHS = [
+  ...ENDPOINTS.map((endpoint) => endpoint.path),
+  SOURCE_BADGE_PATH,
+];
 
 export function responseSchemaFor(path: string): z.ZodType | null {
   return (

@@ -25,7 +25,7 @@ Orden aproximado. Los gates de seguridad y revisión científica no se negocian 
       introspección de agentes.
 - [ ] [Alias no scoped `bunx sismo`](https://github.com/crafter-research/sismo-abierto/issues/6),
       si el namespace del registry está disponible.
-- [ ] [Badge público de estado por fuente](https://github.com/crafter-research/sismo-abierto/issues/5)
+- [x] [Badge público de estado por fuente](https://github.com/crafter-research/sismo-abierto/issues/5)
       (SVG servido por la API).
 
 ## Después
