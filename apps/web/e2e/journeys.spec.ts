@@ -177,6 +177,21 @@ test.describe("V6-V7: Aula Sísmica", () => {
     await expect(page.getByTestId("lab-comparison")).toContainText("SCHYO");
     await expect(page.getByTestId("lab-comparison")).toContainText("PNEG");
   });
+
+  test("el comparador pone dos eventos trazables lado a lado", async ({
+    page,
+  }) => {
+    await page.goto("/aula/comparador?a=ran-20260468&b=ran-20260447");
+    const comparison = page.getByTestId("event-comparison");
+    await expect(comparison).toBeVisible();
+    await expect(comparison).toContainText("Chupaca");
+    await expect(comparison).toContainText("Ica");
+    await expect(comparison).toContainText("Magnitud");
+    await expect(comparison).toContainText("Profundidad");
+    await expect(
+      page.getByTestId("event-comparison-explanation"),
+    ).toContainText("EXPLICACIÓN");
+  });
 });
 
 test.describe("V8-V9: Verifica Sismos", () => {

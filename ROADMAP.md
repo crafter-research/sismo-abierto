@@ -21,7 +21,7 @@ Orden aproximado. Los gates de seguridad y revisión científica no se negocian 
       en el visor de ondas.
 - [x] Lecciones de profundidad/distancia, Z/N/E/PGA y
       predicción/pronóstico/alerta temprana en Aula.
-- [ ] [Comparador de eventos](https://github.com/crafter-research/sismo-abierto/issues/4)
+- [x] [Comparador de eventos](https://github.com/crafter-research/sismo-abierto/issues/4)
       por lugar, magnitud y profundidad en Aula.
 - [x] CLI instalable como `@crafter/sismo-cli`, con `sismo schema <cmd>` para
       introspección de agentes.

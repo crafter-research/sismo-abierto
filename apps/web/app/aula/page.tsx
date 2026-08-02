@@ -41,19 +41,33 @@ export default function AulaPage() {
         ))}
       </ul>
 
-      <div className="rounded-lg border border-gray-200 p-4">
-        <h2 className="font-semibold">Laboratorio sísmico</h2>
-        <p className="mt-1 text-sm text-gray-900">
-          Compara dos estaciones de un evento real y observa cómo cambian la
-          aceleración y la distancia. El estado del laboratorio se comparte por
-          URL.
-        </p>
-        <Link
-          href="/aula/laboratorio"
-          className="mt-3 inline-block rounded bg-official px-3 py-1.5 text-sm font-medium text-background-100 hover:bg-gray-900"
-        >
-          Abrir laboratorio →
-        </Link>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="rounded-lg border border-gray-200 p-4">
+          <h2 className="font-semibold">Comparador de eventos</h2>
+          <p className="mt-1 text-sm text-gray-900">
+            Pon dos sismos reales lado a lado y compara lugar, magnitud y
+            profundidad con datos del IGP.
+          </p>
+          <Link
+            href="/aula/comparador"
+            className="mt-3 inline-block rounded bg-official px-3 py-1.5 text-sm font-medium text-background-100 hover:bg-gray-900"
+          >
+            Comparar eventos →
+          </Link>
+        </div>
+        <div className="rounded-lg border border-gray-200 p-4">
+          <h2 className="font-semibold">Laboratorio sísmico</h2>
+          <p className="mt-1 text-sm text-gray-900">
+            Compara dos estaciones de un evento real y observa cómo cambian la
+            aceleración y la distancia. El estado vive en la URL.
+          </p>
+          <Link
+            href="/aula/laboratorio"
+            className="mt-3 inline-block rounded border border-official px-3 py-1.5 text-sm font-medium text-official hover:bg-official-soft"
+          >
+            Comparar estaciones →
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { getLesson, LESSONS } from "../src/index.ts";
+import { compareEvents, getLesson, LESSONS } from "../src/index.ts";
 
 describe("contenido de Aula", () => {
   test("publica las cuatro lecciones del roadmap con slugs únicos", () => {
@@ -27,5 +27,35 @@ describe("contenido de Aula", () => {
       expect(getLesson(lesson.slug)?.title).toBe(lesson.title);
     }
     expect(getLesson("no-existe")).toBeNull();
+  });
+});
+
+describe("comparador de eventos", () => {
+  test("identifica el evento de mayor magnitud y el más superficial", () => {
+    expect(
+      compareEvents(
+        { id: "a", magnitude: 5.1, depthKm: 18 },
+        { id: "b", magnitude: 4.6, depthKm: 42 },
+      ),
+    ).toEqual({
+      higherMagnitudeId: "a",
+      shallowerId: "a",
+      magnitudeDelta: 0.5,
+      depthDeltaKm: 24,
+    });
+  });
+
+  test("expresa empates sin inventar diferencias", () => {
+    expect(
+      compareEvents(
+        { id: "a", magnitude: 5, depthKm: 20 },
+        { id: "b", magnitude: 5, depthKm: 20 },
+      ),
+    ).toEqual({
+      higherMagnitudeId: null,
+      shallowerId: null,
+      magnitudeDelta: 0,
+      depthDeltaKm: 0,
+    });
   });
 });

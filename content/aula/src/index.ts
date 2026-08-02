@@ -304,3 +304,38 @@ export const LESSONS: Lesson[] = [
 export function getLesson(slug: string): Lesson | null {
   return LESSONS.find((lesson) => lesson.slug === slug) ?? null;
 }
+
+export interface ComparableEvent {
+  id: string;
+  magnitude: number;
+  depthKm: number;
+}
+
+export interface EventComparison {
+  higherMagnitudeId: string | null;
+  shallowerId: string | null;
+  magnitudeDelta: number;
+  depthDeltaKm: number;
+}
+
+export function compareEvents(
+  first: ComparableEvent,
+  second: ComparableEvent,
+): EventComparison {
+  return {
+    higherMagnitudeId:
+      first.magnitude === second.magnitude
+        ? null
+        : first.magnitude > second.magnitude
+          ? first.id
+          : second.id,
+    shallowerId:
+      first.depthKm === second.depthKm
+        ? null
+        : first.depthKm < second.depthKm
+          ? first.id
+          : second.id,
+    magnitudeDelta: Math.abs(first.magnitude - second.magnitude),
+    depthDeltaKm: Math.abs(first.depthKm - second.depthKm),
+  };
+}
