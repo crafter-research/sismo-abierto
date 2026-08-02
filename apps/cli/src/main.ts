@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 import { writeFile } from "node:fs/promises";
-import type { NormalizedEvent } from "@sismo/contracts";
+import { type NormalizedEvent, responseJsonSchemaFor } from "@sismo/contracts";
 import {
   buildEventDetailResponse,
   buildEventListResponse,
@@ -47,6 +47,7 @@ Uso:
   sismo volcano VOLCANO_SLUG [--json] [--open]
   sismo sources [--probe] [--json]
   sismo source SOURCE_ID [--evidence] [--json]
+  sismo schema COMMAND
   sismo skill
 
 --open abre la fuente oficial (provenance) en el navegador.
@@ -584,6 +585,31 @@ async function commandSkill(): Promise<void> {
   console.log(document.trim());
 }
 
+const SCHEMA_PATHS: Record<string, string> = {
+  latest: "/v1/events/latest",
+  events: "/v1/events",
+  inspect: "/v1/events/{eventId}",
+  stations: "/v1/events/{eventId}/stations",
+  waveform: "/v1/events/{eventId}/stations/{stationId}/waveform",
+  volcanoes: "/v1/volcanoes",
+  volcano: "/v1/volcanoes/{slug}",
+  sources: "/v1/sources",
+  source: "/v1/sources/{sourceId}",
+};
+
+async function commandSchema(args: ParsedArgs): Promise<void> {
+  const target = args.positional[1];
+  const path = target ? SCHEMA_PATHS[target] : null;
+  const schema = path ? responseJsonSchemaFor(path) : null;
+  if (!target || !schema) {
+    throw new CliError(
+      `Uso: sismo schema COMMAND\nComandos: ${Object.keys(SCHEMA_PATHS).join(", ")}`,
+      EXIT_CODES.invalidInput,
+    );
+  }
+  console.log(JSON.stringify(schema, null, 2));
+}
+
 const COMMANDS: Record<string, (args: ParsedArgs) => Promise<void>> = {
   latest: commandLatest,
   events: commandEvents,
@@ -594,6 +620,7 @@ const COMMANDS: Record<string, (args: ParsedArgs) => Promise<void>> = {
   volcano: commandVolcano,
   sources: commandSources,
   source: commandSource,
+  schema: commandSchema,
   skill: commandSkill,
 };
 

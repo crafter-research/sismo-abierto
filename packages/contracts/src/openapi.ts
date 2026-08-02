@@ -244,3 +244,11 @@ export function responseSchemaFor(path: string): z.ZodType | null {
     ENDPOINTS.find((endpoint) => endpoint.path === path)?.responseSchema ?? null
   );
 }
+
+export function responseJsonSchemaFor(
+  path: string,
+): Record<string, unknown> | null {
+  const schema = responseSchemaFor(path);
+  if (!schema) return null;
+  return z.toJSONSchema(schema, { target: "draft-2020-12" });
+}

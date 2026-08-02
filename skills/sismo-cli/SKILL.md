@@ -20,7 +20,8 @@ alias sismo="bun apps/cli/src/main.ts"
 bunx @crafter/sismo-cli latest
 ```
 
-Introspección en runtime: `sismo skill` imprime este documento; `sismo help` lista todo.
+Introspección en runtime: `sismo skill` imprime este documento; `sismo help` lista todo;
+`sismo schema COMMAND` imprime el JSON Schema de la respuesta sin acceder a la red.
 
 ## Reglas para agentes
 
@@ -49,8 +50,12 @@ sismo volcanoes [--json]
 sismo volcano VOLCANO_SLUG [--json] [--open]
 sismo sources [--probe] [--json]
 sismo source SOURCE_ID [--probe] [--evidence] [--json]
+sismo schema COMMAND
 sismo skill
 ```
+
+`COMMAND` puede ser `latest`, `events`, `inspect`, `stations`, `waveform`, `volcanoes`,
+`volcano`, `sources` o `source`.
 
 ## Workflows
 

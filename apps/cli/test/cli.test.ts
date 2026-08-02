@@ -66,6 +66,22 @@ describe("errores del binario", () => {
     const result = await runCli(["help"]);
     expect(result.code).toBe(0);
     expect(result.stdout).toContain("sismo latest");
+    expect(result.stdout).toContain("sismo schema COMMAND");
+  });
+
+  test("schema expone el contrato JSON del comando", async () => {
+    const result = await runCli(["schema", "latest"]);
+    expect(result.code).toBe(0);
+    expect(result.stderr).toBe("");
+    const schema = JSON.parse(result.stdout);
+    expect(schema.$schema).toBe("https://json-schema.org/draft/2020-12/schema");
+    expect(schema.properties.event).toBeDefined();
+  });
+
+  test("schema rechaza comandos sin contrato", async () => {
+    const result = await runCli(["schema", "skill"]);
+    expect(result.code).toBe(2);
+    expect(result.stderr).toContain("Uso: sismo schema COMMAND");
   });
 });
 

@@ -78,9 +78,10 @@ bun apps/cli/src/main.ts events --since 7d --min-magnitude 4 --format geojson
 bun apps/cli/src/main.ts stations ran-20260468 --sort pga
 bun apps/cli/src/main.ts waveform ran-20260468 SCHYO --format csv --output onda.csv
 bun apps/cli/src/main.ts sources --probe
+bun apps/cli/src/main.ts schema events
 ```
 
-Salida humana en tablas; `--json`, `--geojson` y `--csv` sin decoración. Errores a stderr
+Salida humana en tablas; `--json`, `--geojson`, `--csv` y `schema` sin decoración. Errores a stderr
 con códigos de salida estables (`0` ok · `2` input inválido · `3` no encontrado · `4` fuente
 caída o contrato roto). `--open` abre la fuente oficial del dato en el navegador.
 

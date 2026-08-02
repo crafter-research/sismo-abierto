@@ -4,24 +4,29 @@ Orden aproximado. Los gates de seguridad y revisión científica no se negocian 
 
 ## Ahora
 
-- [x] Deploy público en Vercel (sismo-abierto.vercel.app). Falta dominio propio.
-- [ ] Veredictos reales de Verifica cuando venzan las ventanas congeladas (26 jul → 1 ago
-      2026): correr el evaluador, publicar candidatos, desacuerdos de fuentes y tasa base.
-- [ ] Revisión científica externa de la interpretación ACELDAT (componentes Z/N/E, PGA,
-      distancia epicentral) antes de difundir la demo.
+- [x] Deploy público en Vercel con dominio propio: `sismo.crafter.run`.
+- [x] Vercel Analytics y Speed Insights en producción.
+- [ ] [Veredictos reales de Verifica](https://github.com/crafter-research/sismo-abierto/issues/1)
+      cuando venzan las ventanas congeladas (26 jul → 1 ago 2026): correr el evaluador,
+      publicar candidatos, desacuerdos de fuentes y tasa base.
+- [ ] [Revisión científica externa de la interpretación ACELDAT](https://github.com/crafter-research/sismo-abierto/issues/2)
+      (componentes Z/N/E, PGA, distancia epicentral) antes de difundir la demo.
 - [x] Probes en producción: Vercel Cron cada 30 min + Neon para historial persistente, y drift check en GitHub Actions cada 6 h.
 
 ## Siguiente
 
 - [x] Veredictos de Verifica con point-in-polygon real sobre límites INEI para departamentos
       del Perú, con banda de frontera simétrica de 0.25°; países siguen en cajas documentadas.
-- [ ] Espectrograma y espectro de Fourier por estación en el visor de ondas.
-- [ ] Comparador de eventos (mismo lugar, distinta magnitud/profundidad) en Aula.
-- [ ] Más lecciones: profundidad y distancia; qué son Z/N/E y PGA; predicción vs pronóstico
-      vs alerta temprana.
-- [ ] `sismo` como paquete instalable (`bunx sismo`), con `sismo schema <cmd>` para
+- [ ] [Espectrograma y espectro de Fourier por estación](https://github.com/crafter-research/sismo-abierto/issues/3)
+      en el visor de ondas.
+- [ ] [Comparador de eventos y lecciones pendientes](https://github.com/crafter-research/sismo-abierto/issues/4)
+      en Aula.
+- [x] CLI instalable como `@crafter/sismo-cli`, con `sismo schema <cmd>` para
       introspección de agentes.
-- [ ] Badge público de estado por fuente (SVG servido por la API).
+- [ ] [Alias no scoped `bunx sismo`](https://github.com/crafter-research/sismo-abierto/issues/6),
+      si el namespace del registry está disponible.
+- [ ] [Badge público de estado por fuente](https://github.com/crafter-research/sismo-abierto/issues/5)
+      (SVG servido por la API).
 
 ## Después
 
