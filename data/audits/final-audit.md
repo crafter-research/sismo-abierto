@@ -1,6 +1,6 @@
 # Auditoría final de predicciones sísmicas
 
-Corrida UTC: `2026-08-02T18:35:10.830Z`
+Corrida UTC: `2026-08-02T19:54:38.660Z`
 
 Este informe aplica el protocolo congelado antes de conocer los resultados. Las afirmaciones provienen de sismos.en.peru, no del IGP. IGP/CENSIS y USGS se usan como fuentes de comprobación.
 
@@ -9,8 +9,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 | Veredicto | Cantidad |
 | --- | ---: |
 | STRICT_HIT | 4 |
-| NO_MATCH | 1 |
-| AMBIGUOUS_GEOGRAPHY | 3 |
+| NO_MATCH | 0 |
+| AMBIGUOUS_GEOGRAPHY | 4 |
 | SOURCE_DISAGREEMENT | 0 |
 | PENDING | 0 |
 
@@ -131,18 +131,18 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Ningún evento candidato.
 
-### P8 · Sin coincidencia
+### P8 · Geografía ambigua
 
-- Veredicto del protocolo congelado: `NO_MATCH`
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-20T00:00:00-05:00 a 2026-07-27T23:59:59-05:00
 - Geografías ambiguas conservadas: Ninguna.
 - Control contra azar: 43.4% de probabilidad base de al menos un evento en 8 días, estimada con 26 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
-#### Candidatos (0)
+#### Candidatos (1)
 
-- Ningún evento candidato.
+- 2026-07-24T02:42:36.550Z · M4.8 · 54 km NNW of San Antonio, Puerto Rico · Puerto Rico y región sísmica inmediata · usgs-fdsn
 
 ## Interpretación
 
