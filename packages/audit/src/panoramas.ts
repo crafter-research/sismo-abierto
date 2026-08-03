@@ -7,6 +7,8 @@ function isPanoramaReport(value: unknown): value is PanoramaReport {
   return (
     typeof report.slug === "string" &&
     typeof report.title === "string" &&
+    (report.registrationMode === "PROSPECTIVE" ||
+      report.registrationMode === "RETROSPECTIVE") &&
     typeof report.sourceUrl === "string" &&
     typeof report.sourcePublishedAtLima === "string" &&
     !Number.isNaN(Date.parse(report.sourcePublishedAtLima)) &&

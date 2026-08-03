@@ -12,13 +12,16 @@
 
 ## Panoramas semanales
 
-- `panorama-reports.json` reúne cinco Reels semanales publicados entre el 29 de junio y
-  el 27 de julio de 2026, con 37 predicciones evaluables por separado.
+- `panorama-reports.json` reúne seis Reels semanales publicados entre el 29 de junio y
+  el 3 de agosto de 2026, con 44 predicciones evaluables por separado.
 - Los Reels `DaLGrbGpoQm`, `Dac4KZ8J7-J`, `DauJiOZppMr` y `DbSLv__pBz9` se incorporaron
   retrospectivamente el 2026-08-02 a partir de transcripciones hechas con `trx` y una
   revisión del texto visible.
 - El panorama del 20 de julio conserva las ocho afirmaciones ya congeladas en
   `predictions.csv`. No se duplica su fuente de verdad para la auditoría.
+- El panorama del 3 de agosto se registró el mismo día de su publicación y antes del
+  cierre de todas sus ventanas. El Reel lo titula del 3 al 11 de agosto, pero dos puntos
+  declaran nueve días a partir del 3; el registro conserva esos deadlines hasta el 12.
 - Cada registro incluye la URL y la hora pública del Reel en Lima. Esa marca temporal
   documenta cuándo apareció la fuente, pero no elimina las limitaciones del backfill.
 

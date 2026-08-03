@@ -50,6 +50,7 @@ export interface PanoramaReport {
   title: string;
   periodStart: string;
   periodEnd: string;
+  registrationMode: "PROSPECTIVE" | "RETROSPECTIVE";
   sourceUrl: string;
   sourcePublishedAtLima: string;
   sourceEvidence: string;

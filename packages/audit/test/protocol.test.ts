@@ -140,8 +140,11 @@ describe("geografía determinista", () => {
   });
   test("todo destino de los panoramas semanales tiene mapeo", async () => {
     const reports = await loadPanoramaReportRegistry();
-    expect(reports).toHaveLength(5);
-    expect(reports.flatMap((report) => report.points)).toHaveLength(37);
+    expect(reports).toHaveLength(6);
+    expect(reports.flatMap((report) => report.points)).toHaveLength(44);
+    expect(
+      reports.filter((report) => report.registrationMode === "PROSPECTIVE"),
+    ).toHaveLength(2);
     for (const report of reports) {
       for (const point of report.points) {
         for (const target of point.targetRegions) {
