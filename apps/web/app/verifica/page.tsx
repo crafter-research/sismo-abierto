@@ -62,7 +62,7 @@ export default async function VerificaPage() {
               Panoramas semanales
             </h2>
             <p className="mt-1 text-xs text-gray-800">
-              Cinco Reels publicados entre el 29 de junio y el 27 de julio.
+              Seis Reels publicados entre el 29 de junio y el 3 de agosto.
             </p>
           </div>
           <span className="font-mono text-[11px] text-gray-800">

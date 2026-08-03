@@ -110,8 +110,8 @@ export default async function ClaimAuditPage({
           en un máximo de {prediction.maxDays} días.
         </p>
         <p className="mt-1 text-xs text-gray-800">
-          {panorama?.backfilledAt === "2026-07-20"
-            ? "Congelada el 2026-07-20 antes de conocer resultados en data/predictions/predictions.csv, verificable en git."
+          {panorama?.registrationMode === "PROSPECTIVE"
+            ? `Congelada el ${panorama.backfilledAt} antes del cierre de sus ventanas; verificable en git.`
             : `Incorporada retrospectivamente el ${panorama?.backfilledAt ?? "2026-08-02"}; la fecha pública del Reel se conserva como referencia temporal.`}{" "}
           {panorama ? (
             <a
