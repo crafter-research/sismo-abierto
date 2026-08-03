@@ -237,9 +237,9 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await page.goto("/verifica");
     await expect(page.getByTestId("claim-ledger")).toHaveCount(0);
     const panoramas = page.getByTestId("panorama-report-list");
-    await expect(panoramas.getByTestId("panorama-report-row")).toHaveCount(5);
-    await expect(panoramas).toContainText("27 de julio al 4 de agosto");
-    await expect(page.getByText("37 predicciones")).toBeVisible();
+    await expect(panoramas.getByTestId("panorama-report-row")).toHaveCount(6);
+    await expect(panoramas).toContainText("3 al 11 de agosto");
+    await expect(page.getByText("44 predicciones")).toBeVisible();
     await expect(
       page.getByTestId("prediction-interpretation-note"),
     ).toContainText(
@@ -273,6 +273,20 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(page.getByTestId("panorama-report")).toContainText(
       "Tayikistán",
     );
+  });
+
+  test("el panorama vigente conserva fuente, siete puntos y registro prospectivo", async ({
+    page,
+  }) => {
+    await page.goto("/verifica/panoramas/2026-08-03");
+    await expect(page.getByTestId("claim-row")).toHaveCount(7);
+    await expect(page.getByTestId("panorama-report")).toContainText(
+      "antes del cierre de sus ventanas",
+    );
+    await expect(page.getByTestId("panorama-report")).toContainText(
+      "DbkO0JMpRXs",
+    );
+    await expect(page.getByTestId("claim-ledger")).toContainText("12 ago 2026");
   });
 
   test("una afirmación muestra criterios congelados, tasa base y evidencia", async ({

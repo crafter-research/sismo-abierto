@@ -109,9 +109,10 @@ export default async function PanoramaReportPage({
         </p>
         <p className="mt-2 text-xs leading-5 text-gray-800">
           Fuente: {report.sourceEvidence}. Publicado el{" "}
-          {formatLima(report.sourcePublishedAtLima)}. El registro se incorporó
-          retrospectivamente el {report.backfilledAt}, conservando la fecha
-          pública del Reel como referencia temporal.{" "}
+          {formatLima(report.sourcePublishedAtLima)}.{" "}
+          {report.registrationMode === "PROSPECTIVE"
+            ? `El registro se congeló el ${report.backfilledAt} antes del cierre de sus ventanas, preservando la fecha pública del Reel.`
+            : `El registro se incorporó retrospectivamente el ${report.backfilledAt}, conservando la fecha pública del Reel como referencia temporal.`}{" "}
           <a
             href={report.sourceUrl}
             className="text-gray-1000 underline"
