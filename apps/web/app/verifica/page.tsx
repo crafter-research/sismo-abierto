@@ -1,6 +1,7 @@
 import {
   loadHistoricalReportAuditResults,
   loadPanoramaReportRegistry,
+  loadPredictionAuditResults,
 } from "@sismo/audit";
 import Link from "next/link";
 
@@ -19,11 +20,36 @@ function formatLima(value: string): string {
     .replaceAll(".", "");
 }
 
+function countLabel(count: number, singular: string, plural: string): string {
+  return `${count} ${count === 1 ? singular : plural}`;
+}
+
 export default async function VerificaPage() {
-  const [panoramas, historicalResults] = await Promise.all([
+  const [panoramas, historicalResults, panoramaResults] = await Promise.all([
     loadPanoramaReportRegistry(),
     loadHistoricalReportAuditResults(),
+    loadPredictionAuditResults(),
   ]);
+  const auditsById = new Map(
+    panoramaResults.audits.map((audit) => [audit.predictionId, audit]),
+  );
+  const auditCounts = {
+    strict: panoramaResults.audits.filter(
+      (audit) => audit.interpretation.matchOutcome === "STRICT_MATCH",
+    ).length,
+    ambiguous: panoramaResults.audits.filter(
+      (audit) => audit.interpretation.matchOutcome === "AMBIGUOUS_GEOGRAPHY",
+    ).length,
+    noMatch: panoramaResults.audits.filter(
+      (audit) => audit.interpretation.matchOutcome === "NO_MATCH",
+    ).length,
+    disagreement: panoramaResults.audits.filter(
+      (audit) => audit.interpretation.matchOutcome === "SOURCE_DISAGREEMENT",
+    ).length,
+    pending: panoramaResults.audits.filter(
+      (audit) => audit.interpretation.matchOutcome === "PENDING",
+    ).length,
+  };
 
   return (
     <div className="w-[min(72rem,calc(100vw-2rem))] self-center">
@@ -55,6 +81,38 @@ export default async function VerificaPage() {
         </div>
       </header>
 
+      <section
+        className="mt-6 border-gray-300 border-y"
+        data-testid="panorama-audit-summary"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-2 py-3">
+          <h2 className="text-sm font-semibold">Corte de auditoría</h2>
+          <time
+            className="font-mono text-[11px] text-gray-800"
+            dateTime={panoramaResults.runAt}
+          >
+            {formatLima(panoramaResults.runAt)} · Lima
+          </time>
+        </div>
+        <dl className="grid grid-cols-2 border-gray-200 border-t text-sm sm:grid-cols-5">
+          {[
+            ["Coincidencias estrictas", auditCounts.strict],
+            ["Geografía ambigua", auditCounts.ambiguous],
+            ["Sin coincidencia", auditCounts.noMatch],
+            ["Fuentes en desacuerdo", auditCounts.disagreement],
+            ["Ventanas abiertas", auditCounts.pending],
+          ].map(([label, value]) => (
+            <div
+              key={label}
+              className="px-3 py-3 first:pl-0 sm:border-gray-200 sm:border-r"
+            >
+              <dt className="text-xs text-gray-800">{label}</dt>
+              <dd className="mt-1 font-mono text-xl font-bold">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
       <section className="mt-8" aria-labelledby="panoramas-title">
         <div className="flex flex-wrap items-end justify-between gap-2 border-gray-300 border-b pb-2">
           <div>
@@ -78,6 +136,22 @@ export default async function VerificaPage() {
           data-testid="panorama-report-list"
         >
           {panoramas.toReversed().map((report) => {
+            const reportAudits = report.points
+              .map((point) => auditsById.get(point.predictionId))
+              .filter((audit) => audit !== undefined);
+            const strict = reportAudits.filter(
+              (audit) => audit.interpretation.matchOutcome === "STRICT_MATCH",
+            ).length;
+            const ambiguous = reportAudits.filter(
+              (audit) =>
+                audit.interpretation.matchOutcome === "AMBIGUOUS_GEOGRAPHY",
+            ).length;
+            const noMatch = reportAudits.filter(
+              (audit) => audit.interpretation.matchOutcome === "NO_MATCH",
+            ).length;
+            const pending = reportAudits.filter(
+              (audit) => audit.interpretation.matchOutcome === "PENDING",
+            ).length;
             const deadline = report.points.reduce(
               (latest, point) =>
                 point.deadlineEndLima > latest ? point.deadlineEndLima : latest,
@@ -105,9 +179,17 @@ export default async function VerificaPage() {
                     Publicado {formatLima(report.sourcePublishedAtLima)}
                   </span>
                 </span>
-                <span className="text-xs text-gray-900 sm:text-right">
-                  {report.points.length} predicciones · hasta{" "}
-                  {formatLima(deadline)}
+                <span className="text-xs leading-5 text-gray-900 sm:text-right">
+                  {pending > 0
+                    ? countLabel(
+                        pending,
+                        "ventana abierta",
+                        "ventanas abiertas",
+                      )
+                    : `${countLabel(strict, "coincidencia", "coincidencias")} · ${countLabel(ambiguous, "ambigua", "ambiguas")} · ${noMatch} sin coincidencia`}
+                  <span className="block text-gray-800">
+                    hasta {formatLima(deadline)}
+                  </span>
                 </span>
               </Link>
             );
@@ -125,8 +207,8 @@ export default async function VerificaPage() {
               Informes numerados
             </h2>
             <p className="mt-1 text-xs text-gray-800">
-              Backfill retrospectivo de los informes 244 al 254 aportados como
-              capturas.
+              Backfill retrospectivo de informes numerados aportados como
+              capturas. La secuencia puede tener ausencias.
             </p>
           </div>
           <span className="font-mono text-[11px] text-gray-800">
