@@ -1,29 +1,308 @@
-# Auditoría final de predicciones sísmicas
+# Auditoría de predicciones sísmicas
 
-Corrida UTC: `2026-08-02T19:54:38.660Z`
+Corte UTC: `2026-08-07T04:17:06.608Z`
 
-Este informe aplica el protocolo congelado antes de conocer los resultados. Las afirmaciones provienen de sismos.en.peru, no del IGP. IGP/CENSIS y USGS se usan como fuentes de comprobación.
+Este informe aplica el protocolo congelado antes de conocer los resultados. Las afirmaciones provienen de sismos.en.peru, no del IGP. IGP/CENSIS y USGS se usan como fuentes de comprobación. Las ventanas abiertas permanecen pendientes hasta su deadline.
 
 ## Veredictos del protocolo congelado
 
 | Veredicto | Cantidad |
 | --- | ---: |
-| STRICT_HIT | 4 |
-| NO_MATCH | 0 |
-| AMBIGUOUS_GEOGRAPHY | 4 |
+| STRICT_HIT | 7 |
+| NO_MATCH | 5 |
+| AMBIGUOUS_GEOGRAPHY | 25 |
 | SOURCE_DISAGREEMENT | 0 |
-| PENDING | 0 |
+| PENDING | 7 |
 
 ## Coincidencias estrictas y tasa base
 
 | Afirmación | Probabilidad base | Lectura descriptiva | Capacidad predictiva |
 | --- | ---: | --- | --- |
+| W20260629-P3 | 34.1% | Posibilidad moderada sin predicción | No establecida |
 | P1 | 7.4% | Poco esperable según el histórico | No establecida |
-| P4 | 99.3% | Muy esperable sin predicción | No establecida |
+| P4 | 76.5% | Esperable sin predicción | No establecida |
 | P5 | 37.4% | Posibilidad moderada sin predicción | No establecida |
-| P6 | 97.9% | Muy esperable sin predicción | No establecida |
+| P6 | 79.1% | Esperable sin predicción | No establecida |
+| W20260727-P3 | 32.6% | Posibilidad moderada sin predicción | No establecida |
+| W20260727-P8 | 79.4% | Esperable sin predicción | No establecida |
 
 ## Resultados
+
+### W20260629-P1 · Sin coincidencia
+
+- Veredicto del protocolo congelado: `NO_MATCH`
+- Ventana: 2026-06-29T00:00:00-05:00 a 2026-07-05T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 10.9% de probabilidad base de al menos un evento en 7 días, estimada con 6 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260629-P2 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-06-29T00:00:00-05:00 a 2026-07-07T23:59:59-05:00
+- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260629-P3 · Coincidencia estricta
+
+- Veredicto del protocolo congelado: `STRICT_HIT`
+- Ventana: 2026-06-29T00:00:00-05:00 a 2026-07-06T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 34.1% de probabilidad base de al menos un evento en 8 días, estimada con 19 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (2)
+
+- 2026-07-04T17:52:26Z · M4.4 · CENSIS · Loreto (departamento) · igp-censis-catalogo
+- 2026-07-01T09:14:27Z · M4.3 · CENSIS · Loreto (departamento) · igp-censis-catalogo+usgs-fdsn
+
+### W20260629-P4 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-06-29T00:00:00-05:00 a 2026-07-07T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
+- Control contra azar: 11.6% de probabilidad base de al menos un evento en 9 días, estimada con 5 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260629-P5 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-06-25T00:00:00-05:00 a 2026-07-02T23:59:59-05:00
+- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
+- Control contra azar: 35.5% de probabilidad base de al menos un evento en 8 días, estimada con 20 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260629-P6 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-06-29T00:00:00-05:00 a 2026-07-07T23:59:59-05:00
+- Geografías ambiguas conservadas: Frontera Ecuador-Colombia (sin límites definidos)
+- Control contra azar: 56.8% de probabilidad base de al menos un evento en 9 días, estimada con 34 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260706-P1 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-12T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 7.4% de probabilidad base de al menos un evento en 7 días, estimada con 4 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (1)
+
+- 2026-07-11T04:42:52Z · M4.3 · CENSIS · Lima y Callao (departamentos) · igp-censis-catalogo
+
+### W20260706-P2 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-13T23:59:59-05:00
+- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260706-P3 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-05T00:00:00-05:00 a 2026-07-17T23:59:59-05:00
+- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 71.3% de probabilidad base de al menos un evento en 13 días, estimada con 35 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260706-P4 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-12T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 27.8% de probabilidad base de al menos un evento en 7 días, estimada con 17 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (1)
+
+- 2026-07-13T01:50:10Z · M4 · CENSIS · Loreto (departamento) · igp-censis-catalogo
+
+### W20260706-P5 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-18T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos); Norte de Perú y sur de Ecuador (sin límites definidos); Islas del Caribe (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
+- Control contra azar: 13.3% de probabilidad base de al menos un evento en 13 días, estimada con 4 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (1)
+
+- 2026-07-16T09:14:54.293Z · M5.9 · 42 km NNW of Te Anau, New Zealand · Nueva Zelanda (país) · usgs-fdsn
+
+### W20260706-P6 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-14T23:59:59-05:00
+- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
+- Control contra azar: 27.4% de probabilidad base de al menos un evento en 9 días, estimada con 13 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260706-P7 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-05T00:00:00-05:00 a 2026-07-12T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Venezuela (sin límites definidos); Norte de Colombia (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260713-P1 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-20T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 10.4% de probabilidad base de al menos un evento en 8 días, estimada con 5 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (3)
+
+- 2026-07-20T11:51:15Z · M4.3 · CENSIS · Ica (departamento) · igp-censis-catalogo
+- 2026-07-19T08:42:19Z · M4 · CENSIS · Ica (departamento) · igp-censis-catalogo
+- 2026-07-16T09:46:52Z · M4.3 · CENSIS · Ica (departamento) · igp-censis-catalogo
+
+### W20260713-P2 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-21T23:59:59-05:00
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos); Perú central (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260713-P3 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-18T23:59:59-05:00
+- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 71.3% de probabilidad base de al menos un evento en 13 días, estimada con 35 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260713-P4 · Sin coincidencia
+
+- Veredicto del protocolo congelado: `NO_MATCH`
+- Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-19T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 20.6% de probabilidad base de al menos un evento en 7 días, estimada con 12 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260713-P5 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-21T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
+- Control contra azar: 17.9% de probabilidad base de al menos un evento en 9 días, estimada con 8 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (1)
+
+- 2026-07-17T22:04:10.334Z · M4.6 · 6 km NNE of Mangapapa, New Zealand · Nueva Zelanda (país) · usgs-fdsn
+
+### W20260713-P6 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-21T23:59:59-05:00
+- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
+- Control contra azar: 27.4% de probabilidad base de al menos un evento en 9 días, estimada con 13 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260713-P7 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-20T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos)
+- Control contra azar: 51.5% de probabilidad base de al menos un evento en 8 días, estimada con 33 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (1)
+
+- 2026-07-13T19:59:53.882Z · M4.5 · 26 km NE of Yaguaraparo, Venezuela · Venezuela (país) · usgs-fdsn
+
+### W20260713-P8 · Sin coincidencia
+
+- Veredicto del protocolo congelado: `NO_MATCH`
+- Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-20T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 23.1% de probabilidad base de al menos un evento en 8 días, estimada con 12 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
 
 ### P1 · Coincidencia estricta
 
@@ -71,17 +350,15 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 - Veredicto del protocolo congelado: `STRICT_HIT`
 - Ventana: 2026-07-20T00:00:00-05:00 a 2026-07-30T23:59:59-05:00
 - Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos); Norte de Perú y sur de Ecuador (sin límites definidos); Islas del Caribe (sin límites definidos)
-- Control contra azar: 99.3% de probabilidad base de al menos un evento en 11 días, estimada con 165 eventos en los 365 días previos.
-- Lectura descriptiva: Muy esperable sin predicción.
+- Control contra azar: 76.5% de probabilidad base de al menos un evento en 11 días, estimada con 48 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
 - Capacidad predictiva: no establecida.
 
-#### Candidatos (8)
+#### Candidatos (6)
 
 - 2026-07-29T13:19:36.661Z · M5.4 · 11 km N of Tsunagi, Japan · Japón (país) · usgs-fdsn
 - 2026-07-28T08:08:35.421Z · M5.6 · 16 km NE of Tsunagi, Japan · Japón (país) · usgs-fdsn
-- 2026-07-29T15:10:02.995Z · M5.4 · 53 km E of Rapu-Rapu, Philippines · Filipinas (país) · usgs-fdsn
 - 2026-07-26T10:57:37.061Z · M5.3 · 25 km NW of Kupang, Indonesia · Indonesia (Java, Bali y Nusa Tenggara) · usgs-fdsn
-- 2026-07-23T22:58:36.362Z · M5.8 · 130 km W of Ternate, Indonesia · Indonesia (Maluku) · usgs-fdsn
 - 2026-07-30T04:42:12.667Z · M5.4 · 201 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
 - 2026-07-24T12:14:28.267Z · M5.4 · 202 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
 - 2026-07-24T11:11:34.234Z · M5.3 · 197 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
@@ -104,19 +381,15 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 - Veredicto del protocolo congelado: `STRICT_HIT`
 - Ventana: 2026-07-20T00:00:00-05:00 a 2026-08-01T23:59:59-05:00
 - Geografías ambiguas conservadas: Norte de Chile y sur de Perú (sin límites definidos)
-- Control contra azar: 97.9% de probabilidad base de al menos un evento en 13 días, estimada con 109 eventos en los 365 días previos.
-- Lectura descriptiva: Muy esperable sin predicción.
+- Control contra azar: 79.1% de probabilidad base de al menos un evento en 13 días, estimada con 44 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
 - Capacidad predictiva: no establecida.
 
-#### Candidatos (7)
+#### Candidatos (3)
 
 - 2026-07-24T16:51:37.514Z · M5.7 · 49 km W of Turangi, New Zealand · Nueva Zelanda (país) · usgs-fdsn
-- 2026-07-24T21:37:56.459Z · M6 · 82 km W of Sola, Vanuatu · Vanuatu (país) · usgs-fdsn
-- 2026-07-29T15:10:02.995Z · M5.4 · 53 km E of Rapu-Rapu, Philippines · Filipinas (país) · usgs-fdsn
-- 2026-07-23T22:58:36.362Z · M5.8 · 130 km W of Ternate, Indonesia · Indonesia (Maluku) · usgs-fdsn
 - 2026-07-30T04:42:12.667Z · M5.4 · 201 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
 - 2026-07-24T12:14:28.267Z · M5.4 · 202 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
-- 2026-07-28T20:27:57.268Z · M5.4 · 211 km SE of Kokopo, Papua New Guinea · Papúa Nueva Guinea (país) · usgs-fdsn
 
 ### P7 · Geografía ambigua
 
@@ -136,13 +409,214 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-20T00:00:00-05:00 a 2026-07-27T23:59:59-05:00
 - Geografías ambiguas conservadas: Ninguna.
-- Control contra azar: 43.4% de probabilidad base de al menos un evento en 8 días, estimada con 26 eventos en los 365 días previos.
+- Control contra azar: 36.9% de probabilidad base de al menos un evento en 8 días, estimada con 21 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
 #### Candidatos (1)
 
 - 2026-07-24T02:42:36.550Z · M4.8 · 54 km NNW of San Antonio, Puerto Rico · Puerto Rico y región sísmica inmediata · usgs-fdsn
+
+### W20260727-P1 · Sin coincidencia
+
+- Veredicto del protocolo congelado: `NO_MATCH`
+- Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-03T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 10.4% de probabilidad base de al menos un evento en 8 días, estimada con 5 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260727-P2 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-04T23:59:59-05:00
+- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260727-P3 · Coincidencia estricta
+
+- Veredicto del protocolo congelado: `STRICT_HIT`
+- Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-03T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 32.6% de probabilidad base de al menos un evento en 8 días, estimada con 18 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (1)
+
+- 2026-08-02T17:09:41Z · M4.5 · CENSIS · Loreto (departamento) · igp-censis-catalogo+usgs-fdsn
+
+### W20260727-P4 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-04T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
+- Control contra azar: 11.6% de probabilidad base de al menos un evento en 9 días, estimada con 5 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (1)
+
+- 2026-08-01T03:23:55.189Z · M4.8 · 44 km NW of Te Anau, New Zealand · Nueva Zelanda (país) · usgs-fdsn
+
+### W20260727-P5 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-03T23:59:59-05:00
+- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
+- Control contra azar: 35.5% de probabilidad base de al menos un evento en 8 días, estimada con 20 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260727-P6 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-03T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Venezuela (sin límites definidos); Norte de Colombia (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260727-P7 · Sin coincidencia
+
+- Veredicto del protocolo congelado: `NO_MATCH`
+- Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-04T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 29.2% de probabilidad base de al menos un evento en 9 días, estimada con 14 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260727-P8 · Coincidencia estricta
+
+- Veredicto del protocolo congelado: `STRICT_HIT`
+- Ventana: 2026-07-21T00:00:00-05:00 a 2026-08-01T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos); Norte de Perú y sur de Ecuador (sin límites definidos); Islas del Caribe (sin límites definidos)
+- Control contra azar: 79.4% de probabilidad base de al menos un evento en 12 días, estimada con 48 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (7)
+
+- 2026-07-29T13:19:36.661Z · M5.4 · 11 km N of Tsunagi, Japan · Japón (país) · usgs-fdsn
+- 2026-07-28T08:08:35.421Z · M5.6 · 16 km NE of Tsunagi, Japan · Japón (país) · usgs-fdsn
+- 2026-07-26T10:57:37.061Z · M5.3 · 25 km NW of Kupang, Indonesia · Indonesia (Java, Bali y Nusa Tenggara) · usgs-fdsn
+- 2026-07-31T20:19:26.522Z · M5.3 · 140 km ENE of Masohi, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
+- 2026-07-30T04:42:12.667Z · M5.4 · 201 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
+- 2026-07-24T12:14:28.267Z · M5.4 · 202 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
+- 2026-07-24T11:11:34.234Z · M5.3 · 197 km W of Abepura, Indonesia · Indonesia (Papúa occidental) · usgs-fdsn
+
+### W20260803-P1 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-09T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 9.1% de probabilidad base de al menos un evento en 7 días, estimada con 5 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260803-P2 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-12T23:59:59-05:00
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos); Perú central (sin límites definidos)
+- Control contra azar: 61.7% de probabilidad base de al menos un evento en 10 días, estimada con 35 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260803-P3 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-10T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260803-P4 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-12T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Norte de Colombia (sin límites definidos); Islas del Caribe (sin límites definidos)
+- Control contra azar: 28.0% de probabilidad base de al menos un evento en 10 días, estimada con 12 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260803-P5 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-10T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Venezuela (sin límites definidos); Norte de Colombia (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260803-P6 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-10T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 43.4% de probabilidad base de al menos un evento en 8 días, estimada con 26 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260803-P7 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-10T23:59:59-05:00
+- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
+- Control contra azar: 35.5% de probabilidad base de al menos un evento en 8 días, estimada con 20 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
 
 ## Interpretación
 
