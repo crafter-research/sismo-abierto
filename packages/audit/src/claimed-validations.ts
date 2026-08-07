@@ -17,14 +17,17 @@ function isClaimedValidation(value: unknown): value is ClaimedValidation {
   );
 }
 
-export async function loadClaimedValidations(): Promise<ClaimedValidation[]> {
-  const claims: unknown = claimedValidationsJson;
+export function parseClaimedValidations(claims: unknown): ClaimedValidation[] {
   if (!Array.isArray(claims) || !claims.every(isClaimedValidation)) {
     throw new Error(
       "El registro de validaciones reclamadas no tiene el formato esperado",
     );
   }
   return claims;
+}
+
+export async function loadClaimedValidations(): Promise<ClaimedValidation[]> {
+  return parseClaimedValidations(claimedValidationsJson);
 }
 
 export async function findClaimedValidation(

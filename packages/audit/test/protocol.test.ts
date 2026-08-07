@@ -10,6 +10,7 @@ import {
   loadPredictionRegistry,
   matchersForTarget,
   matchRegion,
+  parseClaimedValidations,
   parseFrozenPredictions,
   type RawCandidate,
   type RegionMatcher,
@@ -71,6 +72,21 @@ describe("registro congelado", () => {
       5.0, 5.3,
     ]);
     expect(claims[0]?.assessment).toBe("OUTSIDE_FROZEN_MAGNITUDE");
+  });
+
+  test("rechaza una validación reclamada sin fuentes oficiales", () => {
+    expect(() =>
+      parseClaimedValidations([
+        {
+          predictionId: "W20260803-P2",
+          claimText: "Proyección cumplida",
+          sourcePublishedAtLima: "2026-08-06T10:00:00-05:00",
+          eventTimeUtc: "2026-08-06T18:57:18Z",
+          sources: [],
+          assessment: "OUTSIDE_FROZEN_MAGNITUDE",
+        },
+      ]),
+    ).toThrow("formato esperado");
   });
 });
 
