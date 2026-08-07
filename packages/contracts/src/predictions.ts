@@ -58,6 +58,28 @@ export interface PanoramaReport {
   points: PanoramaPoint[];
 }
 
+export interface ClaimedValidationSource {
+  sourceId: string;
+  sourceName: string;
+  magnitude: number;
+  depthKm: number;
+  url: string;
+}
+
+export interface ClaimedValidation {
+  predictionId: string;
+  sourceAccount: string;
+  claimText: string;
+  sourcePublishedAtLima: string;
+  sourceEvidence: string;
+  eventTimeUtc: string;
+  eventPlace: string;
+  latitude: number;
+  longitude: number;
+  sources: ClaimedValidationSource[];
+  assessment: "OUTSIDE_FROZEN_MAGNITUDE";
+}
+
 export interface HistoricalReportPoint {
   pointNumber: number;
   claimedProbability: number;

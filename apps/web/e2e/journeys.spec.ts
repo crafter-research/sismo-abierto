@@ -327,14 +327,14 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(page.getByTestId("verdict")).not.toContainText("STRICT_HIT");
   });
 
-  test("el registro lista nueve informes históricos aparte de los panoramas", async ({
+  test("el registro lista diez informes históricos aparte de los panoramas", async ({
     page,
   }) => {
     await page.goto("/verifica");
     const reports = page.getByTestId("historical-report-list");
-    await expect(reports.getByTestId("historical-report-row")).toHaveCount(9);
+    await expect(reports.getByTestId("historical-report-row")).toHaveCount(10);
     await expect(reports).toContainText("Informe 244");
-    await expect(reports).toContainText("Informe 254");
+    await expect(reports).toContainText("Informe 256");
     await expect(reports).toContainText("4 puntos pendientes");
     await expect(reports).toContainText("1 coincidencia");
   });

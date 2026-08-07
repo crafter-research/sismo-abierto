@@ -367,5 +367,46 @@
         "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
       }
     ]
+  },
+  {
+    "reportNumber": 256,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-07: codex-clipboard-5dcd00af-fc9b-46c5-8e62-0876ed93efa3.png",
+    "sourcePostDate": "2026-08-07",
+    "backfilledAt": "2026-08-07",
+    "origin": "Uki, Japón",
+    "originMagnitude": 7.0,
+    "startDate": "2026-07-31",
+    "maxDays": 75,
+    "deadlineEndLima": "2026-10-14T23:59:59-05:00",
+    "deadlineSourceText": "75 días a partir del 31/07/2026",
+    "predictedMagnitudeMin": 6.8,
+    "predictedMagnitudeMax": 7.8,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 40,
+        "sourceText": "Nueva Zelanda y zonas colindantes a Fiji, Vanuatu, Tonga e islas aledañas",
+        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 25,
+        "sourceText": "Desde zona centro de Perú hasta central de Chile, frontera con Argentina; abarca zona sur de Perú y norte de Chile",
+        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Psj Drake, Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
+        "targetRegions": ["Pasaje de Drake, Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 15,
+        "sourceText": "Repite en Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
+        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+      }
+    ]
   }
 ]

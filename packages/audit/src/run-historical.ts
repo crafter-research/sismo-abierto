@@ -28,7 +28,7 @@ function renderMarkdown(results: HistoricalReportAuditResults): string {
     });
     return `## Informe ${report.reportNumber}\n\n- Origen declarado: ${report.origin} M${report.originMagnitude}\n- Ventana: ${report.startDate} a ${report.deadlineEndLima}\n- Evidencia fuente: ${report.sourceEvidence}\n\n| Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |\n| ---: | ---: | --- | ---: | --- |\n${rows.join("\n")}`;
   });
-  return `# Auditoría retrospectiva de informes históricos\n\nCorrida UTC: \`${results.runAt}\`\n\nEstos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas aportadas por el usuario. No constituyen un registro preinscrito antes de los resultados. Una coincidencia literal no establece capacidad predictiva y los porcentajes declarados no se interpretan como probabilidades calibradas.\n\n${sections.join("\n\n")}\n`;
+  return `# Auditoría retrospectiva de informes históricos\n\nCorrida UTC: \`${results.runAt}\`\n\nEstos informes se incorporaron retrospectivamente desde capturas aportadas por el usuario. No constituyen un registro preinscrito antes de los resultados. Una coincidencia literal no establece capacidad predictiva y los porcentajes declarados no se interpretan como probabilidades calibradas.\n\n${sections.join("\n\n")}\n`;
 }
 
 export async function runHistoricalReportAudit(

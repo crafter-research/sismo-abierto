@@ -1,0 +1,30 @@
+[
+  {
+    "predictionId": "W20260803-P2",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-07T00:00:00-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-07: codex-clipboard-53018d89-4549-4c97-9c83-f62d4fa85d8a.png",
+    "eventTimeUtc": "2026-08-06T18:57:18Z",
+    "eventPlace": "7 km SSO de Huayucachi, Perú",
+    "latitude": -12.1948,
+    "longitude": -75.2574,
+    "sources": [
+      {
+        "sourceId": "igp-censis-catalogo",
+        "sourceName": "IGP · CENSIS",
+        "magnitude": 5.0,
+        "depthKm": 9,
+        "url": "https://censis.igp.gob.pe/repositorio/datos-sismicos"
+      },
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 5.3,
+        "depthKm": 10,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tip9"
+      }
+    ],
+    "assessment": "OUTSIDE_FROZEN_MAGNITUDE"
+  }
+]

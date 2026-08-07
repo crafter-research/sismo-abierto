@@ -1,5 +1,6 @@
 import {
   evaluatePrediction,
+  findClaimedValidation,
   findPanoramaByPredictionId,
   GEOGRAPHY_METHOD_NOTE,
   getPrediction,
@@ -43,9 +44,10 @@ export default async function ClaimAuditPage({
   params: Promise<{ predictionId: string }>;
 }) {
   const { predictionId } = await params;
-  const [prediction, panorama] = await Promise.all([
+  const [prediction, panorama, claimedValidation] = await Promise.all([
     getPrediction(predictionId),
     findPanoramaByPredictionId(predictionId),
+    findClaimedValidation(predictionId),
   ]);
   if (!prediction) {
     return (
@@ -125,6 +127,52 @@ export default async function ClaimAuditPage({
           .
         </p>
       </header>
+
+      {claimedValidation ? (
+        <section
+          className="rounded-lg border border-amber-700 bg-amber-50 p-4"
+          data-testid="claimed-validation"
+        >
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h2 className="font-semibold">
+              Validación reclamada por la cuenta
+            </h2>
+            <span className="rounded bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-900">
+              No cumple el rango congelado
+            </span>
+          </div>
+          <p className="mt-2 text-sm text-gray-900">
+            La cuenta publicó “{claimedValidation.claimText}” para el evento de{" "}
+            {claimedValidation.eventPlace}. Las fuentes oficiales discrepan en
+            la magnitud, pero ambas quedan por debajo de M
+            {prediction.predictedMagnitudeMin.toFixed(1)}.
+          </p>
+          <ul className="mt-3 grid gap-2 text-xs sm:grid-cols-2">
+            {claimedValidation.sources.map((source) => (
+              <li
+                key={source.sourceId}
+                className="border border-amber-200 bg-white p-3"
+              >
+                <a
+                  href={source.url}
+                  className="font-semibold text-official underline"
+                  rel="noreferrer"
+                >
+                  {source.sourceName}
+                </a>
+                <p className="mt-1 font-mono">
+                  M{source.magnitude.toFixed(1)} · {source.depthKm} km
+                </p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs text-gray-800">
+            Esto no cambia el resultado final mientras la ventana permanezca
+            abierta. Además, “Perú central” es un destino vago bajo el protocolo
+            congelado.
+          </p>
+        </section>
+      ) : null}
 
       <section className="grid gap-6 md:grid-cols-2">
         <div className="rounded-lg border border-gray-200 p-4">
