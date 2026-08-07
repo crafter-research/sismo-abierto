@@ -1,3 +1,5 @@
+import { feature as topologyFeature } from "topojson-client";
+import countriesTopoJson from "world-atlas/countries-50m.json";
 import departamentosJson from "../data/peru-departamentos.json";
 import provinciasJson from "../data/peru-provincias.json";
 
@@ -13,8 +15,16 @@ export interface GeoCollection {
   features: GeoFeature[];
 }
 
+interface CountryGeoFeature extends GeoFeature {
+  id?: string;
+}
+
 export const departamentos = departamentosJson as GeoCollection;
 export const provincias = provinciasJson as GeoCollection;
+const countries = topologyFeature(
+  countriesTopoJson as never,
+  countriesTopoJson.objects.countries as never,
+) as unknown as { features: CountryGeoFeature[] };
 
 function featureRings(feature: GeoFeature): number[][][] {
   const { type, coordinates } = feature.geometry;
@@ -105,6 +115,11 @@ export function distanceToBoundaryDeg(
 const departmentByName = new Map(
   departamentos.features.map((feature) => [feature.properties.name, feature]),
 );
+const countryById = new Map(
+  countries.features
+    .filter((country) => typeof country.id === "string")
+    .map((country) => [country.id?.padStart(3, "0") ?? "", country]),
+);
 
 export function getDepartment(name: string): GeoFeature | null {
   return departmentByName.get(name) ?? null;
@@ -125,6 +140,30 @@ export function classifyDepartmentPoint(
     if (!feature) continue;
     const inside = pointInFeature(feature, lon, lat);
     const distance = distanceToBoundaryDeg(feature, lon, lat);
+    if (inside && distance >= boundaryMarginDeg) return "inside";
+    if (distance < boundaryMarginDeg) {
+      nearCount += 1;
+      if (inside) insideNearBoundary = true;
+    }
+  }
+  if (insideNearBoundary && nearCount >= 2) return "inside";
+  if (nearCount > 0) return "boundary";
+  return "outside";
+}
+
+export function classifyCountryPoint(
+  countryIds: string[],
+  lon: number,
+  lat: number,
+  boundaryMarginDeg: number,
+): PointClassification {
+  let insideNearBoundary = false;
+  let nearCount = 0;
+  for (const id of countryIds) {
+    const country = countryById.get(id.padStart(3, "0"));
+    if (!country) continue;
+    const inside = pointInFeature(country, lon, lat);
+    const distance = distanceToBoundaryDeg(country, lon, lat);
     if (inside && distance >= boundaryMarginDeg) return "inside";
     if (distance < boundaryMarginDeg) {
       nearCount += 1;

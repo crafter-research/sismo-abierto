@@ -17,9 +17,11 @@ export default function MethodologyPage() {
       </h1>
       <p>
         Este protocolo se congeló el 20 de julio de 2026, antes de conocer los
-        resultados de las ventanas. El objetivo es evaluar las ocho proyecciones
-        publicadas sin redefinir después qué constituye un acierto. La versión
-        de referencia vive en{" "}
+        resultados de las ventanas. El objetivo inicial fue evaluar las ocho
+        proyecciones del panorama del 20 de julio sin redefinir después qué
+        constituye un acierto. Los mismos criterios se aplican a los otros cinco
+        panoramas incorporados retrospectivamente, para un total de 44
+        afirmaciones. La versión de referencia vive en{" "}
         <span className="font-mono">data/predictions/audit-protocol.md</span> y
         su historial en git.
       </p>
@@ -34,11 +36,11 @@ export default function MethodologyPage() {
       </h2>
       <p>
         Los informes 244, 245, 246 y 249 al 254 se incorporaron el 2 de agosto
-        de 2026 desde capturas aportadas por el usuario. Se evalúan con los
-        mismos criterios de tiempo, magnitud, geografía y tasa base, pero su
-        incorporación es retrospectiva: varias ventanas ya habían cerrado. No
-        tienen el mismo valor probatorio que las ocho afirmaciones congeladas
-        antes de sus resultados.
+        de 2026 desde capturas aportadas por el usuario. El informe 256 se
+        añadió el 7 de agosto. Se evalúan con los mismos criterios de tiempo,
+        magnitud, geografía y tasa base, pero su incorporación es retrospectiva:
+        varias ventanas ya habían cerrado. No tienen el mismo valor probatorio
+        que las ocho afirmaciones congeladas antes de sus resultados.
       </p>
       <ul className="list-inside list-disc space-y-1">
         <li>Cada punto del informe se evalúa por separado.</li>
@@ -90,6 +92,13 @@ export default function MethodologyPage() {
 
       <h2 className="font-semibold text-gray-900">Geografía</h2>
       <p>{GEOGRAPHY_METHOD_NOTE}</p>
+      <p>
+        Los límites de países provienen de{" "}
+        <a href="https://github.com/topojson/world-atlas" className="underline">
+          World Atlas
+        </a>
+        , que distribuye geometrías de Natural Earth.
+      </p>
 
       <h2 className="font-semibold text-gray-900">Resultados permitidos</h2>
       <ul className="list-inside list-disc space-y-1">

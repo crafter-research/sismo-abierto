@@ -1,8 +1,8 @@
 # Auditoría retrospectiva de informes históricos
 
-Corrida UTC: `2026-08-02T18:28:22.459Z`
+Corrida UTC: `2026-08-07T04:18:26.718Z`
 
-Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas aportadas por el usuario. No constituyen un registro preinscrito antes de los resultados. Una coincidencia literal no establece capacidad predictiva y los porcentajes declarados no se interpretan como probabilidades calibradas.
+Estos informes se incorporaron retrospectivamente desde capturas aportadas por el usuario. No constituyen un registro preinscrito antes de los resultados. Una coincidencia literal no establece capacidad predictiva y los porcentajes declarados no se interpretan como probabilidades calibradas.
 
 ## Informe 244
 
@@ -13,7 +13,7 @@ Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas a
 | Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
 | ---: | ---: | --- | ---: | --- |
 | 1 | 40% | Geografía ambigua | 0.0% | Ninguno |
-| 2 | 30% | Sin coincidencia | 73.6% | Ninguno |
+| 2 | 30% | Sin coincidencia | 48.6% | Ninguno |
 | 3 | 20% | Geografía ambigua | No disponible | Ninguno |
 | 4 | 10% | Geografía ambigua | 0.0% | Ninguno |
 
@@ -25,9 +25,9 @@ Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas a
 
 | Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
 | ---: | ---: | --- | ---: | --- |
-| 1 | 35% | Geografía ambigua | 75.7% | Ninguno |
+| 1 | 35% | Geografía ambigua | 37.6% | Ninguno |
 | 2 | 30% | Geografía ambigua | No disponible | Ninguno |
-| 3 | 20% | Geografía ambigua | 37.6% | Ninguno |
+| 3 | 20% | Geografía ambigua | 21.0% | Ninguno |
 | 4 | 15% | Sin coincidencia | 0.0% | Ninguno |
 
 ## Informe 246
@@ -38,7 +38,7 @@ Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas a
 
 | Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
 | ---: | ---: | --- | ---: | --- |
-| 1 | 40% | Coincidencia estricta | 58.8% | 2026-04-20T07:52:58.908Z M7.4 102 km ENE of Miyako, Japan; 2026-04-01T22:48:13.063Z M7.4 129 km ESE of Bitung, Indonesia |
+| 1 | 40% | Sin coincidencia | 19.9% | Ninguno |
 | 2 | 30% | Geografía ambigua | 0.0% | Ninguno |
 | 3 | 20% | Geografía ambigua | No disponible | Ninguno |
 | 4 | 10% | Geografía ambigua | 0.0% | Ninguno |
@@ -51,10 +51,10 @@ Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas a
 
 | Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
 | ---: | ---: | --- | ---: | --- |
-| 1 | 40% | Coincidencia estricta | 78.8% | 2026-04-20T07:52:58.908Z M7.4 102 km ENE of Miyako, Japan |
+| 1 | 40% | Geografía ambigua | 35.8% | Ninguno |
 | 2 | 30% | Geografía ambigua | No disponible | Ninguno |
-| 3 | 20% | Geografía ambigua | 35.8% | Ninguno |
-| 4 | 10% | Geografía ambigua | 35.8% | Ninguno |
+| 3 | 20% | Geografía ambigua | 0.0% | Ninguno |
+| 4 | 10% | Geografía ambigua | 19.9% | Ninguno |
 
 ## Informe 250
 
@@ -65,7 +65,7 @@ Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas a
 | Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
 | ---: | ---: | --- | ---: | --- |
 | 1 | 40% | Geografía ambigua | 0.0% | Ninguno |
-| 2 | 30% | Coincidencia estricta | 37.6% | 2026-04-20T07:52:58.908Z M7.4 102 km ENE of Miyako, Japan; 2026-06-07T23:37:41.970Z M7.8 25 km SW of Kablalan, Philippines |
+| 2 | 30% | Geografía ambigua | 0.0% | 2026-06-07T23:37:41.970Z M7.8 25 km SW of Kablalan, Philippines |
 | 3 | 20% | Geografía ambigua | No disponible | Ninguno |
 | 4 | 10% | Geografía ambigua | 0.0% | Ninguno |
 
@@ -77,10 +77,10 @@ Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas a
 
 | Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
 | ---: | ---: | --- | ---: | --- |
-| 1 | 35% | Geografía ambigua | 80.8% | Ninguno |
+| 1 | 35% | Geografía ambigua | 37.6% | Ninguno |
 | 2 | 30% | Geografía ambigua | No disponible | Ninguno |
-| 3 | 20% | Geografía ambigua | 37.6% | Ninguno |
-| 4 | 15% | Sin coincidencia | 21.0% | Ninguno |
+| 3 | 20% | Geografía ambigua | 21.0% | Ninguno |
+| 4 | 15% | Sin coincidencia | 0.0% | Ninguno |
 
 ## Informe 252
 
@@ -93,7 +93,7 @@ Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas a
 | 1 | 40% | Pendiente | 0.0% | Ninguno |
 | 2 | 30% | Pendiente | No disponible | Ninguno |
 | 3 | 20% | Pendiente | 0.0% | Ninguno |
-| 4 | 10% | Pendiente | 61.0% | Ninguno |
+| 4 | 10% | Pendiente | 21.0% | Ninguno |
 
 ## Informe 253
 
@@ -104,7 +104,7 @@ Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas a
 | Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
 | ---: | ---: | --- | ---: | --- |
 | 1 | 40% | Pendiente | 0.0% | Ninguno |
-| 2 | 30% | Pendiente | 58.8% | Ninguno |
+| 2 | 30% | Pendiente | 19.9% | Ninguno |
 | 3 | 20% | Pendiente | 0.0% | Ninguno |
 | 4 | 10% | Pendiente | No disponible | Ninguno |
 
@@ -116,7 +116,20 @@ Estos informes se incorporaron retrospectivamente el 2026-08-02 desde capturas a
 
 | Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
 | ---: | ---: | --- | ---: | --- |
-| 1 | 40% | Pendiente | 34.1% | Ninguno |
+| 1 | 40% | Pendiente | 18.8% | Ninguno |
 | 2 | 30% | Pendiente | No disponible | Ninguno |
-| 3 | 20% | Pendiente | 18.8% | Ninguno |
-| 4 | 10% | Pendiente | 89.9% | Ninguno |
+| 3 | 20% | Pendiente | 0.0% | Ninguno |
+| 4 | 10% | Pendiente | 46.5% | Ninguno |
+
+## Informe 256
+
+- Origen declarado: Uki, Japón M7
+- Ventana: 2026-07-31 a 2026-10-14T23:59:59-05:00
+- Evidencia fuente: Captura aportada por el usuario el 2026-08-07: codex-clipboard-5dcd00af-fc9b-46c5-8e62-0876ed93efa3.png
+
+| Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
+| ---: | ---: | --- | ---: | --- |
+| 1 | 40% | Pendiente | 18.8% | Ninguno |
+| 2 | 25% | Pendiente | No disponible | Ninguno |
+| 3 | 20% | Pendiente | 0.0% | Ninguno |
+| 4 | 15% | Pendiente | 56.5% | Ninguno |

@@ -4,11 +4,13 @@ import {
   classifyVerdict,
   isInWindow,
   isMagnitudeInRange,
+  loadClaimedValidations,
   loadHistoricalReportRegistry,
   loadPanoramaReportRegistry,
   loadPredictionRegistry,
   matchersForTarget,
   matchRegion,
+  parseClaimedValidations,
   parseFrozenPredictions,
   type RawCandidate,
   type RegionMatcher,
@@ -60,6 +62,31 @@ describe("registro congelado", () => {
     expect(() => parseFrozenPredictions("otra,cosa\n1,2")).toThrow(
       "header esperado",
     );
+  });
+
+  test("conserva la validación reclamada sin convertirla en resultado", async () => {
+    const claims = await loadClaimedValidations();
+    expect(claims).toHaveLength(1);
+    expect(claims[0]?.predictionId).toBe("W20260803-P2");
+    expect(claims[0]?.sources.map((source) => source.magnitude)).toEqual([
+      5.0, 5.3,
+    ]);
+    expect(claims[0]?.assessment).toBe("OUTSIDE_FROZEN_MAGNITUDE");
+  });
+
+  test("rechaza una validación reclamada sin fuentes oficiales", () => {
+    expect(() =>
+      parseClaimedValidations([
+        {
+          predictionId: "W20260803-P2",
+          claimText: "Proyección cumplida",
+          sourcePublishedAtLima: "2026-08-06T10:00:00-05:00",
+          eventTimeUtc: "2026-08-06T18:57:18Z",
+          sources: [],
+          assessment: "OUTSIDE_FROZEN_MAGNITUDE",
+        },
+      ]),
+    ).toThrow("formato esperado");
   });
 });
 
@@ -124,8 +151,8 @@ describe("geografía determinista", () => {
   });
   test("todo destino histórico tiene mapeo", async () => {
     const reports = await loadHistoricalReportRegistry();
-    expect(reports).toHaveLength(9);
-    expect(reports.flatMap((report) => report.points)).toHaveLength(36);
+    expect(reports).toHaveLength(10);
+    expect(reports.flatMap((report) => report.points)).toHaveLength(40);
     for (const report of reports) {
       for (const point of report.points) {
         for (const target of point.targetRegions) {
@@ -173,6 +200,12 @@ describe("geografía determinista", () => {
         (matcher) => matchRegion(matcher, 5.5994, 125.056) === "outside",
       ),
     ).toBe(true);
+  });
+  test("un evento en Colombia no se clasifica como Venezuela", () => {
+    const venezuela = matchersForTarget("Norte de Colombia o Venezuela").find(
+      (matcher) => matcher.key === "venezuela",
+    ) as RegionMatcher;
+    expect(matchRegion(venezuela, 6.1, -73.1)).toBe("outside");
   });
 });
 

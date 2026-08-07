@@ -9,7 +9,7 @@ timezone: America/Lima
 
 ## Objetivo
 
-Evaluar las ocho proyecciones del Reel sin redefinir después qué constituye un acierto. Este análisis verifica esta tanda de afirmaciones, no valida ni refuta por sí solo una teoría general.
+Evaluar las ocho proyecciones del panorama del 20 de julio sin redefinir después qué constituye un acierto. Los mismos criterios se aplican sin cambios a los otros cinco panoramas incorporados retrospectivamente. En total se auditan 44 afirmaciones. Este análisis verifica estas tandas, no valida ni refuta por sí solo una teoría general.
 
 ## Fuentes
 
@@ -34,6 +34,9 @@ Un evento es candidato solamente si cumple simultáneamente:
 ## Geografía
 
 - Para países, departamentos y regiones administrativas se usan sus límites geográficos reconocidos.
+- Los países se comprueban con punto-en-polígono sobre límites Natural Earth distribuidos por World Atlas. Las cajas solo reducen el área consultada en los catálogos.
+- Los departamentos peruanos se comprueban con punto-en-polígono sobre límites INEI simplificados.
+- Un epicentro a menos de 0.25 grados del límite se considera caso de frontera y no cuenta como coincidencia estricta.
 - Expresiones sin límites definidos, como “Perú central”, “norte de Chile”, “islas aledañas” o “zona limítrofe”, no reciben una frontera inventada.
 - Una coincidencia que dependa únicamente de una zona vaga se marca `AMBIGUOUS_GEOGRAPHY`, no acierto estricto.
 - Cada posible destino se evalúa por separado. La combinación posterior de varios destinos se reporta también para mostrar cuánto espacio cubría la predicción.
@@ -59,7 +62,7 @@ Un `STRICT_HIT` no implica capacidad predictiva si la probabilidad base era alta
 
 ## Artefactos
 
-- Fuente congelada: `predictions.csv`
+- Fuentes congeladas: `predictions.csv` y `panorama-reports.json`
 - Resultados acumulados: `audit-results.csv`
 - Evidencia por ejecución: `audit-log.md`
 - Informe final: `final-audit.md`

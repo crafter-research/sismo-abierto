@@ -2,7 +2,7 @@
 
 Fecha de incorporación: 2026-08-02.
 
-Este protocolo se aplica retrospectivamente a los informes 244, 245, 246 y 249 al 254
+Este protocolo se aplica retrospectivamente a los informes 244, 245, 246, 249 al 254 y 256
 transcritos desde capturas aportadas por el usuario. No fue congelado antes de los resultados y
 no debe presentarse como una prueba preinscrita.
 
@@ -25,12 +25,14 @@ backfill no presupone que sean probabilidades calibradas ni los usa para decidir
 
 ## Geografía
 
-- Países y territorios explícitos se aproximan con las regiones documentadas en código.
+- Los países se comprueban con punto-en-polígono sobre límites Natural Earth distribuidos por World Atlas. Las cajas solo reducen el área consultada en los catálogos.
+- Los departamentos peruanos se comprueban con punto-en-polígono sobre límites INEI simplificados.
+- Un epicentro a menos de 0.25 grados del límite se trata como caso de frontera y no cuenta como coincidencia estricta.
 - Frases direccionales como "norte de Perú" o corredores como "Vancouver hasta Baja
   California" no reciben una frontera inventada.
 - Si una parte relevante del destino queda sin límites verificables y no hay una coincidencia
   estricta en la parte explícita, el resultado es `AMBIGUOUS_GEOGRAPHY`, no `NO_MATCH`.
-- Los eventos se deduplican cuando dos regiones aproximadas se superponen.
+- Los eventos se deduplican cuando dos regiones se superponen.
 
 ## Fuentes e interpretación
 

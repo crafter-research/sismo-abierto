@@ -14,6 +14,7 @@
     "test": "bun test packages apps/cli apps/cli-alias content",
     "test:e2e": "bun run build && bun run --cwd apps/web test:e2e",
     "build": "bun run --cwd apps/web build",
+    "audit": "bun packages/audit/src/run.ts",
     "audit:historical": "bun packages/audit/src/run-historical.ts",
     "drift": "bun scripts/check-source-drift.ts"
   },

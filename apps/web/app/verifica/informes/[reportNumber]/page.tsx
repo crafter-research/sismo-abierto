@@ -143,9 +143,9 @@ export default async function HistoricalReportPage({
         <h2 className="font-semibold">Backfill retrospectivo</h2>
         <p className="mt-1 text-gray-900">
           Incorporado el {report.backfilledAt} desde una captura aportada por el
-          usuario, después de que algunas ventanas ya habían cerrado. No tiene
-          el mismo valor probatorio que una afirmación registrada antes del
-          resultado.
+          usuario. Al no haberse congelado en este registro antes de los eventos
+          observados, no tiene el mismo valor probatorio que una afirmación
+          prospectiva.
         </p>
         <p className="mt-2 text-xs text-gray-800">
           Evidencia fuente: captura aportada por el usuario.

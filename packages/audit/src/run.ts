@@ -5,7 +5,7 @@ import {
   BASELINE_BAND_LABELS,
   MATCH_OUTCOME_LABELS,
 } from "./interpretation.ts";
-import { loadPredictionRegistry } from "./registry.ts";
+import { loadPanoramaReportRegistry } from "./panoramas.ts";
 
 const AUDITS_DIR = new URL("../../../data/audits/", import.meta.url).pathname;
 const VERDICTS: PredictionVerdict[] = [
@@ -142,20 +142,25 @@ export function renderFinalAudit(
         : audit.ambiguousRegions.join("; ");
     return `### ${audit.predictionId} · ${MATCH_OUTCOME_LABELS[audit.interpretation.matchOutcome]}\n\n- Veredicto del protocolo congelado: \`${audit.verdict}\`\n- Ventana: ${audit.windowStartLima} a ${audit.windowEndLima}\n- Geografías ambiguas conservadas: ${ambiguousRegions}\n- Control contra azar: ${baseline}\n- Lectura descriptiva: ${BASELINE_BAND_LABELS[audit.interpretation.baselineBand]}.\n- Capacidad predictiva: no establecida.\n\n#### Candidatos (${audit.candidates.length})\n\n${candidates}`;
   });
-  return `# Auditoría final de predicciones sísmicas\n\nCorrida UTC: \`${runAt}\`\n\nEste informe aplica el protocolo congelado antes de conocer los resultados. Las afirmaciones provienen de sismos.en.peru, no del IGP. IGP/CENSIS y USGS se usan como fuentes de comprobación.\n\n## Veredictos del protocolo congelado\n\n| Veredicto | Cantidad |\n| --- | ---: |\n${summaryRows.join("\n")}\n\n## Coincidencias estrictas y tasa base\n\n| Afirmación | Probabilidad base | Lectura descriptiva | Capacidad predictiva |\n| --- | ---: | --- | --- |\n${strictMatchRows.join("\n")}\n\n## Resultados\n\n${results.join("\n\n")}\n\n## Interpretación\n\n\`STRICT_HIT\` es el nombre conservado por el protocolo congelado. La presentación pública usa “Coincidencia estricta” y \`STRICT_MATCH\` para describir una coincidencia, no un éxito predictivo. La probabilidad base se muestra siempre por separado y ninguna coincidencia aislada establece capacidad predictiva.\n`;
+  return `# Auditoría de predicciones sísmicas\n\nCorte UTC: \`${runAt}\`\n\nEste informe aplica el protocolo congelado antes de conocer los resultados. Las afirmaciones provienen de sismos.en.peru, no del IGP. IGP/CENSIS y USGS se usan como fuentes de comprobación. Las ventanas abiertas permanecen pendientes hasta su deadline.\n\n## Veredictos del protocolo congelado\n\n| Veredicto | Cantidad |\n| --- | ---: |\n${summaryRows.join("\n")}\n\n## Coincidencias estrictas y tasa base\n\n| Afirmación | Probabilidad base | Lectura descriptiva | Capacidad predictiva |\n| --- | ---: | --- | --- |\n${strictMatchRows.join("\n")}\n\n## Resultados\n\n${results.join("\n\n")}\n\n## Interpretación\n\n\`STRICT_HIT\` es el nombre conservado por el protocolo congelado. La presentación pública usa “Coincidencia estricta” y \`STRICT_MATCH\` para describir una coincidencia, no un éxito predictivo. La probabilidad base se muestra siempre por separado y ninguna coincidencia aislada establece capacidad predictiva.\n`;
 }
 
 export async function runAudit(nowUtcMs = Date.now()): Promise<void> {
-  const registry = await loadPredictionRegistry();
+  const panoramas = await loadPanoramaReportRegistry();
+  const registry = panoramas.flatMap((report) => report.points);
   const audits = [];
-  for (const prediction of registry) {
-    const audit = await evaluatePrediction(prediction, nowUtcMs);
-    audits.push(audit);
-    console.log(
-      `${audit.predictionId}: ${audit.interpretation.matchOutcome} (${audit.verdict})`,
+  for (let index = 0; index < registry.length; index += 3) {
+    const batch = registry.slice(index, index + 3);
+    const results = await Promise.all(
+      batch.map((prediction) => evaluatePrediction(prediction, nowUtcMs)),
     );
+    for (const audit of results) {
+      audits.push(audit);
+      console.log(
+        `${audit.predictionId}: ${audit.interpretation.matchOutcome} (${audit.verdict})`,
+      );
+    }
   }
-  assertAllWindowsClosed(audits);
 
   const runAt = new Date(nowUtcMs).toISOString();
   await mkdir(AUDITS_DIR, { recursive: true });

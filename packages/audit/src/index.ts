@@ -1,4 +1,5 @@
 export * from "./baseline.ts";
+export * from "./claimed-validations.ts";
 export * from "./evaluator.ts";
 export * from "./geography.ts";
 export * from "./historical-reports.ts";
