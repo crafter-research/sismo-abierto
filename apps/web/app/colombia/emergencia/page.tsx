@@ -242,6 +242,45 @@ export default async function ColombiaEmergencyPage() {
       </section>
 
       <section
+        aria-labelledby="citizen-map-title"
+        className="border border-gray-300 bg-background-200 p-5 sm:p-6"
+      >
+        <p className="font-mono text-[11px] text-gray-800 uppercase tracking-widest">
+          Coordinación ciudadana
+        </p>
+        <h2 id="citizen-map-title" className="mt-1 font-semibold text-2xl">
+          Necesidades reportadas sobre el mapa
+        </h2>
+        <p className="mt-3 max-w-2xl text-gray-900 text-sm">
+          Reporte CO es un proyecto comunitario independiente para recibir y
+          ubicar reportes ciudadanos. Su contenido no forma parte del corte
+          oficial de Sismo Abierto y debe confirmarse antes de tomar decisiones.
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          <a
+            href="https://co.crafter.run"
+            className="inline-flex h-10 items-center bg-gray-1000 px-4 font-medium text-[14px] text-background-100 hover:bg-gray-900"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Abrir mapa ciudadano
+          </a>
+          <a
+            href="https://github.com/crafter-station/reporte-co"
+            className="inline-flex h-10 items-center border border-gray-500 px-4 font-medium text-[14px] hover:border-gray-900 hover:bg-background-100"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Ver código y metodología
+          </a>
+        </div>
+        <p className="mt-3 text-gray-800 text-xs">
+          Para una emergencia inmediata llama al 123. Sismo Abierto no recibe
+          reportes ciudadanos ni reemplaza a las autoridades.
+        </p>
+      </section>
+
+      <section
         aria-labelledby="help-title"
         className="border border-gray-300 bg-background-200 p-5 sm:p-6"
       >

@@ -17,6 +17,21 @@ temporal.
 Sin `DATABASE_URL`, la página conserva el último corte humanitario revisado incluido en el
 repositorio y consulta el evento sísmico en origen. La respuesta marca `storage: fallback`.
 
+## Mapa ciudadano
+
+La página enlaza a [Reporte CO](https://co.crafter.run) como una superficie comunitaria
+independiente para reportar y ubicar necesidades. Sismo Abierto no consume su API, no copia
+sus reportes y no los mezcla con el corte oficial de SGC o UNGRD.
+
+La integración actual comparte únicamente el contexto público del incidente:
+
+- Incidente: `colombia-2026-08-10`
+- Evento sísmico: `sgc-SGC2026pqqmro`
+- Enlace externo rotulado como información ciudadana
+
+Una integración de datos futura requiere un contrato versionado, estados de retractación y
+expiración, procedencia pública y una cadena de moderación verificable.
+
 ## Revisión humanitaria
 
 Las rutas privadas requieren `Authorization: Bearer $INCIDENT_ADMIN_SECRET`.

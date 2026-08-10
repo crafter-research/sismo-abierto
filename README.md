@@ -179,6 +179,9 @@ Trigger.dev sincroniza cada minuto. Un cron de Vercel cada cinco minutos sirve c
 la lectura pública puede autocorregirse si ambos se retrasan. Las consultas al SGC usan caché
 compartida de 60 segundos y coalescing en proceso para evitar ráfagas duplicadas.
 
+La página enlaza a [Reporte CO](https://co.crafter.run) como mapa ciudadano independiente,
+sin ingerir sus reportes ni mezclarlos con los cortes oficiales de SGC y UNGRD.
+
 Variables de producción:
 
 ```text

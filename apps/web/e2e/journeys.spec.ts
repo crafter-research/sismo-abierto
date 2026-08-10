@@ -86,6 +86,13 @@ test.describe("Perú y Colombia", () => {
     await expect(
       page.getByText("Actualización automática cada 60 s"),
     ).toBeVisible();
+    const citizenMap = page.getByRole("link", {
+      name: "Abrir mapa ciudadano",
+    });
+    await expect(citizenMap).toHaveAttribute("href", "https://co.crafter.run");
+    await expect(
+      page.getByText(/no forma parte del corte oficial de Sismo Abierto/),
+    ).toBeVisible();
   });
 
   test("el API de incidentes separa dato automático y corte revisado", async ({
