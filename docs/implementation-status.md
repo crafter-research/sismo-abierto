@@ -1,6 +1,6 @@
 # Implementation status
 
-Última actualización: 2026-08-02 01:12 aprox. (America/Lima). Implementación completa; ver checklist. Este documento separa Evidence, Inference y Unknown, y lleva el checklist de slices.
+Última actualización: 2026-08-10. Implementación completa para Perú y provider experimental de Colombia; ver checklist. Este documento separa Evidence, Inference y Unknown, y lleva el checklist de slices.
 
 ## Evidence (observado en vivo, 2026-07-20/21 UTC)
 
@@ -19,6 +19,7 @@ Todas las observaciones crudas viven en `docs/evidence/live-observations/`.
 | WFS Actividad_volcanica DescribeFeatureType | Confirma el esquema: NINGÚN campo de fecha. El namespace `CTS_alertavolcan` expone solo esa capa | 200 | — | `volcano-describe.json`, `volcano-capabilities.xml` |
 | REGEN DSpace | 2,953 objetos, `dc.title` y `dc.date.issued` presentes | 200 | 1.2s | `regen-sample.json` |
 | USGS FDSN | GeoJSON válido, 32 eventos M4+ el 19 jul | 200 | 3.9s | `usgs-sample.json` |
+| SGC biweekly | FeatureCollection con eventos automáticos/manuales; coordenadas GeoJSON estándar y agencias mixtas | 200 | 1.2s | `sgc-biweekly.json` |
 
 Notas de evidencia:
 
@@ -50,6 +51,7 @@ Notas de evidencia:
 | V3 Catálogo reproducible | DONE | `docs/evidence/v3-v5/catalog-filtered-desktop.png`; URL `?since=2026-07-14&minMagnitude=4` restaura la consulta (16 eventos reales) | La referencia geográfica no existe en el XLSX de CENSIS (columna ausente en la fuente) |
 | V4 API y CLI para eventos | DONE | `docs/evidence/v3-v5/api-explorer-executed.png`, `cli-events-table.txt`; 9 rutas /v1 vivas; OpenAPI 3.1 en `/api/v1/openapi.json`; contract tests con respuestas reales capturadas | — |
 | V5 CLI científico exportable | DONE | `docs/evidence/v3-v5/cli-stations-pga.txt`; GeoJSON con metadatos y CSV de onda con serie completa (39,635 líneas) verificados | `--sort pga` descarga los archivos crudos de las estaciones acc (costo de red alto la primera vez) |
+| VC1 Provider Colombia | DONE, FLAG | `/colombia`, `/colombia/sismos`, API `provider=sgc`, CLI `--provider sgc`, mapa ISO 170 y detalle `sgc-SGC...` | Producción requiere `SISMO_SGC_PROVIDER=true`; estaciones y ondas aún son exclusivas del IGP |
 | V6 Primera lección real | DONE | `docs/evidence/v6-v7/lesson-answered-completed.png`; lección con evento real M5.1 Chupaca, pregunta evaluada y completada | Contenido marcado EXPLICACIÓN pendiente de revisión científica |
 | V7 Laboratorio sísmico | DONE | `docs/evidence/v6-v7/lab-comparison.png`, `aula-progress.png`; SCHYO (9.7 km, PGA 64.77) vs PNEG (166.5 km, PGA 3.76), URL compartible, progreso local 1/4 | — |
 | V8 Registro de afirmaciones | DONE | `docs/evidence/v8-v9/registry.png`; CSV congelado importado sin alterar (sha256 a8cb2aea…), 8 afirmaciones evaluadas | — |
@@ -64,7 +66,7 @@ Notas de evidencia:
 ## Verificación final (2026-08-02)
 
 - `bun run check` → biome + tsc limpios (root y apps/web).
-- `bun run test` → 109 tests, 0 fallos.
+- `bun run test` → 121 tests, 0 fallos y 2 pruebas live omitidas en modo offline.
 - `bun run test:e2e` → 19 journeys Playwright, 0 fallos.
 - `bun run build` → Next.js build en verde.
 - `bun packages/audit/src/run.ts` → 8 veredictos finales y cinco artefactos reproducibles en `data/audits/`.

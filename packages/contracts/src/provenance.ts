@@ -29,12 +29,13 @@ export function officialProvenance(
     sourceUpdatedAt?: string | null;
     freshness?: FreshnessState;
     note?: string;
+    timezone?: string;
   },
 ): Provenance {
   return {
     source,
     fetchedAt,
-    timezone: "America/Lima",
+    timezone: options?.timezone ?? "America/Lima",
     sourceUpdatedAt: options?.sourceUpdatedAt ?? null,
     freshness:
       options?.freshness ??

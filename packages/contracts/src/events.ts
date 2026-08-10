@@ -2,6 +2,10 @@ import type { FieldProvenance, Provenance } from "./provenance.ts";
 
 export interface NormalizedEvent {
   id: string;
+  sourceEventId?: string;
+  agency?: string;
+  reviewStatus?: string;
+  magnitudeType?: string;
   timeUtc: string | null;
   timeLocal: string | null;
   magnitude: number;
@@ -86,6 +90,7 @@ export interface WaveformView {
 }
 
 export interface EventQueryFilters {
+  provider?: EventProviderId;
   since?: string;
   until?: string;
   minMagnitude?: number;
@@ -93,3 +98,7 @@ export interface EventQueryFilters {
   minDepthKm?: number;
   maxDepthKm?: number;
 }
+
+export const EVENT_PROVIDER_IDS = ["igp", "sgc"] as const;
+
+export type EventProviderId = (typeof EVENT_PROVIDER_IDS)[number];

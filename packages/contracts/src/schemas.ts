@@ -18,6 +18,10 @@ export const provenanceSchema = z.object({
 
 export const normalizedEventSchema = z.object({
   id: z.string(),
+  sourceEventId: z.string().optional(),
+  agency: z.string().optional(),
+  reviewStatus: z.string().optional(),
+  magnitudeType: z.string().optional(),
   timeUtc: z.string().nullable(),
   timeLocal: z.string().nullable(),
   magnitude: z.number(),
@@ -155,6 +159,7 @@ export const apiErrorSchema = z.object({
       "SOURCE_SCHEMA_CHANGED",
       "NOT_FOUND",
       "INVALID_INPUT",
+      "PROVIDER_DISABLED",
       "INTERNAL",
     ]),
     message: z.string(),
@@ -170,6 +175,7 @@ export const latestEventResponseSchema = z.object({
 export const eventListResponseSchema = z.object({
   events: z.array(normalizedEventSchema),
   filters: z.object({
+    provider: z.enum(["igp", "sgc"]).optional(),
     since: z.string().nullable(),
     until: z.string().nullable(),
     minMagnitude: z.number().nullable(),

@@ -10,8 +10,10 @@ const cliPath = new URL("../src/main.ts", import.meta.url).pathname;
 
 async function runCli(
   args: string[],
+  env?: Record<string, string>,
 ): Promise<{ stdout: string; stderr: string; code: number }> {
   const proc = Bun.spawn(["bun", cliPath, ...args], {
+    env: { ...process.env, ...env },
     stdout: "pipe",
     stderr: "pipe",
   });
@@ -60,6 +62,33 @@ describe("errores del binario", () => {
     const result = await runCli(["events", "--format", "yaml"]);
     expect(result.code).toBe(2);
     expect(result.stderr).toContain("no soportado");
+  });
+
+  test("provider inválido sale con código 2 sin consultar la red", async () => {
+    const result = await runCli(["latest", "--provider", "otro"]);
+    expect(result.code).toBe(2);
+    expect(result.stderr).toContain("Provider desconocido");
+  });
+
+  test("provider SGC deshabilitado sale como fuente no disponible", async () => {
+    const result = await runCli(["latest", "--provider", "sgc", "--json"], {
+      NODE_ENV: "production",
+      SISMO_SGC_PROVIDER: "false",
+    });
+    expect(result.code).toBe(4);
+    expect(result.stderr).toContain("deshabilitado en producción");
+  });
+
+  test("events acepta --json como alias de --format json", async () => {
+    const result = Bun.spawnSync({
+      cmd: ["bun", "apps/cli/src/main.ts", "events", "--since", "7d", "--json"],
+      cwd: new URL("../../..", import.meta.url).pathname,
+      env: { ...process.env, NO_COLOR: "1" },
+      stdout: "pipe",
+      stderr: "pipe",
+    });
+    expect(result.exitCode).toBe(0);
+    expect(() => JSON.parse(result.stdout.toString())).not.toThrow();
   });
 
   test("help sale con código 0", async () => {

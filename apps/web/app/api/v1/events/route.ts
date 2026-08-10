@@ -1,4 +1,4 @@
-import { buildEventListResponse } from "@sismo/data";
+import { buildEventListResponse, resolveEventProvider } from "@sismo/data";
 import type { NextRequest } from "next/server";
 import { handleApi } from "../../../../lib/api-route";
 
@@ -12,6 +12,7 @@ export async function GET(request: NextRequest) {
   };
   return handleApi(() =>
     buildEventListResponse({
+      provider: resolveEventProvider(params.get("provider") ?? undefined),
       since: params.get("since") ?? undefined,
       until: params.get("until") ?? undefined,
       minMagnitude: numberOrUndefined("minMagnitude"),

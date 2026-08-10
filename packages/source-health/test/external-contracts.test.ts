@@ -51,6 +51,15 @@ describe("linter de contratos externos: respuestas reales pasan", () => {
     expect(result.valid).toBe(true);
   });
 
+  test("SGC biweekly", async () => {
+    const result = checkExternalContract(
+      "sgc-biweekly",
+      await Bun.file(fixture("sgc-biweekly.json")).json(),
+    );
+    expect(result.valid).toBe(true);
+    expect(result.recordCount).toBe(2);
+  });
+
   test("CENSIS XLSX header exacto", async () => {
     const rows = parseXlsxRows(
       new Uint8Array(

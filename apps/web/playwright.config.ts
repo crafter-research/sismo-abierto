@@ -13,7 +13,10 @@ export default defineConfig({
   },
   webServer: {
     command: `bun run start --port ${port}`,
-    env: { SISMO_FUENTES_PUBLIC: "true" },
+    env: {
+      SISMO_FUENTES_PUBLIC: "true",
+      SISMO_SGC_PROVIDER: "true",
+    },
     url: baseURL,
     reuseExistingServer: false,
     timeout: 60_000,

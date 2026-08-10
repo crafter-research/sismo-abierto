@@ -9,7 +9,13 @@ export interface ProbeConfig {
   latencyDegradedMs: number;
   frequencyMinutes: number;
   expectedContentTypes: string[];
-  kind: "geojson-features" | "xlsx" | "aceldat-reports" | "dspace" | "usgs";
+  kind:
+    | "geojson-features"
+    | "xlsx"
+    | "aceldat-reports"
+    | "dspace"
+    | "usgs"
+    | "sgc";
   contract: import("./external-contracts.ts").ExternalContract;
   freshnessKnown: boolean;
 }
@@ -22,8 +28,24 @@ function censisProbeUrl(): string {
   return `https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=${start}&fechaFin=${end}&minimaMagnitud=1.0&maximaMagnitud=9.0&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382`;
 }
 
+function sgcProbeUrl(): string {
+  const end = new Date().toISOString().slice(0, 10);
+  const start = new Date(Date.now() - 86_400_000).toISOString().slice(0, 10);
+  const params = new URLSearchParams({
+    startdate: `${start}T00:00:00`,
+    enddate: `${end}T23:59:59`,
+  });
+  return `https://api.sgc.gov.co/biweekly/biweekly_earthquakes?${params.toString()}`;
+}
+
+export function isSgcSourceEnabled(): boolean {
+  return (
+    process.env.SISMO_SGC_PROVIDER === "true" || process.env.NODE_ENV === "test"
+  );
+}
+
 export function buildProbeConfigs(): ProbeConfig[] {
-  return [
+  const configs: ProbeConfig[] = [
     {
       sourceId: "igp-arcgis-ultimo-sismo",
       contract: "arcgis-latest",
@@ -122,4 +144,19 @@ export function buildProbeConfigs(): ProbeConfig[] {
       freshnessKnown: true,
     },
   ];
+  if (isSgcSourceEnabled()) {
+    configs.push({
+      sourceId: "sgc-sismos",
+      contract: "sgc-biweekly",
+      url: sgcProbeUrl(),
+      method: "GET",
+      timeoutMs: 20_000,
+      latencyDegradedMs: 8_000,
+      frequencyMinutes: 10,
+      expectedContentTypes: ["json"],
+      kind: "sgc",
+      freshnessKnown: false,
+    });
+  }
+  return configs;
 }

@@ -1,4 +1,4 @@
-import type { EventQueryFilters } from "@sismo/contracts";
+import type { EventProviderId, EventQueryFilters } from "@sismo/contracts";
 import { fetchVolcanoes } from "./adapters/volcanoes.ts";
 import {
   getEvent,
@@ -22,28 +22,50 @@ export const LIMITATIONS = {
     "La capa volcánica no publica fecha de actualización por registro; el nivel mostrado es el publicado por la fuente, no una alerta vigente.",
   notOfficial:
     "Proyecto comunitario, no oficial. No es un sistema de alerta ni de predicción.",
+  sgcRevisions:
+    "Los eventos del SGC pueden cambiar al pasar de procesamiento automático a revisión manual.",
+  sgcLicense:
+    "Provider experimental: su publicación permanece deshabilitada en producción hasta confirmar por escrito los términos de reutilización con el SGC.",
 } as const;
 
-export async function buildLatestEventResponse() {
-  const event = await getLatestEvent();
+export async function buildLatestEventResponse(
+  provider: EventProviderId = "igp",
+) {
+  const event = await getLatestEvent(provider);
   return {
     event,
-    limitations: [LIMITATIONS.latest, LIMITATIONS.notOfficial],
+    limitations:
+      provider === "sgc"
+        ? [
+            LIMITATIONS.sgcRevisions,
+            LIMITATIONS.sgcLicense,
+            LIMITATIONS.notOfficial,
+          ]
+        : [LIMITATIONS.latest, LIMITATIONS.notOfficial],
   };
 }
 
 export async function buildEventListResponse(filters: EventQueryFilters) {
   const { events, provenance } = await queryEventCatalog(filters);
+  const provider = filters.provider ?? "igp";
   return {
     events,
     filters: {
+      provider,
       since: filters.since ?? null,
       until: filters.until ?? null,
       minMagnitude: filters.minMagnitude ?? null,
       maxMagnitude: filters.maxMagnitude ?? null,
     },
     provenance,
-    limitations: [LIMITATIONS.censisRange, LIMITATIONS.notOfficial],
+    limitations:
+      provider === "sgc"
+        ? [
+            LIMITATIONS.sgcRevisions,
+            LIMITATIONS.sgcLicense,
+            LIMITATIONS.notOfficial,
+          ]
+        : [LIMITATIONS.censisRange, LIMITATIONS.notOfficial],
   };
 }
 
@@ -51,7 +73,13 @@ export async function buildEventDetailResponse(eventId: string) {
   const event = await getEvent(eventId);
   return {
     event,
-    limitations: [LIMITATIONS.notOfficial],
+    limitations: eventId.startsWith("sgc-")
+      ? [
+          LIMITATIONS.sgcRevisions,
+          LIMITATIONS.sgcLicense,
+          LIMITATIONS.notOfficial,
+        ]
+      : [LIMITATIONS.notOfficial],
   };
 }
 

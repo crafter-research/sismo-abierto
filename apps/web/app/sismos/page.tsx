@@ -1,6 +1,14 @@
-import { buildEventListResponse, summarizeEventActivity } from "@sismo/data";
+import type { EventProviderId } from "@sismo/contracts";
+import {
+  buildEventListResponse,
+  isSgcProviderEnabled,
+  resolveEventProvider,
+  summarizeEventActivity,
+} from "@sismo/data";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ActivitySummary } from "../../components/activity-summary";
+import { AutoRefresh } from "../../components/auto-refresh";
 import { ClassBadge } from "../../components/badges";
 import { CopyLinkButton } from "../../components/copy-link-button";
 import { SourceErrorState } from "../../components/error-state";
@@ -8,15 +16,23 @@ import { GlassRange } from "../../components/glass-range";
 import { GlassSwitch } from "../../components/glass-switch";
 import { GlassToggleGroup } from "../../components/glass-toggle-group";
 import { PeruMap } from "../../components/peru-map";
-import { formatLimaDateTime, formatMagnitude } from "../../lib/format";
+import { ProviderSwitcher } from "../../components/provider-switcher";
+import { formatLocalDateTime, formatMagnitude } from "../../lib/format";
 
-export const dynamic = "force-dynamic";
-
-export const metadata = { title: "Actividad sísmica" };
+export const metadata: Metadata = {
+  title: isSgcProviderEnabled()
+    ? "Catálogo de sismos en Perú y Colombia"
+    : "Catálogo de sismos en Perú",
+  description: isSgcProviderEnabled()
+    ? "Filtra la actividad sísmica oficial de Perú y Colombia por fecha y magnitud con datos trazables del IGP y el SGC."
+    : "Filtra la actividad sísmica oficial de Perú por fecha y magnitud con datos trazables del IGP.",
+  alternates: { canonical: "/peru/sismos" },
+};
 
 type ParamValue = string | string[] | undefined;
 
 interface CatalogSearchParams {
+  provider?: ParamValue;
   range?: ParamValue;
   since?: ParamValue;
   until?: ParamValue;
@@ -68,7 +84,29 @@ export default async function CatalogPage({
 }: {
   searchParams: Promise<CatalogSearchParams>;
 }) {
+  return <CountryCatalogPage searchParams={searchParams} />;
+}
+
+export async function CountryCatalogPage({
+  searchParams,
+  providerOverride,
+}: {
+  searchParams: Promise<CatalogSearchParams>;
+  providerOverride?: EventProviderId;
+}) {
   const params = await searchParams;
+  let provider: EventProviderId;
+  try {
+    provider =
+      providerOverride ?? resolveEventProvider(lastNonEmpty(params.provider));
+  } catch (error) {
+    return (
+      <SourceErrorState
+        error={error}
+        context="El país solicitado no corresponde a una fuente disponible."
+      />
+    );
+  }
   const year = currentLimaYear();
   const rangeParam = lastNonEmpty(params.range);
   const sinceParam = lastNonEmpty(params.since);
@@ -78,19 +116,23 @@ export default async function CatalogPage({
     ? sinceParam
     : undefined;
   const selectedRange =
-    rangeParam ?? legacyRange ?? (sinceParam ? undefined : "ytd");
+    rangeParam ??
+    legacyRange ??
+    (sinceParam ? undefined : provider === "sgc" ? "30d" : "ytd");
   const exactSince = legacyRange ? undefined : sinceParam;
-  const since = selectedRange ?? exactSince ?? "ytd";
+  const since =
+    selectedRange ?? exactSince ?? (provider === "sgc" ? "30d" : "ytd");
   const until = lastNonEmpty(params.until);
   const minMagnitudeParam = lastNonEmpty(params.minMagnitude);
   const maxMagnitudeParam = lastNonEmpty(params.maxMagnitude);
-  const soloOndas = lastNonEmpty(params.ondas) === "1";
+  const soloOndas = provider === "igp" && lastNonEmpty(params.ondas) === "1";
   const minMagnitudeValue = minMagnitudeParam ? Number(minMagnitudeParam) : 1;
   const effectiveSince =
     selectedRange === "ytd"
       ? `${year}-01-01`
       : (selectedRange ?? exactSince ?? `${year}-01-01`);
   const filters = {
+    provider,
     since: effectiveSince,
     until,
     minMagnitude: soloOndas
@@ -117,23 +159,42 @@ export default async function CatalogPage({
         <div>
           <h1 className="text-xl font-bold">Actividad sísmica</h1>
           <p className="text-sm text-gray-900">
-            Resumen y consulta reproducible del catálogo CENSIS. Los filtros
-            viven en la URL para que cualquiera pueda repetir el corte.
+            Consulta reproducible del catálogo oficial del{" "}
+            {provider === "sgc"
+              ? "Servicio Geológico Colombiano"
+              : "IGP/CENSIS"}
+            . Los filtros viven en la URL.
           </p>
         </div>
         <CopyLinkButton />
       </header>
 
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <ProviderSwitcher
+          active={provider}
+          surface="catalog"
+          sgcEnabled={isSgcProviderEnabled()}
+        />
+        <AutoRefresh />
+      </div>
+
       <form
         method="get"
         className="grid gap-x-4 gap-y-3 rounded-lg border border-gray-200 p-4 sm:grid-cols-2 lg:grid-cols-[minmax(320px,auto)_minmax(0,1fr)_minmax(0,1fr)_auto_auto]"
       >
+        <input type="hidden" name="provider" value={provider} />
         <div className="flex w-full flex-col gap-1 text-sm">
           <span className="text-gray-900">Rango</span>
           <GlassToggleGroup
             name="range"
             legend="Rango de fechas del catálogo"
-            options={RANGE_PRESETS}
+            options={
+              provider === "sgc"
+                ? RANGE_PRESETS.filter((preset) =>
+                    ["7d", "30d"].includes(preset.value),
+                  )
+                : RANGE_PRESETS
+            }
             defaultValue={presetValue}
             clearInputNames={["since", "until"]}
           />
@@ -156,13 +217,19 @@ export default async function CatalogPage({
           defaultValue={maxMagnitudeParam ? Number(maxMagnitudeParam) : 9}
           prefix="M ≤ "
         />
-        <div className="flex flex-col justify-end gap-2 pb-1">
-          <GlassSwitch
-            name="ondas"
-            label="Solo con ondas"
-            defaultChecked={soloOndas}
-          />
-        </div>
+        {provider === "igp" ? (
+          <div className="flex flex-col justify-end gap-2 pb-1">
+            <GlassSwitch
+              name="ondas"
+              label="Solo con ondas"
+              defaultChecked={soloOndas}
+            />
+          </div>
+        ) : (
+          <div className="flex items-end pb-1 text-gray-800 text-xs">
+            Catálogo y detalle, sin formas de onda en esta fase.
+          </div>
+        )}
         <div className="flex items-end">
           <button
             type="submit"
@@ -219,12 +286,12 @@ export default async function CatalogPage({
                   data-testid="catalog-table"
                 >
                   <caption className="sr-only">
-                    Eventos del catálogo CENSIS con filtros aplicados
+                    Eventos del catálogo oficial con filtros aplicados
                   </caption>
                   <thead>
                     <tr className="border-b border-gray-300 text-left text-xs uppercase text-gray-800">
                       <th scope="col" className="py-1.5 pr-2">
-                        Fecha y hora (Lima)
+                        Fecha y hora ({provider === "sgc" ? "Bogotá" : "Lima"})
                       </th>
                       <th scope="col" className="py-1.5 pr-2">
                         Magnitud
@@ -244,7 +311,10 @@ export default async function CatalogPage({
                     {result.events.map((event) => (
                       <tr key={event.id} className="border-b border-gray-100">
                         <td className="py-1.5 pr-2 font-mono text-xs">
-                          {formatLimaDateTime(event.timeLocal)}
+                          {formatLocalDateTime(
+                            event.timeLocal,
+                            event.provenance.timezone,
+                          )}
                         </td>
                         <td className="py-1.5 pr-2 font-mono">
                           {formatMagnitude(event.magnitude)}
@@ -271,6 +341,7 @@ export default async function CatalogPage({
             </section>
             <aside>
               <PeruMap
+                country={provider === "sgc" ? "colombia" : "peru"}
                 title={`Mapa de ${result.events.length} eventos filtrados`}
                 markers={result.events.slice(0, 120).map((event) => ({
                   longitude: event.longitude,
@@ -287,7 +358,7 @@ export default async function CatalogPage({
       ) : (
         <SourceErrorState
           error={loadError}
-          context="No pudimos consultar el catálogo CENSIS con estos filtros."
+          context={`No pudimos consultar el catálogo oficial de ${provider === "sgc" ? "Colombia" : "Perú"} con estos filtros.`}
         />
       )}
     </div>

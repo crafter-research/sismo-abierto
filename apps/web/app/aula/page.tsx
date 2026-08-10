@@ -1,9 +1,15 @@
 import { LESSONS } from "@sismo/aula-content";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ClassBadge } from "../../components/badges";
 import { AulaProgress } from "../../components/knowledge-check";
 
-export const metadata = { title: "Aula Sísmica" };
+export const metadata: Metadata = {
+  title: "Aula sísmica",
+  description:
+    "Aprende magnitud, intensidad, profundidad, aceleración y alerta temprana con lecciones construidas sobre eventos sísmicos reales.",
+  alternates: { canonical: "/aula" },
+};
 
 export default function AulaPage() {
   return (

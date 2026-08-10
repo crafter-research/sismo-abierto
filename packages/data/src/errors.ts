@@ -5,6 +5,8 @@ export type SourceErrorKind =
   | "content_type"
   | "schema"
   | "empty"
+  | "invalid"
+  | "disabled"
   | "not_found";
 
 export class SourceError extends Error {

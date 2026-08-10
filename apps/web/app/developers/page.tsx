@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata = { title: "Developers" };
+export const metadata: Metadata = {
+  title: "API y CLI de sismos para Perú y Colombia",
+  description:
+    "Integra datos sísmicos oficiales del IGP y el SGC mediante API OpenAPI 3.1, CLI, JSON, GeoJSON y CSV con procedencia trazable.",
+  alternates: { canonical: "/developers" },
+};
 
 const RESOURCES = [
   {
@@ -30,7 +36,7 @@ export default function DevelopersPage() {
         <h1 className="text-xl font-bold">Developers</h1>
         <p className="text-sm text-gray-900">
           API, CLI y Estado de Fuentes sobre el mismo núcleo normalizado con
-          procedencia.
+          procedencia para Perú y Colombia.
         </p>
       </header>
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -87,6 +93,8 @@ export default function DevelopersPage() {
         <pre className="mt-2 overflow-x-auto rounded-md border border-gray-300 bg-background-200 p-3 font-mono text-[13px] text-gray-1000">
           {`bunx sismo latest
 bunx sismo events --since 7d --min-magnitude 4 --format geojson
+SISMO_SGC_PROVIDER=true bunx sismo latest --provider sgc
+SISMO_SGC_PROVIDER=true bunx sismo events --provider sgc --since 7d --format json
 bunx sismo inspect EVENT_ID
 bunx sismo stations EVENT_ID --sort pga
 bunx sismo waveform EVENT_ID STATION_ID --format csv
@@ -108,10 +116,12 @@ bunx sismo schema COMMAND`}
         </h2>
         <p className="text-sm text-gray-900">
           Cada fuente ofrece un SVG cacheable con el estado observado por
-          nuestro consumidor. No representa el estado interno del IGP.
+          nuestro consumidor. No representa el estado interno del IGP ni del
+          SGC.
         </p>
         <pre className="mt-2 overflow-x-auto rounded-md border border-gray-300 bg-background-200 p-3 font-mono text-[13px] text-gray-1000">
-          {`/api/v1/sources/igp-aceldat/badge.svg`}
+          {`/api/v1/sources/igp-aceldat/badge.svg
+/api/v1/sources/sgc-sismos/badge.svg`}
         </pre>
       </section>
 

@@ -5,7 +5,7 @@
   "bin": {
     "sismo": "./dist/sismo.js"
   },
-  "description": "Datos sísmicos y volcánicos públicos del Perú (IGP) desde terminal, con procedencia trazable. Agent-first: --json, exit codes estables, sismo skill.",
+  "description": "Datos sísmicos públicos de Perú (IGP) y Colombia (SGC) desde terminal, con procedencia trazable, JSON, GeoJSON y exit codes estables.",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -15,9 +15,11 @@
   "homepage": "https://sismo.crafter.run/developers",
   "keywords": [
     "peru",
+    "colombia",
     "sismos",
     "earthquakes",
     "igp",
+    "sgc",
     "cli",
     "agent-first",
     "open-data"

@@ -125,6 +125,10 @@ export function getDepartment(name: string): GeoFeature | null {
   return departmentByName.get(name) ?? null;
 }
 
+export function getCountry(id: string): GeoFeature | null {
+  return countryById.get(id.padStart(3, "0")) ?? null;
+}
+
 export type PointClassification = "inside" | "boundary" | "outside";
 
 export function classifyDepartmentPoint(

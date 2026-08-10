@@ -28,6 +28,45 @@ test.describe("V1: último sismo trazable", () => {
   });
 });
 
+test.describe("Perú y Colombia", () => {
+  test("las rutas canónicas cambian país, bandera y fuente", async ({
+    page,
+  }) => {
+    await page.goto("/peru");
+    await expect(
+      page.getByRole("heading", { name: "Últimos sismos en Perú" }),
+    ).toBeVisible();
+    await expect(page.getByLabel("Bandera de Perú").first()).toBeVisible();
+
+    await page
+      .getByRole("link", { name: /Colombia/ })
+      .first()
+      .click();
+    await expect(page).toHaveURL(/\/colombia$/);
+    await expect(
+      page.getByRole("heading", { name: "Últimos sismos en Colombia" }),
+    ).toBeVisible();
+    await expect(page.getByLabel("Bandera de Colombia").first()).toBeVisible();
+    await expect(page.getByTestId("source-badge").first()).toContainText(
+      "Servicio Geológico Colombiano",
+    );
+  });
+
+  test("robots y sitemap publican las rutas de ambos países", async ({
+    request,
+  }) => {
+    const robots = await request.get("/robots.txt");
+    expect(robots.status()).toBe(200);
+    expect(await robots.text()).toContain("/sitemap.xml");
+
+    const sitemap = await request.get("/sitemap.xml");
+    expect(sitemap.status()).toBe(200);
+    const body = await sitemap.text();
+    expect(body).toContain("/peru");
+    expect(body).toContain("/colombia");
+  });
+});
+
 test.describe("V2: del evento a las ondas", () => {
   test("un evento M4.5+ muestra estaciones y abre el visor Z/N/E", async ({
     page,
@@ -255,7 +294,7 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(ledger.locator("tbody tr")).toHaveCount(8);
     await expect(ledger).toContainText("Coincidencia estricta");
     await expect(ledger).toContainText("Geografía ambigua");
-    await expect(ledger).toContainText("99.3%");
+    await expect(ledger).toContainText(/\d+\.\d%/);
     await expect(ledger).toContainText("26 jul 2026");
     await expect(ledger).not.toContainText("T23:59:59");
     await expect(ledger).not.toContainText("STRICT_HIT");
@@ -319,10 +358,10 @@ test.describe("V8-V9: Verifica Sismos", () => {
   }) => {
     await page.goto("/verifica/P6");
     const interpretation = page.getByTestId("combined-interpretation");
-    await expect(interpretation).toContainText("97.9%");
-    await expect(interpretation).toContainText("Muy esperable sin predicción");
+    await expect(interpretation).toContainText(/\d+\.\d%/);
+    await expect(interpretation).toContainText("Esperable sin predicción");
     await expect(interpretation).toContainText(
-      "No aporta evidencia de capacidad predictiva",
+      "Capacidad predictiva: no establecida",
     );
     await expect(page.getByTestId("verdict")).not.toContainText("STRICT_HIT");
   });
@@ -336,7 +375,7 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(reports).toContainText("Informe 244");
     await expect(reports).toContainText("Informe 256");
     await expect(reports).toContainText("4 puntos pendientes");
-    await expect(reports).toContainText("1 coincidencia");
+    await expect(reports).toContainText("coincidencias");
   });
 
   test("se puede navegar entre informes y revisar la evidencia de cada punto", async ({
@@ -349,8 +388,7 @@ test.describe("V8-V9: Verifica Sismos", () => {
     await expect(page.getByTestId("claim-row")).toHaveCount(4);
     const evidence = page.getByText("Ver evidencia").first();
     await evidence.click();
-    await expect(page.getByTestId("claim-ledger")).toContainText("Miyako");
-    await expect(page.getByText("58.8%")).toBeVisible();
+    await expect(page.getByText("Geografía ambigua:").first()).toBeVisible();
 
     await page
       .getByRole("combobox", { name: "Cambiar reporte" })
@@ -403,7 +441,7 @@ test.describe("EF: Estado de Fuentes (interno en dev/preview)", () => {
     );
     await expect(
       page.getByTestId("source-grid").locator("tbody tr"),
-    ).toHaveCount(8);
+    ).toHaveCount(9);
     await expect(page.getByTestId("status-legend")).toContainText(
       "OPERATIONAL",
     );

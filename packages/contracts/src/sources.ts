@@ -41,6 +41,11 @@ export const SOURCES = {
     name: "USGS · FDSN Event API (contraste global)",
     url: "https://earthquake.usgs.gov/fdsnws/event/1/",
   },
+  "sgc-sismos": {
+    id: "sgc-sismos",
+    name: "SGC · Servicio Geológico Colombiano · Sismos",
+    url: "https://www.sgc.gov.co/sismos",
+  },
 } as const satisfies Record<string, SourceRef>;
 
 export type SourceId = keyof typeof SOURCES;

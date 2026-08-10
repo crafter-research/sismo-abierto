@@ -32,8 +32,17 @@ const ENDPOINTS: EndpointSpec[] = [
     path: "/v1/events/latest",
     summary: "Último sismo oficial",
     description:
-      "Último evento publicado por el IGP (ArcGIS, con fallback WFS), normalizado con procedencia y frescura.",
-    parameters: [],
+      "Último evento publicado por el proveedor oficial seleccionado, normalizado con procedencia y frescura. SGC es experimental y puede estar deshabilitado por política de reutilización.",
+    parameters: [
+      {
+        name: "provider",
+        in: "query",
+        required: false,
+        description:
+          "Proveedor oficial: igp (por defecto) o sgc. SGC requiere SISMO_SGC_PROVIDER=true.",
+        schema: { type: "string" },
+      },
+    ],
     responseSchema: latestEventResponseSchema,
     responseName: "LatestEventResponse",
   },
@@ -41,8 +50,16 @@ const ENDPOINTS: EndpointSpec[] = [
     path: "/v1/events",
     summary: "Catálogo de eventos",
     description:
-      "Catálogo CENSIS filtrable por fecha y magnitud. La consulta se hace en origen; no se redistribuye el dataset.",
+      "Catálogo oficial filtrable por proveedor, fecha y magnitud. La consulta se hace en origen; no se redistribuye el dataset. SGC es experimental y puede estar deshabilitado por política de reutilización.",
     parameters: [
+      {
+        name: "provider",
+        in: "query",
+        required: false,
+        description:
+          "Proveedor oficial: igp (por defecto) o sgc. SGC requiere SISMO_SGC_PROVIDER=true.",
+        schema: { type: "string" },
+      },
       {
         name: "since",
         in: "query",
@@ -262,7 +279,7 @@ export function buildOpenApiDocument(): Record<string, unknown> {
       title: "Sismo Abierto API",
       version: "0.1.0",
       description:
-        "API comunitaria sobre datos públicos del IGP. Proyecto comunitario, no oficial. Fuente de datos: Instituto Geofísico del Perú. No es un sistema de alerta ni de predicción.",
+        "API comunitaria sobre datos sísmicos públicos del IGP y, cuando está habilitado, del Servicio Geológico Colombiano. Proyecto comunitario, no oficial. No es un sistema de alerta ni de predicción.",
     },
     servers: [{ url: "/api" }],
     paths,

@@ -4,12 +4,18 @@ import {
   isPublicSourcesPageEnabled,
   runSourceChecks,
 } from "@sismo/source-health";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { statusChip } from "../../lib/status-ui";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "Estado de Fuentes" };
+export const metadata: Metadata = {
+  title: "Estado de fuentes sísmicas",
+  description:
+    "Estado observado, latencia, contrato y evidencia de las fuentes sísmicas públicas del IGP, SGC y USGS.",
+  alternates: { canonical: "/fuentes" },
+};
 
 export default async function SourcesPage() {
   if (!isPublicSourcesPageEnabled()) {
@@ -19,7 +25,7 @@ export default async function SourcesPage() {
         <p className="mt-2">
           Esta vista pública todavía no está activada. El monitor opera
           internamente para proteger al resto del ecosistema; su publicación
-          requiere revisión institucional del lenguaje con el IGP.
+          requiere revisión institucional del lenguaje con las fuentes.
         </p>
       </div>
     );

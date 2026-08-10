@@ -37,4 +37,4 @@ export function deriveConsumerStatus(
 }
 
 export const SOURCE_HEALTH_DISCLAIMER =
-  "Describe lo observado por el consumidor de este proyecto sobre fuentes públicas. No representa el estado interno ni una alerta del IGP.";
+  "Describe lo observado por el consumidor de este proyecto sobre fuentes públicas. No representa el estado interno ni una alerta del IGP, el SGC u otra institución.";

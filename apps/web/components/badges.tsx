@@ -47,7 +47,7 @@ export function SourceBadge({ provenance }: { provenance: Provenance }) {
       <p>
         Consultado:{" "}
         <span className="font-mono">
-          {formatFetchedAt(provenance.fetchedAt)}
+          {formatFetchedAt(provenance.fetchedAt, provenance.timezone)}
         </span>
         {" · "}
         {FRESHNESS_LABELS[provenance.freshness]}

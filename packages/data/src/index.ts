@@ -3,6 +3,7 @@ export * from "./adapters/censis.ts";
 export * from "./adapters/instrumental.ts";
 export * from "./adapters/latest.ts";
 export * from "./adapters/regen.ts";
+export * from "./adapters/sgc.ts";
 export * from "./adapters/usgs.ts";
 export * from "./adapters/volcanoes.ts";
 export * from "./cache.ts";

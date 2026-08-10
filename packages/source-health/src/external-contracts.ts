@@ -8,6 +8,7 @@ export type ExternalContract =
   | "aceldat-reports"
   | "dspace"
   | "usgs"
+  | "sgc-biweekly"
   | "censis-xlsx";
 
 export interface ContractCheckResult {
@@ -111,6 +112,33 @@ const usgsSchema = z.object({
   ),
 });
 
+const sgcBiweeklySchema = z.object({
+  type: z.literal("FeatureCollection"),
+  metadata: z.object({ count: z.number() }),
+  features: z.array(
+    z.object({
+      id: z.string(),
+      type: z.literal("Feature"),
+      properties: z.object({
+        status: z.string(),
+        type: z.string(),
+        magType: z.string(),
+        agency: z.string(),
+        utcTime: z.string(),
+        localTime: z.string(),
+        place: z.string(),
+        mag: z.number(),
+        mmi: z.number().nullable(),
+        depth: z.number(),
+      }),
+      geometry: z.object({
+        type: z.literal("Point"),
+        coordinates: z.array(z.number()).length(3),
+      }),
+    }),
+  ),
+});
+
 export const CENSIS_EXPECTED_HEADER = [
   "fecha UTC",
   "hora UTC",
@@ -176,6 +204,15 @@ const CONTRACTS: Record<
   },
   usgs: {
     schema: usgsSchema,
+    countRecords: (payload) => {
+      const features = (payload as { features?: unknown[] })?.features;
+      return Array.isArray(features) ? features.length : null;
+    },
+    knownKeys: null,
+    sampleKeys: () => null,
+  },
+  "sgc-biweekly": {
+    schema: sgcBiweeklySchema,
     countRecords: (payload) => {
       const features = (payload as { features?: unknown[] })?.features;
       return Array.isArray(features) ? features.length : null;

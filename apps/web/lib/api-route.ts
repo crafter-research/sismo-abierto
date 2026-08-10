@@ -3,12 +3,14 @@ import { NextResponse } from "next/server";
 
 const KIND_TO_STATUS: Record<string, { http: number; code: string }> = {
   not_found: { http: 404, code: "NOT_FOUND" },
+  disabled: { http: 503, code: "PROVIDER_DISABLED" },
   timeout: { http: 502, code: "SOURCE_UNAVAILABLE" },
   network: { http: 502, code: "SOURCE_UNAVAILABLE" },
   http: { http: 502, code: "SOURCE_UNAVAILABLE" },
   empty: { http: 502, code: "SOURCE_UNAVAILABLE" },
   content_type: { http: 502, code: "SOURCE_SCHEMA_CHANGED" },
   schema: { http: 502, code: "SOURCE_SCHEMA_CHANGED" },
+  invalid: { http: 400, code: "INVALID_INPUT" },
 };
 
 export function apiError(error: unknown): NextResponse {

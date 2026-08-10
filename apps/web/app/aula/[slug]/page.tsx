@@ -1,12 +1,34 @@
-import { getLesson } from "@sismo/aula-content";
+import { getLesson, LESSONS } from "@sismo/aula-content";
 import { fetchAceldatReports, utcIsoToLimaIso } from "@sismo/data";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ClassBadge } from "../../../components/badges";
 import { SourceErrorState } from "../../../components/error-state";
 import { KnowledgeCheck } from "../../../components/knowledge-check";
 import { formatLimaDateTime } from "../../../lib/format";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export function generateStaticParams() {
+  return LESSONS.map((lesson) => ({ slug: lesson.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const lesson = getLesson(slug);
+  if (!lesson) {
+    return { title: "Lección no encontrada", robots: { index: false } };
+  }
+  return {
+    title: lesson.title,
+    description: lesson.summary,
+    alternates: { canonical: `/aula/${lesson.slug}` },
+  };
+}
 
 export default async function LessonPage({
   params,

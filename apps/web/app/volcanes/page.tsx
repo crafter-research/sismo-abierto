@@ -1,4 +1,5 @@
 import { buildVolcanoListResponse } from "@sismo/data";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SourceBadge } from "../../components/badges";
 import { SourceErrorState } from "../../components/error-state";
@@ -7,7 +8,12 @@ import { levelChip } from "../../lib/volcano-ui";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "Volcanes Abiertos" };
+export const metadata: Metadata = {
+  title: "Volcanes activos del Perú",
+  description:
+    "Consulta los niveles y la actividad publicada de 16 volcanes del Perú con datos oficiales del IGP y frescura explícita.",
+  alternates: { canonical: "/volcanes" },
+};
 
 export default async function VolcanoesPage() {
   let result: Awaited<ReturnType<typeof buildVolcanoListResponse>> | null =

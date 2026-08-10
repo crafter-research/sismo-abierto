@@ -1,4 +1,9 @@
-import { departamentos, type GeoFeature, provincias } from "@sismo/geo";
+import {
+  departamentos,
+  type GeoFeature,
+  getCountry,
+  provincias,
+} from "@sismo/geo";
 
 interface Bounds {
   minLon: number;
@@ -7,11 +12,21 @@ interface Bounds {
   maxLat: number;
 }
 
-const BASE_BOUNDS: Bounds = {
-  minLon: -81.6,
-  maxLon: -68.4,
-  minLat: -18.6,
-  maxLat: 0.3,
+type MapCountry = "peru" | "colombia";
+
+const BASE_BOUNDS: Record<MapCountry, Bounds> = {
+  peru: {
+    minLon: -81.6,
+    maxLon: -68.4,
+    minLat: -18.6,
+    maxLat: 0.3,
+  },
+  colombia: {
+    minLon: -79.3,
+    maxLon: -66.7,
+    minLat: -4.4,
+    maxLat: 13.8,
+  },
 };
 const MAX_EXTENSION_DEG = 3;
 const MARKER_PADDING_DEG = 0.6;
@@ -81,12 +96,18 @@ const pathCache = new Map<
   }
 >();
 
-function pathsFor(bounds: Bounds, height: number) {
-  const key = `${bounds.minLon},${bounds.maxLon},${bounds.minLat},${bounds.maxLat}`;
+function pathsFor(bounds: Bounds, height: number, country: MapCountry) {
+  const key = `${country}:${bounds.minLon},${bounds.maxLon},${bounds.minLat},${bounds.maxLat}`;
   const cached = pathCache.get(key);
   if (cached) return cached;
+  const countryFeatures =
+    country === "colombia"
+      ? [getCountry("170")].filter(
+          (feature): feature is GeoFeature => feature !== null,
+        )
+      : departamentos.features;
   const built = {
-    departments: departamentos.features.map((feature) => ({
+    departments: countryFeatures.map((feature) => ({
       name: feature.properties.name,
       d: featureToPath(bounds, height, feature),
     })),
@@ -100,35 +121,36 @@ function pathsFor(bounds: Bounds, height: number) {
   return built;
 }
 
-function boundsForMarkers(markers: MapMarker[]): Bounds {
-  const bounds = { ...BASE_BOUNDS };
+function boundsForMarkers(markers: MapMarker[], country: MapCountry): Bounds {
+  const baseBounds = BASE_BOUNDS[country];
+  const bounds = { ...baseBounds };
   for (const marker of markers) {
     bounds.minLon = Math.min(
       bounds.minLon,
       Math.max(
         marker.longitude - MARKER_PADDING_DEG,
-        BASE_BOUNDS.minLon - MAX_EXTENSION_DEG,
+        baseBounds.minLon - MAX_EXTENSION_DEG,
       ),
     );
     bounds.maxLon = Math.max(
       bounds.maxLon,
       Math.min(
         marker.longitude + MARKER_PADDING_DEG,
-        BASE_BOUNDS.maxLon + MAX_EXTENSION_DEG,
+        baseBounds.maxLon + MAX_EXTENSION_DEG,
       ),
     );
     bounds.minLat = Math.min(
       bounds.minLat,
       Math.max(
         marker.latitude - MARKER_PADDING_DEG,
-        BASE_BOUNDS.minLat - MAX_EXTENSION_DEG,
+        baseBounds.minLat - MAX_EXTENSION_DEG,
       ),
     );
     bounds.maxLat = Math.max(
       bounds.maxLat,
       Math.min(
         marker.latitude + MARKER_PADDING_DEG,
-        BASE_BOUNDS.maxLat + MAX_EXTENSION_DEG,
+        baseBounds.maxLat + MAX_EXTENSION_DEG,
       ),
     );
   }
@@ -303,19 +325,22 @@ export function PeruMap({
   descriptionId,
   showProvinces = false,
   className,
+  country = "peru",
 }: {
   markers: MapMarker[];
   title: string;
   descriptionId?: string;
   showProvinces?: boolean;
   className?: string;
+  country?: MapCountry;
 }) {
-  const bounds = boundsForMarkers(markers);
+  const bounds = boundsForMarkers(markers, country);
   const height = heightFor(bounds);
-  const paths = pathsFor(bounds, height);
+  const paths = pathsFor(bounds, height, country);
+  const canShowProvinces = showProvinces && country === "peru";
 
   return (
-    <figure data-testid="peru-map" className={className}>
+    <figure data-testid={`${country}-map`} className={className}>
       <svg
         viewBox={`0 0 ${WIDTH} ${height}`}
         role="img"
@@ -323,7 +348,7 @@ export function PeruMap({
         aria-describedby={descriptionId}
         className="h-auto max-h-full w-full"
       >
-        {showProvinces
+        {canShowProvinces
           ? paths.provinces.map((province) => (
               <path
                 key={province.name}
@@ -340,7 +365,7 @@ export function PeruMap({
           <path
             key={department.name}
             d={department.d}
-            fill={showProvinces ? "none" : "var(--color-map-land)"}
+            fill={canShowProvinces ? "none" : "var(--color-map-land)"}
             stroke="var(--color-map-border)"
             strokeWidth="1"
             strokeLinejoin="round"
@@ -397,7 +422,10 @@ export function PeruMap({
         })}
       </svg>
       <figcaption className="mt-1 font-mono text-[10px] text-gray-900">
-        Límites INEI simplificados · coordenadas oficiales de la fuente
+        {country === "peru"
+          ? "Límites INEI simplificados"
+          : "Contorno Natural Earth simplificado"}{" "}
+        · coordenadas oficiales de la fuente
       </figcaption>
     </figure>
   );

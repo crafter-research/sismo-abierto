@@ -13,6 +13,7 @@ import {
   fetchAceldatReports,
   isSourceError,
   parseRanEventId,
+  resolveEventProvider,
   waveformFileUrl,
 } from "@sismo/data";
 import {
@@ -35,11 +36,11 @@ import {
   withSpinner,
 } from "./ux.ts";
 
-const HELP = `sismo — datos sísmicos y volcánicos públicos del IGP, con procedencia
+const HELP = `sismo — datos sísmicos oficiales de Perú y Colombia, con procedencia
 
 Uso:
-  sismo latest [--json] [--open]
-  sismo events [--since 7d] [--until YYYY-MM-DD] [--min-magnitude N] [--max-magnitude N] [--format table|json|geojson|csv] [--output archivo]
+  sismo latest [--provider igp|sgc] [--json] [--open]
+  sismo events [--provider igp|sgc] [--since 7d] [--until YYYY-MM-DD] [--min-magnitude N] [--max-magnitude N] [--format table|json|geojson|csv] [--output archivo]
   sismo inspect EVENT_ID [--json] [--open]
   sismo stations EVENT_ID [--sort distance|pga] [--json]
   sismo waveform EVENT_ID STATION_ID [--format csv|json] [--output archivo] [--open]
@@ -53,7 +54,7 @@ Uso:
 --open abre la fuente oficial (provenance) en el navegador.
 Sin TTY o con --json la salida es máquina pura: sin colores ni spinners.
 
-Proyecto comunitario. Fuente de datos: IGP. No es un sistema de alerta ni de predicción.`;
+Proyecto comunitario. Fuentes: IGP y SGC. No es un sistema de alerta ni de predicción.`;
 
 function eventRow(event: NormalizedEvent): string[] {
   return [
@@ -104,10 +105,11 @@ async function writeOutput(content: string, args: ParsedArgs): Promise<void> {
 }
 
 async function commandLatest(args: ParsedArgs): Promise<void> {
+  const provider = resolveEventProvider(stringFlag(args, "provider"));
   const response = await withSpinner(
     args,
-    "Consultando último sismo oficial",
-    () => buildLatestEventResponse(),
+    `Consultando último sismo oficial (${provider.toUpperCase()})`,
+    () => buildLatestEventResponse(provider),
   );
   await maybeOpen(args, response.event.provenance.source.url);
   if (args.flags.get("json")) {
@@ -133,14 +135,21 @@ async function commandLatest(args: ParsedArgs): Promise<void> {
 }
 
 async function commandEvents(args: ParsedArgs): Promise<void> {
-  const format = stringFlag(args, "format") ?? "table";
-  const response = await withSpinner(args, "Consultando catálogo CENSIS", () =>
-    buildEventListResponse({
-      since: stringFlag(args, "since"),
-      until: stringFlag(args, "until"),
-      minMagnitude: numberFlag(args, "min-magnitude"),
-      maxMagnitude: numberFlag(args, "max-magnitude"),
-    }),
+  const format = args.flags.get("json")
+    ? "json"
+    : (stringFlag(args, "format") ?? "table");
+  const provider = resolveEventProvider(stringFlag(args, "provider"));
+  const response = await withSpinner(
+    args,
+    `Consultando catálogo oficial (${provider.toUpperCase()})`,
+    () =>
+      buildEventListResponse({
+        provider,
+        since: stringFlag(args, "since"),
+        until: stringFlag(args, "until"),
+        minMagnitude: numberFlag(args, "min-magnitude"),
+        maxMagnitude: numberFlag(args, "max-magnitude"),
+      }),
   );
   const metadata = {
     source: response.provenance.source.name,
@@ -646,6 +655,7 @@ async function main(): Promise<number> {
     }
     if (isSourceError(error)) {
       console.error(error.message);
+      if (error.kind === "invalid") return EXIT_CODES.invalidInput;
       return error.kind === "not_found"
         ? EXIT_CODES.notFound
         : EXIT_CODES.sourceUnavailable;

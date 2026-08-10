@@ -1,14 +1,47 @@
 import type { EventStation } from "@sismo/contracts";
-import { getEvent, isSourceError, listEventStations } from "@sismo/data";
+import {
+  eventProviderFromId,
+  eventProviderHasStations,
+  getEvent,
+  isSourceError,
+  listEventStations,
+} from "@sismo/data";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ClassBadge, SourceBadge } from "../../../components/badges";
 import { CopyLinkButton } from "../../../components/copy-link-button";
 import { SourceErrorState } from "../../../components/error-state";
 import { GlassQr } from "../../../components/glass-qr";
 import { type MapMarker, PeruMap } from "../../../components/peru-map";
-import { formatLimaDateTime, formatMagnitude } from "../../../lib/format";
+import { formatLocalDateTime, formatMagnitude } from "../../../lib/format";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ eventId: string }>;
+}): Promise<Metadata> {
+  const { eventId } = await params;
+  try {
+    const event = await getEvent(eventId);
+    const country = eventId.startsWith("sgc-") ? "Colombia" : "Perú";
+    const location = event.reference ?? country;
+    const title = `Sismo M ${event.magnitude.toFixed(1)} en ${location}`;
+    const description = `Detalle del sismo de magnitud ${event.magnitude.toFixed(1)} en ${location}: profundidad ${event.depthKm} km, coordenadas, hora oficial y procedencia.`;
+    return {
+      title,
+      description,
+      alternates: { canonical: `/sismos/${eventId}` },
+      openGraph: { title, description, url: `/sismos/${eventId}` },
+    };
+  } catch {
+    return {
+      title: "Detalle de sismo",
+      robots: { index: false, follow: true },
+    };
+  }
+}
 
 export default async function EventDetailPage({
   params,
@@ -16,6 +49,7 @@ export default async function EventDetailPage({
   params: Promise<{ eventId: string }>;
 }) {
   const { eventId } = await params;
+  const provider = eventProviderFromId(eventId);
 
   let event: Awaited<ReturnType<typeof getEvent>> | null = null;
   let eventError: unknown = null;
@@ -42,11 +76,13 @@ export default async function EventDetailPage({
 
   let stations: EventStation[] = [];
   let stationsError: unknown = null;
-  try {
-    const result = await listEventStations(eventId);
-    stations = result.stations;
-  } catch (error) {
-    stationsError = error;
+  if (eventProviderHasStations(provider)) {
+    try {
+      const result = await listEventStations(eventId);
+      stations = result.stations;
+    } catch (error) {
+      stationsError = error;
+    }
   }
   const accStations = stations.filter((station) => station.kind === "acc");
 
@@ -75,7 +111,7 @@ export default async function EventDetailPage({
   return (
     <div className="space-y-6">
       <nav className="text-xs text-gray-800">
-        <Link href="/" className="hover:underline">
+        <Link href={`/?provider=${provider}`} className="hover:underline">
           Sismos
         </Link>{" "}
         / <span className="font-mono">{event.id}</span>
@@ -102,7 +138,10 @@ export default async function EventDetailPage({
             <div className="flex gap-2">
               <dt className="text-gray-800">Hora de origen:</dt>
               <dd className="font-mono">
-                {formatLimaDateTime(event.timeLocal)}
+                {formatLocalDateTime(
+                  event.timeLocal,
+                  event.provenance.timezone,
+                )}
               </dd>
             </div>
             <div className="flex gap-2">
@@ -119,6 +158,12 @@ export default async function EventDetailPage({
               <div className="flex gap-2">
                 <dt className="text-gray-800">Intensidad:</dt>
                 <dd className="font-mono">{event.intensity}</dd>
+              </div>
+            ) : null}
+            {event.reviewStatus ? (
+              <div className="flex gap-2">
+                <dt className="text-gray-800">Estado del evento:</dt>
+                <dd className="font-mono">{event.reviewStatus}</dd>
               </div>
             ) : null}
           </dl>
@@ -148,6 +193,7 @@ export default async function EventDetailPage({
             {stations.length > 0 ? "Mapa de estaciones" : "Epicentro"}
           </h2>
           <PeruMap
+            country={provider === "sgc" ? "colombia" : "peru"}
             showProvinces={stations.length > 0}
             className="max-w-[440px]"
             title={`Epicentro y estaciones del evento ${event.id}`}
@@ -156,9 +202,29 @@ export default async function EventDetailPage({
         </div>
         <div>
           <h2 className="mb-2 font-semibold">
-            Estaciones que registraron este evento
+            {provider === "sgc"
+              ? "Cobertura de esta integración"
+              : "Estaciones que registraron este evento"}
           </h2>
-          {stations.length > 0 ? (
+          {provider === "sgc" ? (
+            <div className="space-y-3 rounded-lg border border-gray-200 bg-background-200 p-4 text-gray-900 text-sm">
+              <p>
+                Esta primera integración conserva catálogo, detalle, estado de
+                revisión y procedencia del SGC. Las estaciones y formas de onda
+                no están integradas todavía.
+              </p>
+              {event.sourceEventId ? (
+                <a
+                  href={`https://www.sgc.gov.co/detallesismo/${event.sourceEventId}/resumen`}
+                  className="font-medium text-official underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Abrir detalle oficial en el SGC →
+                </a>
+              ) : null}
+            </div>
+          ) : stations.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full text-sm" data-testid="station-table">
                 <caption className="sr-only">

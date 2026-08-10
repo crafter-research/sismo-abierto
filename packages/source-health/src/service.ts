@@ -11,7 +11,11 @@ import {
   SOURCE_HEALTH_DISCLAIMER,
 } from "./observation.ts";
 import { probeSource } from "./probe.ts";
-import { buildProbeConfigs, type ProbeConfig } from "./probe-configs.ts";
+import {
+  buildProbeConfigs,
+  isSgcSourceEnabled,
+  type ProbeConfig,
+} from "./probe-configs.ts";
 import { MemorySourceHealthStore, type SourceHealthStore } from "./store.ts";
 
 let defaultStore: SourceHealthStore | null = null;
@@ -106,20 +110,23 @@ export async function getSourceOverview(
 ) {
   const states = await store.listStates();
   const sources = await Promise.all(
-    (Object.keys(SOURCES) as SourceId[]).map(async (sourceId) => {
-      const state = states.find((entry) => entry.sourceId === sourceId) ?? null;
-      const lastCheck = state
-        ? ((await store.listChecks(sourceId, 1))[0] ?? null)
-        : null;
-      return {
-        sourceId,
-        source: SOURCES[sourceId],
-        status: state?.status ?? ("FRESHNESS_UNKNOWN" as const),
-        lastCheckAt: state?.lastCheckAt ?? null,
-        latencyMs: lastCheck?.durationMs ?? null,
-        disclaimer: SOURCE_HEALTH_DISCLAIMER,
-      };
-    }),
+    (Object.keys(SOURCES) as SourceId[])
+      .filter((sourceId) => sourceId !== "sgc-sismos" || isSgcSourceEnabled())
+      .map(async (sourceId) => {
+        const state =
+          states.find((entry) => entry.sourceId === sourceId) ?? null;
+        const lastCheck = state
+          ? ((await store.listChecks(sourceId, 1))[0] ?? null)
+          : null;
+        return {
+          sourceId,
+          source: SOURCES[sourceId],
+          status: state?.status ?? ("FRESHNESS_UNKNOWN" as const),
+          lastCheckAt: state?.lastCheckAt ?? null,
+          latencyMs: lastCheck?.durationMs ?? null,
+          disclaimer: SOURCE_HEALTH_DISCLAIMER,
+        };
+      }),
   );
   return { sources, disclaimer: SOURCE_HEALTH_DISCLAIMER };
 }
@@ -129,6 +136,7 @@ export async function getSourceHistory(
   store: SourceHealthStore = getDefaultStore(),
 ) {
   if (!(sourceId in SOURCES)) return null;
+  if (sourceId === "sgc-sismos" && !isSgcSourceEnabled()) return null;
   const typedId = sourceId as SourceId;
   const state = await store.getState(typedId);
   const checks = await store.listChecks(typedId, 30);

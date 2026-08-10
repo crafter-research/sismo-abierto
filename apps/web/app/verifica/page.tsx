@@ -3,11 +3,17 @@ import {
   loadPanoramaReportRegistry,
   loadPredictionAuditResults,
 } from "@sismo/audit";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = { title: "Verifica Sismos" };
+export const metadata: Metadata = {
+  title: "Verifica predicciones sísmicas",
+  description:
+    "Auditoría reproducible de afirmaciones y predicciones sísmicas contra catálogos oficiales y tasas base publicadas.",
+  alternates: { canonical: "/verifica" },
+};
 
 function formatLima(value: string): string {
   return new Intl.DateTimeFormat("es-PE", {

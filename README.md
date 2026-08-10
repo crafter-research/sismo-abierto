@@ -3,11 +3,11 @@
 
   <h1>Sismo Abierto</h1>
 
-  <p><strong>Del epicentro oficial a cómo se movió realmente el suelo.</strong></p>
+  <p><strong>Sismos oficiales de Perú y Colombia, abiertos y trazables.</strong></p>
 
   <p>
     Ecosistema open source sobre los datos sísmicos, acelerométricos y volcánicos
-    públicos del Instituto Geofísico del Perú (IGP).
+    públicos del Instituto Geofísico del Perú y el Servicio Geológico Colombiano.
   </p>
 
   <p>
@@ -18,21 +18,23 @@
 
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/screenshot-dark.png" />
-    <img src="assets/screenshot-light.png" alt="Sismo Abierto: último sismo oficial sobre el mapa del Perú" width="820" />
+    <img src="assets/screenshot-light.png" alt="Sismo Abierto: actividad sísmica oficial de Perú y Colombia" width="820" />
   </picture>
 </div>
 
 > [!IMPORTANT]
-> Proyecto comunitario, **no oficial**. Fuente de datos: IGP. No es un sistema de
+> Proyecto comunitario, **no oficial**. Fuentes de datos: IGP y, de forma
+> experimental, SGC. No es un sistema de
 > alerta ni de predicción, y no reemplaza los canales oficiales.
 
 ## Qué incluye
 
-Seis productos sobre un mismo núcleo de datos normalizado y trazable:
+Ocho productos sobre un mismo núcleo de datos normalizado y trazable:
 
 | Producto | Ruta | Qué hace |
 |----------|------|----------|
-| **Sismos** | `/`, `/sismos/*` | Último sismo oficial, catálogo filtrable, estaciones acelerométricas y ondas Z/N/E |
+| **Sismos Perú** | `/peru`, `/peru/sismos` | Último sismo del IGP, catálogo CENSIS, estaciones y ondas Z/N/E |
+| **Sismos Colombia** | `/colombia`, `/colombia/sismos` | Último sismo y catálogo del SGC con estado automático o manual |
 | **API** | `/api` | Contrato OpenAPI 3.1 con referencia interactiva (Scalar) |
 | **CLI** | `sismo` | Los mismos datos desde terminal, con exports JSON/GeoJSON/CSV |
 | **Aula** | `/aula/*` | Lecciones y laboratorios construidos sobre eventos reales |
@@ -62,6 +64,9 @@ bun install
 bun run dev        # web en http://localhost:3000
 ```
 
+Abre `/peru` o `/colombia`. El switcher global conserva URLs canónicas por país y los
+datos visibles se actualizan automáticamente cada 60 segundos.
+
 ```bash
 bun run check      # biome + typecheck
 bun run test       # tests de unidades y contrato
@@ -75,6 +80,8 @@ bun run drift      # linter de contratos contra las fuentes en vivo
 ```bash
 bunx sismo latest
 bunx sismo events --since 7d --min-magnitude 4 --format geojson
+SISMO_SGC_PROVIDER=true bunx sismo latest --provider sgc
+SISMO_SGC_PROVIDER=true bunx sismo events --provider sgc --since 7d --min-magnitude 4 --format geojson
 bunx sismo schema events
 ```
 
@@ -96,7 +103,7 @@ caída o contrato roto). `--open` abre la fuente oficial del dato en el navegado
 ### Coding agents
 
 ```bash
-npx skills add crafter-research/sismo-abierto
+bunx --bun skills add crafter-research/sismo-abierto
 ```
 
 Instala la skill [`sismo-cli`](skills/sismo-cli/SKILL.md) para que tu agente (Claude Code,
@@ -105,7 +112,7 @@ en cada respuesta. En runtime, `sismo skill` imprime la misma documentación.
 
 ## Linter de contratos externos
 
-Las fuentes del IGP no publican SLA ni changelog. El paquete `@sismo/source-health` valida
+Las superficies consumidas del IGP y el SGC no publican SLA ni changelog. El paquete `@sismo/source-health` valida
 cada respuesta campo por campo contra el contrato observado (esquemas zod por fuente) y
 distingue:
 
@@ -120,6 +127,7 @@ Cada fuente expone un badge SVG cacheable en
 `/api/v1/sources/{sourceId}/badge.svg`, por ejemplo:
 
 ![Estado observado de ACELDAT](https://sismo.crafter.run/api/v1/sources/igp-aceldat/badge.svg)
+![Estado observado del SGC](https://sismo.crafter.run/api/v1/sources/sgc-sismos/badge.svg)
 
 ## Arquitectura
 
@@ -137,9 +145,22 @@ content/aula             lecciones versionadas
 data/predictions         afirmaciones congeladas (inmutables; cambios auditados en git)
 ```
 
-Fuentes consumidas: IDE ArcGIS/GeoServer del IGP, catálogo CENSIS, ACELDAT-PERÚ, REGEN y
-USGS FDSN (solo contraste global). El comportamiento observado de cada una está documentado
+Fuentes consumidas: IDE ArcGIS/GeoServer del IGP, catálogo CENSIS, ACELDAT-PERÚ, REGEN,
+feeds y API sísmica del SGC, y USGS FDSN como contraste global. El comportamiento observado de cada una está documentado
 en [`docs/implementation-status.md`](docs/implementation-status.md).
+
+### Colombia · SGC experimental
+
+La integración con el **Servicio Geológico Colombiano** conserva el identificador oficial,
+el estado `automatic` o `manual`, la hora de Bogotá y la procedencia de cada evento. Usa el
+feed estático para el último evento, la API quincenal en ventanas de hasta 14 días para el
+catálogo y el snapshot oficial para el detalle. No incluye estaciones ni formas de onda.
+
+En producción permanece desactivada salvo que `SISMO_SGC_PROVIDER=true`. Los términos
+generales del SGC no conceden de forma inequívoca permiso para transformar y republicar este
+feed, por lo que el flag solo debe activarse después de obtener autorización escrita. La
+decisión técnica, el mapeo de campos y el riesgo legal están en
+[`docs/sgc-provider.md`](docs/sgc-provider.md).
 
 ## Roadmap
 
@@ -148,7 +169,7 @@ Ver [ROADMAP.md](ROADMAP.md).
 ## Contribuir
 
 ¿Eres especialista y algo está mal interpretado? Abre un issue con la etiqueta
-`corrección-científica` — la exactitud y la atribución al IGP van primero. Las nuevas
+`corrección-científica` — la exactitud y la atribución al IGP y al SGC van primero. Las nuevas
 afirmaciones para Verifica entran por PR con evidencia temporal previa al resultado.
 
 ## Licencia

@@ -1,6 +1,10 @@
 import { describe, expect, test } from "bun:test";
 import { parseCensisRows } from "../src/adapters/censis.ts";
 import { parseLatestFeatureCollection } from "../src/adapters/latest.ts";
+import {
+  parseSgcFeature,
+  parseSgcFeatureCollection,
+} from "../src/adapters/sgc.ts";
 import { SourceError } from "../src/errors.ts";
 import {
   censisEventId,
@@ -99,6 +103,39 @@ describe("último sismo", () => {
       expect(error).toBeInstanceOf(SourceError);
       expect((error as SourceError).kind).toBe("schema");
     }
+  });
+});
+
+describe("Servicio Geológico Colombiano", () => {
+  test("normaliza biweekly y excluye agencias externas", async () => {
+    const data = await Bun.file(fixture("sgc-biweekly.json")).json();
+    const events = parseSgcFeatureCollection(data);
+    expect(events).toHaveLength(1);
+    expect(events[0]?.id).toBe("sgc-SGC2026pqqmro");
+    expect(events[0]?.magnitude).toBe(7.4);
+    expect(events[0]?.latitude).toBeCloseTo(4.990935);
+    expect(events[0]?.longitude).toBeCloseTo(-76.291741);
+    expect(events[0]?.timeUtc).toBe("2026-08-10T12:34:27Z");
+    expect(events[0]?.timeLocal).toBe("2026-08-10T07:34:27-05:00");
+    expect(events[0]?.reviewStatus).toBe("manual");
+    expect(events[0]?.provenance.timezone).toBe("America/Bogota");
+  });
+
+  test("corrige el orden latitud-longitud de archive", async () => {
+    const data = await Bun.file(fixture("sgc-biweekly.json")).json();
+    const feature = structuredClone(data.features[0]);
+    feature.geometry.coordinates = [4.990934719865107, -76.291741067906, 103];
+    const event = parseSgcFeature(feature, "latitude-longitude");
+    expect(event.latitude).toBeCloseTo(4.990935);
+    expect(event.longitude).toBeCloseTo(-76.291741);
+  });
+
+  test("detecta errores internos enviados con HTTP 200", () => {
+    expect(() =>
+      parseSgcFeatureCollection({
+        error: { statusCode: 503, error: "startdate must be lower" },
+      }),
+    ).toThrow(SourceError);
   });
 });
 

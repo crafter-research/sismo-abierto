@@ -1,0 +1,46 @@
+{
+  "type": "FeatureCollection",
+  "metadata": { "count": 2 },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "SGC2026pqqmro",
+      "properties": {
+        "status": "manual",
+        "type": "earthquake",
+        "magType": "Mw",
+        "agency": "SGC",
+        "utcTime": "2026-08-10 12:34:27",
+        "localTime": "2026-08-10 07:34:27",
+        "place": "San José del Palmar - Chocó, Colombia",
+        "mag": 7.4,
+        "mmi": 7,
+        "depth": 103
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-76.291741067906, 4.990934719865107, 103]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "USGS2026external",
+      "properties": {
+        "status": "manual",
+        "type": "earthquake",
+        "magType": "mww",
+        "agency": "USGS",
+        "utcTime": "2026-08-10 12:40:00",
+        "localTime": "2026-08-10 07:40:00",
+        "place": "Evento internacional",
+        "mag": 5.1,
+        "mmi": null,
+        "depth": 20
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-90, 10, 20]
+      }
+    }
+  ]
+}

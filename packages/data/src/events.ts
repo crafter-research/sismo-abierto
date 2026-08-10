@@ -1,5 +1,7 @@
 import {
   derivedProvenance,
+  EVENT_PROVIDER_IDS,
+  type EventProviderId,
   type EventQueryFilters,
   type EventStation,
   type NormalizedEvent,
@@ -14,6 +16,11 @@ import {
 } from "./adapters/aceldat.ts";
 import { type CensisRow, fetchCensisCatalog } from "./adapters/censis.ts";
 import { fetchLatestEventRaw } from "./adapters/latest.ts";
+import {
+  fetchSgcEvent,
+  fetchSgcEvents,
+  fetchSgcLatestEvent,
+} from "./adapters/sgc.ts";
 import { SourceError } from "./errors.ts";
 import { haversineKm } from "./geo.ts";
 import { utcDateOnly, utcIsoToLimaIso } from "./lima-time.ts";
@@ -118,7 +125,32 @@ async function findAceldatReportByTime(
   }
 }
 
-export async function getLatestEvent(): Promise<NormalizedEvent> {
+export function resolveEventProvider(
+  value: string | undefined,
+): EventProviderId {
+  if (value === undefined || value === "") return "igp";
+  if ((EVENT_PROVIDER_IDS as readonly string[]).includes(value)) {
+    return value as EventProviderId;
+  }
+  throw new SourceError({
+    kind: "invalid",
+    sourceId: "event-provider",
+    message: `Provider desconocido "${value}". Usa igp o sgc.`,
+  });
+}
+
+export function eventProviderFromId(eventId: string): EventProviderId {
+  return eventId.startsWith("sgc-") ? "sgc" : "igp";
+}
+
+export function eventProviderHasStations(provider: EventProviderId): boolean {
+  return provider === "igp";
+}
+
+export async function getLatestEvent(
+  provider: EventProviderId = "igp",
+): Promise<NormalizedEvent> {
+  if (provider === "sgc") return fetchSgcLatestEvent();
   const raw = await fetchLatestEventRaw();
   const reportNumber = raw.timeUtc
     ? await findAceldatReportByTime(raw.timeUtc)
@@ -196,6 +228,10 @@ export async function queryEventCatalog(filters: EventQueryFilters): Promise<{
   range: { start: string; end: string };
 }> {
   const { start, end } = resolveSince(filters);
+  if (filters.provider === "sgc") {
+    const result = await fetchSgcEvents({ start, end }, filters);
+    return { ...result, range: { start, end } };
+  }
   const catalog = await fetchCensisCatalog({
     startDate: start,
     endDate: end,
@@ -223,6 +259,7 @@ export async function queryEventCatalog(filters: EventQueryFilters): Promise<{
 }
 
 export async function getEvent(eventId: string): Promise<NormalizedEvent> {
+  if (eventId.startsWith("sgc-")) return fetchSgcEvent(eventId);
   const reportNumber = parseRanEventId(eventId);
   if (reportNumber !== null) {
     const { reports } = await fetchAceldatReports();
@@ -276,6 +313,14 @@ export async function listEventStations(eventId: string): Promise<{
   detail: AceldatEventDetail;
   provenance: Provenance;
 }> {
+  if (eventProviderFromId(eventId) === "sgc") {
+    throw new SourceError({
+      kind: "not_found",
+      sourceId: "sgc-sismos",
+      message:
+        "La primera integración del SGC expone catálogo y detalle, no estaciones ni formas de onda.",
+    });
+  }
   let reportNumber = parseRanEventId(eventId);
   let timeUtcIso: string | null = null;
 
