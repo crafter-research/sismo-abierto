@@ -59,6 +59,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
             changeFrequency: "hourly" as const,
           },
+          {
+            path: "/colombia/emergencia",
+            priority: 1,
+            changeFrequency: "hourly" as const,
+          },
         ]
       : []),
   ];

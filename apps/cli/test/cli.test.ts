@@ -95,6 +95,7 @@ describe("errores del binario", () => {
     const result = await runCli(["help"]);
     expect(result.code).toBe(0);
     expect(result.stdout).toContain("sismo latest");
+    expect(result.stdout).toContain("sismo incident");
     expect(result.stdout).toContain("sismo schema COMMAND");
   });
 

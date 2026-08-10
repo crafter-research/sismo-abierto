@@ -35,6 +35,7 @@
   "devDependencies": {
     "@sismo/contracts": "workspace:*",
     "@sismo/data": "workspace:*",
+    "@sismo/incidents": "workspace:*",
     "@sismo/source-health": "workspace:*",
     "@sismo/waveforms": "workspace:*",
     "nanospinner": "^1.2.2",

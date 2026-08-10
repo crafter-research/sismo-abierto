@@ -20,6 +20,7 @@ import {
   fetchSgcEvent,
   fetchSgcEvents,
   fetchSgcLatestEvent,
+  fetchSgcRecentEvents,
 } from "./adapters/sgc.ts";
 import { SourceError } from "./errors.ts";
 import { haversineKm } from "./geo.ts";
@@ -190,6 +191,30 @@ export async function getLatestEvent(
       ...(reportNumber ? { aceldatReportNumber: "derived" } : {}),
     },
   };
+}
+
+export async function getRecentMajorEvent(
+  provider: EventProviderId,
+  minMagnitude = 7,
+): Promise<NormalizedEvent | null> {
+  const events =
+    provider === "sgc"
+      ? await fetchSgcRecentEvents()
+      : (
+          await queryEventCatalog({
+            provider,
+            since: "5d",
+            minMagnitude,
+          })
+        ).events;
+  return selectMajorEvent(events, minMagnitude);
+}
+
+export function selectMajorEvent(
+  events: NormalizedEvent[],
+  minMagnitude = 7,
+): NormalizedEvent | null {
+  return events.find((event) => event.magnitude >= minMagnitude) ?? null;
 }
 
 export function eventProviderLocalDate(

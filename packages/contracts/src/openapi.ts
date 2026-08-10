@@ -3,6 +3,7 @@ import {
   apiErrorSchema,
   eventDetailResponseSchema,
   eventListResponseSchema,
+  incidentViewResponseSchema,
   latestEventResponseSchema,
   sourceDetailResponseSchema,
   sourcesResponseSchema,
@@ -28,6 +29,23 @@ interface EndpointSpec {
 }
 
 const ENDPOINTS: EndpointSpec[] = [
+  {
+    path: "/v1/incidents/{slug}",
+    summary: "Estado versionado de una emergencia",
+    description:
+      "Combina el evento sísmico automático con el último corte humanitario revisado. Los datos sensibles solo aparecen después de aprobación explícita.",
+    parameters: [
+      {
+        name: "slug",
+        in: "path",
+        required: true,
+        description: "Identificador estable del incidente",
+        schema: { type: "string" },
+      },
+    ],
+    responseSchema: incidentViewResponseSchema,
+    responseName: "IncidentViewResponse",
+  },
   {
     path: "/v1/events/latest",
     summary: "Último sismo oficial",

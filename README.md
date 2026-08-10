@@ -29,12 +29,13 @@
 
 ## Qué incluye
 
-Ocho productos sobre un mismo núcleo de datos normalizado y trazable:
+Nueve productos sobre un mismo núcleo de datos normalizado y trazable:
 
 | Producto | Ruta | Qué hace |
 |----------|------|----------|
 | **Sismos Perú** | `/peru`, `/peru/sismos` | Último sismo del IGP, catálogo CENSIS, estaciones y ondas Z/N/E |
 | **Sismos Colombia** | `/colombia`, `/colombia/sismos` | Último sismo y catálogo del SGC con estado automático o manual |
+| **Emergencias** | `/colombia/emergencia` | Parámetros sísmicos automáticos, cortes humanitarios revisados e historial versionado |
 | **API** | `/api` | Contrato OpenAPI 3.1 con referencia interactiva (Scalar) |
 | **CLI** | `sismo` | Los mismos datos desde terminal, con exports JSON/GeoJSON/CSV |
 | **Aula** | `/aula/*` | Lecciones y laboratorios construidos sobre eventos reales |
@@ -82,6 +83,7 @@ bunx --bun @crafter/sismo-cli latest
 bunx --bun @crafter/sismo-cli events --since 7d --min-magnitude 4 --format geojson
 SISMO_SGC_PROVIDER=true bunx --bun @crafter/sismo-cli latest --provider sgc
 SISMO_SGC_PROVIDER=true bunx --bun @crafter/sismo-cli events --provider sgc --since ytd --min-magnitude 3 --format geojson
+bunx --bun @crafter/sismo-cli incident colombia-2026-08-10 --json
 bunx --bun @crafter/sismo-cli schema events
 ```
 
@@ -93,6 +95,7 @@ bun apps/cli/src/main.ts events --since 7d --min-magnitude 4 --format geojson
 bun apps/cli/src/main.ts stations ran-20260468 --sort pga
 bun apps/cli/src/main.ts waveform ran-20260468 SCHYO --format csv --output onda.csv
 bun apps/cli/src/main.ts sources --probe
+bun apps/cli/src/main.ts incident colombia-2026-08-10
 bun apps/cli/src/main.ts schema events
 ```
 
@@ -137,6 +140,7 @@ apps/cli                 paquete canónico `@crafter/sismo-cli`
 apps/cli-alias           alias no scoped publicado como `sismo`
 packages/contracts       modelo normalizado, esquemas zod y documento OpenAPI
 packages/data            adaptadores server-side con timeouts, retries y caché
+packages/incidents       registro de incidentes, snapshots versionados y store Neon
 packages/waveforms       parser ACELDAT, métricas sobre serie completa, reducción visual
 packages/audit           afirmaciones congeladas, geografía, ventanas, tasa base, veredictos
 packages/volcanoes       contenido educativo de niveles volcánicos
@@ -161,6 +165,33 @@ generales del SGC no conceden de forma inequívoca permiso para transformar y re
 feed, por lo que el flag solo debe activarse después de obtener autorización escrita. La
 decisión técnica, el mapeo de campos y el riesgo legal están en
 [`docs/sgc-provider.md`](docs/sgc-provider.md).
+
+### Emergencias en tiempo casi real
+
+La ruta `/colombia/emergencia` separa dos flujos:
+
+- El evento sísmico del SGC se consulta como máximo una vez por minuto, se guarda como una
+  versión automática y la página se refresca cada 60 segundos.
+- Fallecidos, heridos, daños y recursos entran como candidatos privados. Solo una aprobación
+  explícita los convierte en el corte humanitario público.
+
+Trigger.dev sincroniza cada minuto. Un cron de Vercel cada cinco minutos sirve como respaldo y
+la lectura pública puede autocorregirse si ambos se retrasan. Las consultas al SGC usan caché
+compartida de 60 segundos y coalescing en proceso para evitar ráfagas duplicadas.
+
+Variables de producción:
+
+```text
+DATABASE_URL
+SISMO_SGC_PROVIDER=true
+INCIDENT_ADMIN_SECRET
+CRON_SECRET
+TRIGGER_PROJECT_REF
+```
+
+El contrato público está en `GET /api/v1/incidents/{slug}` y en
+`sismo incident INCIDENT_SLUG --json`. El procedimiento de revisión, los payloads privados y
+la migración están documentados en [`docs/incidents.md`](docs/incidents.md).
 
 ## Roadmap
 

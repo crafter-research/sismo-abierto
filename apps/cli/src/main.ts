@@ -16,6 +16,7 @@ import {
   resolveEventProvider,
   waveformFileUrl,
 } from "@sismo/data";
+import { getIncidentView } from "@sismo/incidents";
 import {
   getSourceHistory,
   getSourceOverview,
@@ -46,6 +47,7 @@ Uso:
   sismo waveform EVENT_ID STATION_ID [--format csv|json] [--output archivo] [--open]
   sismo volcanoes [--json]
   sismo volcano VOLCANO_SLUG [--json] [--open]
+  sismo incident INCIDENT_SLUG [--json]
   sismo sources [--probe] [--json]
   sismo source SOURCE_ID [--evidence] [--json]
   sismo schema COMMAND
@@ -493,6 +495,51 @@ async function commandVolcano(args: ParsedArgs): Promise<void> {
   console.log(`\nAviso: ${response.limitations[0]}`);
 }
 
+async function commandIncident(args: ParsedArgs): Promise<void> {
+  const slug = args.positional[1];
+  if (!slug) {
+    throw new CliError(
+      "Uso: sismo incident INCIDENT_SLUG",
+      EXIT_CODES.invalidInput,
+    );
+  }
+  const response = await withSpinner(args, "Consultando emergencia", () =>
+    getIncidentView(slug),
+  );
+  if (!response) {
+    throw new CliError(`No existe el incidente "${slug}"`, EXIT_CODES.notFound);
+  }
+  if (args.flags.get("json")) {
+    console.log(JSON.stringify(response, null, 2));
+    return;
+  }
+  const rows = [
+    ["Incidente", response.incident.title],
+    ["Lugar", response.incident.location],
+    [
+      "Magnitud",
+      response.seismic
+        ? `M ${response.seismic.event.magnitude.toFixed(1)}`
+        : "—",
+    ],
+    ["Sincronización", response.seismic?.freshness ?? "UNKNOWN"],
+    ["Corte humanitario", response.humanitarian.versionLabel],
+    ["Fuente", response.humanitarian.source.name],
+  ];
+  console.log(renderTable(["Campo", "Valor"], rows));
+  console.log("");
+  console.log(
+    renderTable(
+      ["Dato", "Valor"],
+      response.humanitarian.facts.map((fact) => [
+        fact.label,
+        fact.displayValue,
+      ]),
+    ),
+  );
+  console.log(dim(`\nGenerado: ${response.generatedAt} · ${response.storage}`));
+}
+
 async function commandSources(args: ParsedArgs): Promise<void> {
   if (args.flags.get("probe")) {
     await withSpinner(args, "Ejecutando probes contra las fuentes", () =>
@@ -607,6 +654,7 @@ const SCHEMA_PATHS: Record<string, string> = {
   waveform: "/v1/events/{eventId}/stations/{stationId}/waveform",
   volcanoes: "/v1/volcanoes",
   volcano: "/v1/volcanoes/{slug}",
+  incident: "/v1/incidents/{slug}",
   sources: "/v1/sources",
   source: "/v1/sources/{sourceId}",
 };
@@ -632,6 +680,7 @@ const COMMANDS: Record<string, (args: ParsedArgs) => Promise<void>> = {
   waveform: commandWaveform,
   volcanoes: commandVolcanoes,
   volcano: commandVolcano,
+  incident: commandIncident,
   sources: commandSources,
   source: commandSource,
   schema: commandSchema,

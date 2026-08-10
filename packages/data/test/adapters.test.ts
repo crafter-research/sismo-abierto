@@ -12,6 +12,7 @@ import {
   parseCensisEventId,
   parseRanEventId,
   resolveEventDateRange,
+  selectMajorEvent,
 } from "../src/events.ts";
 import {
   limaLocalToUtcIso,
@@ -121,6 +122,18 @@ describe("Servicio Geológico Colombiano", () => {
     expect(events[0]?.timeLocal).toBe("2026-08-10T07:34:27-05:00");
     expect(events[0]?.reviewStatus).toBe("manual");
     expect(events[0]?.provenance.timezone).toBe("America/Bogota");
+  });
+
+  test("selecciona un evento M7+ aunque no sea el último del feed", async () => {
+    const data = await Bun.file(fixture("sgc-biweekly.json")).json();
+    const events = parseSgcFeatureCollection(data);
+    const source = events[0];
+    expect(source).toBeDefined();
+    if (!source) throw new Error("Fixture SGC sin evento oficial");
+    const minor = { ...source, id: "sgc-minor", magnitude: 2.4 };
+    const major = selectMajorEvent([minor, ...events]);
+    expect(major?.id).toBe("sgc-SGC2026pqqmro");
+    expect(major?.magnitude).toBe(7.4);
   });
 
   test("corrige el orden latitud-longitud de archive", async () => {

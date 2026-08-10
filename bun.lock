@@ -20,6 +20,7 @@
       "devDependencies": {
         "@sismo/contracts": "workspace:*",
         "@sismo/data": "workspace:*",
+        "@sismo/incidents": "workspace:*",
         "@sismo/source-health": "workspace:*",
         "@sismo/waveforms": "workspace:*",
         "nanospinner": "^1.2.2",
@@ -46,6 +47,7 @@
         "@sismo/contracts": "workspace:*",
         "@sismo/data": "workspace:*",
         "@sismo/geo": "workspace:*",
+        "@sismo/incidents": "workspace:*",
         "@sismo/source-health": "workspace:*",
         "@sismo/volcanoes": "workspace:*",
         "@sismo/waveforms": "workspace:*",
@@ -107,6 +109,15 @@
       },
       "devDependencies": {
         "@types/topojson-client": "^3.1.5",
+      },
+    },
+    "packages/incidents": {
+      "name": "@sismo/incidents",
+      "version": "0.1.0",
+      "dependencies": {
+        "@neondatabase/serverless": "^1.0.0",
+        "@sismo/contracts": "workspace:*",
+        "@sismo/data": "workspace:*",
       },
     },
     "packages/source-health": {
@@ -432,6 +443,8 @@
     "@sismo/data": ["@sismo/data@workspace:packages/data"],
 
     "@sismo/geo": ["@sismo/geo@workspace:packages/geo"],
+
+    "@sismo/incidents": ["@sismo/incidents@workspace:packages/incidents"],
 
     "@sismo/source-health": ["@sismo/source-health@workspace:packages/source-health"],
 

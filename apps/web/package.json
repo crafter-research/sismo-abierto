@@ -17,6 +17,7 @@
     "@sismo/contracts": "workspace:*",
     "@sismo/data": "workspace:*",
     "@sismo/geo": "workspace:*",
+    "@sismo/incidents": "workspace:*",
     "@sismo/source-health": "workspace:*",
     "@sismo/volcanoes": "workspace:*",
     "@sismo/waveforms": "workspace:*",

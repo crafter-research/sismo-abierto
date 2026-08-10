@@ -49,6 +49,7 @@ sismo stations EVENT_ID [--sort distance|pga] [--json]
 sismo waveform EVENT_ID STATION_ID [--format csv|json] [--output archivo] [--open]
 sismo volcanoes [--json]
 sismo volcano VOLCANO_SLUG [--json] [--open]
+sismo incident INCIDENT_SLUG [--json]
 sismo sources [--probe] [--json]
 sismo source SOURCE_ID [--probe] [--evidence] [--json]
 sismo schema COMMAND
@@ -56,7 +57,7 @@ sismo skill
 ```
 
 `COMMAND` puede ser `latest`, `events`, `inspect`, `stations`, `waveform`, `volcanoes`,
-`volcano`, `sources` o `source`.
+`volcano`, `incident`, `sources` o `source`.
 
 ## Workflows
 
@@ -72,6 +73,7 @@ SISMO_SGC_PROVIDER=true sismo latest --provider sgc --json
 SISMO_SGC_PROVIDER=true sismo events --provider sgc --since 7d --format json
 SISMO_SGC_PROVIDER=true sismo events --provider sgc --since ytd --min-magnitude 3 --format json
 SISMO_SGC_PROVIDER=true sismo inspect sgc-SGC2026pqqmro --json
+sismo incident colombia-2026-08-10 --json
 ```
 
 ### Del evento a las ondas (export científico, serie completa)
@@ -107,3 +109,5 @@ sismo source igp-aceldat --evidence
   366 días.
 - `DATABASE_URL` (opcional, Neon/Postgres) persiste el historial de chequeos; sin ella se
   usa memoria por proceso.
+- `incident` separa parámetros sísmicos automáticos de cortes humanitarios revisados. Su
+  JSON incluye historial, frescura y si la lectura viene de Neon o del respaldo verificado.

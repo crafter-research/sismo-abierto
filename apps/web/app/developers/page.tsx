@@ -95,6 +95,7 @@ export default function DevelopersPage() {
 bunx --bun @crafter/sismo-cli events --since 7d --min-magnitude 4 --format geojson
 SISMO_SGC_PROVIDER=true bunx --bun @crafter/sismo-cli latest --provider sgc
 SISMO_SGC_PROVIDER=true bunx --bun @crafter/sismo-cli events --provider sgc --since ytd --min-magnitude 3 --format json
+bunx --bun @crafter/sismo-cli incident colombia-2026-08-10 --json
 bunx --bun @crafter/sismo-cli inspect EVENT_ID
 bunx --bun @crafter/sismo-cli stations EVENT_ID --sort pga
 bunx --bun @crafter/sismo-cli waveform EVENT_ID STATION_ID --format csv

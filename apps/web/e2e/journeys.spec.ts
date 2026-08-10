@@ -68,6 +68,36 @@ test.describe("Perú y Colombia", () => {
     const body = await sitemap.text();
     expect(body).toContain("/peru");
     expect(body).toContain("/colombia");
+    expect(body).toContain("/colombia/emergencia");
+  });
+
+  test("la ruta de emergencia muestra corte preliminar y fuentes", async ({
+    page,
+  }) => {
+    await page.goto("/colombia/emergencia");
+    await expect(
+      page.getByRole("heading", { name: /Sismo M 7.4/ }),
+    ).toBeVisible();
+    await expect(page.getByText("50", { exact: true })).toBeVisible();
+    await expect(page.getByText("Las cifras son preliminares")).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Historial de actualizaciones" }),
+    ).toBeVisible();
+    await expect(
+      page.getByText("Actualización automática cada 60 s"),
+    ).toBeVisible();
+  });
+
+  test("el API de incidentes separa dato automático y corte revisado", async ({
+    request,
+  }) => {
+    const response = await request.get("/api/v1/incidents/colombia-2026-08-10");
+    expect(response.status()).toBe(200);
+    const body = await response.json();
+    expect(body.seismic.event.id).toBe("sgc-SGC2026pqqmro");
+    expect(body.seismic.freshness).toBe("FRESH");
+    expect(body.humanitarian.reviewStatus).toBe("published");
+    expect(body.humanitarian.source.reportNumber).toBe("002");
   });
 });
 

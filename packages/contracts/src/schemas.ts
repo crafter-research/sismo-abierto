@@ -233,3 +233,72 @@ export const sourceDetailResponseSchema = z.object({
   ),
   disclaimer: z.string(),
 });
+
+export const incidentFactSchema = z.object({
+  key: z.string(),
+  value: z.number(),
+  displayValue: z.string(),
+  label: z.string(),
+});
+
+export const incidentSourceSchema = z.object({
+  name: z.string(),
+  url: z.string(),
+  reportNumber: z.string().nullable(),
+  issuedAt: z.string(),
+});
+
+export const incidentRecordSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  country: z.string(),
+  countrySlug: z.string(),
+  eventId: z.string(),
+  title: z.string(),
+  location: z.string(),
+  startedAt: z.string(),
+  status: z.enum(["active", "monitoring", "closed"]),
+});
+
+export const humanitarianSnapshotSchema = z.object({
+  id: z.string(),
+  versionLabel: z.string(),
+  reviewStatus: z.literal("published"),
+  observedAt: z.string(),
+  publishedAt: z.string(),
+  source: incidentSourceSchema,
+  facts: z.array(incidentFactSchema),
+});
+
+export const incidentHistoryEntrySchema = z.object({
+  id: z.string(),
+  kind: z.enum(["seismic", "humanitarian"]),
+  versionLabel: z.string(),
+  reviewStatus: z.enum(["automatic", "pending", "published", "rejected"]),
+  observedAt: z.string(),
+  publishedAt: z.string().nullable(),
+  source: incidentSourceSchema,
+});
+
+export const incidentViewResponseSchema = z.object({
+  incident: incidentRecordSchema,
+  seismic: z
+    .object({
+      event: normalizedEventSchema,
+      syncedAt: z.string(),
+      freshness: z.enum(["FRESH", "DELAYED", "STALE", "UNKNOWN"]),
+    })
+    .nullable(),
+  humanitarian: humanitarianSnapshotSchema,
+  history: z.array(incidentHistoryEntrySchema),
+  storage: z.enum(["database", "fallback"]),
+  generatedAt: z.string(),
+  limitations: z.array(z.string()),
+});
+
+export const humanitarianSubmissionSchema = z.object({
+  versionLabel: z.string().min(1).max(80),
+  observedAt: z.iso.datetime({ offset: true }),
+  source: incidentSourceSchema,
+  facts: z.array(incidentFactSchema).min(1),
+});

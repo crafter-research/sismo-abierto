@@ -281,27 +281,31 @@ export function assertSgcProviderEnabled(): void {
   }
 }
 
-export async function fetchSgcLatestEvent(): Promise<NormalizedEvent> {
+export async function fetchSgcRecentEvents(): Promise<NormalizedEvent[]> {
   assertSgcProviderEnabled();
-  return cached("sgc:latest", 60_000, async () => {
+  return cached("sgc:recent", 60_000, async () => {
     const data = await fetchJson<SgcFeatureCollection>(SGC_LATEST_URL, {
       sourceId: "sgc-sismos",
       timeoutMs: 15_000,
+      cacheSeconds: 60,
       expectedContentType: "json",
     });
-    const events = parseSgcFeatureCollection(data, "latitude-longitude").sort(
-      (a, b) => (b.timeUtc ?? "").localeCompare(a.timeUtc ?? ""),
+    return parseSgcFeatureCollection(data, "latitude-longitude").sort((a, b) =>
+      (b.timeUtc ?? "").localeCompare(a.timeUtc ?? ""),
     );
-    const latest = events[0];
-    if (!latest) {
-      throw new SourceError({
-        kind: "empty",
-        sourceId: "sgc-sismos",
-        message: "El feed oficial del SGC no contiene eventos sísmicos",
-      });
-    }
-    return latest;
   });
+}
+
+export async function fetchSgcLatestEvent(): Promise<NormalizedEvent> {
+  const latest = (await fetchSgcRecentEvents())[0];
+  if (!latest) {
+    throw new SourceError({
+      kind: "empty",
+      sourceId: "sgc-sismos",
+      message: "El feed oficial del SGC no contiene eventos sísmicos",
+    });
+  }
+  return latest;
 }
 
 export async function fetchSgcEvent(eventId: string): Promise<NormalizedEvent> {
@@ -319,6 +323,7 @@ export async function fetchSgcEvent(eventId: string): Promise<NormalizedEvent> {
     const feature = await fetchJson<SgcFeature>(url, {
       sourceId: "sgc-sismos",
       timeoutMs: 15_000,
+      cacheSeconds: 60,
       expectedContentType: "octet-stream",
     });
     return parseSgcFeature(feature, "latitude-longitude");
