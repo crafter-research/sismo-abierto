@@ -91,18 +91,18 @@ export default function DevelopersPage() {
           esta web y la API.
         </p>
         <pre className="mt-2 overflow-x-auto rounded-md border border-gray-300 bg-background-200 p-3 font-mono text-[13px] text-gray-1000">
-          {`bunx sismo latest
-bunx sismo events --since 7d --min-magnitude 4 --format geojson
-SISMO_SGC_PROVIDER=true bunx sismo latest --provider sgc
-SISMO_SGC_PROVIDER=true bunx sismo events --provider sgc --since 7d --format json
-bunx sismo inspect EVENT_ID
-bunx sismo stations EVENT_ID --sort pga
-bunx sismo waveform EVENT_ID STATION_ID --format csv
-bunx sismo volcanoes
-bunx sismo volcano VOLCANO_SLUG
-bunx sismo sources
-bunx sismo source SOURCE_ID --evidence
-bunx sismo schema COMMAND`}
+          {`bunx --bun @crafter/sismo-cli latest
+bunx --bun @crafter/sismo-cli events --since 7d --min-magnitude 4 --format geojson
+SISMO_SGC_PROVIDER=true bunx --bun @crafter/sismo-cli latest --provider sgc
+SISMO_SGC_PROVIDER=true bunx --bun @crafter/sismo-cli events --provider sgc --since 7d --format json
+bunx --bun @crafter/sismo-cli inspect EVENT_ID
+bunx --bun @crafter/sismo-cli stations EVENT_ID --sort pga
+bunx --bun @crafter/sismo-cli waveform EVENT_ID STATION_ID --format csv
+bunx --bun @crafter/sismo-cli volcanoes
+bunx --bun @crafter/sismo-cli volcano VOLCANO_SLUG
+bunx --bun @crafter/sismo-cli sources
+bunx --bun @crafter/sismo-cli source SOURCE_ID --evidence
+bunx --bun @crafter/sismo-cli schema COMMAND`}
         </pre>
         <p className="mt-2 font-mono text-[11px] text-gray-800">
           Salida humana en tablas · --json, --geojson y --csv sin decoración ·
