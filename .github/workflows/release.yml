@@ -6,6 +6,8 @@ on:
     branches: [main]
     paths:
       - "apps/cli/package.json"
+      - "apps/cli-alias/package.json"
+      - ".github/workflows/release.yml"
 
 concurrency:
   group: release
@@ -88,3 +90,43 @@ jobs:
           gh release create "v${{ steps.version.outputs.local }}" \
             --title "v${{ steps.version.outputs.local }}" \
             --notes "${{ steps.changelog.outputs.body }}"
+
+  release-alias:
+    needs: release
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/cli-alias
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Update npm for trusted publishing
+        run: npm install -g npm@latest
+
+      - name: Detect version change
+        id: version
+        run: |
+          LOCAL=$(jq -r .version package.json)
+          PUBLISHED=$(npm view sismo version 2>/dev/null || echo "0.0.0")
+          echo "local=$LOCAL" >> "$GITHUB_OUTPUT"
+          echo "published=$PUBLISHED" >> "$GITHUB_OUTPUT"
+          if [ "$LOCAL" != "$PUBLISHED" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Version changed: $PUBLISHED -> $LOCAL"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Version unchanged ($LOCAL), skipping publish"
+          fi
+
+      - name: Publish
+        if: steps.version.outputs.changed == 'true'
+        run: npm publish --access public

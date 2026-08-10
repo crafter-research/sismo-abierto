@@ -1,6 +1,6 @@
 {
   "name": "sismo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "Alias corto de @crafter/sismo-cli para consultar datos sísmicos públicos de Perú y Colombia.",
   "license": "MIT",
@@ -28,7 +28,7 @@
     "README.md"
   ],
   "dependencies": {
-    "@crafter/sismo-cli": "1.0.3"
+    "@crafter/sismo-cli": "1.1.0"
   },
   "publishConfig": {
     "access": "public"
