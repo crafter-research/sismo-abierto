@@ -146,6 +146,21 @@ test.describe("V3: catálogo reproducible", () => {
       .count();
     expect(count).toBeGreaterThan(0);
   });
+
+  test("Colombia abre el año completo y conserva meses sin resultados", async ({
+    page,
+  }) => {
+    await page.goto("/colombia/sismos");
+    await expect(page.getByLabel("Este año")).toBeChecked();
+    await expect(page.locator('input[name="minMagnitude"]')).toHaveValue("3");
+    const summary = page.getByTestId("activity-summary");
+    await expect(summary).toContainText("Ene");
+    await expect(summary).toContainText("Feb");
+    await expect(summary).toContainText("Mar");
+    await expect(summary).toContainText(
+      "Los meses sin resultados en la consulta se muestran en cero.",
+    );
+  });
 });
 
 test.describe("V4: API ejecutable", () => {
@@ -172,6 +187,18 @@ test.describe("V4: API ejecutable", () => {
     const payload = await response.json();
     expect(payload.event.provenance.fetchedAt).toBeTruthy();
     expect(payload.event.provenance.source.url).toContain("igp.gob.pe");
+  });
+
+  test("la API rechaza filtros SGC no numéricos antes de consultar el origen", async ({
+    request,
+  }) => {
+    const response = await request.get(
+      "/api/v1/events?provider=sgc&since=ytd&minMagnitude=abc",
+    );
+    expect(response.status()).toBe(400);
+    await expect(response.json()).resolves.toMatchObject({
+      error: { code: "INVALID_INPUT" },
+    });
   });
 });
 

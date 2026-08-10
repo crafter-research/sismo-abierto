@@ -18,10 +18,31 @@ function eventMonth(event: NormalizedEvent): string | null {
   return timestamp?.slice(0, 7) ?? null;
 }
 
+function rangeMonths(range: { start: string; end: string }): string[] {
+  const start = new Date(`${range.start.slice(0, 7)}-01T00:00:00Z`);
+  const end = new Date(`${range.end.slice(0, 7)}-01T00:00:00Z`);
+  if (
+    Number.isNaN(start.getTime()) ||
+    Number.isNaN(end.getTime()) ||
+    start > end
+  ) {
+    return [];
+  }
+  const months: string[] = [];
+  while (start <= end) {
+    months.push(start.toISOString().slice(0, 7));
+    start.setUTCMonth(start.getUTCMonth() + 1);
+  }
+  return months;
+}
+
 export function summarizeEventActivity(
   events: NormalizedEvent[],
+  range?: { start: string; end: string },
 ): EventActivitySummary {
-  const monthlyCounts = new Map<string, number>();
+  const monthlyCounts = new Map(
+    rangeMonths(range ?? { start: "", end: "" }).map((month) => [month, 0]),
+  );
   let magnitudeAtLeast5 = 0;
   let maxMagnitude: number | null = null;
 
@@ -48,6 +69,9 @@ export function summarizeEventActivity(
     magnitudeAtLeast5,
     maxMagnitude,
     monthly,
-    peakMonths: monthly.filter((entry) => entry.count === peakCount),
+    peakMonths:
+      peakCount === 0
+        ? []
+        : monthly.filter((entry) => entry.count === peakCount),
   };
 }

@@ -40,7 +40,7 @@ const HELP = `sismo — datos sísmicos oficiales de Perú y Colombia, con proce
 
 Uso:
   sismo latest [--provider igp|sgc] [--json] [--open]
-  sismo events [--provider igp|sgc] [--since 7d] [--until YYYY-MM-DD] [--min-magnitude N] [--max-magnitude N] [--format table|json|geojson|csv] [--output archivo]
+  sismo events [--provider igp|sgc] [--since 7d|ytd|YYYY-MM-DD] [--until YYYY-MM-DD] [--min-magnitude N] [--max-magnitude N] [--format table|json|geojson|csv] [--output archivo]
   sismo inspect EVENT_ID [--json] [--open]
   sismo stations EVENT_ID [--sort distance|pga] [--json]
   sismo waveform EVENT_ID STATION_ID [--format csv|json] [--output archivo] [--open]
@@ -100,7 +100,12 @@ async function writeOutput(content: string, args: ParsedArgs): Promise<void> {
     await writeFile(output, `${content}\n`);
     console.log(`Exportado a ${output}`);
   } else {
-    console.log(content);
+    await new Promise<void>((resolve, reject) => {
+      process.stdout.write(`${content}\n`, (error) => {
+        if (error) reject(error);
+        else resolve();
+      });
+    });
   }
 }
 

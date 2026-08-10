@@ -81,7 +81,7 @@ bun run drift      # linter de contratos contra las fuentes en vivo
 bunx --bun @crafter/sismo-cli latest
 bunx --bun @crafter/sismo-cli events --since 7d --min-magnitude 4 --format geojson
 SISMO_SGC_PROVIDER=true bunx --bun @crafter/sismo-cli latest --provider sgc
-SISMO_SGC_PROVIDER=true bunx --bun @crafter/sismo-cli events --provider sgc --since 7d --min-magnitude 4 --format geojson
+SISMO_SGC_PROVIDER=true bunx --bun @crafter/sismo-cli events --provider sgc --since ytd --min-magnitude 3 --format geojson
 bunx --bun @crafter/sismo-cli schema events
 ```
 

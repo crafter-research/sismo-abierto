@@ -64,7 +64,8 @@ const ENDPOINTS: EndpointSpec[] = [
         name: "since",
         in: "query",
         required: false,
-        description: "Fecha inicial ISO o duración tipo 7d",
+        description:
+          "Fecha inicial ISO, duración tipo 7d o ytd para el año en curso. SGC admite hasta 366 días con minMagnitude >= 3.",
         schema: { type: "string" },
       },
       {
@@ -78,7 +79,8 @@ const ENDPOINTS: EndpointSpec[] = [
         name: "minMagnitude",
         in: "query",
         required: false,
-        description: "Magnitud mínima",
+        description:
+          "Magnitud mínima. Es obligatoria con valor >= 3 para rangos SGC mayores a 31 días.",
         schema: { type: "number" },
       },
       {

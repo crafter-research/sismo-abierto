@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { parseCensisRows } from "../src/adapters/censis.ts";
 import { parseLatestFeatureCollection } from "../src/adapters/latest.ts";
 import {
+  fetchSgcEvents,
   parseSgcFeature,
   parseSgcFeatureCollection,
 } from "../src/adapters/sgc.ts";
@@ -10,6 +11,7 @@ import {
   censisEventId,
   parseCensisEventId,
   parseRanEventId,
+  resolveEventDateRange,
 } from "../src/events.ts";
 import {
   limaLocalToUtcIso,
@@ -137,6 +139,24 @@ describe("Servicio Geológico Colombiano", () => {
       }),
     ).toThrow(SourceError);
   });
+
+  test("protege rangos largos sin filtro de magnitud", async () => {
+    await expect(
+      fetchSgcEvents(
+        { start: "2026-01-01", end: "2026-08-10" },
+        { provider: "sgc" },
+      ),
+    ).rejects.toMatchObject({ kind: "invalid" });
+  });
+
+  test("protege rangos largos con magnitud no numérica", async () => {
+    await expect(
+      fetchSgcEvents(
+        { start: "2026-01-01", end: "2026-08-10" },
+        { provider: "sgc", minMagnitude: Number.NaN },
+      ),
+    ).rejects.toMatchObject({ kind: "invalid" });
+  });
 });
 
 describe("IDs de eventos", () => {
@@ -163,6 +183,18 @@ describe("IDs de eventos", () => {
     expect(parseRanEventId("ran-20260468")).toBe(20260468);
     expect(parseRanEventId("censis-x")).toBeNull();
     expect(parseRanEventId("ran-abc")).toBeNull();
+  });
+});
+
+describe("rangos de eventos", () => {
+  test("ytd respeta el año local de Perú y Colombia", () => {
+    const now = new Date("2027-01-01T02:00:00Z");
+    expect(
+      resolveEventDateRange({ provider: "igp", since: "ytd" }, now),
+    ).toEqual({ start: "2026-01-01", end: "2026-12-31" });
+    expect(
+      resolveEventDateRange({ provider: "sgc", since: "ytd" }, now),
+    ).toEqual({ start: "2026-01-01", end: "2026-12-31" });
   });
 });
 

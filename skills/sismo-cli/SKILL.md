@@ -42,7 +42,7 @@ Introspección en runtime: `sismo skill` imprime este documento; `sismo help` li
 
 ```bash
 sismo latest [--provider igp|sgc] [--json] [--open]
-sismo events [--since 7d] [--until YYYY-MM-DD] [--min-magnitude N] [--max-magnitude N] \
+sismo events [--since 7d|ytd|YYYY-MM-DD] [--until YYYY-MM-DD] [--min-magnitude N] [--max-magnitude N] \
              [--provider igp|sgc] [--format table|json|geojson|csv] [--output archivo]
 sismo inspect EVENT_ID [--json] [--open]
 sismo stations EVENT_ID [--sort distance|pga] [--json]
@@ -70,6 +70,7 @@ sismo inspect ran-20260468 --json
 ```bash
 SISMO_SGC_PROVIDER=true sismo latest --provider sgc --json
 SISMO_SGC_PROVIDER=true sismo events --provider sgc --since 7d --format json
+SISMO_SGC_PROVIDER=true sismo events --provider sgc --since ytd --min-magnitude 3 --format json
 SISMO_SGC_PROVIDER=true sismo inspect sgc-SGC2026pqqmro --json
 ```
 
@@ -102,5 +103,7 @@ sismo source igp-aceldat --evidence
   aviso; el linter de contratos (`sources --probe`) los vigila campo por campo.
 - El API reciente del SGC no publica SLA ni contrato versionado. El provider divide rangos,
   valida errores anidados y distingue eventos automáticos de revisiones manuales.
+- Los rangos SGC mayores a 31 días requieren `--min-magnitude 3` o superior y admiten hasta
+  366 días.
 - `DATABASE_URL` (opcional, Neon/Postgres) persiste el historial de chequeos; sin ella se
   usa memoria por proceso.

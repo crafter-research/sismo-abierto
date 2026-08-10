@@ -1,6 +1,7 @@
 import type { EventProviderId } from "@sismo/contracts";
 import {
   buildEventListResponse,
+  eventProviderLocalDate,
   isSgcProviderEnabled,
   resolveEventProvider,
   summarizeEventActivity,
@@ -55,15 +56,6 @@ function lastNonEmpty(value: ParamValue): string | undefined {
   );
 }
 
-function currentLimaYear(): number {
-  return Number(
-    new Intl.DateTimeFormat("en", {
-      year: "numeric",
-      timeZone: "America/Lima",
-    }).format(new Date()),
-  );
-}
-
 function scopeLabel({
   since,
   until,
@@ -107,7 +99,8 @@ export async function CountryCatalogPage({
       />
     );
   }
-  const year = currentLimaYear();
+  const providerToday = eventProviderLocalDate(provider);
+  const year = Number(providerToday.slice(0, 4));
   const rangeParam = lastNonEmpty(params.range);
   const sinceParam = lastNonEmpty(params.since);
   const legacyRange = RANGE_PRESETS.some(
@@ -116,17 +109,17 @@ export async function CountryCatalogPage({
     ? sinceParam
     : undefined;
   const selectedRange =
-    rangeParam ??
-    legacyRange ??
-    (sinceParam ? undefined : provider === "sgc" ? "30d" : "ytd");
+    rangeParam ?? legacyRange ?? (sinceParam ? undefined : "ytd");
   const exactSince = legacyRange ? undefined : sinceParam;
-  const since =
-    selectedRange ?? exactSince ?? (provider === "sgc" ? "30d" : "ytd");
+  const since = selectedRange ?? exactSince ?? "ytd";
   const until = lastNonEmpty(params.until);
   const minMagnitudeParam = lastNonEmpty(params.minMagnitude);
   const maxMagnitudeParam = lastNonEmpty(params.maxMagnitude);
   const soloOndas = provider === "igp" && lastNonEmpty(params.ondas) === "1";
-  const minMagnitudeValue = minMagnitudeParam ? Number(minMagnitudeParam) : 1;
+  const defaultMinMagnitude = provider === "sgc" ? 3 : 1;
+  const minMagnitudeValue = minMagnitudeParam
+    ? Number(minMagnitudeParam)
+    : defaultMinMagnitude;
   const effectiveSince =
     selectedRange === "ytd"
       ? `${year}-01-01`
@@ -139,7 +132,9 @@ export async function CountryCatalogPage({
       ? Math.max(4.5, minMagnitudeValue)
       : minMagnitudeParam
         ? minMagnitudeValue
-        : undefined,
+        : provider === "sgc"
+          ? defaultMinMagnitude
+          : undefined,
     maxMagnitude: maxMagnitudeParam ? Number(maxMagnitudeParam) : undefined,
   };
   const presetValue = selectedRange ?? "";
@@ -151,7 +146,12 @@ export async function CountryCatalogPage({
   } catch (error) {
     loadError = error;
   }
-  const summary = result ? summarizeEventActivity(result.events) : null;
+  const summary = result
+    ? summarizeEventActivity(result.events, {
+        start: effectiveSince,
+        end: until ?? providerToday,
+      })
+    : null;
 
   return (
     <div className="space-y-6">
@@ -188,13 +188,7 @@ export async function CountryCatalogPage({
           <GlassToggleGroup
             name="range"
             legend="Rango de fechas del catálogo"
-            options={
-              provider === "sgc"
-                ? RANGE_PRESETS.filter((preset) =>
-                    ["7d", "30d"].includes(preset.value),
-                  )
-                : RANGE_PRESETS
-            }
+            options={RANGE_PRESETS}
             defaultValue={presetValue}
             clearInputNames={["since", "until"]}
           />
@@ -205,7 +199,7 @@ export async function CountryCatalogPage({
           min={1}
           max={9}
           step={0.1}
-          defaultValue={minMagnitudeParam ? Number(minMagnitudeParam) : 1}
+          defaultValue={minMagnitudeValue}
           prefix="M ≥ "
         />
         <GlassRange

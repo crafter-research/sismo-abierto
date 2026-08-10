@@ -119,7 +119,7 @@ export function ActivitySummary({
                   <span
                     className="mx-auto w-full max-w-14 bg-gray-1000"
                     style={{
-                      height: `${Math.max(4, (entry.count / maxMonthlyCount) * 100)}%`,
+                      height: `${entry.count === 0 ? 0 : Math.max(4, (entry.count / maxMonthlyCount) * 100)}%`,
                     }}
                   />
                 </span>
@@ -129,6 +129,9 @@ export function ActivitySummary({
               </div>
             ))}
           </div>
+          <p className="mt-2 text-gray-800 text-xs">
+            Los meses sin resultados en la consulta se muestran en cero.
+          </p>
         </div>
       ) : null}
 

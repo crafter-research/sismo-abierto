@@ -16,6 +16,6 @@ El nombre `sismo` devolvió `404 Not Found` en npm el 1 de agosto de 2026 y qued
 
 ## Estado actual
 
-El soporte Colombia se publica en `@crafter/sismo-cli@1.1.0`. El alias `sismo@1.0.0` permanece legado porque su paquete de npm no tiene Trusted Publisher configurado para este repositorio. README y Developers apuntan al paquete canónico.
+El soporte Colombia se publica desde `@crafter/sismo-cli@1.1.0`. La versión `1.1.1` añade rangos `ytd`, catálogo anual SGC con `--min-magnitude 3` y salida JSON grande sin truncamiento. El alias `sismo@1.0.0` permanece legado porque su paquete de npm no tiene Trusted Publisher configurado para este repositorio. README y Developers apuntan al paquete canónico.
 
 El paquete publicado tiene shasum `c8d793c54c877f364e556271db3f645b1c698205`. El alias preserva la salida JSON y los exit codes del paquete canónico.

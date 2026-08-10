@@ -59,4 +59,21 @@ describe("summarizeEventActivity", () => {
       peakMonths: [],
     });
   });
+
+  test("incluye meses sin resultados dentro del rango solicitado", () => {
+    expect(
+      summarizeEventActivity([event("2026-03-04T11:08:31-05:00", 3.2)], {
+        start: "2026-01-01",
+        end: "2026-04-30",
+      }),
+    ).toMatchObject({
+      monthly: [
+        { month: "2026-01", count: 0 },
+        { month: "2026-02", count: 0 },
+        { month: "2026-03", count: 1 },
+        { month: "2026-04", count: 0 },
+      ],
+      peakMonths: [{ month: "2026-03", count: 1 }],
+    });
+  });
 });

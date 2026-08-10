@@ -51,8 +51,10 @@ el estado de revisión y la hora de consulta.
 - El feed estático publica `ETag` y `Last-Modified` y acepta revalidación HTTP `304`.
 - La API quincenal no publica documentación, SLA ni límites de tasa.
 - Algunas fallas aparecen como HTTP `200` con un error `503` anidado.
-- Rangos grandes pueden agotar el tiempo del backend. El adaptador limita la consulta total
-  a 31 días y la divide en ventanas de 14 días.
+- El adaptador divide las consultas en ventanas de 14 días con concurrencia controlada.
+  Admite hasta 31 días sin filtro y hasta 366 días cuando `minMagnitude >= 3`.
+- El catálogo anual muestra meses sin resultados en cero. En la consulta verificada de 2026,
+  el origen no devolvió registros de enero ni febrero y comenzó a devolverlos en marzo.
 - Los feeds contienen agencias externas. La integración estricta filtra `agency === "SGC"`.
 - Esta fuente reporta eventos ocurridos. No es predicción ni alerta temprana.
 

@@ -7,6 +7,7 @@ export interface FetchPolicy {
   sourceId: string;
   timeoutMs?: number;
   retries?: number;
+  cacheSeconds?: number;
   method?: "GET" | "POST";
   body?: string;
   headers?: Record<string, string>;
@@ -23,7 +24,7 @@ async function attemptFetch(
     policy.timeoutMs ?? 15_000,
   );
   try {
-    return await fetch(url, {
+    const request: RequestInit & { next?: { revalidate: number } } = {
       method: policy.method ?? "GET",
       headers: {
         "user-agent": USER_AGENT,
@@ -32,7 +33,11 @@ async function attemptFetch(
       },
       ...(policy.body ? { body: policy.body } : {}),
       signal: controller.signal,
-    });
+    };
+    if (policy.cacheSeconds !== undefined) {
+      request.next = { revalidate: policy.cacheSeconds };
+    }
+    return await fetch(url, request);
   } finally {
     clearTimeout(timeout);
   }

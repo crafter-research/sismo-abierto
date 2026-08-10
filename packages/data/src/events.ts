@@ -192,29 +192,55 @@ export async function getLatestEvent(
   };
 }
 
-function resolveSince(filters: EventQueryFilters): {
+export function eventProviderLocalDate(
+  provider: EventProviderId,
+  now = new Date(),
+): string {
+  const parts = new Intl.DateTimeFormat("en", {
+    timeZone: provider === "sgc" ? "America/Bogota" : "America/Lima",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(now);
+  const value = (type: "year" | "month" | "day") =>
+    parts.find((part) => part.type === type)?.value ?? "";
+  return `${value("year")}-${value("month")}-${value("day")}`;
+}
+
+export function resolveEventDateRange(
+  filters: EventQueryFilters,
+  now = new Date(),
+): {
   start: string;
   end: string;
 } {
-  const now = new Date();
-  const end = filters.until ?? now.toISOString().slice(0, 10);
+  const provider = filters.provider ?? "igp";
+  const today = eventProviderLocalDate(provider, now);
+  const end = filters.until ?? today;
   let start: string;
   if (!filters.since) {
-    start = new Date(now.getTime() - 30 * 86_400_000)
+    start = new Date(Date.parse(`${today}T00:00:00Z`) - 30 * 86_400_000)
       .toISOString()
       .slice(0, 10);
   } else {
     const durationMatch = filters.since.match(/^(\d+)d$/);
-    start = durationMatch?.[1]
-      ? new Date(now.getTime() - Number(durationMatch[1]) * 86_400_000)
-          .toISOString()
-          .slice(0, 10)
-      : filters.since.slice(0, 10);
+    if (filters.since === "ytd") {
+      start = `${today.slice(0, 4)}-01-01`;
+    } else {
+      start = durationMatch?.[1]
+        ? new Date(
+            Date.parse(`${today}T00:00:00Z`) -
+              Number(durationMatch[1]) * 86_400_000,
+          )
+            .toISOString()
+            .slice(0, 10)
+        : filters.since.slice(0, 10);
+    }
   }
   if (Number.isNaN(Date.parse(start)) || Number.isNaN(Date.parse(end))) {
     throw new SourceError({
       kind: "schema",
-      sourceId: "igp-censis-catalogo",
+      sourceId: provider === "sgc" ? "sgc-sismos" : "igp-censis-catalogo",
       message: `Rango de fechas inválido: ${filters.since} → ${filters.until}`,
     });
   }
@@ -227,7 +253,24 @@ export async function queryEventCatalog(filters: EventQueryFilters): Promise<{
   queryUrl: string;
   range: { start: string; end: string };
 }> {
-  const { start, end } = resolveSince(filters);
+  const numericFilters = [
+    ["minMagnitude", filters.minMagnitude],
+    ["maxMagnitude", filters.maxMagnitude],
+    ["minDepthKm", filters.minDepthKm],
+    ["maxDepthKm", filters.maxDepthKm],
+  ] as const;
+  const invalidFilter = numericFilters.find(
+    ([, value]) => value !== undefined && !Number.isFinite(value),
+  );
+  if (invalidFilter) {
+    throw new SourceError({
+      kind: "invalid",
+      sourceId:
+        filters.provider === "sgc" ? "sgc-sismos" : "igp-censis-catalogo",
+      message: `Filtro numérico inválido: ${invalidFilter[0]}.`,
+    });
+  }
+  const { start, end } = resolveEventDateRange(filters);
   if (filters.provider === "sgc") {
     const result = await fetchSgcEvents({ start, end }, filters);
     return { ...result, range: { start, end } };

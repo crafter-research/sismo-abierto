@@ -13,7 +13,10 @@ const SGC_API_URL = "https://api.sgc.gov.co/biweekly/biweekly_earthquakes";
 const SGC_LATEST_URL =
   "https://archive.sgc.gov.co/feed/v1.0.1/summary/five_days_all.json";
 const SGC_DETAIL_BASE = "https://archive.sgc.gov.co/events";
-const SGC_MAX_RANGE_DAYS = 31;
+const SGC_MAX_RANGE_DAYS = 366;
+const SGC_MAX_UNFILTERED_RANGE_DAYS = 31;
+const SGC_LONG_RANGE_MIN_MAGNITUDE = 3;
+const SGC_CHUNK_CONCURRENCY = 4;
 
 interface SgcFeature {
   type: string;
@@ -213,6 +216,54 @@ function dateChunks(range: { start: string; end: string }) {
   return chunks;
 }
 
+async function fetchSgcChunk(chunk: {
+  start: string;
+  end: string;
+}): Promise<SgcFeature[]> {
+  const params = new URLSearchParams({
+    startdate: `${chunk.start}T00:00:00`,
+    enddate: `${chunk.end}T23:59:59`,
+  });
+  const today = nowBogotaIso().slice(0, 10);
+  const cacheSeconds = chunk.end < today ? 3_600 : 60;
+  return cached(
+    `sgc:chunk:${chunk.start}:${chunk.end}`,
+    cacheSeconds * 1_000,
+    async () => {
+      const data = await fetchJson<SgcFeatureCollection>(
+        `${SGC_API_URL}?${params.toString()}`,
+        {
+          sourceId: "sgc-sismos",
+          timeoutMs: 20_000,
+          expectedContentType: "json",
+          cacheSeconds,
+        },
+      );
+      return assertCollection(data);
+    },
+  );
+}
+
+async function fetchSgcChunks(
+  chunks: Array<{ start: string; end: string }>,
+): Promise<SgcFeature[]> {
+  const groups = Array.from(
+    { length: Math.min(SGC_CHUNK_CONCURRENCY, chunks.length) },
+    () => [] as Array<{ start: string; end: string }>,
+  );
+  chunks.forEach((chunk, index) => {
+    groups[index % groups.length]?.push(chunk);
+  });
+  const results = await Promise.all(
+    groups.map(async (group) => {
+      const features: SgcFeature[] = [];
+      for (const chunk of group) features.push(...(await fetchSgcChunk(chunk)));
+      return features;
+    }),
+  );
+  return results.flat();
+}
+
 export function isSgcProviderEnabled(): boolean {
   return (
     process.env.SISMO_SGC_PROVIDER === "true" || process.env.NODE_ENV === "test"
@@ -290,28 +341,24 @@ export async function fetchSgcEvents(
     throw new SourceError({
       kind: "invalid",
       sourceId: "sgc-sismos",
-      message: `El provider SGC admite rangos de 1 a ${SGC_MAX_RANGE_DAYS} días para evitar timeouts del origen.`,
+      message: `El provider SGC admite rangos de 1 a ${SGC_MAX_RANGE_DAYS} días.`,
+    });
+  }
+  if (
+    rangeDays > SGC_MAX_UNFILTERED_RANGE_DAYS &&
+    (!Number.isFinite(filters.minMagnitude) ||
+      (filters.minMagnitude ?? -10) < SGC_LONG_RANGE_MIN_MAGNITUDE)
+  ) {
+    throw new SourceError({
+      kind: "invalid",
+      sourceId: "sgc-sismos",
+      message: `Los rangos SGC mayores a ${SGC_MAX_UNFILTERED_RANGE_DAYS} días requieren minMagnitude >= ${SGC_LONG_RANGE_MIN_MAGNITUDE} para mantener una respuesta manejable.`,
     });
   }
   const queryUrl = `https://www.sgc.gov.co/catalogo?start=${range.start}&end=${range.end}`;
   const cacheKey = `sgc:events:${range.start}:${range.end}:${filters.minMagnitude ?? ""}:${filters.maxMagnitude ?? ""}:${filters.minDepthKm ?? ""}:${filters.maxDepthKm ?? ""}`;
   return cached(cacheKey, 60_000, async () => {
-    const features: SgcFeature[] = [];
-    for (const chunk of dateChunks(range)) {
-      const params = new URLSearchParams({
-        startdate: `${chunk.start}T00:00:00`,
-        enddate: `${chunk.end}T23:59:59`,
-      });
-      const data = await fetchJson<SgcFeatureCollection>(
-        `${SGC_API_URL}?${params.toString()}`,
-        {
-          sourceId: "sgc-sismos",
-          timeoutMs: 20_000,
-          expectedContentType: "json",
-        },
-      );
-      features.push(...assertCollection(data));
-    }
+    const features = await fetchSgcChunks(dateChunks(range));
     const deduped = new Map(features.map((feature) => [feature.id, feature]));
     let events = parseSgcFeatureCollection({
       type: "FeatureCollection",
