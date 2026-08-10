@@ -1,7 +1,7 @@
 import {
+  colombiaDepartamentos,
   departamentos,
   type GeoFeature,
-  getCountry,
   provincias,
 } from "@sismo/geo";
 
@@ -102,9 +102,7 @@ function pathsFor(bounds: Bounds, height: number, country: MapCountry) {
   if (cached) return cached;
   const countryFeatures =
     country === "colombia"
-      ? [getCountry("170")].filter(
-          (feature): feature is GeoFeature => feature !== null,
-        )
+      ? colombiaDepartamentos.features
       : departamentos.features;
   const built = {
     departments: countryFeatures.map((feature) => ({
@@ -364,6 +362,7 @@ export function PeruMap({
         {paths.departments.map((department) => (
           <path
             key={department.name}
+            data-testid={`${country}-map-region`}
             d={department.d}
             fill={canShowProvinces ? "none" : "var(--color-map-land)"}
             stroke="var(--color-map-border)"
@@ -422,9 +421,16 @@ export function PeruMap({
         })}
       </svg>
       <figcaption className="mt-1 font-mono text-[10px] text-gray-900">
-        {country === "peru"
-          ? "Límites INEI simplificados"
-          : "Contorno Natural Earth simplificado"}{" "}
+        {country === "peru" ? (
+          "Límites INEI simplificados"
+        ) : (
+          <a
+            href="https://www.geoboundaries.org/countryDownloads.html"
+            className="underline"
+          >
+            Límites departamentales geoBoundaries simplificados
+          </a>
+        )}{" "}
         · coordenadas oficiales de la fuente
       </figcaption>
     </figure>

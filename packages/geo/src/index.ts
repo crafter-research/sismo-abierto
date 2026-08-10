@@ -1,5 +1,6 @@
 import { feature as topologyFeature } from "topojson-client";
 import countriesTopoJson from "world-atlas/countries-50m.json";
+import colombiaDepartamentosJson from "../data/colombia-departamentos.json";
 import departamentosJson from "../data/peru-departamentos.json";
 import provinciasJson from "../data/peru-provincias.json";
 
@@ -20,6 +21,7 @@ interface CountryGeoFeature extends GeoFeature {
 }
 
 export const departamentos = departamentosJson as GeoCollection;
+export const colombiaDepartamentos = colombiaDepartamentosJson as GeoCollection;
 export const provincias = provinciasJson as GeoCollection;
 const countries = topologyFeature(
   countriesTopoJson as never,

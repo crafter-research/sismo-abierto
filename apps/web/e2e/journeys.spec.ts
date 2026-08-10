@@ -47,6 +47,10 @@ test.describe("Perú y Colombia", () => {
       page.getByRole("heading", { name: "Últimos sismos en Colombia" }),
     ).toBeVisible();
     await expect(page.getByLabel("Bandera de Colombia").first()).toBeVisible();
+    await expect(page.getByTestId("colombia-map-region")).toHaveCount(33);
+    await expect(page.getByTestId("colombia-map")).toContainText(
+      "Límites departamentales geoBoundaries simplificados",
+    );
     await expect(page.getByTestId("source-badge").first()).toContainText(
       "Servicio Geológico Colombiano",
     );
