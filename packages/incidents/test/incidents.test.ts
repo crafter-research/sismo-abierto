@@ -90,6 +90,9 @@ describe("incidentes versionados", () => {
     expect(before?.humanitarian.versionLabel).toBe(
       "Balance preliminar Asocapitales",
     );
+    expect(
+      before?.history.some((entry) => entry.source.reportNumber === "002"),
+    ).toBe(true);
     await publishHumanitarianVersion(COLOMBIA_INCIDENT.id, candidate.id, store);
     const after = await getIncidentView(
       COLOMBIA_INCIDENT.slug,

@@ -58,6 +58,12 @@ export default async function ColombiaEmergencyPage() {
   const { incident, seismic, humanitarian } = view;
   const magnitude = seismic?.event.magnitude ?? 7.4;
   const dateModified = seismic?.syncedAt ?? humanitarian.publishedAt;
+  const visibleHistory = [
+    ...view.history.filter((entry) => entry.kind === "seismic").slice(0, 4),
+    ...view.history
+      .filter((entry) => entry.kind === "humanitarian")
+      .slice(0, 4),
+  ].sort((a, b) => b.observedAt.localeCompare(a.observedAt));
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -193,7 +199,7 @@ export default async function ColombiaEmergencyPage() {
           Historial de actualizaciones
         </h2>
         <ol className="mt-4 divide-y divide-gray-300 border-y border-gray-300">
-          {view.history.slice(0, 8).map((entry) => (
+          {visibleHistory.map((entry) => (
             <li
               key={entry.id}
               className="grid gap-1 py-3 text-sm sm:grid-cols-[130px_1fr_auto] sm:items-center"

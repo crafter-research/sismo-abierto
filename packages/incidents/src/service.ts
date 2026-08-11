@@ -114,6 +114,24 @@ function versionToHistory(version: IncidentVersion): IncidentHistoryEntry {
   };
 }
 
+function humanitarianHistory(): IncidentHistoryEntry[] {
+  return COLOMBIA_HUMANITARIAN_HISTORY.map((snapshot) =>
+    versionToHistory(humanitarianSnapshotVersion(snapshot)),
+  );
+}
+
+function mergeHumanitarianHistory(
+  history: IncidentHistoryEntry[],
+): IncidentHistoryEntry[] {
+  const merged = [...history];
+  for (const entry of humanitarianHistory()) {
+    if (!merged.some((candidate) => candidate.id === entry.id)) {
+      merged.push(entry);
+    }
+  }
+  return merged.sort((a, b) => b.observedAt.localeCompare(a.observedAt));
+}
+
 function seismicFreshness(syncedAt: string, now: Date) {
   const ageMs = now.getTime() - Date.parse(syncedAt);
   if (!Number.isFinite(ageMs)) return "UNKNOWN" as const;
@@ -194,9 +212,7 @@ export async function getIncidentView(
       : null;
   let seismicVersion: IncidentVersion | null = null;
   let history: IncidentHistoryEntry[] = humanitarian
-    ? COLOMBIA_HUMANITARIAN_HISTORY.map((snapshot) =>
-        versionToHistory(humanitarianSnapshotVersion(snapshot)),
-      )
+    ? humanitarianHistory()
     : [];
   let storage: IncidentViewResponse["storage"] = "fallback";
 
@@ -214,7 +230,7 @@ export async function getIncidentView(
         humanitarian = versionToHumanitarian(storedHumanitarian);
       }
       seismicVersion = storedSeismic;
-      history = versions.map(versionToHistory);
+      history = mergeHumanitarianHistory(versions.map(versionToHistory));
       storage = "database";
     } catch {
       storage = "fallback";

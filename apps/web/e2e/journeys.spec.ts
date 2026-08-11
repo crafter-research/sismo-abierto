@@ -86,6 +86,7 @@ test.describe("Perú y Colombia", () => {
     await expect(
       page.getByRole("heading", { name: "Historial de actualizaciones" }),
     ).toBeVisible();
+    await expect(page.getByText("Reporte preliminar 002")).toBeVisible();
     await expect(
       page.getByText("Actualización automática cada 60 s"),
     ).toBeVisible();
