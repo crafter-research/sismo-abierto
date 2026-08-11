@@ -13,6 +13,58 @@ export const COLOMBIA_INCIDENT: IncidentRecord = {
 };
 
 export const COLOMBIA_HUMANITARIAN_FALLBACK: HumanitarianSnapshot = {
+  id: "humanitarian-colombia-2026-08-10-asocapitales-1730",
+  versionLabel: "Balance preliminar Asocapitales",
+  reviewStatus: "published",
+  observedAt: "2026-08-10T17:30:00-05:00",
+  publishedAt: "2026-08-10T18:29:44-05:00",
+  source: {
+    name: "Asociación Colombiana de Ciudades Capitales",
+    url: "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/terremoto-en-colombia-deja-132-personas-fallecidas",
+    reportNumber: null,
+    issuedAt: "2026-08-10T17:30:00-05:00",
+  },
+  facts: [
+    {
+      key: "deaths",
+      value: 132,
+      displayValue: "132",
+      label: "fallecidos en Colombia",
+    },
+    {
+      key: "deaths_capitals",
+      value: 87,
+      displayValue: "87",
+      label: "fallecidos en capitales",
+    },
+    {
+      key: "injured",
+      value: 570,
+      displayValue: "570+",
+      label: "heridos reportados",
+    },
+    {
+      key: "red_alert_capitals",
+      value: 5,
+      displayValue: "5",
+      label: "capitales en alerta roja",
+    },
+    {
+      key: "buildings_collapsed",
+      value: 86,
+      displayValue: "86",
+      label: "edificios colapsados",
+    },
+    {
+      key: "airports_suspended",
+      value: 7,
+      displayValue: "7",
+      label: "aeropuertos suspendidos",
+    },
+  ],
+};
+
+const COLOMBIA_UNGRD_REPORT_002: HumanitarianSnapshot = {
   id: "humanitarian-colombia-2026-08-10-report-002",
   versionLabel: "Reporte preliminar 002",
   reviewStatus: "published",
@@ -53,3 +105,8 @@ export const COLOMBIA_HUMANITARIAN_FALLBACK: HumanitarianSnapshot = {
     },
   ],
 };
+
+export const COLOMBIA_HUMANITARIAN_HISTORY = [
+  COLOMBIA_HUMANITARIAN_FALLBACK,
+  COLOMBIA_UNGRD_REPORT_002,
+] satisfies HumanitarianSnapshot[];

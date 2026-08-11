@@ -166,8 +166,16 @@ export default async function ColombiaEmergencyPage() {
         </dl>
         <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-gray-800 text-xs">
           <p>
-            Fuente: {humanitarian.versionLabel} de {humanitarian.source.name}.
-            Las cifras son preliminares y pueden cambiar.
+            Fuente: {humanitarian.versionLabel} de{" "}
+            <a
+              href={humanitarian.source.url}
+              className="underline underline-offset-2 hover:text-gray-1000"
+              rel="noreferrer"
+              target="_blank"
+            >
+              {humanitarian.source.name}
+            </a>
+            . Las cifras son preliminares y pueden cambiar.
           </p>
           <span className="font-mono">
             {view.storage === "database"

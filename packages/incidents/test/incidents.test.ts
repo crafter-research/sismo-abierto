@@ -46,7 +46,13 @@ describe("incidentes versionados", () => {
       false,
     );
     expect(view?.storage).toBe("fallback");
-    expect(view?.humanitarian.source.reportNumber).toBe("002");
+    expect(view?.humanitarian.versionLabel).toBe(
+      "Balance preliminar Asocapitales",
+    );
+    expect(view?.humanitarian.facts[0]?.value).toBe(132);
+    expect(
+      view?.history.some((entry) => entry.source.reportNumber === "002"),
+    ).toBe(true);
     expect(incidentViewResponseSchema.safeParse(view).success).toBe(true);
   });
 
@@ -81,7 +87,9 @@ describe("incidentes versionados", () => {
       new Date("2026-08-10T20:00:00Z"),
       false,
     );
-    expect(before?.humanitarian.source.reportNumber).toBe("002");
+    expect(before?.humanitarian.versionLabel).toBe(
+      "Balance preliminar Asocapitales",
+    );
     await publishHumanitarianVersion(COLOMBIA_INCIDENT.id, candidate.id, store);
     const after = await getIncidentView(
       COLOMBIA_INCIDENT.slug,

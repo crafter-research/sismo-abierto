@@ -11,7 +11,11 @@ import {
 } from "@sismo/contracts";
 import { getEvent } from "@sismo/data";
 import { NeonIncidentStore } from "./neon-store.ts";
-import { COLOMBIA_HUMANITARIAN_FALLBACK, COLOMBIA_INCIDENT } from "./static.ts";
+import {
+  COLOMBIA_HUMANITARIAN_FALLBACK,
+  COLOMBIA_HUMANITARIAN_HISTORY,
+  COLOMBIA_INCIDENT,
+} from "./static.ts";
 import type {
   HumanitarianVersionPayload,
   IncidentStore,
@@ -48,8 +52,9 @@ function stableId(prefix: string, value: unknown): string {
     .slice(0, 20)}`;
 }
 
-function humanitarianFallbackVersion(): IncidentVersion {
-  const snapshot = COLOMBIA_HUMANITARIAN_FALLBACK;
+function humanitarianSnapshotVersion(
+  snapshot: HumanitarianSnapshot,
+): IncidentVersion {
   return {
     id: snapshot.id,
     incidentId: COLOMBIA_INCIDENT.id,
@@ -70,7 +75,9 @@ async function seedIncident(
 ): Promise<void> {
   await store.upsertIncident(incident);
   if (incident.id === COLOMBIA_INCIDENT.id) {
-    await store.insertVersion(humanitarianFallbackVersion());
+    for (const snapshot of COLOMBIA_HUMANITARIAN_HISTORY) {
+      await store.insertVersion(humanitarianSnapshotVersion(snapshot));
+    }
   }
 }
 
@@ -187,7 +194,9 @@ export async function getIncidentView(
       : null;
   let seismicVersion: IncidentVersion | null = null;
   let history: IncidentHistoryEntry[] = humanitarian
-    ? [versionToHistory(humanitarianFallbackVersion())]
+    ? COLOMBIA_HUMANITARIAN_HISTORY.map((snapshot) =>
+        versionToHistory(humanitarianSnapshotVersion(snapshot)),
+      )
     : [];
   let storage: IncidentViewResponse["storage"] = "fallback";
 
