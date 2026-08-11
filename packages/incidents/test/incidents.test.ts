@@ -42,16 +42,22 @@ describe("incidentes versionados", () => {
     const view = await getIncidentView(
       COLOMBIA_INCIDENT.slug,
       null,
-      new Date("2026-08-10T20:00:00Z"),
+      new Date("2026-08-11T13:00:00Z"),
       false,
     );
     expect(view?.storage).toBe("fallback");
     expect(view?.humanitarian.versionLabel).toBe(
-      "Balance preliminar Asocapitales",
+      "Balance Asocapitales 11/08 06:40",
     );
-    expect(view?.humanitarian.facts[0]?.value).toBe(132);
+    expect(view?.humanitarian.facts[0]?.value).toBe(169);
     expect(
       view?.history.some((entry) => entry.source.reportNumber === "002"),
+    ).toBe(true);
+    expect(
+      view?.history.some(
+        (entry) =>
+          entry.id === "humanitarian-colombia-2026-08-10-asocapitales-1730",
+      ),
     ).toBe(true);
     expect(incidentViewResponseSchema.safeParse(view).success).toBe(true);
   });
@@ -61,22 +67,27 @@ describe("incidentes versionados", () => {
     await getIncidentView(
       COLOMBIA_INCIDENT.slug,
       store,
-      new Date("2026-08-10T20:00:00Z"),
+      new Date("2026-08-11T13:00:00Z"),
       false,
     );
     const candidate = await submitHumanitarianSnapshot(
       COLOMBIA_INCIDENT.id,
       {
         versionLabel: "Reporte preliminar 003",
-        observedAt: "2026-08-10T18:00:00-05:00",
+        observedAt: "2026-08-11T07:00:00-05:00",
         source: {
           name: "UNGRD",
           url: "https://www.gestiondelriesgo.gov.co/",
           reportNumber: "003",
-          issuedAt: "2026-08-10T18:00:00-05:00",
+          issuedAt: "2026-08-11T07:00:00-05:00",
         },
         facts: [
-          { key: "deaths", value: 51, displayValue: "51", label: "fallecidos" },
+          {
+            key: "deaths",
+            value: 170,
+            displayValue: "170",
+            label: "fallecidos",
+          },
         ],
       },
       store,
@@ -84,11 +95,11 @@ describe("incidentes versionados", () => {
     const before = await getIncidentView(
       COLOMBIA_INCIDENT.slug,
       store,
-      new Date("2026-08-10T20:00:00Z"),
+      new Date("2026-08-11T13:00:00Z"),
       false,
     );
     expect(before?.humanitarian.versionLabel).toBe(
-      "Balance preliminar Asocapitales",
+      "Balance Asocapitales 11/08 06:40",
     );
     expect(
       before?.history.some((entry) => entry.source.reportNumber === "002"),
@@ -97,7 +108,7 @@ describe("incidentes versionados", () => {
     const after = await getIncidentView(
       COLOMBIA_INCIDENT.slug,
       store,
-      new Date("2026-08-10T20:00:00Z"),
+      new Date("2026-08-11T13:00:00Z"),
       false,
     );
     expect(after?.humanitarian.source.reportNumber).toBe("003");

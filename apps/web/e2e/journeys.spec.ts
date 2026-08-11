@@ -78,7 +78,7 @@ test.describe("Perú y Colombia", () => {
     await expect(
       page.getByRole("heading", { name: /Sismo M 7.4/ }),
     ).toBeVisible();
-    await expect(page.getByText("132", { exact: true })).toBeVisible();
+    await expect(page.getByText("169", { exact: true })).toBeVisible();
     await expect(
       page.getByRole("link", { name: /Asociación Colombiana/ }),
     ).toHaveAttribute("href", /asocapitales\.co/);
@@ -109,9 +109,9 @@ test.describe("Perú y Colombia", () => {
     expect(body.seismic.freshness).toBe("FRESH");
     expect(body.humanitarian.reviewStatus).toBe("published");
     expect(body.humanitarian.versionLabel).toBe(
-      "Balance preliminar Asocapitales",
+      "Balance Asocapitales 11/08 06:40",
     );
-    expect(body.humanitarian.facts[0].value).toBe(132);
+    expect(body.humanitarian.facts[0].value).toBe(169);
   });
 });
 

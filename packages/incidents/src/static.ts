@@ -13,6 +13,46 @@ export const COLOMBIA_INCIDENT: IncidentRecord = {
 };
 
 export const COLOMBIA_HUMANITARIAN_FALLBACK: HumanitarianSnapshot = {
+  id: "humanitarian-colombia-2026-08-11-asocapitales-0640",
+  versionLabel: "Balance Asocapitales 11/08 06:40",
+  reviewStatus: "published",
+  observedAt: "2026-08-11T06:40:53-05:00",
+  publishedAt: "2026-08-11T06:53:46-05:00",
+  source: {
+    name: "Asociación Colombiana de Ciudades Capitales",
+    url: "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/casi-24-horas-del-terremoto-colombia-registra-169-fallecidos",
+    reportNumber: null,
+    issuedAt: "2026-08-11T06:40:53-05:00",
+  },
+  facts: [
+    {
+      key: "deaths",
+      value: 169,
+      displayValue: "169",
+      label: "fallecidos en Colombia",
+    },
+    {
+      key: "deaths_capitals",
+      value: 165,
+      displayValue: "165",
+      label: "fallecidos en capitales",
+    },
+    {
+      key: "injured_capitals",
+      value: 668,
+      displayValue: "668",
+      label: "heridos en capitales",
+    },
+    {
+      key: "buildings_collapsed_capitals",
+      value: 165,
+      displayValue: "165",
+      label: "edificaciones colapsadas en capitales",
+    },
+  ],
+};
+
+const COLOMBIA_ASOCAPITALES_132: HumanitarianSnapshot = {
   id: "humanitarian-colombia-2026-08-10-asocapitales-1730",
   versionLabel: "Balance preliminar Asocapitales",
   reviewStatus: "published",
@@ -108,5 +148,6 @@ const COLOMBIA_UNGRD_REPORT_002: HumanitarianSnapshot = {
 
 export const COLOMBIA_HUMANITARIAN_HISTORY = [
   COLOMBIA_HUMANITARIAN_FALLBACK,
+  COLOMBIA_ASOCAPITALES_132,
   COLOMBIA_UNGRD_REPORT_002,
 ] satisfies HumanitarianSnapshot[];
