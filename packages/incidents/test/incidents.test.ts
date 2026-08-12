@@ -47,9 +47,9 @@ describe("incidentes versionados", () => {
     );
     expect(view?.storage).toBe("fallback");
     expect(view?.humanitarian.versionLabel).toBe(
-      "Balance Asocapitales 11/08 06:40",
+      "Informe Consolidado No. 14 · 11/08 16:00",
     );
-    expect(view?.humanitarian.facts[0]?.value).toBe(169);
+    expect(view?.humanitarian.facts[0]?.value).toBe(188);
     expect(
       view?.history.some((entry) => entry.source.reportNumber === "002"),
     ).toBe(true);
@@ -57,6 +57,12 @@ describe("incidentes versionados", () => {
       view?.history.some(
         (entry) =>
           entry.id === "humanitarian-colombia-2026-08-10-asocapitales-1730",
+      ),
+    ).toBe(true);
+    expect(
+      view?.history.some(
+        (entry) =>
+          entry.id === "humanitarian-colombia-2026-08-11-asocapitales-0640",
       ),
     ).toBe(true);
     expect(incidentViewResponseSchema.safeParse(view).success).toBe(true);
@@ -74,12 +80,12 @@ describe("incidentes versionados", () => {
       COLOMBIA_INCIDENT.id,
       {
         versionLabel: "Reporte preliminar 003",
-        observedAt: "2026-08-11T07:00:00-05:00",
+        observedAt: "2026-08-11T17:00:00-05:00",
         source: {
           name: "UNGRD",
           url: "https://www.gestiondelriesgo.gov.co/",
           reportNumber: "003",
-          issuedAt: "2026-08-11T07:00:00-05:00",
+          issuedAt: "2026-08-11T17:00:00-05:00",
         },
         facts: [
           {
@@ -95,11 +101,11 @@ describe("incidentes versionados", () => {
     const before = await getIncidentView(
       COLOMBIA_INCIDENT.slug,
       store,
-      new Date("2026-08-11T13:00:00Z"),
+      new Date("2026-08-11T23:00:00Z"),
       false,
     );
     expect(before?.humanitarian.versionLabel).toBe(
-      "Balance Asocapitales 11/08 06:40",
+      "Informe Consolidado No. 14 · 11/08 16:00",
     );
     expect(
       before?.history.some((entry) => entry.source.reportNumber === "002"),
@@ -108,7 +114,7 @@ describe("incidentes versionados", () => {
     const after = await getIncidentView(
       COLOMBIA_INCIDENT.slug,
       store,
-      new Date("2026-08-11T13:00:00Z"),
+      new Date("2026-08-11T23:00:00Z"),
       false,
     );
     expect(after?.humanitarian.source.reportNumber).toBe("003");

@@ -13,6 +13,46 @@ export const COLOMBIA_INCIDENT: IncidentRecord = {
 };
 
 export const COLOMBIA_HUMANITARIAN_FALLBACK: HumanitarianSnapshot = {
+  id: "humanitarian-colombia-2026-08-11-asocapitales-report-14",
+  versionLabel: "Informe Consolidado No. 14 · 11/08 16:00",
+  reviewStatus: "published",
+  observedAt: "2026-08-11T16:00:00-05:00",
+  publishedAt: "2026-08-11T16:24:35-05:00",
+  source: {
+    name: "Asociación Colombiana de Ciudades Capitales",
+    url: "https://www.asocapitales.co/sites/default/files/2026-08/informe-no.14-4pm-asocapitales.pdf",
+    reportNumber: "14",
+    issuedAt: "2026-08-11T16:00:00-05:00",
+  },
+  facts: [
+    {
+      key: "deaths_capitals",
+      value: 188,
+      displayValue: "188",
+      label: "fallecidos en capitales",
+    },
+    {
+      key: "injured_capitals",
+      value: 1677,
+      displayValue: "1.677",
+      label: "heridos en capitales",
+    },
+    {
+      key: "injured_national",
+      value: 2595,
+      displayValue: "2.595",
+      label: "heridos a nivel nacional",
+    },
+    {
+      key: "buildings_collapsed_capitals",
+      value: 243,
+      displayValue: "243",
+      label: "estructuras colapsadas en capitales",
+    },
+  ],
+};
+
+const COLOMBIA_ASOCAPITALES_169: HumanitarianSnapshot = {
   id: "humanitarian-colombia-2026-08-11-asocapitales-0640",
   versionLabel: "Balance Asocapitales 11/08 06:40",
   reviewStatus: "published",
@@ -148,6 +188,7 @@ const COLOMBIA_UNGRD_REPORT_002: HumanitarianSnapshot = {
 
 export const COLOMBIA_HUMANITARIAN_HISTORY = [
   COLOMBIA_HUMANITARIAN_FALLBACK,
+  COLOMBIA_ASOCAPITALES_169,
   COLOMBIA_ASOCAPITALES_132,
   COLOMBIA_UNGRD_REPORT_002,
 ] satisfies HumanitarianSnapshot[];
