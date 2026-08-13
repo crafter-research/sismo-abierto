@@ -13,6 +13,52 @@ export const COLOMBIA_INCIDENT: IncidentRecord = {
 };
 
 export const COLOMBIA_HUMANITARIAN_FALLBACK: HumanitarianSnapshot = {
+  id: "humanitarian-colombia-2026-08-13-asocapitales-report-22",
+  versionLabel: "Informe Consolidado No. 22 · 13/08 10:00",
+  reviewStatus: "published",
+  observedAt: "2026-08-13T10:00:00-05:00",
+  publishedAt: "2026-08-13T11:54:11-05:00",
+  source: {
+    name: "Asociación Colombiana de Ciudades Capitales",
+    url: "https://www.asocapitales.co/sites/default/files/2026-08/informe-terremoto-capitales-no-22.pdf",
+    reportNumber: "22",
+    issuedAt: "2026-08-13T10:00:00-05:00",
+  },
+  facts: [
+    {
+      key: "deaths",
+      value: 273,
+      displayValue: "273",
+      label: "fallecidos en Colombia",
+    },
+    {
+      key: "deaths_capitals",
+      value: 204,
+      displayValue: "204",
+      label: "fallecidos en capitales",
+    },
+    {
+      key: "injured_capitals",
+      value: 1958,
+      displayValue: "1.958",
+      label: "heridos en capitales",
+    },
+    {
+      key: "missing_capitals",
+      value: 371,
+      displayValue: "371",
+      label: "desaparecidos o no localizados en capitales",
+    },
+    {
+      key: "buildings_collapsed_capitals",
+      value: 325,
+      displayValue: "325",
+      label: "estructuras colapsadas en capitales",
+    },
+  ],
+};
+
+const COLOMBIA_ASOCAPITALES_REPORT_14: HumanitarianSnapshot = {
   id: "humanitarian-colombia-2026-08-11-asocapitales-report-14",
   versionLabel: "Informe Consolidado No. 14 · 11/08 16:00",
   reviewStatus: "published",
@@ -188,6 +234,7 @@ const COLOMBIA_UNGRD_REPORT_002: HumanitarianSnapshot = {
 
 export const COLOMBIA_HUMANITARIAN_HISTORY = [
   COLOMBIA_HUMANITARIAN_FALLBACK,
+  COLOMBIA_ASOCAPITALES_REPORT_14,
   COLOMBIA_ASOCAPITALES_169,
   COLOMBIA_ASOCAPITALES_132,
   COLOMBIA_UNGRD_REPORT_002,
