@@ -62,7 +62,7 @@ export default async function ColombiaEmergencyPage() {
     ...view.history.filter((entry) => entry.kind === "seismic").slice(0, 4),
     ...view.history
       .filter((entry) => entry.kind === "humanitarian")
-      .slice(0, 4),
+      .slice(0, 8),
   ].sort((a, b) => b.observedAt.localeCompare(a.observedAt));
   const structuredData = {
     "@context": "https://schema.org",
