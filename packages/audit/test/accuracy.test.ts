@@ -232,3 +232,34 @@ describe("consenso entre fuentes", () => {
     expect(sourceConsensus(claim, prediction).inside).toBe(0);
   });
 });
+
+describe("error relativo al ancho del rango", () => {
+  test("normaliza contra el ancho que la propia cuenta publicó", async () => {
+    const claims = await loadClaimedValidations();
+    const claim = claims.find((c) => c.predictionId === "W20260817-P1");
+    const prediction = await getPrediction("W20260817-P1");
+    if (!claim || !prediction) throw new Error("falta W20260817-P1");
+    const consenso = sourceConsensus(claim, prediction);
+    // Rango 4.1-4.5 mide 0.4 de ancho; el IGP yerra por 0.3.
+    expect(consenso.rangeWidth).toBe(0.4);
+    expect(consenso.principalErrorInWidths).toBe(0.75);
+  });
+
+  test("un error mayor que el propio rango supera 1", async () => {
+    const claims = await loadClaimedValidations();
+    const claim = claims.find((c) => c.predictionId === "W20260817-P5");
+    const prediction = await getPrediction("W20260817-P5");
+    if (!claim || !prediction) throw new Error("falta W20260817-P5");
+    const consenso = sourceConsensus(claim, prediction);
+    // 0.5 de error sobre un rango de 0.4 de ancho.
+    expect(consenso.principalErrorInWidths).toBeGreaterThan(1);
+  });
+
+  test("un acierto no tiene error relativo", async () => {
+    const claims = await loadClaimedValidations();
+    const claim = claims.find((c) => c.predictionId === "W20260810-P6");
+    const prediction = await getPrediction("W20260810-P6");
+    if (!claim || !prediction) throw new Error("falta W20260810-P6");
+    expect(sourceConsensus(claim, prediction).principalErrorInWidths).toBe(0);
+  });
+});

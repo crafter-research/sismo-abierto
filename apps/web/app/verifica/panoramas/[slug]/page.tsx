@@ -138,7 +138,11 @@ export default async function PanoramaReportPage({
             diferencia de los informes numerados. Un punto marcado con ◆ es uno
             que la cuenta declaró cumplido en una publicación posterior. La
             flecha reproduce la migración que la cuenta declara, no una relación
-            física comprobada.
+            física comprobada. El error de un reclamo se expresa en unidades de
+            magnitud, no en porcentaje: mide cuánto se aleja del borde más
+            cercano del rango publicado, y no existe un máximo natural contra el
+            cual normalizarlo. Se acompaña de cuántas veces ese error cabe en el
+            ancho del rango, que es el margen que la propia cuenta se dio.
           </p>
         </div>
         <PredictionReportTable

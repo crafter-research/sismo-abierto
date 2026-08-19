@@ -186,6 +186,18 @@ export interface SourceConsensus {
   maxError: number;
   principalError: number | null;
   principalSourceId: string | null;
+  /** Ancho del rango publicado, en unidades de magnitud. */
+  rangeWidth: number;
+  /**
+   * Error de la fuente principal medido en anchos del rango publicado.
+   *
+   * El error absoluto (0.30) no dice si es mucho o poco sin conocer el rango:
+   * 0.30 sobre una ventana de 0.4 es casi el doble de grave que sobre una de 1.0.
+   * El denominador no es inventado, es el ancho que la propia cuenta eligió, así
+   * que una predicción se hace más difícil de fallar solo ampliando su ventana.
+   * Un valor mayor que 1 significa errar por más de lo que mide esa ventana.
+   */
+  principalErrorInWidths: number | null;
 }
 
 /**
@@ -211,18 +223,29 @@ export function sourceConsensus(
     ),
   );
   const principal = principalSource(claim);
+  const rangeWidth = Number(
+    (
+      prediction.predictedMagnitudeMax - prediction.predictedMagnitudeMin
+    ).toFixed(2),
+  );
+  const principalError = principal
+    ? magnitudeError(
+        principal.magnitude,
+        prediction.predictedMagnitudeMin,
+        prediction.predictedMagnitudeMax,
+      )
+    : null;
   return {
     inside: errors.filter((error) => error === 0).length,
     total: usable.length,
     minError: errors.length > 0 ? Math.min(...errors) : 0,
     maxError: errors.length > 0 ? Math.max(...errors) : 0,
-    principalError: principal
-      ? magnitudeError(
-          principal.magnitude,
-          prediction.predictedMagnitudeMin,
-          prediction.predictedMagnitudeMax,
-        )
-      : null,
+    principalError,
     principalSourceId: principal?.sourceId ?? null,
+    rangeWidth,
+    principalErrorInWidths:
+      principalError === null || rangeWidth === 0
+        ? null
+        : Number((principalError / rangeWidth).toFixed(2)),
   };
 }

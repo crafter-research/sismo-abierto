@@ -288,20 +288,45 @@ export function PredictionReportTable({
                                 alegado,
                                 prediction,
                               );
+                              if (consenso.total === 0) {
+                                return (
+                                  <p className="text-gray-900">
+                                    Sin registro en fuentes oficiales
+                                  </p>
+                                );
+                              }
+                              const err = consenso.principalError;
+                              const anchos = consenso.principalErrorInWidths;
                               return (
-                                <p className="text-gray-900">
-                                  {consenso.total > 0
-                                    ? `${consenso.inside} de ${consenso.total} fuentes dentro del rango`
-                                    : "Sin registro en fuentes oficiales"}
-                                  {consenso.total > 0 ? (
-                                    <span className="text-gray-800">
-                                      {" · error "}
-                                      {consenso.minError === consenso.maxError
-                                        ? consenso.minError.toFixed(2)
-                                        : `${consenso.minError.toFixed(2)} a ${consenso.maxError.toFixed(2)}`}
+                                <>
+                                  <p
+                                    className="mt-0.5 flex items-baseline gap-1.5"
+                                    title={`Error de la fuente principal contra el rango ${prediction.predictedMagnitudeMin.toFixed(1)}-${prediction.predictedMagnitudeMax.toFixed(1)}, que mide ${consenso.rangeWidth.toFixed(1)} de ancho. Se expresa en unidades de magnitud, no en porcentaje: no existe un máximo natural contra el cual normalizar.`}
+                                  >
+                                    <span
+                                      className={`font-mono font-bold text-lg tabular-nums leading-none ${err === 0 ? "text-official" : "text-amber-800"}`}
+                                    >
+                                      {err === null
+                                        ? "—"
+                                        : err === 0
+                                          ? "0.00"
+                                          : `+${err.toFixed(2)}`}
                                     </span>
-                                  ) : null}
-                                </p>
+                                    <span className="text-gray-800">
+                                      de error
+                                      {anchos !== null && anchos > 0
+                                        ? ` · ${anchos.toFixed(2)}× el ancho del rango`
+                                        : ""}
+                                    </span>
+                                  </p>
+                                  <p className="text-gray-900">
+                                    {consenso.inside} de {consenso.total}{" "}
+                                    fuentes dentro del rango
+                                    {consenso.minError !== consenso.maxError
+                                      ? ` · entre ${consenso.minError.toFixed(2)} y ${consenso.maxError.toFixed(2)}`
+                                      : ""}
+                                  </p>
+                                </>
                               );
                             })()}
                             <details className="mt-1">
