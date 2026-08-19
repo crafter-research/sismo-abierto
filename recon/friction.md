@@ -14,3 +14,18 @@
 - No existe comando `viewport` en esta versión del binario, aunque el `--help`
   general lo lista en una línea de sintaxis. Verificación responsive quedó por
   clases CSS, no por ventana redimensionada.
+
+## Recon INDECI · 2026-08-19
+
+- `datosabiertos.gob.pe/api/3/action/package_search` devuelve **418 con CloudWAF**
+  ante curl, y pasa sin problema con agent-browser. El playbook ya dice "headed
+  browser para primer contacto"; este es otro caso que lo confirma, y vale nombrar
+  el 418 como firma porque no es un código que uno asocie a WAF.
+- La búsqueda del portal CKAN devuelve las **facetas de filtro** mezcladas con los
+  resultados en el DOM ("emergencia (2) Apply emergencia filter"). Un selector
+  genérico de `a` trae basura; hay que filtrar por longitud y descartar
+  `/Apply |filter/`. Costó una iteración.
+- `agent-browser eval` reusa el contexto de la página entre llamadas, así que
+  `const x` en dos llamadas seguidas tira `SyntaxError: Identifier 'x' has already
+  been declared`. Reproducido a propósito. Se evita envolviendo en IIFE
+  `(() => { ... })()` o no declarando nada. Vale para el core skill.
