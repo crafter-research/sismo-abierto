@@ -2,6 +2,8 @@ import { describe, expect, test } from "bun:test";
 import {
   getPrediction,
   loadClaimedValidations,
+  loadHistoricalReportRegistry,
+  loadPanoramaReportRegistry,
   magnitudeError,
   principalSource,
   scoreClaim,
@@ -40,6 +42,45 @@ describe("fuente principal", () => {
     const sinRegistro = claims.find((c) => c.predictionId === "W20260803-P5");
     if (!sinRegistro) throw new Error("falta el reclamo W20260803-P5");
     expect(principalSource(sinRegistro)).toBeNull();
+  });
+});
+
+describe("visibilidad de los reclamos", () => {
+  test("todo reclamo pertenece a un panorama o informe que lo puede mostrar", async () => {
+    const claims = await loadClaimedValidations();
+    const panoramas = await loadPanoramaReportRegistry();
+    const informes = await loadHistoricalReportRegistry();
+    for (const claim of claims) {
+      const enPanorama = panoramas.some((report) =>
+        report.points.some(
+          (point) => point.predictionId === claim.predictionId,
+        ),
+      );
+      const enInforme = informes.some((report) =>
+        report.points.some(
+          (point) =>
+            `R${report.reportNumber}-P${point.pointNumber}` ===
+            claim.predictionId,
+        ),
+      );
+      expect(enPanorama || enInforme).toBe(true);
+    }
+  });
+
+  test("un reclamo sobre una ventana abierta sigue siendo visible", async () => {
+    const claims = await loadClaimedValidations();
+    const abiertos = [] as string[];
+    for (const claim of claims) {
+      const prediction = await getPrediction(claim.predictionId);
+      if (!prediction) throw new Error(`falta ${claim.predictionId}`);
+      if (Date.parse(prediction.deadlineEndLima) > Date.now()) {
+        abiertos.push(claim.predictionId);
+      }
+    }
+    // Son los casos donde la cuenta declaró un acierto antes de que la ventana
+    // cerrara. Si dejan de estar en el registro, la tabla los oculta y el
+    // patrón deja de ser observable.
+    expect(abiertos.length).toBeGreaterThan(0);
   });
 });
 

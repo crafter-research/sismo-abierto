@@ -1,6 +1,7 @@
 import {
   GEOGRAPHY_METHOD_NOTE,
   getPanoramaReport,
+  loadClaimedValidations,
   loadHistoricalReportAuditResults,
   loadPanoramaReportRegistry,
   loadPredictionAuditResults,
@@ -42,12 +43,13 @@ export default async function PanoramaReportPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const [report, panoramas, historicalResults, currentResults] =
+  const [report, panoramas, historicalResults, currentResults, claims] =
     await Promise.all([
       getPanoramaReport(slug),
       loadPanoramaReportRegistry(),
       loadHistoricalReportAuditResults(),
       loadPredictionAuditResults(),
+      loadClaimedValidations(),
     ]);
   if (!report) {
     return (
@@ -142,6 +144,10 @@ export default async function PanoramaReportPage({
               ? "Auditoría pendiente"
               : "Ventana abierta",
             pointLabel: `P${point.pointNumber}`,
+            claimedValidation:
+              claims.find(
+                (claim) => claim.predictionId === point.predictionId,
+              ) ?? null,
             href: `/verifica/${point.predictionId}`,
           }))}
         />
