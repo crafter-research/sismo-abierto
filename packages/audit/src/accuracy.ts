@@ -178,3 +178,51 @@ export function openWindowState(
   if (inside.length === 0) return "CLAIM_OUTSIDE_RANGE";
   return "CLAIM_SOURCES_SPLIT";
 }
+
+export interface SourceConsensus {
+  inside: number;
+  total: number;
+  minError: number;
+  maxError: number;
+  principalError: number | null;
+  principalSourceId: string | null;
+}
+
+/**
+ * Cuántas fuentes oficiales dejan el evento dentro del rango publicado, y con
+ * qué error cada una.
+ *
+ * El veredicto del protocolo usa una sola fuente principal (IGP para el Perú,
+ * USGS fuera) para no elegir la que convenga. Pero informar solo esa esconde el
+ * caso en que las agencias se dividen, que es información real: en Lurín dos de
+ * tres catálogos dejan el evento dentro del rango y el IGP no. Se publican las
+ * dos lecturas para que ninguna decisión metodológica quede implícita.
+ */
+export function sourceConsensus(
+  claim: ClaimedValidation,
+  prediction: FrozenPrediction,
+): SourceConsensus {
+  const usable = claim.sources.filter((source) => source.magnitude > 0);
+  const errors = usable.map((source) =>
+    magnitudeError(
+      source.magnitude,
+      prediction.predictedMagnitudeMin,
+      prediction.predictedMagnitudeMax,
+    ),
+  );
+  const principal = principalSource(claim);
+  return {
+    inside: errors.filter((error) => error === 0).length,
+    total: usable.length,
+    minError: errors.length > 0 ? Math.min(...errors) : 0,
+    maxError: errors.length > 0 ? Math.max(...errors) : 0,
+    principalError: principal
+      ? magnitudeError(
+          principal.magnitude,
+          prediction.predictedMagnitudeMin,
+          prediction.predictedMagnitudeMax,
+        )
+      : null,
+    principalSourceId: principal?.sourceId ?? null,
+  };
+}

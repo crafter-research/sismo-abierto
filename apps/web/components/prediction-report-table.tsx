@@ -1,4 +1,8 @@
-import { BASELINE_BAND_LABELS, openWindowState } from "@sismo/audit";
+import {
+  BASELINE_BAND_LABELS,
+  openWindowState,
+  sourceConsensus,
+} from "@sismo/audit";
 import type {
   ClaimedValidation,
   FrozenPrediction,
@@ -276,99 +280,126 @@ export function PredictionReportTable({
                             className="text-xs leading-5"
                             data-testid="alleged-event"
                           >
-                            <p className="text-gray-800">
-                              Sin coincidencia oficial
-                            </p>
-                            <p className="mt-1 font-semibold text-amber-800">
+                            <p className="font-semibold text-amber-800">
                               Sismo alegado por la cuenta
                             </p>
-                            <p className="flex flex-wrap items-center gap-x-1.5">
-                              <span className="text-gray-900">
-                                {alegado.eventTimeUtc.slice(0, 10)}
-                              </span>
-                              <TargetFlags
-                                target={alegado.eventPlace}
-                                max={1}
-                              />
-                              <span className="text-gray-900">
-                                {alegado.eventPlace}
-                              </span>
-                            </p>
-                            <p className="text-gray-900">
-                              <span className="text-gray-800">
-                                Magnitud según la cuenta:
-                              </span>{" "}
-                              <span className="font-mono tabular-nums">
-                                {alegado.claimedMagnitude === null
-                                  ? "M?"
-                                  : `M${alegado.claimedMagnitude.toFixed(2)}`}
-                              </span>
-                              {alegado.claimedMagnitudeScale ? (
-                                <span className="text-gray-800">
-                                  {" "}
-                                  ({alegado.claimedMagnitudeScale})
-                                </span>
-                              ) : null}
-                              <span
-                                className="text-gray-800"
-                                title={
-                                  alegado.claimedSourceCited
-                                    ? undefined
-                                    : "La publicación muestra una captura de una aplicación de terceros sin nombrar qué agencia calculó la magnitud."
-                                }
-                              >
-                                {" · "}
-                                {alegado.claimedSourceCited
-                                  ? `cita ${alegado.claimedSourceCited}`
-                                  : "sin fuente citada"}
-                              </span>
-                            </p>
-                            {alegado.sources.some(
-                              (source) => source.magnitude > 0,
-                            ) ? (
-                              <p className="text-gray-900">
-                                <span className="text-gray-800">
-                                  Medido oficialmente:
-                                </span>{" "}
-                                {alegado.sources
-                                  .filter((source) => source.magnitude > 0)
-                                  .map((source, index) => {
-                                    const dentro =
-                                      source.magnitude >=
-                                        prediction.predictedMagnitudeMin &&
-                                      source.magnitude <=
-                                        prediction.predictedMagnitudeMax;
-                                    return (
-                                      <span key={source.sourceId}>
-                                        {index > 0 ? ", " : ""}
-                                        <span className="font-mono tabular-nums">
-                                          M{source.magnitude.toFixed(1)}
-                                        </span>{" "}
-                                        <a
-                                          href={source.url}
-                                          rel="noreferrer"
-                                          className="text-official underline underline-offset-2"
-                                        >
-                                          {source.sourceName.split(" · ").pop()}
-                                        </a>{" "}
-                                        <span
-                                          className={
-                                            dentro
-                                              ? "text-official"
-                                              : "text-amber-800"
-                                          }
-                                        >
-                                          {dentro ? "dentro" : "fuera"}
-                                        </span>
-                                      </span>
-                                    );
-                                  })}
-                              </p>
-                            ) : (
-                              <p className="text-gray-800">
-                                Sin registro en fuentes oficiales
-                              </p>
-                            )}
+                            {(() => {
+                              const consenso = sourceConsensus(
+                                alegado,
+                                prediction,
+                              );
+                              return (
+                                <p className="text-gray-900">
+                                  {consenso.total > 0
+                                    ? `${consenso.inside} de ${consenso.total} fuentes dentro del rango`
+                                    : "Sin registro en fuentes oficiales"}
+                                  {consenso.total > 0 ? (
+                                    <span className="text-gray-800">
+                                      {" · error "}
+                                      {consenso.minError === consenso.maxError
+                                        ? consenso.minError.toFixed(2)
+                                        : `${consenso.minError.toFixed(2)} a ${consenso.maxError.toFixed(2)}`}
+                                    </span>
+                                  ) : null}
+                                </p>
+                              );
+                            })()}
+                            <details className="mt-1">
+                              <summary className="w-fit cursor-pointer text-gray-900 underline underline-offset-2">
+                                Ver el sismo alegado
+                              </summary>
+                              <div className="mt-1.5 space-y-0.5 border-gray-300 border-l pl-2.5">
+                                <p className="flex flex-wrap items-center gap-x-1.5">
+                                  <span className="text-gray-900">
+                                    {alegado.eventTimeUtc.slice(0, 10)}
+                                  </span>
+                                  <TargetFlags
+                                    target={alegado.eventPlace}
+                                    max={1}
+                                  />
+                                  <span className="text-gray-900">
+                                    {alegado.eventPlace}
+                                  </span>
+                                </p>
+                                <p className="text-gray-900">
+                                  <span className="text-gray-800">
+                                    Magnitud según la cuenta:
+                                  </span>{" "}
+                                  <span className="font-mono tabular-nums">
+                                    {alegado.claimedMagnitude === null
+                                      ? "M?"
+                                      : `M${alegado.claimedMagnitude.toFixed(2)}`}
+                                  </span>
+                                  {alegado.claimedMagnitudeScale ? (
+                                    <span className="text-gray-800">
+                                      {" "}
+                                      ({alegado.claimedMagnitudeScale})
+                                    </span>
+                                  ) : null}
+                                  <span
+                                    className="text-gray-800"
+                                    title={
+                                      alegado.claimedSourceCited
+                                        ? undefined
+                                        : "La publicación muestra una captura de una aplicación de terceros sin nombrar qué agencia calculó la magnitud."
+                                    }
+                                  >
+                                    {" · "}
+                                    {alegado.claimedSourceCited
+                                      ? `cita ${alegado.claimedSourceCited}`
+                                      : "sin fuente citada"}
+                                  </span>
+                                </p>
+                                {alegado.sources.some(
+                                  (source) => source.magnitude > 0,
+                                ) ? (
+                                  <p className="text-gray-900">
+                                    <span className="text-gray-800">
+                                      Medido oficialmente:
+                                    </span>{" "}
+                                    {alegado.sources
+                                      .filter((source) => source.magnitude > 0)
+                                      .map((source, index) => {
+                                        const dentro =
+                                          source.magnitude >=
+                                            prediction.predictedMagnitudeMin &&
+                                          source.magnitude <=
+                                            prediction.predictedMagnitudeMax;
+                                        return (
+                                          <span key={source.sourceId}>
+                                            {index > 0 ? ", " : ""}
+                                            <span className="font-mono tabular-nums">
+                                              M{source.magnitude.toFixed(1)}
+                                            </span>{" "}
+                                            <a
+                                              href={source.url}
+                                              rel="noreferrer"
+                                              className="text-official underline underline-offset-2"
+                                            >
+                                              {source.sourceName
+                                                .split(" · ")
+                                                .pop()}
+                                            </a>{" "}
+                                            <span
+                                              className={
+                                                dentro
+                                                  ? "text-official"
+                                                  : "text-amber-800"
+                                              }
+                                            >
+                                              {dentro ? "dentro" : "fuera"}
+                                            </span>
+                                          </span>
+                                        );
+                                      })}
+                                  </p>
+                                ) : (
+                                  <p className="text-gray-800">
+                                    Sin registro en fuentes oficiales
+                                  </p>
+                                )}
+                              </div>
+                            </details>
                             {linksAlegado.length > 0 ? (
                               <p className="mt-0.5 flex flex-wrap gap-x-2">
                                 {linksAlegado.map((link) => (

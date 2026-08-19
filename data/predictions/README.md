@@ -84,6 +84,24 @@ USGS (4.4), y la publicación no dice de dónde lo toma. Por eso el registro gua
 `claimedSourceCited` junto a la magnitud, y la ficha enlaza cada lectura oficial a su
 catálogo para que el lector compare por su cuenta.
 
+### Consenso entre fuentes y error
+
+Cada reclamo informa dos cosas que no siempre coinciden, y ninguna reemplaza a la otra:
+
+- **Consenso**: cuántas fuentes oficiales dejan el evento dentro del rango publicado, con
+  el error mínimo y máximo entre ellas. En Lurín es "2 de 3 fuentes dentro del rango,
+  error 0.00 a 0.30".
+- **Veredicto del protocolo**: usa una sola fuente principal, IGP para epicentros en el
+  Perú y USGS fuera. En Lurín eso da error 0.30 y el reclamo no califica.
+
+Las dos lecturas se publican juntas a propósito. Informar solo el veredicto escondería que
+la mayoría de los catálogos deja el evento dentro del rango; informar solo el consenso
+escondería que la agencia con la red local más densa lo deja fuera. La decisión de qué
+fuente manda ya está escrita en el protocolo y no se cambia según el caso, pero tampoco se
+oculta cuando el resto discrepa.
+
+El error se mide como distancia al borde más cercano del rango, 0 si el valor cae dentro.
+
 ### Tercera fuente de contraste
 
 Además de IGP/CENSIS y USGS, el registro consulta el **EMSC** (European-Mediterranean
