@@ -84,6 +84,33 @@ export default function TerrainIndexPage() {
       </section>
 
       <section
+        aria-labelledby="lima-titulo"
+        className="rounded-lg border border-gray-200 p-4"
+        data-testid="lima-notice"
+      >
+        <div className="flex flex-wrap items-baseline gap-x-3">
+          <h2 id="lima-titulo" className="font-semibold">
+            Lima Metropolitana no está en esta capa
+          </h2>
+          <ClassBadge value="unavailable" />
+        </div>
+        <p className="mt-2 text-sm text-gray-900">
+          En el departamento de Lima esta capa cubre Barranca, Huacho, Chancay,
+          Chosica, Huaycán, Chaclacayo, Cañete y otras ciudades, pero ningún
+          distrito de Lima Metropolitana. El estudio que sí cubre Lima manzana
+          por manzana lo publica el CISMID de la Universidad Nacional de
+          Ingeniería, por ahora solo como plano descargable.
+        </p>
+        <a
+          href="https://www.cismid.uni.edu.pe/mapa-de-riesgo-sismico-de-lima-cuan-vulnerables-son-nuestras-viviendas/"
+          className="mt-2 inline-block text-sm font-medium text-official underline"
+          rel="noreferrer"
+        >
+          Mapa de microzonificación de Lima en el CISMID →
+        </a>
+      </section>
+
+      <section
         aria-labelledby="cobertura-titulo"
         className="rounded-lg border border-gray-200 p-4"
       >

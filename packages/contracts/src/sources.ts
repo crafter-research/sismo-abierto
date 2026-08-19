@@ -41,6 +41,11 @@ export const SOURCES = {
     name: "IGP · REGEN · Repositorio Geofísico Nacional (DSpace)",
     url: "https://repositorio.igp.gob.pe/",
   },
+  "cenepred-sigrid": {
+    id: "cenepred-sigrid",
+    name: "CENEPRED · SIGRID · Microzonificación sísmica CISMID (Lima)",
+    url: "https://sigrid.cenepred.gob.pe/sigridv3/",
+  },
   "usgs-fdsn": {
     id: "usgs-fdsn",
     name: "USGS · FDSN Event API (contraste global)",
