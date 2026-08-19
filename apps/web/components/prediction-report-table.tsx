@@ -114,7 +114,7 @@ export function PredictionReportTable({
               Magnitud
             </th>
             <th scope="col" className="pb-2 pr-5 font-semibold">
-              Destinos
+              Migración declarada
             </th>
             <th scope="col" className="pb-2 pr-5 font-semibold">
               Deadline Lima
@@ -188,6 +188,15 @@ export function PredictionReportTable({
                     <ul className="space-y-0.5 leading-5">
                       {visible.map((target) => (
                         <li key={target} className="flex flex-wrap items-start">
+                          {/* La flecha nombra la afirmación que se audita: la
+                              cuenta sostiene que la energía del origen migra a
+                              este destino. Es la hipótesis, no un hecho. */}
+                          <span
+                            aria-hidden="true"
+                            className="mr-1.5 shrink-0 select-none text-gray-700"
+                          >
+                            &rarr;
+                          </span>
                           <TargetFlags target={target} />
                           <span>{target}</span>
                         </li>
@@ -224,10 +233,78 @@ export function PredictionReportTable({
                     {(() => {
                       const lead = leadCandidate(audit);
                       if (!lead) {
+                        // Sin candidato oficial, lo que importa es qué sismo
+                        // invocó la cuenta para declararse acertada. Decir solo
+                        // "ninguno cumplió" oculta la afirmación que se evalúa.
+                        if (!claimedValidation) {
+                          return (
+                            <span className="text-xs text-gray-800">
+                              Ningún sismo cumplió magnitud y plazo
+                            </span>
+                          );
+                        }
+                        const alegado = claimedValidation;
+                        const linksAlegado = sourceLinksFor(
+                          alegado.sources[0]?.sourceId ?? "",
+                          alegado.eventTimeUtc,
+                          alegado.sources[0]?.magnitude ?? 0,
+                        );
                         return (
-                          <span className="text-xs text-gray-800">
-                            Ningún sismo cumplió magnitud y plazo
-                          </span>
+                          <div
+                            className="text-xs leading-5"
+                            data-testid="alleged-event"
+                          >
+                            <p className="text-gray-800">
+                              Sin coincidencia oficial
+                            </p>
+                            <p className="mt-1 font-semibold text-amber-800">
+                              Sismo alegado por la cuenta
+                            </p>
+                            <p className="flex flex-wrap items-center gap-x-1.5">
+                              <span className="font-mono font-semibold tabular-nums">
+                                {alegado.claimedMagnitude === null
+                                  ? "M?"
+                                  : `M${alegado.claimedMagnitude.toFixed(2)}`}
+                              </span>
+                              <span className="text-gray-900">
+                                {alegado.eventTimeUtc.slice(0, 10)}
+                              </span>
+                              <TargetFlags
+                                target={alegado.eventPlace}
+                                max={1}
+                              />
+                              <span className="text-gray-900">
+                                {alegado.eventPlace}
+                              </span>
+                            </p>
+                            <p className="text-gray-800">
+                              {alegado.sources.some(
+                                (source) => source.magnitude > 0,
+                              )
+                                ? `Oficial: ${alegado.sources
+                                    .filter((source) => source.magnitude > 0)
+                                    .map(
+                                      (source) =>
+                                        `${source.sourceName.split(" · ").pop()} M${source.magnitude.toFixed(1)}`,
+                                    )
+                                    .join(", ")}`
+                                : "Sin registro en fuentes oficiales"}
+                            </p>
+                            {linksAlegado.length > 0 ? (
+                              <p className="mt-0.5 flex flex-wrap gap-x-2">
+                                {linksAlegado.map((link) => (
+                                  <a
+                                    key={link.href}
+                                    href={link.href}
+                                    rel="noreferrer"
+                                    className="text-official underline underline-offset-2"
+                                  >
+                                    {link.label}
+                                  </a>
+                                ))}
+                              </p>
+                            ) : null}
+                          </div>
                         );
                       }
                       const links = sourceLinksFor(
