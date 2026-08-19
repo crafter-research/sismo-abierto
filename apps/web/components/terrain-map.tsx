@@ -4,7 +4,12 @@ import { SOIL_COLORS, SOIL_LEGEND } from "@sismo/terrain";
 import type * as MapLibreGL from "maplibre-gl";
 import { useTheme } from "next-themes";
 import { useState } from "react";
-import { Map, MapClusterLayer, MapControls, MapGeoJSON } from "./ui/map";
+import {
+  Map as MapCanvas,
+  MapClusterLayer,
+  MapControls,
+  MapGeoJSON,
+} from "./ui/map";
 
 const soilFillColor = [
   "match",
@@ -36,7 +41,7 @@ export function TerrainMap({
   return (
     <div className="space-y-2" data-testid="terrain-map">
       <div className="relative overflow-hidden rounded-lg border border-gray-200">
-        <Map
+        <MapCanvas
           theme={resolvedTheme === "dark" ? "dark" : "light"}
           className="h-[28rem] w-full sm:h-[34rem]"
           center={focus ?? PERU_CENTER}
@@ -65,7 +70,7 @@ export function TerrainMap({
           {showQuakes && quakesUrl ? (
             <MapClusterLayer data={quakesUrl} clusterRadius={40} />
           ) : null}
-        </Map>
+        </MapCanvas>
         {hovered ? (
           <div className="pointer-events-none absolute bottom-2 left-2 rounded bg-background-100/95 px-2 py-1 font-mono text-[11px] text-gray-1000 shadow-sm">
             {hovered}
