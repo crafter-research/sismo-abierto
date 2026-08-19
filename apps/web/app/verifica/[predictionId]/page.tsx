@@ -7,6 +7,7 @@ import {
 } from "@sismo/audit";
 import type {
   BaselineProbabilityBand,
+  ClaimedValidation,
   PredictionMatchOutcome,
 } from "@sismo/contracts";
 import Link from "next/link";
@@ -37,6 +38,27 @@ function interpretationMessage(
   }
   return "Sin una tasa base honesta no se puede interpretar la coincidencia contra el azar.";
 }
+
+const CLAIM_BADGES: Record<ClaimedValidation["assessment"], string> = {
+  OUTSIDE_FROZEN_MAGNITUDE: "No cumple el rango congelado",
+  OUTSIDE_FROZEN_GEOGRAPHY: "No cumple la geografía congelada",
+  UNVERIFIABLE_IN_OFFICIAL_SOURCES: "Sin registro en fuentes oficiales",
+  SOURCE_DISAGREEMENT_ON_MAGNITUDE: "Las fuentes oficiales discrepan",
+  MATCHES_FROZEN_CLAIM: "Coincide con lo congelado",
+};
+
+const CLAIM_EXPLANATIONS: Record<ClaimedValidation["assessment"], string> = {
+  OUTSIDE_FROZEN_MAGNITUDE:
+    "Las fuentes oficiales confirman el evento, pero su magnitud queda fuera del rango que la propia cuenta publicó.",
+  OUTSIDE_FROZEN_GEOGRAPHY:
+    "Las fuentes oficiales confirman el evento, pero su epicentro cae fuera del destino que la propia cuenta publicó.",
+  UNVERIFIABLE_IN_OFFICIAL_SOURCES:
+    "El evento no aparece en los catálogos oficiales consultados para esa fecha, magnitud y área.",
+  SOURCE_DISAGREEMENT_ON_MAGNITUDE:
+    "Las fuentes oficiales confirman el evento pero no coinciden en su magnitud: con una queda dentro del rango publicado y con la otra queda fuera. El protocolo no resuelve el caso a favor de ninguna.",
+  MATCHES_FROZEN_CLAIM:
+    "Las fuentes oficiales confirman el evento y coincide con lo que la cuenta publicó. Una coincidencia no establece por sí sola capacidad predictiva: la tasa base de la afirmación se reporta abajo.",
+};
 
 export default async function ClaimAuditPage({
   params,
@@ -138,14 +160,13 @@ export default async function ClaimAuditPage({
               Validación reclamada por la cuenta
             </h2>
             <span className="rounded bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-900">
-              No cumple el rango congelado
+              {CLAIM_BADGES[claimedValidation.assessment]}
             </span>
           </div>
           <p className="mt-2 text-sm text-gray-900">
             La cuenta publicó “{claimedValidation.claimText}” para el evento de{" "}
-            {claimedValidation.eventPlace}. Las fuentes oficiales discrepan en
-            la magnitud, pero ambas quedan por debajo de M
-            {prediction.predictedMagnitudeMin.toFixed(1)}.
+            {claimedValidation.eventPlace}.{" "}
+            {CLAIM_EXPLANATIONS[claimedValidation.assessment]}
           </p>
           <ul className="mt-3 grid gap-2 text-xs sm:grid-cols-2">
             {claimedValidation.sources.map((source) => (
@@ -167,9 +188,9 @@ export default async function ClaimAuditPage({
             ))}
           </ul>
           <p className="mt-3 text-xs text-gray-800">
-            Esto no cambia el resultado final mientras la ventana permanezca
-            abierta. Además, “Perú central” es un destino vago bajo el protocolo
-            congelado.
+            Un reclamo publicado por la cuenta no altera el veredicto del
+            protocolo congelado. Cada afirmación se evalúa contra el texto que
+            quedó registrado antes de conocer el resultado.
           </p>
         </section>
       ) : null}

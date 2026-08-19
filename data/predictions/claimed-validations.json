@@ -26,5 +26,96 @@
       }
     ],
     "assessment": "OUTSIDE_FROZEN_MAGNITUDE"
+  },
+  {
+    "predictionId": "R255-P2",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-10T00:00:00-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: la cuenta declara que la energía del informe 255 migró a Colombia",
+    "eventTimeUtc": "2026-08-10T12:34:28Z",
+    "eventPlace": "5 km al sur de San José del Palmar, Colombia",
+    "latitude": 4.8436,
+    "longitude": -76.2422,
+    "sources": [
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 7.4,
+        "depthKm": 110,
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-10&endtime=2026-08-11&minmagnitude=6.5"
+      }
+    ],
+    "assessment": "OUTSIDE_FROZEN_GEOGRAPHY"
+  },
+  {
+    "predictionId": "R256-P3",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-14T00:00:00-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: la cuenta declara que la energía de Japón migró a Indonesia citando el informe 256. En el informe congelado Indonesia figura en el punto 3 (20 por ciento), no en el punto 4, que nombra Japón y el corredor del Pacífico norte.",
+    "eventTimeUtc": "2026-08-14T21:58:21Z",
+    "eventPlace": "68 km al NNO de Ende, Indonesia",
+    "latitude": -8.3101,
+    "longitude": 121.3517,
+    "sources": [
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 7.7,
+        "depthKm": 10,
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-14&endtime=2026-08-15&minmagnitude=6.5"
+      }
+    ],
+    "assessment": "MATCHES_FROZEN_CLAIM"
+  },
+  {
+    "predictionId": "W20260810-P3",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-11T00:00:00-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: la cuenta declara que la energía de Islas Fiji migró a la zona norte de Perú",
+    "eventTimeUtc": "2026-08-11T08:00:34Z",
+    "eventPlace": "40 km al SSO de Sechura, Perú",
+    "latitude": -5.8682,
+    "longitude": -81.0116,
+    "sources": [
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 4.6,
+        "depthKm": 40,
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-11&endtime=2026-08-12&minmagnitude=4.0"
+      },
+      {
+        "sourceId": "igp-censis-catalogo",
+        "sourceName": "IGP · CENSIS",
+        "magnitude": 4.9,
+        "depthKm": 24,
+        "url": "https://censis.igp.gob.pe/repositorio/datos-sismicos"
+      }
+    ],
+    "assessment": "SOURCE_DISAGREEMENT_ON_MAGNITUDE"
+  },
+  {
+    "predictionId": "W20260803-P5",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-09T00:00:00-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: la cuenta declara un evento M4.36 en Parroquia San Camilo citando escala de Richter sin fuente oficial",
+    "eventTimeUtc": "2026-08-09T17:57:49Z",
+    "eventPlace": "Parroquia San Camilo (declarado por la cuenta, sin registro oficial localizado)",
+    "latitude": 8.0,
+    "longitude": -71.9,
+    "sources": [
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 0,
+        "depthKm": 0,
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-08&endtime=2026-08-11&minmagnitude=3.0&minlatitude=4&maxlatitude=13&minlongitude=-78&maxlongitude=-64"
+      }
+    ],
+    "assessment": "UNVERIFIABLE_IN_OFFICIAL_SOURCES"
   }
 ]

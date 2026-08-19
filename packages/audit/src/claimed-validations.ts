@@ -1,6 +1,14 @@
 import type { ClaimedValidation } from "@sismo/contracts";
 import claimedValidationsJson from "../../../data/predictions/claimed-validations.json";
 
+const ASSESSMENTS: ClaimedValidation["assessment"][] = [
+  "OUTSIDE_FROZEN_MAGNITUDE",
+  "OUTSIDE_FROZEN_GEOGRAPHY",
+  "UNVERIFIABLE_IN_OFFICIAL_SOURCES",
+  "SOURCE_DISAGREEMENT_ON_MAGNITUDE",
+  "MATCHES_FROZEN_CLAIM",
+];
+
 function isClaimedValidation(value: unknown): value is ClaimedValidation {
   if (!value || typeof value !== "object") return false;
   const claim = value as Partial<ClaimedValidation>;
@@ -13,7 +21,7 @@ function isClaimedValidation(value: unknown): value is ClaimedValidation {
     !Number.isNaN(Date.parse(claim.eventTimeUtc)) &&
     Array.isArray(claim.sources) &&
     claim.sources.length > 0 &&
-    claim.assessment === "OUTSIDE_FROZEN_MAGNITUDE"
+    ASSESSMENTS.includes(claim.assessment as ClaimedValidation["assessment"])
   );
 }
 

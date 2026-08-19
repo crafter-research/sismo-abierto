@@ -1,6 +1,6 @@
 # Auditoría retrospectiva de informes históricos
 
-Corrida UTC: `2026-08-19T15:51:26.361Z`
+Corrida UTC: `2026-08-19T16:09:51.012Z`
 
 Estos informes se incorporaron retrospectivamente desde capturas aportadas por el usuario. No constituyen un registro preinscrito antes de los resultados. Una coincidencia literal no establece capacidad predictiva y los porcentajes declarados no se interpretan como probabilidades calibradas.
 
@@ -120,6 +120,19 @@ Estos informes se incorporaron retrospectivamente desde capturas aportadas por e
 | 2 | 30% | Pendiente | No disponible | Ninguno |
 | 3 | 20% | Pendiente | 0.0% | Ninguno |
 | 4 | 10% | Pendiente | 46.5% | Ninguno |
+
+## Informe 255
+
+- Origen declarado: Puerto Madero, México M7.3
+- Ventana: 2026-07-20 a 2026-10-08T23:59:59-05:00
+- Evidencia fuente: Captura aportada por el usuario el 2026-08-19: informe 255 publicado por la cuenta
+
+| Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
+| ---: | ---: | --- | ---: | --- |
+| 1 | 40% | Pendiente | 0.0% | Ninguno |
+| 2 | 25% | Pendiente | No disponible | Ninguno |
+| 3 | 20% | Pendiente | 48.6% | Ninguno |
+| 4 | 15% | Pendiente | 0.0% | Ninguno |
 
 ## Informe 256
 

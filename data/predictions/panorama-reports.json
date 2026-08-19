@@ -16,7 +16,10 @@
         "sourceText": "Puerto Madero, México M4.1 hacia Ica o Lima-Callao, M3.8-4.4",
         "origin": "Puerto Madero, México",
         "originMagnitude": 4.1,
-        "targetRegions": ["Ica", "Lima-Callao"],
+        "targetRegions": [
+          "Ica",
+          "Lima-Callao"
+        ],
         "predictedMagnitudeMin": 3.8,
         "predictedMagnitudeMax": 4.4,
         "maxDays": 6,
@@ -29,7 +32,10 @@
         "sourceText": "Islas Salomón M5.1 hacia Perú central o Chile central y frontera con Argentina, M4.6-5.4",
         "origin": "Islas Salomón",
         "originMagnitude": 5.1,
-        "targetRegions": ["Perú central", "Chile central y frontera con Argentina"],
+        "targetRegions": [
+          "Perú central",
+          "Chile central y frontera con Argentina"
+        ],
         "predictedMagnitudeMin": 4.6,
         "predictedMagnitudeMax": 5.4,
         "maxDays": 8,
@@ -42,7 +48,10 @@
         "sourceText": "Islas Fiji M4.4 hacia Tumbes, Piura o Loreto y La Libertad o Áncash, M4.2-4.6",
         "origin": "Islas Fiji",
         "originMagnitude": 4.4,
-        "targetRegions": ["Tumbes o Piura, incluyendo Loreto", "La Libertad o Áncash"],
+        "targetRegions": [
+          "Tumbes o Piura, incluyendo Loreto",
+          "La Libertad o Áncash"
+        ],
         "predictedMagnitudeMin": 4.2,
         "predictedMagnitudeMax": 4.6,
         "maxDays": 7,
@@ -55,7 +64,10 @@
         "sourceText": "Clam Gulch, Alaska M5.0 hacia norte de Perú y sur de Ecuador o Nueva Zelanda y Kermadec, M4.7-5.2",
         "origin": "Clam Gulch, Alaska",
         "originMagnitude": 5.0,
-        "targetRegions": ["norte de Perú y sur de Ecuador", "Nueva Zelanda o islas Kermadec"],
+        "targetRegions": [
+          "norte de Perú y sur de Ecuador",
+          "Nueva Zelanda o islas Kermadec"
+        ],
         "predictedMagnitudeMin": 4.7,
         "predictedMagnitudeMax": 5.2,
         "maxDays": 8,
@@ -68,7 +80,11 @@
         "sourceText": "Islas Sandwich M4.8 hacia Arequipa-Tacna, frontera Cusco-Puno o norte de Chile, M4.5-5.1",
         "origin": "Islas Sandwich",
         "originMagnitude": 4.8,
-        "targetRegions": ["Arequipa-Tacna", "frontera Cusco-Puno", "norte de Chile"],
+        "targetRegions": [
+          "Arequipa-Tacna",
+          "frontera Cusco-Puno",
+          "norte de Chile"
+        ],
         "predictedMagnitudeMin": 4.5,
         "predictedMagnitudeMax": 5.1,
         "maxDays": 7,
@@ -81,7 +97,10 @@
         "sourceText": "Barkhan, Pakistán M5.2 hacia frontera Ecuador-Colombia o México-Guatemala, M4.7-5.4",
         "origin": "Barkhan, Pakistán",
         "originMagnitude": 5.2,
-        "targetRegions": ["Frontera Ecuador-Colombia", "México o Guatemala"],
+        "targetRegions": [
+          "Frontera Ecuador-Colombia",
+          "México o Guatemala"
+        ],
         "predictedMagnitudeMin": 4.7,
         "predictedMagnitudeMax": 5.4,
         "maxDays": 8,
@@ -107,7 +126,10 @@
         "sourceText": "Chiapas, México M4.1 hacia Lima-Callao o Ica, M3.8-4.4",
         "origin": "Chiapas, México",
         "originMagnitude": 4.1,
-        "targetRegions": ["Lima-Callao", "Ica"],
+        "targetRegions": [
+          "Lima-Callao",
+          "Ica"
+        ],
         "predictedMagnitudeMin": 3.8,
         "predictedMagnitudeMax": 4.4,
         "maxDays": 6,
@@ -120,7 +142,10 @@
         "sourceText": "Neiafu, Tonga M4.9 hacia Perú central o Chile central y frontera con Argentina, M4.6-5.1",
         "origin": "Neiafu, Tonga",
         "originMagnitude": 4.9,
-        "targetRegions": ["Perú central", "Chile central y frontera con Argentina"],
+        "targetRegions": [
+          "Perú central",
+          "Chile central y frontera con Argentina"
+        ],
         "predictedMagnitudeMin": 4.6,
         "predictedMagnitudeMax": 5.1,
         "maxDays": 7,
@@ -133,7 +158,12 @@
         "sourceText": "Hihifo, Tonga M5.7 hacia Perú o Chile central, Japón-Filipinas-Indonesia o México-Guatemala, M5.5-6.2",
         "origin": "Hihifo, Tonga",
         "originMagnitude": 5.7,
-        "targetRegions": ["Perú central", "Chile central y frontera con Argentina", "Japón, Filipinas o Indonesia", "México o Guatemala"],
+        "targetRegions": [
+          "Perú central",
+          "Chile central y frontera con Argentina",
+          "Japón, Filipinas o Indonesia",
+          "México o Guatemala"
+        ],
         "predictedMagnitudeMin": 5.5,
         "predictedMagnitudeMax": 6.2,
         "maxDays": 12,
@@ -146,7 +176,10 @@
         "sourceText": "Attu Station, Alaska M4.1 hacia Tumbes, Piura o Loreto y La Libertad o Áncash, M3.9-4.4",
         "origin": "Attu Station, Alaska",
         "originMagnitude": 4.1,
-        "targetRegions": ["Tumbes o Piura, incluyendo Loreto", "La Libertad o Áncash"],
+        "targetRegions": [
+          "Tumbes o Piura, incluyendo Loreto",
+          "La Libertad o Áncash"
+        ],
         "predictedMagnitudeMin": 3.9,
         "predictedMagnitudeMax": 4.4,
         "maxDays": 6,
@@ -159,7 +192,12 @@
         "sourceText": "Levuka, Fiji M5.7 hacia norte de Sudamérica, México-Caribe o Nueva Zelanda-Kermadec, M5.4-6.0",
         "origin": "Levuka, Fiji",
         "originMagnitude": 5.7,
-        "targetRegions": ["Norte de Colombia o Venezuela", "norte de Perú y sur de Ecuador", "México o Panamá e islas del Caribe", "Nueva Zelanda o islas Kermadec"],
+        "targetRegions": [
+          "Norte de Colombia o Venezuela",
+          "norte de Perú y sur de Ecuador",
+          "México o Panamá e islas del Caribe",
+          "Nueva Zelanda o islas Kermadec"
+        ],
         "predictedMagnitudeMin": 5.4,
         "predictedMagnitudeMax": 6.0,
         "maxDays": 12,
@@ -172,7 +210,11 @@
         "sourceText": "Islas Sandwich M4.9 hacia Arequipa-Tacna, frontera Cusco-Puno o norte de Chile, M4.7-5.3",
         "origin": "Islas Sandwich",
         "originMagnitude": 4.9,
-        "targetRegions": ["Arequipa-Tacna", "frontera Cusco-Puno", "norte de Chile"],
+        "targetRegions": [
+          "Arequipa-Tacna",
+          "frontera Cusco-Puno",
+          "norte de Chile"
+        ],
         "predictedMagnitudeMin": 4.7,
         "predictedMagnitudeMax": 5.3,
         "maxDays": 8,
@@ -185,7 +227,9 @@
         "sourceText": "Tayikistán M4.4 hacia norte de Venezuela o norte de Colombia, M4.2-4.6",
         "origin": "Tayikistán",
         "originMagnitude": 4.4,
-        "targetRegions": ["Norte de Venezuela o norte de Colombia"],
+        "targetRegions": [
+          "Norte de Venezuela o norte de Colombia"
+        ],
         "predictedMagnitudeMin": 4.2,
         "predictedMagnitudeMax": 4.6,
         "maxDays": 7,
@@ -211,7 +255,10 @@
         "sourceText": "Covelo, California M4.3 hacia Lima-Callao o Ica, M4.0-4.5",
         "origin": "Covelo, California",
         "originMagnitude": 4.3,
-        "targetRegions": ["Lima-Callao", "Ica"],
+        "targetRegions": [
+          "Lima-Callao",
+          "Ica"
+        ],
         "predictedMagnitudeMin": 4.0,
         "predictedMagnitudeMax": 4.5,
         "maxDays": 7,
@@ -224,7 +271,10 @@
         "sourceText": "Neiafu, Tonga M5.1 hacia Chile central y frontera con Argentina o Perú central, M4.8-5.3",
         "origin": "Neiafu, Tonga",
         "originMagnitude": 5.1,
-        "targetRegions": ["Chile central y frontera con Argentina", "Perú central"],
+        "targetRegions": [
+          "Chile central y frontera con Argentina",
+          "Perú central"
+        ],
         "predictedMagnitudeMin": 4.8,
         "predictedMagnitudeMax": 5.3,
         "maxDays": 8,
@@ -237,7 +287,12 @@
         "sourceText": "Hihifo, Tonga M5.7 hacia Perú o Chile central, Japón-Filipinas-Indonesia o México-Guatemala, M5.5-6.2",
         "origin": "Hihifo, Tonga",
         "originMagnitude": 5.7,
-        "targetRegions": ["Perú central", "Chile central y frontera con Argentina", "Japón, Filipinas o Indonesia", "México o Guatemala"],
+        "targetRegions": [
+          "Perú central",
+          "Chile central y frontera con Argentina",
+          "Japón, Filipinas o Indonesia",
+          "México o Guatemala"
+        ],
         "predictedMagnitudeMin": 5.5,
         "predictedMagnitudeMax": 6.2,
         "maxDays": 12,
@@ -250,7 +305,10 @@
         "sourceText": "Guerrero, México M4.0 hacia Tumbes, Piura o Loreto y La Libertad o Áncash, M3.8-4.3",
         "origin": "Guerrero, México",
         "originMagnitude": 4.0,
-        "targetRegions": ["Tumbes o Piura, incluyendo Loreto", "La Libertad o Áncash"],
+        "targetRegions": [
+          "Tumbes o Piura, incluyendo Loreto",
+          "La Libertad o Áncash"
+        ],
         "predictedMagnitudeMin": 3.8,
         "predictedMagnitudeMax": 4.3,
         "maxDays": 6,
@@ -263,7 +321,10 @@
         "sourceText": "Islas Fiji M5.0 hacia norte de Perú y sur de Ecuador o Nueva Zelanda-Kermadec, M4.6-5.3",
         "origin": "Islas Fiji",
         "originMagnitude": 5.0,
-        "targetRegions": ["norte de Perú y sur de Ecuador", "Nueva Zelanda o islas Kermadec"],
+        "targetRegions": [
+          "norte de Perú y sur de Ecuador",
+          "Nueva Zelanda o islas Kermadec"
+        ],
         "predictedMagnitudeMin": 4.6,
         "predictedMagnitudeMax": 5.3,
         "maxDays": 8,
@@ -276,7 +337,11 @@
         "sourceText": "Islas Sandwich M5.0 hacia Arequipa-Tacna, frontera Cusco-Puno o norte de Chile, M4.7-5.3",
         "origin": "Islas Sandwich",
         "originMagnitude": 5.0,
-        "targetRegions": ["Arequipa-Tacna", "frontera Cusco-Puno", "norte de Chile"],
+        "targetRegions": [
+          "Arequipa-Tacna",
+          "frontera Cusco-Puno",
+          "norte de Chile"
+        ],
         "predictedMagnitudeMin": 4.7,
         "predictedMagnitudeMax": 5.3,
         "maxDays": 8,
@@ -289,7 +354,9 @@
         "sourceText": "Xinjiang occidental M4.4 hacia norte de Colombia o Venezuela, M4.2-4.6",
         "origin": "Xinjiang occidental",
         "originMagnitude": 4.4,
-        "targetRegions": ["Norte de Colombia o Venezuela"],
+        "targetRegions": [
+          "Norte de Colombia o Venezuela"
+        ],
         "predictedMagnitudeMin": 4.2,
         "predictedMagnitudeMax": 4.6,
         "maxDays": 7,
@@ -302,7 +369,10 @@
         "sourceText": "Islas Azores M4.8 hacia República Dominicana o frontera Panamá-Costa Rica, M4.6-5.1",
         "origin": "Islas Azores",
         "originMagnitude": 4.8,
-        "targetRegions": ["República Dominicana o Puerto Rico", "Panamá o Costa Rica"],
+        "targetRegions": [
+          "República Dominicana o Puerto Rico",
+          "Panamá o Costa Rica"
+        ],
         "predictedMagnitudeMin": 4.6,
         "predictedMagnitudeMax": 5.1,
         "maxDays": 7,
@@ -328,7 +398,10 @@
         "sourceText": "Michoacán, México M4.1 hacia Ica o Lima-Callao, M3.9-4.4",
         "origin": "Michoacán, México",
         "originMagnitude": 4.1,
-        "targetRegions": ["Ica", "Lima-Callao"],
+        "targetRegions": [
+          "Ica",
+          "Lima-Callao"
+        ],
         "predictedMagnitudeMin": 3.9,
         "predictedMagnitudeMax": 4.4,
         "maxDays": 6,
@@ -341,7 +414,10 @@
         "sourceText": "Neiafu, Tonga M4.9 hacia Chile central y frontera con Argentina o Perú central, M4.6-5.2",
         "origin": "Neiafu, Tonga",
         "originMagnitude": 4.9,
-        "targetRegions": ["Chile central y frontera con Argentina", "Perú central"],
+        "targetRegions": [
+          "Chile central y frontera con Argentina",
+          "Perú central"
+        ],
         "predictedMagnitudeMin": 4.6,
         "predictedMagnitudeMax": 5.2,
         "maxDays": 8,
@@ -354,7 +430,10 @@
         "sourceText": "Costa de El Salvador M4.0 hacia Tumbes, Piura o Loreto y La Libertad o Áncash, M3.9-4.4",
         "origin": "Costa de El Salvador",
         "originMagnitude": 4.0,
-        "targetRegions": ["Tumbes o Piura, incluyendo Loreto", "La Libertad o Áncash"],
+        "targetRegions": [
+          "Tumbes o Piura, incluyendo Loreto",
+          "La Libertad o Áncash"
+        ],
         "predictedMagnitudeMin": 3.9,
         "predictedMagnitudeMax": 4.4,
         "maxDays": 6,
@@ -367,7 +446,12 @@
         "sourceText": "Levuka, Fiji M5.6 hacia norte de Sudamérica, México-Caribe o Japón-Filipinas-Indonesia, M5.3-5.9",
         "origin": "Levuka, Fiji",
         "originMagnitude": 5.6,
-        "targetRegions": ["Norte de Colombia o Venezuela", "norte de Perú y sur de Ecuador", "México o Panamá e islas del Caribe", "Japón, Filipinas o Indonesia"],
+        "targetRegions": [
+          "Norte de Colombia o Venezuela",
+          "norte de Perú y sur de Ecuador",
+          "México o Panamá e islas del Caribe",
+          "Japón, Filipinas o Indonesia"
+        ],
         "predictedMagnitudeMin": 5.3,
         "predictedMagnitudeMax": 5.9,
         "maxDays": 10,
@@ -380,7 +464,11 @@
         "sourceText": "Islas Sandwich M4.7 hacia Arequipa-Tacna, frontera Cusco-Puno o norte de Chile, M4.5-5.1",
         "origin": "Islas Sandwich",
         "originMagnitude": 4.7,
-        "targetRegions": ["Arequipa-Tacna", "frontera Cusco-Puno", "norte de Chile"],
+        "targetRegions": [
+          "Arequipa-Tacna",
+          "frontera Cusco-Puno",
+          "norte de Chile"
+        ],
         "predictedMagnitudeMin": 4.5,
         "predictedMagnitudeMax": 5.1,
         "maxDays": 8,
@@ -393,7 +481,11 @@
         "sourceText": "Islas Sandwich M5.7 hacia norte de Chile-sur de Perú, Pacífico sur o Filipinas-Indonesia-PNG, M5.4-6.0",
         "origin": "Islas Sandwich",
         "originMagnitude": 5.7,
-        "targetRegions": ["Norte de Chile y sur de Perú", "Nueva Zelanda, Vanuatu, Fiji o Tonga", "Filipinas, Indonesia o Papúa Nueva Guinea"],
+        "targetRegions": [
+          "Norte de Chile y sur de Perú",
+          "Nueva Zelanda, Vanuatu, Fiji o Tonga",
+          "Filipinas, Indonesia o Papúa Nueva Guinea"
+        ],
         "predictedMagnitudeMin": 5.4,
         "predictedMagnitudeMax": 6.0,
         "maxDays": 12,
@@ -406,7 +498,9 @@
         "sourceText": "Tayikistán M4.3 hacia norte de Venezuela o norte de Colombia, M4.2-4.6",
         "origin": "Tayikistán",
         "originMagnitude": 4.3,
-        "targetRegions": ["Norte de Venezuela o norte de Colombia"],
+        "targetRegions": [
+          "Norte de Venezuela o norte de Colombia"
+        ],
         "predictedMagnitudeMin": 4.2,
         "predictedMagnitudeMax": 4.6,
         "maxDays": 7,
@@ -419,7 +513,10 @@
         "sourceText": "Islas Ascensión M4.6 hacia República Dominicana-Puerto Rico o Panamá-Costa Rica, M4.5-5.0",
         "origin": "Islas Ascensión",
         "originMagnitude": 4.6,
-        "targetRegions": ["República Dominicana o Puerto Rico", "Panamá o Costa Rica"],
+        "targetRegions": [
+          "República Dominicana o Puerto Rico",
+          "Panamá o Costa Rica"
+        ],
         "predictedMagnitudeMin": 4.5,
         "predictedMagnitudeMax": 5.0,
         "maxDays": 7,
@@ -445,7 +542,10 @@
         "sourceText": "Tabasco, México M4.3 hacia Ica o Lima-Callao, M4.0-4.5",
         "origin": "Tabasco, México",
         "originMagnitude": 4.3,
-        "targetRegions": ["Ica", "Lima-Callao"],
+        "targetRegions": [
+          "Ica",
+          "Lima-Callao"
+        ],
         "predictedMagnitudeMin": 4.0,
         "predictedMagnitudeMax": 4.5,
         "maxDays": 7,
@@ -458,7 +558,10 @@
         "sourceText": "Sola, Vanuatu M5.2 hacia Perú central o Chile central y frontera con Argentina, M4.7-5.4",
         "origin": "Sola, Vanuatu",
         "originMagnitude": 5.2,
-        "targetRegions": ["Perú central", "Chile central y frontera con Argentina"],
+        "targetRegions": [
+          "Perú central",
+          "Chile central y frontera con Argentina"
+        ],
         "predictedMagnitudeMin": 4.7,
         "predictedMagnitudeMax": 5.4,
         "maxDays": 8,
@@ -471,7 +574,10 @@
         "sourceText": "Costa de Nicaragua M4.2 hacia La Libertad-Áncash o Tumbes-Piura-Loreto, M4.0-4.5",
         "origin": "Costa de Nicaragua",
         "originMagnitude": 4.2,
-        "targetRegions": ["La Libertad o Áncash", "Tumbes o Piura, incluyendo Loreto"],
+        "targetRegions": [
+          "La Libertad o Áncash",
+          "Tumbes o Piura, incluyendo Loreto"
+        ],
         "predictedMagnitudeMin": 4.0,
         "predictedMagnitudeMax": 4.5,
         "maxDays": 7,
@@ -484,7 +590,10 @@
         "sourceText": "Adak, Alaska M5.0 hacia norte de Perú-sur de Ecuador o Nueva Zelanda-Kermadec, M4.7-5.3",
         "origin": "Adak, Alaska",
         "originMagnitude": 5.0,
-        "targetRegions": ["norte de Perú y sur de Ecuador", "Nueva Zelanda o islas Kermadec"],
+        "targetRegions": [
+          "norte de Perú y sur de Ecuador",
+          "Nueva Zelanda o islas Kermadec"
+        ],
         "predictedMagnitudeMin": 4.7,
         "predictedMagnitudeMax": 5.3,
         "maxDays": 8,
@@ -497,7 +606,11 @@
         "sourceText": "New Taipei, Taiwán M4.7 hacia Arequipa-Tacna, frontera Cusco-Puno o norte de Chile, M4.5-5.2",
         "origin": "New Taipei, Taiwán",
         "originMagnitude": 4.7,
-        "targetRegions": ["Arequipa-Tacna", "frontera Cusco-Puno", "norte de Chile"],
+        "targetRegions": [
+          "Arequipa-Tacna",
+          "frontera Cusco-Puno",
+          "norte de Chile"
+        ],
         "predictedMagnitudeMin": 4.5,
         "predictedMagnitudeMax": 5.2,
         "maxDays": 7,
@@ -510,7 +623,9 @@
         "sourceText": "Tayikistán M4.5 hacia norte de Venezuela o norte de Colombia, M4.4-4.8",
         "origin": "Tayikistán",
         "originMagnitude": 4.5,
-        "targetRegions": ["Norte de Venezuela o norte de Colombia"],
+        "targetRegions": [
+          "Norte de Venezuela o norte de Colombia"
+        ],
         "predictedMagnitudeMin": 4.4,
         "predictedMagnitudeMax": 4.8,
         "maxDays": 7,
@@ -523,7 +638,10 @@
         "sourceText": "Norte del océano Atlántico M4.9 hacia Puerto Rico-RD o frontera Panamá-Costa Rica, M4.6-5.2",
         "origin": "Norte del océano Atlántico",
         "originMagnitude": 4.9,
-        "targetRegions": ["República Dominicana o Puerto Rico", "Panamá o Costa Rica"],
+        "targetRegions": [
+          "República Dominicana o Puerto Rico",
+          "Panamá o Costa Rica"
+        ],
         "predictedMagnitudeMin": 4.6,
         "predictedMagnitudeMax": 5.2,
         "maxDays": 8,
@@ -536,7 +654,12 @@
         "sourceText": "Levuka, Fiji M5.6 hacia norte de Sudamérica, México-Caribe o Japón-Filipinas-Indonesia, M5.3-5.9",
         "origin": "Levuka, Fiji",
         "originMagnitude": 5.6,
-        "targetRegions": ["Norte de Colombia o Venezuela", "norte de Perú y sur de Ecuador", "México o Panamá e islas del Caribe", "Japón, Filipinas o Indonesia"],
+        "targetRegions": [
+          "Norte de Colombia o Venezuela",
+          "norte de Perú y sur de Ecuador",
+          "México o Panamá e islas del Caribe",
+          "Japón, Filipinas o Indonesia"
+        ],
         "predictedMagnitudeMin": 5.3,
         "predictedMagnitudeMax": 5.9,
         "maxDays": 11,
@@ -562,7 +685,10 @@
         "sourceText": "Veracruz, México M4.1 hacia Lima-Callao o Ica, M4.0-4.5",
         "origin": "Veracruz, México",
         "originMagnitude": 4.1,
-        "targetRegions": ["Lima-Callao", "Ica"],
+        "targetRegions": [
+          "Lima-Callao",
+          "Ica"
+        ],
         "predictedMagnitudeMin": 4.0,
         "predictedMagnitudeMax": 4.5,
         "maxDays": 6,
@@ -575,7 +701,11 @@
         "sourceText": "Islas Tonga M5.5 hacia Perú-Chile central y frontera con Argentina o Japón-Filipinas-Indonesia, M5.4-6.0",
         "origin": "Islas Tonga",
         "originMagnitude": 5.5,
-        "targetRegions": ["Chile central y frontera con Argentina", "Perú central", "Japón, Filipinas o Indonesia"],
+        "targetRegions": [
+          "Chile central y frontera con Argentina",
+          "Perú central",
+          "Japón, Filipinas o Indonesia"
+        ],
         "predictedMagnitudeMin": 5.4,
         "predictedMagnitudeMax": 6.0,
         "maxDays": 9,
@@ -588,7 +718,9 @@
         "sourceText": "Masaya, Nicaragua M4.5 hacia sur de Ecuador o norte de Perú, M4.3-4.7",
         "origin": "Masaya, Nicaragua",
         "originMagnitude": 4.5,
-        "targetRegions": ["norte de Perú y sur de Ecuador"],
+        "targetRegions": [
+          "norte de Perú y sur de Ecuador"
+        ],
         "predictedMagnitudeMin": 4.3,
         "predictedMagnitudeMax": 4.7,
         "maxDays": 7,
@@ -601,7 +733,12 @@
         "sourceText": "Sur de Fiji M5.3 hacia norte de Sudamérica o México-Panamá y Caribe, M5.0-5.5",
         "origin": "Sur de Fiji",
         "originMagnitude": 5.3,
-        "targetRegions": ["norte de Perú y sur de Ecuador", "Norte de Colombia o Venezuela", "México o Panamá e islas del Caribe", "República Dominicana o Puerto Rico"],
+        "targetRegions": [
+          "norte de Perú y sur de Ecuador",
+          "Norte de Colombia o Venezuela",
+          "México o Panamá e islas del Caribe",
+          "República Dominicana o Puerto Rico"
+        ],
         "predictedMagnitudeMin": 5.0,
         "predictedMagnitudeMax": 5.5,
         "maxDays": 9,
@@ -614,7 +751,9 @@
         "sourceText": "Sur de Irán M4.5 hacia norte de Colombia o norte de Venezuela, M4.4-4.7",
         "origin": "Sur de Irán",
         "originMagnitude": 4.5,
-        "targetRegions": ["Norte de Venezuela o norte de Colombia"],
+        "targetRegions": [
+          "Norte de Venezuela o norte de Colombia"
+        ],
         "predictedMagnitudeMin": 4.4,
         "predictedMagnitudeMax": 4.7,
         "maxDays": 7,
@@ -627,7 +766,10 @@
         "sourceText": "Islas Ascensión M4.6 hacia República Dominicana-Puerto Rico o frontera Panamá-Costa Rica, M4.4-4.8",
         "origin": "Islas Ascensión",
         "originMagnitude": 4.6,
-        "targetRegions": ["República Dominicana o Puerto Rico", "Panamá o Costa Rica"],
+        "targetRegions": [
+          "República Dominicana o Puerto Rico",
+          "Panamá o Costa Rica"
+        ],
         "predictedMagnitudeMin": 4.4,
         "predictedMagnitudeMax": 4.8,
         "maxDays": 7,
@@ -640,12 +782,267 @@
         "sourceText": "Islas Sandwich M4.7 hacia Arequipa-Tacna, frontera Cusco-Puno o norte de Chile, M4.5-5.1",
         "origin": "Islas Sandwich",
         "originMagnitude": 4.7,
-        "targetRegions": ["Arequipa-Tacna", "frontera Cusco-Puno", "norte de Chile"],
+        "targetRegions": [
+          "Arequipa-Tacna",
+          "frontera Cusco-Puno",
+          "norte de Chile"
+        ],
         "predictedMagnitudeMin": 4.5,
         "predictedMagnitudeMax": 5.1,
         "maxDays": 7,
         "startDate": "2026-08-03",
         "deadlineEndLima": "2026-08-10T23:59:59-05:00"
+      }
+    ]
+  },
+  {
+    "slug": "2026-08-10",
+    "title": "10 al 18 de agosto",
+    "periodStart": "2026-08-10",
+    "periodEnd": "2026-08-18",
+    "registrationMode": "RETROSPECTIVE",
+    "sourceUrl": "https://www.instagram.com/p/Db2Qi79p2NE/",
+    "sourcePublishedAtLima": "2026-08-10T00:00:00-05:00",
+    "sourceEvidence": "Reel Db2Qi79p2NE transcrito con trx (whisper large-v3-turbo) el 2026-08-19",
+    "backfilledAt": "2026-08-19",
+    "points": [
+      {
+        "pointNumber": 1,
+        "predictionId": "W20260810-P1",
+        "sourceText": "Vanuatu 4.7 hacia central de Perú o central de Chile frontera con Argentina, 4.5-5.0, 6 a 7 días",
+        "origin": "Vanuatu",
+        "originMagnitude": 4.7,
+        "targetRegions": [
+          "Perú central",
+          "Chile central y frontera con Argentina"
+        ],
+        "predictedMagnitudeMin": 4.5,
+        "predictedMagnitudeMax": 5.0,
+        "maxDays": 7,
+        "startDate": "2026-08-10",
+        "deadlineEndLima": "2026-08-17T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 2,
+        "predictionId": "W20260810-P2",
+        "sourceText": "Islas de Pascua 5.6 hacia central de Perú hasta central de Chile frontera con Argentina, incluye sur de Perú y norte de Chile, o Japón hasta parte de Indonesia, 5.4-6.4, 10 días",
+        "origin": "Islas de Pascua",
+        "originMagnitude": 5.6,
+        "targetRegions": [
+          "Perú central",
+          "Norte de Chile y sur de Perú",
+          "Japón, Filipinas o Indonesia"
+        ],
+        "predictedMagnitudeMin": 5.4,
+        "predictedMagnitudeMax": 6.4,
+        "maxDays": 10,
+        "startDate": "2026-08-10",
+        "deadlineEndLima": "2026-08-20T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 3,
+        "predictionId": "W20260810-P3",
+        "sourceText": "Sur de las Islas Fiji 4.5 hacia norte de Perú o sur de Ecuador, 4.4-4.8, 6 a 7 días",
+        "origin": "Sur de las Islas Fiji",
+        "originMagnitude": 4.5,
+        "targetRegions": [
+          "norte de Perú y sur de Ecuador"
+        ],
+        "predictedMagnitudeMin": 4.4,
+        "predictedMagnitudeMax": 4.8,
+        "maxDays": 7,
+        "startDate": "2026-08-10",
+        "deadlineEndLima": "2026-08-17T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 4,
+        "predictionId": "W20260810-P4",
+        "sourceText": "Islas Galápagos 5.2 hacia norte de Perú o sur de Ecuador o zonas limítrofes norte de Colombia y norte de Venezuela, o México y Panamá o islas aledañas como República Dominicana o Puerto Rico, 5.0-5.5, 9 a 10 días",
+        "origin": "Islas Galápagos",
+        "originMagnitude": 5.2,
+        "targetRegions": [
+          "norte de Perú y sur de Ecuador",
+          "Norte de Venezuela o norte de Colombia",
+          "México o Panamá e islas del Caribe",
+          "República Dominicana o Puerto Rico"
+        ],
+        "predictedMagnitudeMin": 5.0,
+        "predictedMagnitudeMax": 5.5,
+        "maxDays": 10,
+        "startDate": "2026-08-10",
+        "deadlineEndLima": "2026-08-20T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 5,
+        "predictionId": "W20260810-P5",
+        "sourceText": "Islas Sandwich 4.6 hacia Arequipa o Tacna o la zona limítrofe de Cusco y Puno, 4.5-5.1, 7 días",
+        "origin": "Islas Sandwich",
+        "originMagnitude": 4.6,
+        "targetRegions": [
+          "Arequipa-Tacna",
+          "frontera Cusco-Puno"
+        ],
+        "predictedMagnitudeMin": 4.5,
+        "predictedMagnitudeMax": 5.1,
+        "maxDays": 7,
+        "startDate": "2026-08-10",
+        "deadlineEndLima": "2026-08-17T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 6,
+        "predictionId": "W20260810-P6",
+        "sourceText": "Hindu Kush, Afganistán 4.5 hacia norte de Venezuela o norte de Colombia, 4.0-4.8, 7 días",
+        "origin": "Hindu Kush, Afganistán",
+        "originMagnitude": 4.5,
+        "targetRegions": [
+          "Norte de Venezuela o norte de Colombia"
+        ],
+        "predictedMagnitudeMin": 4.0,
+        "predictedMagnitudeMax": 4.8,
+        "maxDays": 7,
+        "startDate": "2026-08-10",
+        "deadlineEndLima": "2026-08-17T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 7,
+        "predictionId": "W20260810-P7",
+        "sourceText": "Norte del océano Atlántico hacia Puerto Rico o República Dominicana o zonas colindantes a Panamá y Costa Rica, 4.5-4.9, 7 días",
+        "origin": "Norte del océano Atlántico",
+        "originMagnitude": 4.6,
+        "targetRegions": [
+          "República Dominicana o Puerto Rico",
+          "Panamá o Costa Rica"
+        ],
+        "predictedMagnitudeMin": 4.5,
+        "predictedMagnitudeMax": 4.9,
+        "maxDays": 7,
+        "startDate": "2026-08-10",
+        "deadlineEndLima": "2026-08-17T23:59:59-05:00"
+      }
+    ]
+  },
+  {
+    "slug": "2026-08-17",
+    "title": "17 al 25 de agosto",
+    "periodStart": "2026-08-17",
+    "periodEnd": "2026-08-25",
+    "registrationMode": "PROSPECTIVE",
+    "sourceUrl": "https://www.instagram.com/p/DcJJBJvpISX/",
+    "sourcePublishedAtLima": "2026-08-17T00:00:00-05:00",
+    "sourceEvidence": "Reel DcJJBJvpISX transcrito con trx (whisper large-v3-turbo) el 2026-08-19, antes del cierre de todas sus ventanas",
+    "backfilledAt": "2026-08-19",
+    "points": [
+      {
+        "pointNumber": 1,
+        "predictionId": "W20260817-P1",
+        "sourceText": "Colima, México 4.2 hacia parte de Lima o Ica, 4.1-4.5, 6 a 7 días",
+        "origin": "Colima, México",
+        "originMagnitude": 4.2,
+        "targetRegions": [
+          "Lima-Callao",
+          "Ica"
+        ],
+        "predictedMagnitudeMin": 4.1,
+        "predictedMagnitudeMax": 4.5,
+        "maxDays": 7,
+        "startDate": "2026-08-17",
+        "deadlineEndLima": "2026-08-24T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 2,
+        "predictionId": "W20260817-P2",
+        "sourceText": "Islas Salomón 4.7 hacia central de Perú o central de Chile zona limítrofe con Argentina, 4.6-5.1, 7 días",
+        "origin": "Islas Salomón",
+        "originMagnitude": 4.7,
+        "targetRegions": [
+          "Perú central",
+          "Chile central y frontera con Argentina"
+        ],
+        "predictedMagnitudeMin": 4.6,
+        "predictedMagnitudeMax": 5.1,
+        "maxDays": 7,
+        "startDate": "2026-08-17",
+        "deadlineEndLima": "2026-08-24T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 3,
+        "predictionId": "W20260817-P3",
+        "sourceText": "Vanuatu 6.0 hacia Japón, Filipinas o parte de Indonesia, o desde central de Perú hasta zona central de Chile incluyendo sur de Perú y norte de Chile, 5.4-6.3, 10 días",
+        "origin": "Vanuatu",
+        "originMagnitude": 6.0,
+        "targetRegions": [
+          "Japón, Filipinas o Indonesia",
+          "Perú central",
+          "Norte de Chile y sur de Perú"
+        ],
+        "predictedMagnitudeMin": 5.4,
+        "predictedMagnitudeMax": 6.3,
+        "maxDays": 10,
+        "startDate": "2026-08-17",
+        "deadlineEndLima": "2026-08-27T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 4,
+        "predictionId": "W20260817-P4",
+        "sourceText": "Guerrero, México 4.0 hacia zona limítrofe de Tumbes y Piura o parte de La Libertad y Áncash, 3.8-4.3, 6 días",
+        "origin": "Guerrero, México",
+        "originMagnitude": 4.0,
+        "targetRegions": [
+          "Tumbes o Piura, incluyendo Loreto",
+          "La Libertad o Áncash"
+        ],
+        "predictedMagnitudeMin": 3.8,
+        "predictedMagnitudeMax": 4.3,
+        "maxDays": 6,
+        "startDate": "2026-08-17",
+        "deadlineEndLima": "2026-08-23T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 5,
+        "predictionId": "W20260817-P5",
+        "sourceText": "Tayikistán 4.5 hacia norte de Venezuela o norte de Colombia, 4.3-4.7, 6 a 7 días",
+        "origin": "Tayikistán",
+        "originMagnitude": 4.5,
+        "targetRegions": [
+          "Norte de Venezuela o norte de Colombia"
+        ],
+        "predictedMagnitudeMin": 4.3,
+        "predictedMagnitudeMax": 4.7,
+        "maxDays": 7,
+        "startDate": "2026-08-17",
+        "deadlineEndLima": "2026-08-24T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 6,
+        "predictionId": "W20260817-P6",
+        "sourceText": "Yilan, Taiwán hacia parte de Arequipa o Tacna o la zona limítrofe de Cusco y Puno, 4.5-5.2, 7 días",
+        "origin": "Yilan, Taiwán",
+        "originMagnitude": 4.5,
+        "targetRegions": [
+          "Arequipa-Tacna",
+          "frontera Cusco-Puno"
+        ],
+        "predictedMagnitudeMin": 4.5,
+        "predictedMagnitudeMax": 5.2,
+        "maxDays": 7,
+        "startDate": "2026-08-17",
+        "deadlineEndLima": "2026-08-24T23:59:59-05:00"
+      },
+      {
+        "pointNumber": 7,
+        "predictionId": "W20260817-P7",
+        "sourceText": "Sur del océano Atlántico 4.6-4.7 hacia Puerto Rico o República Dominicana, o zona limítrofe entre Panamá y Costa Rica, 4.5-4.9, 7 días",
+        "origin": "Sur del océano Atlántico",
+        "originMagnitude": 4.6,
+        "targetRegions": [
+          "República Dominicana o Puerto Rico",
+          "Panamá o Costa Rica"
+        ],
+        "predictedMagnitudeMin": 4.5,
+        "predictedMagnitudeMax": 4.9,
+        "maxDays": 7,
+        "startDate": "2026-08-17",
+        "deadlineEndLima": "2026-08-24T23:59:59-05:00"
       }
     ]
   }
