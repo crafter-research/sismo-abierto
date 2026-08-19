@@ -5,6 +5,7 @@ import {
 } from "@sismo/audit";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { OriginFlag } from "../../components/origin-flag";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +24,18 @@ function formatLima(value: string): string {
     timeZone: "America/Lima",
   })
     .format(new Date(value))
+    .replaceAll(".", "");
+}
+
+/** Fecha sin año, para rangos donde el año ya está claro por el contexto. */
+function formatShortLima(value: string | undefined): string {
+  if (!value) return "";
+  return new Intl.DateTimeFormat("es-PE", {
+    day: "numeric",
+    month: "long",
+    timeZone: "America/Lima",
+  })
+    .format(new Date(`${value}T12:00:00-05:00`))
     .replaceAll(".", "");
 }
 
@@ -56,6 +69,7 @@ export default async function VerificaPage() {
       (audit) => audit.interpretation.matchOutcome === "PENDING",
     ).length,
   };
+  const auditedTotal = panoramaResults.audits.length;
 
   return (
     <div className="w-[min(72rem,calc(100vw-2rem))] self-center">
@@ -91,6 +105,7 @@ export default async function VerificaPage() {
         className="mt-6 border-gray-300 border-y"
         data-testid="panorama-audit-summary"
       >
+        {/* Denominador de las barras: el total de afirmaciones auditadas. */}
         <div className="flex flex-wrap items-center justify-between gap-2 py-3">
           <h2 className="text-sm font-semibold">Corte de auditoría</h2>
           <time
@@ -102,18 +117,36 @@ export default async function VerificaPage() {
         </div>
         <dl className="grid grid-cols-2 border-gray-200 border-t text-sm sm:grid-cols-5">
           {[
-            ["Coincidencias estrictas", auditCounts.strict],
-            ["Geografía ambigua", auditCounts.ambiguous],
-            ["Sin coincidencia", auditCounts.noMatch],
-            ["Fuentes en desacuerdo", auditCounts.disagreement],
-            ["Ventanas abiertas", auditCounts.pending],
-          ].map(([label, value]) => (
+            ["Coincidencias estrictas", auditCounts.strict, "bg-official"],
+            ["Geografía ambigua", auditCounts.ambiguous, "bg-amber-500"],
+            ["Sin coincidencia", auditCounts.noMatch, "bg-gray-600"],
+            ["Fuentes en desacuerdo", auditCounts.disagreement, "bg-gray-400"],
+            ["Ventanas abiertas", auditCounts.pending, "bg-gray-300"],
+          ].map(([label, value, tone]) => (
             <div
-              key={label}
+              key={label as string}
               className="px-3 py-3 first:pl-0 sm:border-gray-200 sm:border-r"
             >
               <dt className="text-xs text-gray-800">{label}</dt>
               <dd className="mt-1 font-mono text-xl font-bold">{value}</dd>
+              {/* La barra convierte el conteo en proporción sobre el total
+                  auditado. Cinco cifras sueltas no dicen si 7 es mucho o poco. */}
+              <div
+                className="mt-1.5 h-1 overflow-hidden rounded-full bg-gray-200"
+                aria-hidden="true"
+              >
+                <div
+                  className={`h-full rounded-full ${tone}`}
+                  style={{
+                    width: `${auditedTotal > 0 ? ((value as number) / auditedTotal) * 100 : 0}%`,
+                  }}
+                />
+              </div>
+              <p className="mt-1 font-mono text-[11px] text-gray-800">
+                {auditedTotal > 0
+                  ? `${(((value as number) / auditedTotal) * 100).toFixed(0)}%`
+                  : "—"}
+              </p>
             </div>
           ))}
         </dl>
@@ -126,7 +159,9 @@ export default async function VerificaPage() {
               Panoramas semanales
             </h2>
             <p className="mt-1 text-xs text-gray-800">
-              Seis Reels publicados entre el 29 de junio y el 3 de agosto.
+              {panoramas.length} Reels publicados entre el{" "}
+              {formatShortLima(panoramas[0]?.periodStart)} y el{" "}
+              {formatShortLima(panoramas.at(-1)?.periodEnd)}.
             </p>
           </div>
           <span className="font-mono text-[11px] text-gray-800">
@@ -158,6 +193,11 @@ export default async function VerificaPage() {
             const pending = reportAudits.filter(
               (audit) => audit.interpretation.matchOutcome === "PENDING",
             ).length;
+            // Un origen por país, sin repetir, para que la fila muestre de dónde
+            // salieron las proyecciones sin convertirse en una tira de banderas.
+            const origins = [
+              ...new Set(report.points.map((point) => point.origin)),
+            ].slice(0, 5);
             const deadline = report.points.reduce(
               (latest, point) =>
                 point.deadlineEndLima > latest ? point.deadlineEndLima : latest,
@@ -174,26 +214,50 @@ export default async function VerificaPage() {
                   {report.title}
                 </span>
                 <span className="min-w-0">
-                  <span className="block text-gray-900">
-                    Reel{" "}
+                  <span className="flex flex-wrap items-center gap-x-1 gap-y-0.5">
+                    {origins.map((origin) => (
+                      <OriginFlag key={origin} origin={origin} />
+                    ))}
+                    <span className="ml-0.5 text-gray-900">
+                      {countLabel(
+                        report.points.length,
+                        "predicción",
+                        "predicciones",
+                      )}
+                    </span>
+                  </span>
+                  <span className="block text-xs text-gray-800">
+                    Publicado {formatLima(report.sourcePublishedAtLima)} · Reel{" "}
                     {new URL(report.sourceUrl).pathname
                       .split("/")
                       .filter(Boolean)
                       .at(-1)}
                   </span>
-                  <span className="block text-xs text-gray-800">
-                    Publicado {formatLima(report.sourcePublishedAtLima)}
-                  </span>
                 </span>
-                <span className="text-xs leading-5 text-gray-900 sm:text-right">
-                  {pending > 0
-                    ? countLabel(
-                        pending,
-                        "ventana abierta",
-                        "ventanas abiertas",
-                      )
-                    : `${countLabel(strict, "coincidencia", "coincidencias")} · ${countLabel(ambiguous, "ambigua", "ambiguas")} · ${noMatch} sin coincidencia`}
-                  <span className="block text-gray-800">
+                <span className="text-xs leading-5 sm:text-right">
+                  <span className="flex flex-wrap gap-1 sm:justify-end">
+                    {strict > 0 ? (
+                      <span className="rounded-full bg-official/10 px-2 py-0.5 font-semibold text-official">
+                        {strict} estricta{strict === 1 ? "" : "s"}
+                      </span>
+                    ) : null}
+                    {ambiguous > 0 ? (
+                      <span className="rounded-full bg-amber-100 px-2 py-0.5 font-semibold text-amber-900">
+                        {ambiguous} ambigua{ambiguous === 1 ? "" : "s"}
+                      </span>
+                    ) : null}
+                    {noMatch > 0 ? (
+                      <span className="rounded-full bg-gray-200 px-2 py-0.5 font-semibold text-gray-900">
+                        {noMatch} sin coincidencia
+                      </span>
+                    ) : null}
+                    {pending > 0 ? (
+                      <span className="rounded-full border border-gray-400 px-2 py-0.5 font-semibold text-gray-900">
+                        {pending} abierta{pending === 1 ? "" : "s"}
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className="mt-1 block text-gray-800">
                     hasta {formatLima(deadline)}
                   </span>
                 </span>
@@ -251,17 +315,39 @@ export default async function VerificaPage() {
                   Informe {report.reportNumber}
                 </span>
                 <span className="min-w-0">
-                  <span className="block truncate">{report.origin}</span>
+                  <span className="flex min-w-0 items-center gap-1.5">
+                    <OriginFlag origin={report.origin} />
+                    <span className="truncate">{report.origin}</span>
+                  </span>
                   <span className="block text-xs text-gray-800">
                     M{report.predictedMagnitudeMin.toFixed(1)}–
                     {report.predictedMagnitudeMax.toFixed(1)} · vence{" "}
                     {formatLima(report.deadlineEndLima)}
                   </span>
                 </span>
-                <span className="text-xs text-gray-900 sm:text-right">
-                  {pending > 0
-                    ? `${pending} puntos pendientes`
-                    : `${strict} coincidencia${strict === 1 ? "" : "s"} · ${ambiguous} ambiguos · ${noMatch} sin coincidencia`}
+                <span className="text-xs sm:text-right">
+                  <span className="flex flex-wrap gap-1 sm:justify-end">
+                    {strict > 0 ? (
+                      <span className="rounded-full bg-official/10 px-2 py-0.5 font-semibold text-official">
+                        {strict} estricta{strict === 1 ? "" : "s"}
+                      </span>
+                    ) : null}
+                    {ambiguous > 0 ? (
+                      <span className="rounded-full bg-amber-100 px-2 py-0.5 font-semibold text-amber-900">
+                        {ambiguous} ambiguo{ambiguous === 1 ? "" : "s"}
+                      </span>
+                    ) : null}
+                    {noMatch > 0 ? (
+                      <span className="rounded-full bg-gray-200 px-2 py-0.5 font-semibold text-gray-900">
+                        {noMatch} sin coincidencia
+                      </span>
+                    ) : null}
+                    {pending > 0 ? (
+                      <span className="rounded-full border border-gray-400 px-2 py-0.5 font-semibold text-gray-900">
+                        {pending} pendiente{pending === 1 ? "" : "s"}
+                      </span>
+                    ) : null}
+                  </span>
                 </span>
               </Link>
             );
