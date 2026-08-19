@@ -1,5 +1,6 @@
 import {
   GEOGRAPHY_METHOD_NOTE,
+  loadClaimedValidations,
   loadHistoricalReportAuditResults,
   loadPanoramaReportRegistry,
 } from "@sismo/audit";
@@ -38,9 +39,10 @@ export default async function HistoricalReportPage({
 }) {
   const { reportNumber: rawReportNumber } = await params;
   const reportNumber = Number(rawReportNumber);
-  const [results, panoramas] = await Promise.all([
+  const [results, panoramas, claims] = await Promise.all([
     loadHistoricalReportAuditResults(),
     loadPanoramaReportRegistry(),
+    loadClaimedValidations(),
   ]);
   const entry = results.reports.find(
     ({ report }) => report.reportNumber === reportNumber,
@@ -178,6 +180,10 @@ export default async function HistoricalReportPage({
             outcome: audit.interpretation.matchOutcome,
             pointLabel: `P${point.pointNumber}`,
             claimedProbability: point.claimedProbability,
+            claimedValidation:
+              claims.find(
+                (claim) => claim.predictionId === prediction.predictionId,
+              ) ?? null,
           }))}
         />
       </section>

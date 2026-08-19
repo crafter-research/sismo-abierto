@@ -1,5 +1,6 @@
 import { BASELINE_BAND_LABELS } from "@sismo/audit";
 import type {
+  ClaimedValidation,
   FrozenPrediction,
   PredictionAudit,
   PredictionMatchOutcome,
@@ -16,8 +17,22 @@ export interface PredictionReportRow {
   statusLabel?: string;
   pointLabel: string;
   claimedProbability?: number;
+  claimedValidation?: ClaimedValidation | null;
   href?: string;
 }
+
+/**
+ * Resumen corto del contraste entre lo que la cuenta publicó y lo que dicen las
+ * fuentes oficiales. La ficha del punto trae el detalle completo; acá solo hace
+ * falta que se vea, desde la tabla, que hubo un reclamo y en qué quedó.
+ */
+const CLAIM_SUMMARY: Record<ClaimedValidation["assessment"], string> = {
+  MATCHES_FROZEN_CLAIM: "coincide con lo publicado",
+  OUTSIDE_FROZEN_MAGNITUDE: "magnitud fuera del rango publicado",
+  OUTSIDE_FROZEN_GEOGRAPHY: "epicentro fuera del destino publicado",
+  SOURCE_DISAGREEMENT_ON_MAGNITUDE: "las fuentes oficiales discrepan",
+  UNVERIFIABLE_IN_OFFICIAL_SOURCES: "sin registro en fuentes oficiales",
+};
 
 function formatDeadlineLima(value: string): string {
   return new Intl.DateTimeFormat("es-PE", {
@@ -90,6 +105,7 @@ export function PredictionReportTable({
               statusLabel,
               pointLabel,
               claimedProbability,
+              claimedValidation,
               href,
             }) => {
               const { visible, hidden } = splitTargets(
@@ -170,6 +186,19 @@ export function PredictionReportTable({
                             {statusLabel ?? "Sin auditoría"}
                           </span>
                         )}
+                        {claimedValidation ? (
+                          <span
+                            className="mt-1.5 flex flex-wrap items-baseline gap-1 rounded border border-amber-300 bg-amber-50 px-2 py-1 text-[11px] leading-4 text-amber-950"
+                            data-testid="row-claimed-validation"
+                          >
+                            <strong className="font-semibold">
+                              La cuenta la declaró cumplida
+                            </strong>
+                            <span>
+                              · {CLAIM_SUMMARY[claimedValidation.assessment]}
+                            </span>
+                          </span>
+                        ) : null}
                         <p className="mt-1 font-mono text-2xl font-bold tabular-nums leading-none">
                           {percentage === null
                             ? "—"
