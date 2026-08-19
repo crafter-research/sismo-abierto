@@ -1,5 +1,5 @@
 {
-  "runAt": "2026-08-07T04:18:26.718Z",
+  "runAt": "2026-08-19T15:51:26.361Z",
   "reports": [
     {
       "report": {
@@ -83,7 +83,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2025-12-09T00:00:00-05:00",
             "windowEndLima": "2026-02-27T23:59:59-05:00",
             "candidates": [],
@@ -105,49 +105,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Guatemala (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=13.7&maxlatitude=17.9&minlongitude=-92.3&maxlongitude=-88.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Costa Rica (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Nicaragua (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=10.7&maxlatitude=15.1&minlongitude=-87.7&maxlongitude=-82.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Panamá (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=13.7&maxlatitude=17.9&minlongitude=-92.3&maxlongitude=-88.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=10.7&maxlatitude=15.1&minlongitude=-87.7&maxlongitude=-82.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -186,7 +186,7 @@
               "baselineBand": "MODERATE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2025-12-09T00:00:00-05:00",
             "windowEndLima": "2026-02-27T23:59:59-05:00",
             "candidates": [],
@@ -214,145 +214,145 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para China (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=18&maxlatitude=53.6&minlongitude=73.5&maxlongitude=135.1",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Japón (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Taiwán",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=21.8&maxlatitude=25.4&minlongitude=119.3&maxlongitude=122.1",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Península de Corea",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=33&maxlatitude=43.1&minlongitude=124&maxlongitude=131.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para India (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=6.5&maxlatitude=35.7&minlongitude=68&maxlongitude=97.4",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Filipinas (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sumatra)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Java, Bali y Nusa Tenggara)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Kalimantan)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sulawesi)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Maluku)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Papúa occidental)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=18&maxlatitude=53.6&minlongitude=73.5&maxlongitude=135.1",
                 "detail": "1 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "1 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=21.8&maxlatitude=25.4&minlongitude=119.3&maxlongitude=122.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=33&maxlatitude=43.1&minlongitude=124&maxlongitude=131.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=6.5&maxlatitude=35.7&minlongitude=68&maxlongitude=97.4",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
                 "detail": "1 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
@@ -391,7 +391,7 @@
               "baselineBand": "UNAVAILABLE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2025-12-09T00:00:00-05:00",
             "windowEndLima": "2026-02-27T23:59:59-05:00",
             "candidates": [],
@@ -434,7 +434,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2025-12-09T00:00:00-05:00",
             "windowEndLima": "2026-02-27T23:59:59-05:00",
             "candidates": [],
@@ -456,49 +456,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Afganistán (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=29.4&maxlatitude=38.5&minlongitude=60.5&maxlongitude=74.9",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Irán (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=24.4&maxlatitude=39.8&minlongitude=44&maxlongitude=63.3",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Grecia (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=34.7&maxlatitude=41.8&minlongitude=19.4&maxlongitude=28.3",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Turquía (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-09&endtime=2026-03-01&orderby=time&minmagnitude=6.3&minlatitude=35.8&maxlatitude=42.2&minlongitude=25.6&maxlongitude=44.9",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=29.4&maxlatitude=38.5&minlongitude=60.5&maxlongitude=74.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=24.4&maxlatitude=39.8&minlongitude=44&maxlongitude=63.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=34.7&maxlatitude=41.8&minlongitude=19.4&maxlongitude=28.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-09&endtime=2025-12-09&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=35.8&maxlatitude=42.2&minlongitude=25.6&maxlongitude=44.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -590,7 +590,7 @@
               "baselineBand": "MODERATE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2025-12-11T00:00:00-05:00",
             "windowEndLima": "2026-03-06T23:59:59-05:00",
             "candidates": [],
@@ -612,49 +612,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Japón (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Rusia oriental (hemisferio este)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=41&maxlatitude=82&minlongitude=129&maxlongitude=180",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Rusia oriental (cruce del meridiano 180°)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=41&maxlatitude=72&minlongitude=-180&maxlongitude=-169",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Alaska",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=51.2&maxlatitude=71.5&minlongitude=-180&maxlongitude=-129",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "0 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=41&maxlatitude=82&minlongitude=129&maxlongitude=180",
                 "detail": "1 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=41&maxlatitude=72&minlongitude=-180&maxlongitude=-169",
                 "detail": "0 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=51.2&maxlatitude=71.5&minlongitude=-180&maxlongitude=-129",
                 "detail": "1 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
@@ -693,7 +693,7 @@
               "baselineBand": "UNAVAILABLE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2025-12-11T00:00:00-05:00",
             "windowEndLima": "2026-03-06T23:59:59-05:00",
             "candidates": [],
@@ -736,7 +736,7 @@
               "baselineBand": "MODERATE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2025-12-11T00:00:00-05:00",
             "windowEndLima": "2026-03-06T23:59:59-05:00",
             "candidates": [],
@@ -758,49 +758,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Nueva Zelanda (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Fiji (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Vanuatu (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Tonga (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
                 "detail": "1 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
@@ -839,7 +839,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2025-12-11T00:00:00-05:00",
             "windowEndLima": "2026-03-06T23:59:59-05:00",
             "candidates": [],
@@ -863,97 +863,97 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Islas Sandwich del Sur",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-60.5&maxlatitude=-53.5&minlongitude=-30&maxlongitude=-24",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sumatra)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Java, Bali y Nusa Tenggara)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Kalimantan)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sulawesi)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Maluku)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Papúa occidental)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Papúa Nueva Guinea (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-11&endtime=2026-03-08&orderby=time&minmagnitude=6.5&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-60.5&maxlatitude=-53.5&minlongitude=-30&maxlongitude=-24",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-11&endtime=2025-12-11&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -1045,7 +1045,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-02-25T00:00:00-05:00",
             "windowEndLima": "2026-05-16T23:59:59-05:00",
             "candidates": [],
@@ -1073,145 +1073,145 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para China (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=18&maxlatitude=53.6&minlongitude=73.5&maxlongitude=135.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Japón (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "3 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Taiwán",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=21.8&maxlatitude=25.4&minlongitude=119.3&maxlongitude=122.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Península de Corea",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=33&maxlatitude=43.1&minlongitude=124&maxlongitude=131.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para India (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=6.5&maxlatitude=35.7&minlongitude=68&maxlongitude=97.4",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Filipinas (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sumatra)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Java, Bali y Nusa Tenggara)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Kalimantan)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sulawesi)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Maluku)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "2 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Papúa occidental)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=18&maxlatitude=53.6&minlongitude=73.5&maxlongitude=135.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=21.8&maxlatitude=25.4&minlongitude=119.3&maxlongitude=122.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=33&maxlatitude=43.1&minlongitude=124&maxlongitude=131.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=6.5&maxlatitude=35.7&minlongitude=68&maxlongitude=97.4",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
                 "detail": "1 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
@@ -1250,7 +1250,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-02-25T00:00:00-05:00",
             "windowEndLima": "2026-05-16T23:59:59-05:00",
             "candidates": [],
@@ -1272,49 +1272,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Guatemala (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=13.7&maxlatitude=17.9&minlongitude=-92.3&maxlongitude=-88.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Costa Rica (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Nicaragua (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=10.7&maxlatitude=15.1&minlongitude=-87.7&maxlongitude=-82.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Panamá (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=13.7&maxlatitude=17.9&minlongitude=-92.3&maxlongitude=-88.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=10.7&maxlatitude=15.1&minlongitude=-87.7&maxlongitude=-82.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -1353,7 +1353,7 @@
               "baselineBand": "UNAVAILABLE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-02-25T00:00:00-05:00",
             "windowEndLima": "2026-05-16T23:59:59-05:00",
             "candidates": [],
@@ -1396,7 +1396,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-02-25T00:00:00-05:00",
             "windowEndLima": "2026-05-16T23:59:59-05:00",
             "candidates": [],
@@ -1418,49 +1418,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Afganistán (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=29.4&maxlatitude=38.5&minlongitude=60.5&maxlongitude=74.9",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Irán (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=24.4&maxlatitude=39.8&minlongitude=44&maxlongitude=63.3",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Grecia (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=34.7&maxlatitude=41.8&minlongitude=19.4&maxlongitude=28.3",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Turquía (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-02-25&endtime=2026-05-18&orderby=time&minmagnitude=6.3&minlatitude=35.8&maxlatitude=42.2&minlongitude=25.6&maxlongitude=44.9",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=29.4&maxlatitude=38.5&minlongitude=60.5&maxlongitude=74.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=24.4&maxlatitude=39.8&minlongitude=44&maxlongitude=63.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=34.7&maxlatitude=41.8&minlongitude=19.4&maxlongitude=28.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-02-25&endtime=2026-02-25&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=35.8&maxlatitude=42.2&minlongitude=25.6&maxlongitude=44.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -1552,7 +1552,7 @@
               "baselineBand": "MODERATE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-04T00:00:00-05:00",
             "windowEndLima": "2026-06-23T23:59:59-05:00",
             "candidates": [],
@@ -1574,49 +1574,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Japón (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "3 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Rusia oriental (hemisferio este)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=41&maxlatitude=82&minlongitude=129&maxlongitude=180",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Rusia oriental (cruce del meridiano 180°)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=41&maxlatitude=72&minlongitude=-180&maxlongitude=-169",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Alaska",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=51.2&maxlatitude=71.5&minlongitude=-180&maxlongitude=-129",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "0 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=41&maxlatitude=82&minlongitude=129&maxlongitude=180",
                 "detail": "1 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=41&maxlatitude=72&minlongitude=-180&maxlongitude=-169",
                 "detail": "0 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=51.2&maxlatitude=71.5&minlongitude=-180&maxlongitude=-129",
                 "detail": "1 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
@@ -1655,7 +1655,7 @@
               "baselineBand": "UNAVAILABLE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-04T00:00:00-05:00",
             "windowEndLima": "2026-06-23T23:59:59-05:00",
             "candidates": [],
@@ -1698,7 +1698,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-04T00:00:00-05:00",
             "windowEndLima": "2026-06-23T23:59:59-05:00",
             "candidates": [],
@@ -1724,97 +1724,97 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Islas Sandwich del Sur",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-60.5&maxlatitude=-53.5&minlongitude=-30&maxlongitude=-24",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sumatra)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Java, Bali y Nusa Tenggara)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Kalimantan)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sulawesi)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Maluku)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Papúa occidental)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Papúa Nueva Guinea (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-60.5&maxlatitude=-53.5&minlongitude=-30&maxlongitude=-24",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -1853,7 +1853,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-04T00:00:00-05:00",
             "windowEndLima": "2026-06-23T23:59:59-05:00",
             "candidates": [],
@@ -1875,49 +1875,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Nueva Zelanda (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Fiji (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Vanuatu (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Tonga (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-04&endtime=2026-06-25&orderby=time&minmagnitude=6.4&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
                 "detail": "1 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-04&endtime=2026-04-04&orderby=time&minmagnitude=6.9&maxmagnitude=7.9&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
@@ -2009,7 +2009,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-06T00:00:00-05:00",
             "windowEndLima": "2026-06-30T23:59:59-05:00",
             "candidates": [],
@@ -2031,49 +2031,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Guatemala (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=13.7&maxlatitude=17.9&minlongitude=-92.3&maxlongitude=-88.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Costa Rica (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Nicaragua (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=10.7&maxlatitude=15.1&minlongitude=-87.7&maxlongitude=-82.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Panamá (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=13.7&maxlatitude=17.9&minlongitude=-92.3&maxlongitude=-88.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=10.7&maxlatitude=15.1&minlongitude=-87.7&maxlongitude=-82.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -2112,7 +2112,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-06T00:00:00-05:00",
             "windowEndLima": "2026-06-30T23:59:59-05:00",
             "candidates": [
@@ -2154,145 +2154,145 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para China (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=18&maxlatitude=53.6&minlongitude=73.5&maxlongitude=135.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Japón (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "3 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Taiwán",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=21.8&maxlatitude=25.4&minlongitude=119.3&maxlongitude=122.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Península de Corea",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=33&maxlatitude=43.1&minlongitude=124&maxlongitude=131.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para India (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=6.5&maxlatitude=35.7&minlongitude=68&maxlongitude=97.4",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Filipinas (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
                 "detail": "3 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sumatra)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Java, Bali y Nusa Tenggara)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Kalimantan)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sulawesi)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Maluku)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Papúa occidental)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=18&maxlatitude=53.6&minlongitude=73.5&maxlongitude=135.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=21.8&maxlatitude=25.4&minlongitude=119.3&maxlongitude=122.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=33&maxlatitude=43.1&minlongitude=124&maxlongitude=131.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=6.5&maxlatitude=35.7&minlongitude=68&maxlongitude=97.4",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -2331,7 +2331,7 @@
               "baselineBand": "UNAVAILABLE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-06T00:00:00-05:00",
             "windowEndLima": "2026-06-30T23:59:59-05:00",
             "candidates": [],
@@ -2374,7 +2374,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-06T00:00:00-05:00",
             "windowEndLima": "2026-06-30T23:59:59-05:00",
             "candidates": [],
@@ -2396,49 +2396,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Afganistán (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=29.4&maxlatitude=38.5&minlongitude=60.5&maxlongitude=74.9",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Irán (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=24.4&maxlatitude=39.8&minlongitude=44&maxlongitude=63.3",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Grecia (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=34.7&maxlatitude=41.8&minlongitude=19.4&maxlongitude=28.3",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Turquía (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-06&endtime=2026-07-02&orderby=time&minmagnitude=6.5&minlatitude=35.8&maxlatitude=42.2&minlongitude=25.6&maxlongitude=44.9",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=29.4&maxlatitude=38.5&minlongitude=60.5&maxlongitude=74.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=24.4&maxlatitude=39.8&minlongitude=44&maxlongitude=63.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=34.7&maxlatitude=41.8&minlongitude=19.4&maxlongitude=28.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-06&endtime=2026-04-06&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=35.8&maxlatitude=42.2&minlongitude=25.6&maxlongitude=44.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -2530,7 +2530,7 @@
               "baselineBand": "MODERATE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-23T00:00:00-05:00",
             "windowEndLima": "2026-07-17T23:59:59-05:00",
             "candidates": [],
@@ -2552,49 +2552,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Japón (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "2 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Rusia oriental (hemisferio este)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=41&maxlatitude=82&minlongitude=129&maxlongitude=180",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Rusia oriental (cruce del meridiano 180°)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=41&maxlatitude=72&minlongitude=-180&maxlongitude=-169",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Alaska",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=51.2&maxlatitude=71.5&minlongitude=-180&maxlongitude=-129",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "0 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=41&maxlatitude=82&minlongitude=129&maxlongitude=180",
                 "detail": "1 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=41&maxlatitude=72&minlongitude=-180&maxlongitude=-169",
                 "detail": "0 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=51.2&maxlatitude=71.5&minlongitude=-180&maxlongitude=-129",
                 "detail": "1 eventos históricos en esta geografía y rango; 2 únicos en el conjunto de destinos"
@@ -2633,7 +2633,7 @@
               "baselineBand": "UNAVAILABLE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-23T00:00:00-05:00",
             "windowEndLima": "2026-07-17T23:59:59-05:00",
             "candidates": [],
@@ -2676,7 +2676,7 @@
               "baselineBand": "MODERATE",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-23T00:00:00-05:00",
             "windowEndLima": "2026-07-17T23:59:59-05:00",
             "candidates": [],
@@ -2698,49 +2698,49 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Nueva Zelanda (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Fiji (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Vanuatu (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Tonga (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
                 "detail": "1 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
@@ -2779,7 +2779,7 @@
               "baselineBand": "LOW",
               "predictiveEvidence": "NOT_ESTABLISHED"
             },
-            "evaluatedAt": "2026-08-07T04:18:26.718Z",
+            "evaluatedAt": "2026-08-19T15:51:26.361Z",
             "windowStartLima": "2026-04-23T00:00:00-05:00",
             "windowEndLima": "2026-07-17T23:59:59-05:00",
             "candidates": [],
@@ -2803,97 +2803,97 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Islas Sandwich del Sur",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-60.5&maxlatitude=-53.5&minlongitude=-30&maxlongitude=-24",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sumatra)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Java, Bali y Nusa Tenggara)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Kalimantan)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Sulawesi)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Maluku)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Indonesia (Papúa occidental)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta USGS para Papúa Nueva Guinea (país)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-04-23&endtime=2026-07-19&orderby=time&minmagnitude=6.5&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
                 "detail": "0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-60.5&maxlatitude=-53.5&minlongitude=-30&maxlongitude=-24",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-04-23&endtime=2026-04-23&orderby=time&minmagnitude=7&maxmagnitude=8.5&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -3006,25 +3006,25 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=10.7&maxlatitude=15.1&minlongitude=-87.7&maxlongitude=-82.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -3074,7 +3074,7 @@
             "baseline": null,
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
@@ -3135,31 +3135,31 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=29.4&maxlatitude=38.5&minlongitude=60.5&maxlongitude=74.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=24.4&maxlatitude=39.8&minlongitude=44&maxlongitude=63.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=34.7&maxlatitude=41.8&minlongitude=19.4&maxlongitude=28.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=35.8&maxlatitude=42.2&minlongitude=25.6&maxlongitude=44.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -3226,79 +3226,79 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=18&maxlatitude=53.6&minlongitude=73.5&maxlongitude=135.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=21.8&maxlatitude=25.4&minlongitude=119.3&maxlongitude=122.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=33&maxlatitude=43.1&minlongitude=124&maxlongitude=131.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=6.5&maxlatitude=35.7&minlongitude=68&maxlongitude=97.4",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
                 "detail": "1 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-10&endtime=2026-06-10&orderby=time&minmagnitude=7&maxmagnitude=8.1&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
@@ -3411,25 +3411,25 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=13.7&maxlatitude=17.9&minlongitude=-92.3&maxlongitude=-88.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=10.7&maxlatitude=15.1&minlongitude=-87.7&maxlongitude=-82.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -3496,79 +3496,79 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=18&maxlatitude=53.6&minlongitude=73.5&maxlongitude=135.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=21.8&maxlatitude=25.4&minlongitude=119.3&maxlongitude=122.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=33&maxlatitude=43.1&minlongitude=124&maxlongitude=131.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=6.5&maxlatitude=35.7&minlongitude=68&maxlongitude=97.4",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6",
                 "detail": "1 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
@@ -3629,31 +3629,31 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=29.4&maxlatitude=38.5&minlongitude=60.5&maxlongitude=74.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=24.4&maxlatitude=39.8&minlongitude=44&maxlongitude=63.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=34.7&maxlatitude=41.8&minlongitude=19.4&maxlongitude=28.3",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=7&maxmagnitude=8&minlatitude=35.8&maxlatitude=42.2&minlongitude=25.6&maxlongitude=44.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -3703,7 +3703,7 @@
             "baseline": null,
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
@@ -3817,31 +3817,31 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
                 "detail": "1 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
@@ -3891,7 +3891,7 @@
             "baseline": null,
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
@@ -3956,55 +3956,55 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-60.5&maxlatitude=-53.5&minlongitude=-30&maxlongitude=-24",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -4065,31 +4065,31 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "1 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=41&maxlatitude=82&minlongitude=129&maxlongitude=180",
                 "detail": "1 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=41&maxlatitude=72&minlongitude=-180&maxlongitude=-169",
                 "detail": "0 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-06-27&endtime=2026-06-27&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=51.2&maxlatitude=71.5&minlongitude=-180&maxlongitude=-129",
                 "detail": "1 eventos históricos en esta geografía y rango; 3 únicos en el conjunto de destinos"
@@ -4203,31 +4203,31 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-47.3&maxlatitude=-34.4&minlongitude=166.4&maxlongitude=178.6",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-19.2&maxlatitude=-15.7&minlongitude=176.8&maxlongitude=180",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-20.3&maxlatitude=-13.1&minlongitude=166.5&maxlongitude=170.2",
                 "detail": "1 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-22.4&maxlatitude=-15.5&minlongitude=-176.2&maxlongitude=-173.7",
                 "detail": "0 eventos históricos en esta geografía y rango; 1 únicos en el conjunto de destinos"
@@ -4277,7 +4277,7 @@
             "baseline": null,
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
@@ -4342,55 +4342,55 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-60.5&maxlatitude=-53.5&minlongitude=-30&maxlongitude=-24",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=-11.7&maxlatitude=-1&minlongitude=140.8&maxlongitude=155.9",
                 "detail": "0 eventos históricos en esta geografía y rango; 0 únicos en el conjunto de destinos"
@@ -4451,31 +4451,31 @@
             },
             "evidence": [
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Ventana abierta",
                 "url": null,
                 "detail": "El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine."
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146",
                 "detail": "2 eventos históricos en esta geografía y rango; 4 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=41&maxlatitude=82&minlongitude=129&maxlongitude=180",
                 "detail": "1 eventos históricos en esta geografía y rango; 4 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=41&maxlatitude=72&minlongitude=-180&maxlongitude=-169",
                 "detail": "0 eventos históricos en esta geografía y rango; 4 únicos en el conjunto de destinos"
               },
               {
-                "at": "2026-08-07T04:18:26.718Z",
+                "at": "2026-08-19T15:51:26.361Z",
                 "action": "Consulta de tasa base (365 días previos a la ventana)",
                 "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-07-31&endtime=2026-07-31&orderby=time&minmagnitude=6.8&maxmagnitude=7.8&minlatitude=51.2&maxlatitude=71.5&minlongitude=-180&maxlongitude=-129",
                 "detail": "1 eventos históricos en esta geografía y rango; 4 únicos en el conjunto de destinos"
