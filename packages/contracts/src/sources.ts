@@ -36,6 +36,11 @@ export const SOURCES = {
     name: "IGP · IDE GeoServer WFS · Zonificación sísmica (suelos)",
     url: "https://ide.igp.gob.pe/geoserver/ows",
   },
+  "igp-wfs-capacidad-portante": {
+    id: "igp-wfs-capacidad-portante",
+    name: "IGP · IDE GeoServer WFS · Capacidad portante del suelo",
+    url: "https://ide.igp.gob.pe/geoserver/ows",
+  },
   "igp-regen": {
     id: "igp-regen",
     name: "IGP · REGEN · Repositorio Geofísico Nacional (DSpace)",

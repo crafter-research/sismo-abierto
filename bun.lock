@@ -144,6 +144,7 @@
       "name": "@sismo/terrain",
       "version": "0.1.0",
       "dependencies": {
+        "@neondatabase/serverless": "^1.0.0",
         "@sismo/geo": "workspace:*",
       },
     },
