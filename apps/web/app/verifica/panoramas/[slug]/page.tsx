@@ -136,7 +136,9 @@ export default async function PanoramaReportPage({
             queda vacía cuando el destino publicado no tiene límites definidos.
             Los panoramas semanales no declaran un porcentaje por punto, a
             diferencia de los informes numerados. Un punto marcado con ◆ es uno
-            que la cuenta declaró cumplido en una publicación posterior.
+            que la cuenta declaró cumplido en una publicación posterior. La
+            flecha reproduce la migración que la cuenta declara, no una relación
+            física comprobada.
           </p>
         </div>
         <PredictionReportTable

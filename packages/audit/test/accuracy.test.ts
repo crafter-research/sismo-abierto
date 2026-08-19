@@ -125,3 +125,18 @@ describe("puntaje por dimensión", () => {
     }
   });
 });
+
+describe("sismo alegado", () => {
+  test("un reclamo sin candidato oficial conserva el evento que la cuenta invocó", async () => {
+    const claims = await loadClaimedValidations();
+    const sinCandidato = claims.filter(
+      (claim) => claim.eventPlace.length > 0 && claim.claimedMagnitude !== null,
+    );
+    // Sin este dato la tabla solo podría decir "ningún sismo cumplió", que es
+    // cierto pero oculta la afirmación que se está evaluando.
+    expect(sinCandidato.length).toBe(claims.length);
+    for (const claim of sinCandidato) {
+      expect(claim.eventTimeUtc).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+    }
+  });
+});
