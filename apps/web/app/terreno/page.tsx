@@ -1,4 +1,4 @@
-import { coverage } from "@sismo/terrain";
+import { bearingCapacityCoverage, coverage } from "@sismo/terrain";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ClassBadge } from "../../components/badges";
@@ -12,8 +12,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/terreno" },
 };
 
-export default function TerrainIndexPage() {
+export default async function TerrainIndexPage() {
   const { cities, departments, featureCount, provenance } = coverage();
+  const withBearing = await bearingCapacityCoverage();
 
   const byDepartment = new Map<string, typeof cities>();
   for (const city of cities) {
@@ -75,6 +76,14 @@ export default function TerrainIndexPage() {
                       {city.zoneCount}{" "}
                       {city.zoneCount === 1 ? "polígono" : "polígonos"}
                     </span>
+                    {withBearing.has(city.slug) ? (
+                      <span
+                        className="ml-1 text-xs text-official"
+                        title="Con capacidad portante publicada"
+                      >
+                        · kg/cm²
+                      </span>
+                    ) : null}
                   </li>
                 ))}
               </ul>
