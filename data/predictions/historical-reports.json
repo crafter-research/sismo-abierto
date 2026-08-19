@@ -18,25 +18,33 @@
         "pointNumber": 1,
         "claimedProbability": 40,
         "sourceText": "Zona aledañas a México (Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes)",
-        "targetRegions": ["Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"]
+        "targetRegions": [
+          "Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 30,
         "sourceText": "China y ubigeos aledaños (Japón, Taiwán, India, Filipinas o Indonesia)",
-        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+        "targetRegions": [
+          "China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Zona norte de Perú, frontera con sur de Ecuador, hasta zona sur de Colombia; incluye parte de Venezuela",
-        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+        "targetRegions": [
+          "Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 10,
         "sourceText": "Zona fronteriza a los 5 Stanes incluyendo Afganistán e Irán, o Grecia y Turquía",
-        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+        "targetRegions": [
+          "Cinco Stanes, Afganistán, Irán, Grecia o Turquía"
+        ]
       }
     ]
   },
@@ -59,25 +67,33 @@
         "pointNumber": 1,
         "claimedProbability": 35,
         "sourceText": "Repite en Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
-        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+        "targetRegions": [
+          "Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 30,
         "sourceText": "Desde zona centro de Perú hasta central de Chile, frontera con Argentina; abarca sur de Perú y norte de Chile",
-        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+        "targetRegions": [
+          "Centro y sur de Perú, Chile central y norte, frontera con Argentina"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Nueva Zelanda y zonas colindantes a Fiji, Vanuatu, Tonga e islas aledañas",
-        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+        "targetRegions": [
+          "Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 15,
         "sourceText": "Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
-        "targetRegions": ["Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+        "targetRegions": [
+          "Islas Sandwich, Indonesia o Papúa Nueva Guinea"
+        ]
       }
     ]
   },
@@ -100,25 +116,33 @@
         "pointNumber": 1,
         "claimedProbability": 40,
         "sourceText": "China y ubigeos aledaños (Japón, Taiwán, India, Filipinas o Indonesia)",
-        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+        "targetRegions": [
+          "China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 30,
         "sourceText": "Zona aledañas a México (Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes)",
-        "targetRegions": ["Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"]
+        "targetRegions": [
+          "Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Zona norte de Perú, frontera con sur de Ecuador, hasta zona sur de Colombia; incluye parte de Venezuela",
-        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+        "targetRegions": [
+          "Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 10,
         "sourceText": "Zona fronteriza a los 5 Stanes incluyendo Afganistán e Irán, o Grecia y Turquía",
-        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+        "targetRegions": [
+          "Cinco Stanes, Afganistán, Irán, Grecia o Turquía"
+        ]
       }
     ]
   },
@@ -141,25 +165,33 @@
         "pointNumber": 1,
         "claimedProbability": 40,
         "sourceText": "Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
-        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+        "targetRegions": [
+          "Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 30,
         "sourceText": "Central de Perú hasta central de Chile, incluyendo sur de Perú, norte de Chile y frontera con Argentina",
-        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+        "targetRegions": [
+          "Centro y sur de Perú, Chile central y norte, frontera con Argentina"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Psi Drake, Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
-        "targetRegions": ["Pasaje de Drake, Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+        "targetRegions": [
+          "Pasaje de Drake, Islas Sandwich, Indonesia o Papúa Nueva Guinea"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 10,
         "sourceText": "Repite en Nueva Zelanda y zonas aledañas: Fiji, Vanuatu, Tonga e islas aledañas",
-        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+        "targetRegions": [
+          "Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"
+        ]
       }
     ]
   },
@@ -182,25 +214,33 @@
         "pointNumber": 1,
         "claimedProbability": 40,
         "sourceText": "Zona aledañas a México (Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes)",
-        "targetRegions": ["Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"]
+        "targetRegions": [
+          "Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 30,
         "sourceText": "China y ubigeos aledaños (Japón, Taiwán, India, Filipinas o Indonesia)",
-        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+        "targetRegions": [
+          "China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Zona norte de Perú, frontera con sur de Ecuador, hasta zona sur de Colombia; incluye parte de Venezuela",
-        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+        "targetRegions": [
+          "Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 10,
         "sourceText": "Zona fronteriza a los 5 Stanes incluyendo Afganistán e Irán, o Grecia y Turquía",
-        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+        "targetRegions": [
+          "Cinco Stanes, Afganistán, Irán, Grecia o Turquía"
+        ]
       }
     ]
   },
@@ -223,25 +263,33 @@
         "pointNumber": 1,
         "claimedProbability": 35,
         "sourceText": "Repite en Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
-        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+        "targetRegions": [
+          "Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 30,
         "sourceText": "Desde zona centro de Perú hasta central de Chile, frontera con Argentina; abarca sur de Perú y norte de Chile",
-        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+        "targetRegions": [
+          "Centro y sur de Perú, Chile central y norte, frontera con Argentina"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Nueva Zelanda y zonas colindantes a Fiji, Vanuatu, Tonga e islas aledañas",
-        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+        "targetRegions": [
+          "Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 15,
         "sourceText": "Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
-        "targetRegions": ["Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+        "targetRegions": [
+          "Islas Sandwich, Indonesia o Papúa Nueva Guinea"
+        ]
       }
     ]
   },
@@ -264,25 +312,33 @@
         "pointNumber": 1,
         "claimedProbability": 40,
         "sourceText": "Zona aledañas a México (Panamá, Costa Rica, Nicaragua e islas colindantes)",
-        "targetRegions": ["Costa Rica, Nicaragua, Panamá e islas colindantes"]
+        "targetRegions": [
+          "Costa Rica, Nicaragua, Panamá e islas colindantes"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 30,
         "sourceText": "Zona norte de Perú, frontera con sur de Ecuador, hasta zona sur de Colombia; incluye parte de Venezuela",
-        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+        "targetRegions": [
+          "Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Zona fronteriza a los 5 Stanes incluyendo Afganistán e Irán, o Grecia y Turquía",
-        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+        "targetRegions": [
+          "Cinco Stanes, Afganistán, Irán, Grecia o Turquía"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 10,
         "sourceText": "China y ubigeos aledaños (Japón, Taiwán, Corea, India, Filipinas y/o Indonesia)",
-        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+        "targetRegions": [
+          "China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"
+        ]
       }
     ]
   },
@@ -305,25 +361,33 @@
         "pointNumber": 1,
         "claimedProbability": 40,
         "sourceText": "Zona aledañas a México (Guatemala, Costa Rica, Nicaragua e islas colindantes)",
-        "targetRegions": ["Guatemala, Costa Rica, Nicaragua e islas colindantes"]
+        "targetRegions": [
+          "Guatemala, Costa Rica, Nicaragua e islas colindantes"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 30,
         "sourceText": "China y ubigeos aledaños (Japón, Taiwán, Corea, India, Filipinas y/o Indonesia)",
-        "targetRegions": ["China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"]
+        "targetRegions": [
+          "China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Zona fronteriza a Grecia y Turquía o los 5 Stanes e Irán",
-        "targetRegions": ["Cinco Stanes, Afganistán, Irán, Grecia o Turquía"]
+        "targetRegions": [
+          "Cinco Stanes, Afganistán, Irán, Grecia o Turquía"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 10,
         "sourceText": "Zona norte sudamericana: Venezuela, frontera con Colombia, hasta zona norte de Perú, frontera con sur de Ecuador",
-        "targetRegions": ["Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"]
+        "targetRegions": [
+          "Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"
+        ]
       }
     ]
   },
@@ -346,25 +410,82 @@
         "pointNumber": 1,
         "claimedProbability": 40,
         "sourceText": "Nueva Zelanda y zonas colindantes a Fiji, Vanuatu, Tonga e islas aledañas",
-        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+        "targetRegions": [
+          "Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 30,
         "sourceText": "Desde zona centro de Perú hasta central de Chile, frontera con Argentina; abarca sur de Perú y norte de Chile",
-        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+        "targetRegions": [
+          "Centro y sur de Perú, Chile central y norte, frontera con Argentina"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Psi Drake, Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
-        "targetRegions": ["Pasaje de Drake, Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+        "targetRegions": [
+          "Pasaje de Drake, Islas Sandwich, Indonesia o Papúa Nueva Guinea"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 10,
         "sourceText": "Repite en Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
-        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+        "targetRegions": [
+          "Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"
+        ]
+      }
+    ]
+  },
+  {
+    "reportNumber": 255,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: informe 255 publicado por la cuenta",
+    "sourcePostDate": null,
+    "backfilledAt": "2026-08-19",
+    "origin": "Puerto Madero, México",
+    "originMagnitude": 7.3,
+    "startDate": "2026-07-20",
+    "maxDays": 80,
+    "deadlineEndLima": "2026-10-08T23:59:59-05:00",
+    "deadlineSourceText": "80 días a partir del 20/07/2026",
+    "predictedMagnitudeMin": 6.9,
+    "predictedMagnitudeMax": 7.9,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 40,
+        "sourceText": "Repite en México o Zona Limítrofes (Guatemala, Costa Rica, Nicaragua, Panamá e Islas colindantes)",
+        "targetRegions": [
+          "Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"
+        ]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 25,
+        "sourceText": "Zona Norte sudamericana (Norte de Colombia Limítrofe Norte de Venezuela o Sur de Ecuador y Zona Norte de Perú)",
+        "targetRegions": [
+          "Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"
+        ]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 20,
+        "sourceText": "Japón y Zonas aledañas (China, Taiwán, India, Filipinas) y/o Indonesia",
+        "targetRegions": [
+          "China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"
+        ]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 15,
+        "sourceText": "Zona fronteriza a Grecia y Turquía o los 5 Stanes e Irán",
+        "targetRegions": [
+          "Cinco Stanes, Afganistán, Irán, Grecia o Turquía"
+        ]
       }
     ]
   },
@@ -387,25 +508,33 @@
         "pointNumber": 1,
         "claimedProbability": 40,
         "sourceText": "Nueva Zelanda y zonas colindantes a Fiji, Vanuatu, Tonga e islas aledañas",
-        "targetRegions": ["Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"]
+        "targetRegions": [
+          "Nueva Zelanda, Fiji, Vanuatu, Tonga e islas aledañas"
+        ]
       },
       {
         "pointNumber": 2,
         "claimedProbability": 25,
         "sourceText": "Desde zona centro de Perú hasta central de Chile, frontera con Argentina; abarca zona sur de Perú y norte de Chile",
-        "targetRegions": ["Centro y sur de Perú, Chile central y norte, frontera con Argentina"]
+        "targetRegions": [
+          "Centro y sur de Perú, Chile central y norte, frontera con Argentina"
+        ]
       },
       {
         "pointNumber": 3,
         "claimedProbability": 20,
         "sourceText": "Psj Drake, Islas Sandwich, parte del océano Atlántico, o Indonesia (Papúa Nueva Guinea)",
-        "targetRegions": ["Pasaje de Drake, Islas Sandwich, Indonesia o Papúa Nueva Guinea"]
+        "targetRegions": [
+          "Pasaje de Drake, Islas Sandwich, Indonesia o Papúa Nueva Guinea"
+        ]
       },
       {
         "pointNumber": 4,
         "claimedProbability": 15,
         "sourceText": "Repite en Japón, Rusia y/o Alaska hasta Vancouver, frontera con Baja California",
-        "targetRegions": ["Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"]
+        "targetRegions": [
+          "Japón, Rusia oriental, Alaska y corredor Vancouver-Baja California"
+        ]
       }
     ]
   }

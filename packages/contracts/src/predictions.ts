@@ -77,7 +77,12 @@ export interface ClaimedValidation {
   latitude: number;
   longitude: number;
   sources: ClaimedValidationSource[];
-  assessment: "OUTSIDE_FROZEN_MAGNITUDE";
+  assessment:
+    | "OUTSIDE_FROZEN_MAGNITUDE"
+    | "OUTSIDE_FROZEN_GEOGRAPHY"
+    | "UNVERIFIABLE_IN_OFFICIAL_SOURCES"
+    | "SOURCE_DISAGREEMENT_ON_MAGNITUDE"
+    | "MATCHES_FROZEN_CLAIM";
 }
 
 export interface HistoricalReportPoint {

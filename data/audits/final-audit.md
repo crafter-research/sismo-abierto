@@ -1,6 +1,6 @@
 # Auditoría de predicciones sísmicas
 
-Corte UTC: `2026-08-19T15:49:48.480Z`
+Corte UTC: `2026-08-19T16:08:02.534Z`
 
 Este informe aplica el protocolo congelado antes de conocer los resultados. Las afirmaciones provienen de sismos.en.peru, no del IGP. IGP/CENSIS y USGS se usan como fuentes de comprobación. Las ventanas abiertas permanecen pendientes hasta su deadline.
 
@@ -9,10 +9,10 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 | Veredicto | Cantidad |
 | --- | ---: |
 | STRICT_HIT | 7 |
-| NO_MATCH | 5 |
-| AMBIGUOUS_GEOGRAPHY | 32 |
+| NO_MATCH | 6 |
+| AMBIGUOUS_GEOGRAPHY | 36 |
 | SOURCE_DISAGREEMENT | 0 |
-| PENDING | 0 |
+| PENDING | 9 |
 
 ## Coincidencias estrictas y tasa base
 
@@ -612,6 +612,188 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 - Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-10T23:59:59-05:00
 - Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
 - Control contra azar: 36.9% de probabilidad base de al menos un evento en 8 días, estimada con 21 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260810-P1 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-17T23:59:59-05:00
+- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260810-P2 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-20T23:59:59-05:00
+- Geografías ambiguas conservadas: Perú central (sin límites definidos); Norte de Chile y sur de Perú (sin límites definidos)
+- Control contra azar: 69.1% de probabilidad base de al menos un evento en 11 días, estimada con 39 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260810-P3 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-17T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260810-P4 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-20T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Norte de Venezuela (sin límites definidos); Norte de Colombia (sin límites definidos); Islas del Caribe (sin límites definidos)
+- Control contra azar: 26.0% de probabilidad base de al menos un evento en 11 días, estimada con 10 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260810-P5 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-17T23:59:59-05:00
+- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos)
+- Control contra azar: 36.9% de probabilidad base de al menos un evento en 8 días, estimada con 21 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260810-P6 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-17T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Venezuela (sin límites definidos); Norte de Colombia (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260810-P7 · Sin coincidencia
+
+- Veredicto del protocolo congelado: `NO_MATCH`
+- Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-17T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 35.5% de probabilidad base de al menos un evento en 8 días, estimada con 20 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260817-P1 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-24T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 10.4% de probabilidad base de al menos un evento en 8 días, estimada con 5 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260817-P2 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-24T23:59:59-05:00
+- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260817-P3 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-27T23:59:59-05:00
+- Geografías ambiguas conservadas: Perú central (sin límites definidos); Norte de Chile y sur de Perú (sin límites definidos)
+- Control contra azar: 70.9% de probabilidad base de al menos un evento en 11 días, estimada con 41 eventos en los 365 días previos.
+- Lectura descriptiva: Esperable sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260817-P4 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-23T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 22.1% de probabilidad base de al menos un evento en 7 días, estimada con 13 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260817-P5 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-24T23:59:59-05:00
+- Geografías ambiguas conservadas: Norte de Venezuela (sin límites definidos); Norte de Colombia (sin límites definidos)
+- Control contra azar: Tasa base no disponible para una geografía inequívoca.
+- Lectura descriptiva: Tasa base no disponible.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260817-P6 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-24T23:59:59-05:00
+- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos)
+- Control contra azar: 36.9% de probabilidad base de al menos un evento en 8 días, estimada con 21 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
+- Capacidad predictiva: no establecida.
+
+#### Candidatos (0)
+
+- Ningún evento candidato.
+
+### W20260817-P7 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-24T23:59:59-05:00
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 35.5% de probabilidad base de al menos un evento en 8 días, estimada con 20 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 

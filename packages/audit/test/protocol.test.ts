@@ -66,12 +66,46 @@ describe("registro congelado", () => {
 
   test("conserva la validación reclamada sin convertirla en resultado", async () => {
     const claims = await loadClaimedValidations();
-    expect(claims).toHaveLength(1);
-    expect(claims[0]?.predictionId).toBe("W20260803-P2");
-    expect(claims[0]?.sources.map((source) => source.magnitude)).toEqual([
+    const huayucachi = claims.find(
+      (claim) => claim.predictionId === "W20260803-P2",
+    );
+    expect(huayucachi?.sources.map((source) => source.magnitude)).toEqual([
       5.0, 5.3,
     ]);
-    expect(claims[0]?.assessment).toBe("OUTSIDE_FROZEN_MAGNITUDE");
+    expect(huayucachi?.assessment).toBe("OUTSIDE_FROZEN_MAGNITUDE");
+  });
+
+  test("un reclamo fuera de la geografía congelada se conserva como tal", async () => {
+    const claims = await loadClaimedValidations();
+    const colombia = claims.find((claim) => claim.predictionId === "R255-P2");
+    expect(colombia?.assessment).toBe("OUTSIDE_FROZEN_GEOGRAPHY");
+    expect(colombia?.latitude).toBeLessThan(8);
+  });
+
+  test("un reclamo sin registro oficial se conserva como no verificable", async () => {
+    const claims = await loadClaimedValidations();
+    const sinRegistro = claims.find(
+      (claim) => claim.predictionId === "W20260803-P5",
+    );
+    expect(sinRegistro?.assessment).toBe("UNVERIFIABLE_IN_OFFICIAL_SOURCES");
+  });
+
+  test("todo reclamo apunta a una afirmación que existe en algún registro", async () => {
+    const claims = await loadClaimedValidations();
+    const panoramas = await loadPanoramaReportRegistry();
+    const historicos = await loadHistoricalReportRegistry();
+    const conocidos = new Set<string>();
+    for (const panorama of panoramas) {
+      for (const point of panorama.points) conocidos.add(point.predictionId);
+    }
+    for (const informe of historicos) {
+      for (const point of informe.points) {
+        conocidos.add(`R${informe.reportNumber}-P${point.pointNumber}`);
+      }
+    }
+    for (const claim of claims) {
+      expect(conocidos.has(claim.predictionId)).toBe(true);
+    }
   });
 
   test("rechaza una validación reclamada sin fuentes oficiales", () => {
@@ -151,8 +185,10 @@ describe("geografía determinista", () => {
   });
   test("todo destino histórico tiene mapeo", async () => {
     const reports = await loadHistoricalReportRegistry();
-    expect(reports).toHaveLength(10);
-    expect(reports.flatMap((report) => report.points)).toHaveLength(40);
+    expect(reports.length).toBeGreaterThanOrEqual(11);
+    expect(reports.flatMap((report) => report.points).length).toBe(
+      reports.length * 4,
+    );
     for (const report of reports) {
       for (const point of report.points) {
         for (const target of point.targetRegions) {
@@ -167,11 +203,14 @@ describe("geografía determinista", () => {
   });
   test("todo destino de los panoramas semanales tiene mapeo", async () => {
     const reports = await loadPanoramaReportRegistry();
-    expect(reports).toHaveLength(6);
-    expect(reports.flatMap((report) => report.points)).toHaveLength(44);
+    expect(reports.length).toBeGreaterThanOrEqual(8);
     expect(
-      reports.filter((report) => report.registrationMode === "PROSPECTIVE"),
-    ).toHaveLength(2);
+      reports.flatMap((report) => report.points).length,
+    ).toBeGreaterThanOrEqual(58);
+    expect(
+      reports.filter((report) => report.registrationMode === "PROSPECTIVE")
+        .length,
+    ).toBeGreaterThanOrEqual(3);
     for (const report of reports) {
       for (const point of report.points) {
         for (const target of point.targetRegions) {

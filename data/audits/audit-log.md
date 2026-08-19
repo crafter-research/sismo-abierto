@@ -1,6 +1,6 @@
 # Log de auditoría
 
-Corrida UTC: `2026-08-19T15:49:48.480Z`
+Corrida UTC: `2026-08-19T16:08:02.534Z`
 
 ## W20260629-P1 · Sin coincidencia
 
@@ -935,3 +935,244 @@ Corrida UTC: `2026-08-19T15:49:48.480Z`
 - [Consulta CENSIS para Tacna (departamento)](https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-08-03&fechaFin=2026-08-12&minimaMagnitud=4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382): 16 eventos devueltos en el rango
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-03&endtime=2026-08-03&orderby=time&minmagnitude=4.5&maxmagnitude=5.1&minlatitude=-17.3&maxlatitude=-14.6&minlongitude=-75.1&maxlongitude=-70.8): 14 eventos históricos en esta geografía y rango; 21 únicos en el conjunto de destinos
 - [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-03&endtime=2026-08-03&orderby=time&minmagnitude=4.5&maxmagnitude=5.1&minlatitude=-18.35&maxlatitude=-16.9&minlongitude=-71.2&maxlongitude=-69.5): 7 eventos históricos en esta geografía y rango; 21 únicos en el conjunto de destinos
+
+## W20260810-P1 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Tasa base: no disponible · Tasa base no disponible
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Sin evidencia registrada.
+
+## W20260810-P2 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Tasa base: 69.1% · Esperable sin predicción
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Ventana abierta: El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine.
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5.4&maxmagnitude=6.4&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146): 8 eventos históricos en esta geografía y rango; 39 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5.4&maxmagnitude=6.4&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 16 eventos históricos en esta geografía y rango; 39 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5.4&maxmagnitude=6.4&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5): 2 eventos históricos en esta geografía y rango; 39 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5.4&maxmagnitude=6.4&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125): 2 eventos históricos en esta geografía y rango; 39 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5.4&maxmagnitude=6.4&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119): 0 eventos históricos en esta geografía y rango; 39 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5.4&maxmagnitude=6.4&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5): 2 eventos históricos en esta geografía y rango; 39 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5.4&maxmagnitude=6.4&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135): 2 eventos históricos en esta geografía y rango; 39 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5.4&maxmagnitude=6.4&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1): 7 eventos históricos en esta geografía y rango; 39 únicos en el conjunto de destinos
+
+## W20260810-P3 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Tasa base: no disponible · Tasa base no disponible
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Sin evidencia registrada.
+
+## W20260810-P4 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Tasa base: 26.0% · Posibilidad moderada sin predicción
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Ventana abierta: El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine.
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5&maxmagnitude=5.5&minlatitude=14.5&maxlatitude=32.7&minlongitude=-118.4&maxlongitude=-86.7): 10 eventos históricos en esta geografía y rango; 10 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5&maxmagnitude=5.5&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2): 0 eventos históricos en esta geografía y rango; 10 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5&maxmagnitude=5.5&minlatitude=17.5&maxlatitude=19.9&minlongitude=-72&maxlongitude=-68.3): 0 eventos históricos en esta geografía y rango; 10 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=5&maxmagnitude=5.5&minlatitude=17.8&maxlatitude=19&minlongitude=-67.5&maxlongitude=-65.2): 0 eventos históricos en esta geografía y rango; 10 únicos en el conjunto de destinos
+
+## W20260810-P5 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Tasa base: 36.9% · Posibilidad moderada sin predicción
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- [Consulta USGS para Arequipa (departamento)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-10&endtime=2026-08-19&orderby=time&minmagnitude=4&minlatitude=-17.3&maxlatitude=-14.6&minlongitude=-75.1&maxlongitude=-70.8): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta CENSIS para Arequipa (departamento)](https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-08-10&fechaFin=2026-08-19&minimaMagnitud=4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382): 13 eventos devueltos en el rango
+- [Consulta USGS para Tacna (departamento)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-10&endtime=2026-08-19&orderby=time&minmagnitude=4&minlatitude=-18.35&maxlatitude=-16.9&minlongitude=-71.2&maxlongitude=-69.5): 1 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta CENSIS para Tacna (departamento)](https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-08-10&fechaFin=2026-08-19&minimaMagnitud=4&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-1.396&latitudSur=-25.701&longitudEste=-65.624&longitudOeste=-87.382): 13 eventos devueltos en el rango
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=4.5&maxmagnitude=5.1&minlatitude=-17.3&maxlatitude=-14.6&minlongitude=-75.1&maxlongitude=-70.8): 14 eventos históricos en esta geografía y rango; 21 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=4.5&maxmagnitude=5.1&minlatitude=-18.35&maxlatitude=-16.9&minlongitude=-71.2&maxlongitude=-69.5): 7 eventos históricos en esta geografía y rango; 21 únicos en el conjunto de destinos
+
+## W20260810-P6 · Geografía ambigua
+
+- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Tasa base: no disponible · Tasa base no disponible
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Sin evidencia registrada.
+
+## W20260810-P7 · Sin coincidencia
+
+- Veredicto del protocolo congelado: `NO_MATCH`
+- Tasa base: 35.5% · Posibilidad moderada sin predicción
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- [Consulta USGS para República Dominicana (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-10&endtime=2026-08-19&orderby=time&minmagnitude=4&minlatitude=17.5&maxlatitude=19.9&minlongitude=-72&maxlongitude=-68.3): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Puerto Rico y región sísmica inmediata](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-10&endtime=2026-08-19&orderby=time&minmagnitude=4&minlatitude=17.8&maxlatitude=19&minlongitude=-67.5&maxlongitude=-65.2): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Panamá (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-10&endtime=2026-08-19&orderby=time&minmagnitude=4&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta USGS para Costa Rica (país)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-10&endtime=2026-08-19&orderby=time&minmagnitude=4&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55): 0 eventos devueltos (magnitud mínima ampliada -0.5 para detectar desacuerdos)
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=4.5&maxmagnitude=4.9&minlatitude=17.5&maxlatitude=19.9&minlongitude=-72&maxlongitude=-68.3): 2 eventos históricos en esta geografía y rango; 20 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=4.5&maxmagnitude=4.9&minlatitude=17.8&maxlatitude=19&minlongitude=-67.5&maxlongitude=-65.2): 1 eventos históricos en esta geografía y rango; 20 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=4.5&maxmagnitude=4.9&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2): 6 eventos históricos en esta geografía y rango; 20 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-10&endtime=2026-08-10&orderby=time&minmagnitude=4.5&maxmagnitude=4.9&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55): 15 eventos históricos en esta geografía y rango; 20 únicos en el conjunto de destinos
+
+## W20260817-P1 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Tasa base: 10.4% · Poco esperable según el histórico
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Ventana abierta: El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine.
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=4.1&maxmagnitude=4.5&minlatitude=-13.6&maxlatitude=-10.2&minlongitude=-78&maxlongitude=-75.4): 1 eventos históricos en esta geografía y rango; 5 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=4.1&maxmagnitude=4.5&minlatitude=-15.7&maxlatitude=-12.9&minlongitude=-76.6&maxlongitude=-74.6): 4 eventos históricos en esta geografía y rango; 5 únicos en el conjunto de destinos
+
+## W20260817-P2 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Tasa base: no disponible · Tasa base no disponible
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Ventana abierta: El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine.
+
+## W20260817-P3 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Tasa base: 70.9% · Esperable sin predicción
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Ventana abierta: El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine.
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=5.4&maxmagnitude=6.3&minlatitude=24&maxlatitude=45.6&minlongitude=122.9&maxlongitude=146): 8 eventos históricos en esta geografía y rango; 41 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=5.4&maxmagnitude=6.3&minlatitude=4.6&maxlatitude=21.1&minlongitude=116.9&maxlongitude=126.6): 16 eventos históricos en esta geografía y rango; 41 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=5.4&maxmagnitude=6.3&minlatitude=-6.2&maxlatitude=6.2&minlongitude=94.5&maxlongitude=106.5): 1 eventos históricos en esta geografía y rango; 41 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=5.4&maxmagnitude=6.3&minlatitude=-11.5&maxlatitude=-5&minlongitude=105&maxlongitude=125): 7 eventos históricos en esta geografía y rango; 41 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=5.4&maxmagnitude=6.3&minlatitude=-4.5&maxlatitude=4.5&minlongitude=108&maxlongitude=119): 0 eventos históricos en esta geografía y rango; 41 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=5.4&maxmagnitude=6.3&minlatitude=-6&maxlatitude=2.5&minlongitude=118&maxlongitude=125.5): 2 eventos históricos en esta geografía y rango; 41 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=5.4&maxmagnitude=6.3&minlatitude=-9&maxlatitude=2.5&minlongitude=124&maxlongitude=135): 2 eventos históricos en esta geografía y rango; 41 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=5.4&maxmagnitude=6.3&minlatitude=-10&maxlatitude=1.5&minlongitude=130&maxlongitude=141.1): 5 eventos históricos en esta geografía y rango; 41 únicos en el conjunto de destinos
+
+## W20260817-P4 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Tasa base: 22.1% · Posibilidad moderada sin predicción
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Ventana abierta: El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine.
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=3.8&maxmagnitude=4.3&minlatitude=-4.3&maxlatitude=-3.4&minlongitude=-81.1&maxlongitude=-80.1): 3 eventos históricos en esta geografía y rango; 13 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=3.8&maxmagnitude=4.3&minlatitude=-6.6&maxlatitude=-4&minlongitude=-81.4&maxlongitude=-79.1): 4 eventos históricos en esta geografía y rango; 13 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=3.8&maxmagnitude=4.3&minlatitude=-8.7&maxlatitude=-0.03&minlongitude=-77.9&maxlongitude=-69.9): 8 eventos históricos en esta geografía y rango; 13 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=3.8&maxmagnitude=4.3&minlatitude=-8.99&maxlatitude=-6.9&minlongitude=-79.7&maxlongitude=-76.8): 0 eventos históricos en esta geografía y rango; 13 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=3.8&maxmagnitude=4.3&minlatitude=-10.8&maxlatitude=-8&minlongitude=-78.7&maxlongitude=-76.7): 0 eventos históricos en esta geografía y rango; 13 únicos en el conjunto de destinos
+
+## W20260817-P5 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Tasa base: no disponible · Tasa base no disponible
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Ventana abierta: El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine.
+
+## W20260817-P6 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Tasa base: 36.9% · Posibilidad moderada sin predicción
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Ventana abierta: El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine.
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=4.5&maxmagnitude=5.2&minlatitude=-17.3&maxlatitude=-14.6&minlongitude=-75.1&maxlongitude=-70.8): 14 eventos históricos en esta geografía y rango; 21 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=4.5&maxmagnitude=5.2&minlatitude=-18.35&maxlatitude=-16.9&minlongitude=-71.2&maxlongitude=-69.5): 7 eventos históricos en esta geografía y rango; 21 únicos en el conjunto de destinos
+
+## W20260817-P7 · Pendiente
+
+- Veredicto del protocolo congelado: `PENDING`
+- Tasa base: 35.5% · Posibilidad moderada sin predicción
+- Capacidad predictiva: no establecida
+
+### Candidatos
+
+- Ningún evento candidato.
+
+### Evidencia
+
+- Ventana abierta: El protocolo congelado mantiene PENDING y no busca coincidencias hasta que la ventana termine.
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=4.5&maxmagnitude=4.9&minlatitude=17.5&maxlatitude=19.9&minlongitude=-72&maxlongitude=-68.3): 2 eventos históricos en esta geografía y rango; 20 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=4.5&maxmagnitude=4.9&minlatitude=17.8&maxlatitude=19&minlongitude=-67.5&maxlongitude=-65.2): 1 eventos históricos en esta geografía y rango; 20 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=4.5&maxmagnitude=4.9&minlatitude=7.2&maxlatitude=9.6&minlongitude=-83.05&maxlongitude=-77.2): 6 eventos históricos en esta geografía y rango; 20 únicos en el conjunto de destinos
+- [Consulta de tasa base (365 días previos a la ventana)](https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-08-17&endtime=2026-08-17&orderby=time&minmagnitude=4.5&maxmagnitude=4.9&minlatitude=8&maxlatitude=11.2&minlongitude=-85.95&maxlongitude=-82.55): 15 eventos históricos en esta geografía y rango; 20 únicos en el conjunto de destinos

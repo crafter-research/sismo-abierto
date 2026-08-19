@@ -2,6 +2,10 @@ import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import type { FrozenPrediction } from "@sismo/contracts";
+import {
+  historicalPointToPrediction,
+  loadHistoricalReportRegistry,
+} from "./historical-reports.ts";
 import { loadPanoramaReportRegistry } from "./panoramas.ts";
 import { parseFrozenPredictions } from "./predictions.ts";
 
@@ -38,9 +42,16 @@ export async function getPrediction(
   );
   if (frozen) return frozen;
   const panoramas = await loadPanoramaReportRegistry();
-  return (
-    panoramas
-      .flatMap((report) => report.points)
-      .find((prediction) => prediction.predictionId === predictionId) ?? null
-  );
+  const fromPanorama = panoramas
+    .flatMap((report) => report.points)
+    .find((prediction) => prediction.predictionId === predictionId);
+  if (fromPanorama) return fromPanorama;
+  const historical = await loadHistoricalReportRegistry();
+  for (const report of historical) {
+    for (const point of report.points) {
+      const prediction = historicalPointToPrediction(report, point);
+      if (prediction.predictionId === predictionId) return prediction;
+    }
+  }
+  return null;
 }
