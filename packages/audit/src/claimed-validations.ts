@@ -19,6 +19,10 @@ function isClaimedValidation(value: unknown): value is ClaimedValidation {
     !Number.isNaN(Date.parse(claim.sourcePublishedAtLima)) &&
     typeof claim.eventTimeUtc === "string" &&
     !Number.isNaN(Date.parse(claim.eventTimeUtc)) &&
+    (claim.claimedMagnitude === null ||
+      typeof claim.claimedMagnitude === "number") &&
+    (claim.claimedMagnitudeScale === null ||
+      typeof claim.claimedMagnitudeScale === "string") &&
     Array.isArray(claim.sources) &&
     claim.sources.length > 0 &&
     ASSESSMENTS.includes(claim.assessment as ClaimedValidation["assessment"])

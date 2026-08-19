@@ -25,7 +25,9 @@
         "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tip9"
       }
     ],
-    "assessment": "OUTSIDE_FROZEN_MAGNITUDE"
+    "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
+    "claimedMagnitude": 5.4,
+    "claimedMagnitudeScale": "escala de momento"
   },
   {
     "predictionId": "R255-P2",
@@ -46,7 +48,9 @@
         "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-10&endtime=2026-08-11&minmagnitude=6.5"
       }
     ],
-    "assessment": "OUTSIDE_FROZEN_GEOGRAPHY"
+    "assessment": "OUTSIDE_FROZEN_GEOGRAPHY",
+    "claimedMagnitude": 7.4,
+    "claimedMagnitudeScale": "escala de momento"
   },
   {
     "predictionId": "R256-P3",
@@ -67,7 +71,9 @@
         "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-14&endtime=2026-08-15&minmagnitude=6.5"
       }
     ],
-    "assessment": "MATCHES_FROZEN_CLAIM"
+    "assessment": "MATCHES_FROZEN_CLAIM",
+    "claimedMagnitude": 7.7,
+    "claimedMagnitudeScale": "escala de momento"
   },
   {
     "predictionId": "W20260810-P3",
@@ -95,7 +101,9 @@
         "url": "https://censis.igp.gob.pe/repositorio/datos-sismicos"
       }
     ],
-    "assessment": "SOURCE_DISAGREEMENT_ON_MAGNITUDE"
+    "assessment": "SOURCE_DISAGREEMENT_ON_MAGNITUDE",
+    "claimedMagnitude": 4.8,
+    "claimedMagnitudeScale": "escala de momento"
   },
   {
     "predictionId": "W20260803-P5",
@@ -116,7 +124,9 @@
         "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-08&endtime=2026-08-11&minmagnitude=3.0&minlatitude=4&maxlatitude=13&minlongitude=-78&maxlongitude=-64"
       }
     ],
-    "assessment": "UNVERIFIABLE_IN_OFFICIAL_SOURCES"
+    "assessment": "UNVERIFIABLE_IN_OFFICIAL_SOURCES",
+    "claimedMagnitude": 4.36,
+    "claimedMagnitudeScale": "escala de Richter"
   },
   {
     "predictionId": "W20260810-P6",
@@ -137,7 +147,9 @@
         "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-15&endtime=2026-08-17&minmagnitude=3.0&minlatitude=5&maxlatitude=12&minlongitude=-76&maxlongitude=-70"
       }
     ],
-    "assessment": "OUTSIDE_FROZEN_GEOGRAPHY"
+    "assessment": "OUTSIDE_FROZEN_GEOGRAPHY",
+    "claimedMagnitude": 4.32,
+    "claimedMagnitudeScale": "escala de Richter"
   },
   {
     "predictionId": "W20260810-P1",
@@ -158,7 +170,9 @@
         "url": "https://censis.igp.gob.pe/repositorio/datos-sismicos"
       }
     ],
-    "assessment": "OUTSIDE_FROZEN_MAGNITUDE"
+    "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
+    "claimedMagnitude": 4.4,
+    "claimedMagnitudeScale": "escala de Richter"
   },
   {
     "predictionId": "W20260810-P4",
@@ -179,7 +193,9 @@
         "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-17&endtime=2026-08-19&minmagnitude=4.5&minlatitude=12&maxlatitude=18&minlongitude=-96&maxlongitude=-90"
       }
     ],
-    "assessment": "OUTSIDE_FROZEN_MAGNITUDE"
+    "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
+    "claimedMagnitude": 5.7,
+    "claimedMagnitudeScale": "escala de momento"
   },
   {
     "predictionId": "W20260817-P5",
@@ -207,7 +223,9 @@
         "url": "https://www.sgc.gov.co/sismos"
       }
     ],
-    "assessment": "OUTSIDE_FROZEN_MAGNITUDE"
+    "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
+    "claimedMagnitude": 4.6,
+    "claimedMagnitudeScale": "escala de momento"
   },
   {
     "predictionId": "W20260817-P1",
@@ -235,6 +253,8 @@
         "url": "https://censis.igp.gob.pe/repositorio/datos-sismicos"
       }
     ],
-    "assessment": "SOURCE_DISAGREEMENT_ON_MAGNITUDE"
+    "assessment": "SOURCE_DISAGREEMENT_ON_MAGNITUDE",
+    "claimedMagnitude": 4.6,
+    "claimedMagnitudeScale": "magnitud de onda de cuerpo"
   }
 ]

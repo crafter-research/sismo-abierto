@@ -90,6 +90,23 @@ describe("registro congelado", () => {
     expect(sinRegistro?.assessment).toBe("UNVERIFIABLE_IN_OFFICIAL_SOURCES");
   });
 
+  test("cada reclamo conserva la magnitud que la cuenta publicó", async () => {
+    const claims = await loadClaimedValidations();
+    for (const claim of claims) {
+      expect(typeof claim.claimedMagnitude).toBe("number");
+      expect(typeof claim.claimedMagnitudeScale).toBe("string");
+    }
+  });
+
+  test("la magnitud publicada se conserva aunque no coincida con ninguna fuente", async () => {
+    const claims = await loadClaimedValidations();
+    const lurin = claims.find((claim) => claim.predictionId === "W20260817-P1");
+    expect(lurin?.claimedMagnitude).toBe(4.6);
+    const oficiales = lurin?.sources.map((source) => source.magnitude) ?? [];
+    expect(oficiales).toEqual([4.4, 4.8]);
+    expect(oficiales.includes(lurin?.claimedMagnitude ?? 0)).toBe(false);
+  });
+
   test("todo reclamo apunta a una afirmación que existe en algún registro", async () => {
     const claims = await loadClaimedValidations();
     const panoramas = await loadPanoramaReportRegistry();

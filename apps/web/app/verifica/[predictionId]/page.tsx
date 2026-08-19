@@ -169,6 +169,22 @@ export default async function ClaimAuditPage({
             {CLAIM_EXPLANATIONS[claimedValidation.assessment]}
           </p>
           <ul className="mt-3 grid gap-2 text-xs sm:grid-cols-2">
+            {claimedValidation.claimedMagnitude === null ? null : (
+              <li
+                className="border border-amber-300 bg-amber-100 p-3"
+                data-testid="claimed-magnitude"
+              >
+                <span className="font-semibold">Publicado por la cuenta</span>
+                <p className="mt-1 font-mono">
+                  M{claimedValidation.claimedMagnitude.toFixed(2)}
+                </p>
+                {claimedValidation.claimedMagnitudeScale ? (
+                  <p className="mt-1 text-amber-900">
+                    {claimedValidation.claimedMagnitudeScale}
+                  </p>
+                ) : null}
+              </li>
+            )}
             {claimedValidation.sources.map((source) => (
               <li
                 key={source.sourceId}
