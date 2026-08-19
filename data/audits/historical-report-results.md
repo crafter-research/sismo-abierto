@@ -1,6 +1,6 @@
 # Auditoría retrospectiva de informes históricos
 
-Corrida UTC: `2026-08-19T16:09:51.012Z`
+Corrida UTC: `2026-08-19T17:36:57.934Z`
 
 Estos informes se incorporaron retrospectivamente desde capturas aportadas por el usuario. No constituyen un registro preinscrito antes de los resultados. Una coincidencia literal no establece capacidad predictiva y los porcentajes declarados no se interpretan como probabilidades calibradas.
 
@@ -146,3 +146,16 @@ Estos informes se incorporaron retrospectivamente desde capturas aportadas por e
 | 2 | 25% | Pendiente | No disponible | Ninguno |
 | 3 | 20% | Pendiente | 0.0% | Ninguno |
 | 4 | 15% | Pendiente | 56.5% | Ninguno |
+
+## Informe 257
+
+- Origen declarado: San José del Palmar, El Chocó, Colombia M7.4
+- Ventana: 2026-08-14 a 2026-10-18T23:59:59-05:00
+- Evidencia fuente: Captura aportada por el usuario el 2026-08-19: informe 257 publicado por la cuenta
+
+| Punto | Porcentaje declarado | Resultado | Tasa base | Candidatos |
+| ---: | ---: | --- | ---: | --- |
+| 1 | 35% | Pendiente | 0.0% | Ninguno |
+| 2 | 30% | Pendiente | 41.9% | Ninguno |
+| 3 | 25% | Pendiente | 0.0% | Ninguno |
+| 4 | 10% | Pendiente | No disponible | Ninguno |

@@ -537,5 +537,54 @@
         ]
       }
     ]
+  },
+  {
+    "reportNumber": 257,
+    "sourceAccount": "sismos.en.peru",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: informe 257 publicado por la cuenta",
+    "sourcePostDate": null,
+    "backfilledAt": "2026-08-19",
+    "origin": "San José del Palmar, El Chocó, Colombia",
+    "originMagnitude": 7.4,
+    "startDate": "2026-08-14",
+    "maxDays": 65,
+    "deadlineEndLima": "2026-10-18T23:59:59-05:00",
+    "deadlineSourceText": "65 días a partir del 14/08/2026",
+    "predictedMagnitudeMin": 6.9,
+    "predictedMagnitudeMax": 7.9,
+    "points": [
+      {
+        "pointNumber": 1,
+        "claimedProbability": 35,
+        "sourceText": "México o Zonas Colindantes (Guatemala, Nicaragua, Costa Rica, Panamá e Islas colindantes)",
+        "targetRegions": [
+          "Guatemala, Costa Rica, Nicaragua, Panamá e islas colindantes"
+        ]
+      },
+      {
+        "pointNumber": 2,
+        "claimedProbability": 30,
+        "sourceText": "Japón y Zonas Colindantes (China, Taiwán, India, Filipinas) y/o Indonesia",
+        "targetRegions": [
+          "China, Japón, Taiwán, Corea, India, Filipinas o Indonesia"
+        ]
+      },
+      {
+        "pointNumber": 3,
+        "claimedProbability": 25,
+        "sourceText": "Zona fronteriza a Grecia y Turquía o los 5 Stanes e Irán",
+        "targetRegions": [
+          "Cinco Stanes, Afganistán, Irán, Grecia o Turquía"
+        ]
+      },
+      {
+        "pointNumber": 4,
+        "claimedProbability": 10,
+        "sourceText": "Repite en Zona Norte de sudamérica (Colombia / Venezuela o Sur de Ecuador / Zona Norte de Perú)",
+        "targetRegions": [
+          "Norte de Perú, sur de Ecuador, sur de Colombia y parte de Venezuela"
+        ]
+      }
+    ]
   }
 ]
