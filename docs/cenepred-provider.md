@@ -1,17 +1,24 @@
 # Provider CENEPRED: microzonificación sísmica del CISMID
 
-Estado: implementado y verificado contra el servicio real, desactivado hasta recibir un
-token institucional.
+Estado: **autorizado por CENEPRED** (correo de `soporte-sigrid@cenepred.gob.pe`, 2026-08-19).
+Implementado y verificado contra el servicio real.
 
 ## Decisión
 
-La capa es técnicamente alcanzable sin credenciales. No debe consumirse hasta que CENEPRED
-entregue acceso, porque **SIGRID no publica licencia ni términos de uso en ninguna parte**:
-ni en el visor, ni en el sitio institucional, ni en el portal de transparencia. Ausencia de
+El gate era de licencia, no de acceso técnico: la capa siempre fue alcanzable con el token del
+visor, pero SIGRID no publicaba licencia ni términos de uso en ninguna parte, y ausencia de
 licencia no es permiso.
 
-Sismo Abierto se sostiene sobre procedencia citable. Servir una capa cuya autorización no se
-puede mostrar contradice el principio que hace creíble todo lo demás.
+CENEPRED autorizó por escrito reutilizar, almacenar y publicar la capa dentro de Sismo Abierto.
+La autorización se archiva fuera de este repo, en el vault privado. Condiciones:
+
+- **Atribución visible a CISMID** como fuente de la información.
+- **Referencia al servicio SIGRID / Cartografía de Peligros** de donde se obtuvieron los datos.
+- **Procedencia trazable** dentro de la plataforma.
+
+El permiso comprende explícitamente obtener y almacenar los datos necesarios para publicarlos,
+**sin depender del token del visor en cada consulta**. Por eso la capa se ingesta a Neon una vez
+y se sirve desde ahí, en lugar de consultar SIGRID por request.
 
 ## Qué se pide
 
@@ -55,15 +62,20 @@ Detalle completo del recon: `recon/sigrid-visor-dataflow.md`.
 ## Cómo se enciende
 
 ```bash
-SISMO_CENEPRED_TOKEN=<token institucional> bun dev
+SISMO_CENEPRED_TOKEN=<token> bun dev
 ```
 
 Sin esa variable, cualquier consulta lanza `SourceError` con `kind: "disabled"`. El provider
-NO se enciende en tests, a diferencia del de SGC: acá el gate es la licencia, no el entorno.
+NO se enciende en tests.
 
-## Fuera de alcance mientras el gate siga cerrado
+El token sigue siendo necesario para **hablar con SIGRID durante la ingesta**, porque el
+servicio no ofrece otra vía de acceso. Con el permiso concedido, lo correcto es ingestar una
+vez a Neon y servir desde ahí: el correo autoriza justamente eso y evita depender de un token
+que caduca a los 60 minutos.
 
-- Republicar la capa como GeoJSON propio.
-- Vectorizar el PDF del CISMID: es obra derivada.
+## Sigue fuera de alcance
+
+- Vectorizar el PDF del CISMID: es obra derivada, no está cubierto por el permiso.
 - Los cuatro FeatureServers de ArcGIS Online rotulados CISMID. Uno acepta ediciones anónimas,
   así que ninguno sirve como fuente.
+- Publicar la capa sin la atribución a CISMID y la referencia a SIGRID: es condición del permiso.
