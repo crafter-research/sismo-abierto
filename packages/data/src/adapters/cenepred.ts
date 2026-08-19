@@ -114,11 +114,11 @@ export async function fetchCenepredZones(
 ): Promise<{ zones: CenepredZone[]; provenance: Provenance }> {
   const payload = await query({
     where: district ? `distrito='${district.replace(/'/g, "''")}'` : "1=1",
-    outFields: "departamento,provincia,distrito,id_zona,desc_zona,elaborac",
+    outFields: "departamen,provincia,distrito,id_zona,desc_zona,elaborac",
     returnGeometry: "false",
   });
   const zones = (payload.features ?? []).map((feature) => ({
-    department: String(feature.attributes.departamento ?? ""),
+    department: String(feature.attributes.departamen ?? ""),
     province: String(feature.attributes.provincia ?? ""),
     district: String(feature.attributes.distrito ?? ""),
     zoneId: feature.attributes.id_zona
