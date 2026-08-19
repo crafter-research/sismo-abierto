@@ -71,6 +71,18 @@ export function buildProbeConfigs(): ProbeConfig[] {
       freshnessKnown: true,
     },
     {
+      sourceId: "igp-wfs-zonificacion",
+      contract: "wfs-zonificacion",
+      url: "https://ide.igp.gob.pe/geoserver/ows?service=WFS&version=2.0.0&request=GetFeature&typeNames=ZonificacionSismica%3Azonificacion_sismica&outputFormat=application%2Fjson&count=1",
+      method: "GET",
+      timeoutMs: 15_000,
+      latencyDegradedMs: 6_000,
+      frequencyMinutes: 1_440,
+      expectedContentTypes: ["json"],
+      kind: "geojson-features",
+      freshnessKnown: false,
+    },
+    {
       sourceId: "igp-censis-catalogo",
       contract: "censis-xlsx",
       url: censisProbeUrl(),
