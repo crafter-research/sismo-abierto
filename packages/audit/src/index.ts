@@ -1,3 +1,4 @@
+export * from "./accuracy.ts";
 export * from "./baseline.ts";
 export * from "./claimed-validations.ts";
 export * from "./evaluator.ts";
