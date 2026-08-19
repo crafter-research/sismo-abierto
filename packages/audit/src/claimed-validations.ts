@@ -23,6 +23,8 @@ function isClaimedValidation(value: unknown): value is ClaimedValidation {
       typeof claim.claimedMagnitude === "number") &&
     (claim.claimedMagnitudeScale === null ||
       typeof claim.claimedMagnitudeScale === "string") &&
+    (claim.claimedSourceCited === null ||
+      typeof claim.claimedSourceCited === "string") &&
     Array.isArray(claim.sources) &&
     claim.sources.length > 0 &&
     ASSESSMENTS.includes(claim.assessment as ClaimedValidation["assessment"])

@@ -167,3 +167,32 @@ describe("estado de una ventana abierta", () => {
     expect(openWindowState(claim, prediction)).toBe("CLAIM_OUTSIDE_RANGE");
   });
 });
+
+describe("procedencia de la cifra que publica la cuenta", () => {
+  test("cada reclamo registra si la publicación cita una fuente", async () => {
+    const claims = await loadClaimedValidations();
+    for (const claim of claims) {
+      const cited = claim.claimedSourceCited;
+      expect(cited === null || typeof cited === "string").toBe(true);
+    }
+  });
+
+  test("la mayoría de los reclamos no cita ninguna fuente oficial", async () => {
+    const claims = await loadClaimedValidations();
+    const sinFuente = claims.filter(
+      (claim) => claim.claimedSourceCited === null,
+    );
+    // Nueve de diez publican una captura de una app de terceros sin nombrar
+    // qué agencia calculó la magnitud. Si esto cambia, el hallazgo cambia.
+    expect(sinFuente.length).toBeGreaterThanOrEqual(9);
+  });
+
+  test("toda lectura oficial trae la URL donde se comprueba", async () => {
+    const claims = await loadClaimedValidations();
+    for (const claim of claims) {
+      for (const source of claim.sources) {
+        expect(source.url).toMatch(/^https:\/\//);
+      }
+    }
+  });
+});

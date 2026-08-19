@@ -69,6 +69,21 @@ de momento, que no son la misma medida.
 Un reclamo no altera el veredicto del protocolo congelado. Se registra aparte, con la
 consulta que lo comprueba, para que cualquiera pueda repetirla.
 
+### De dónde sale la cifra que publican
+
+Nueve de los diez reclamos no citan ninguna fuente oficial. Publican una captura de una
+aplicación de terceros, con un mapa de Apple y una tarjeta que rotula la magnitud, sin
+nombrar qué agencia la calculó. El único que sí cita una fuente, un boletín del Servicio
+Geológico Colombiano, informa una magnitud que queda fuera del rango que la propia cuenta
+había publicado.
+
+Esto no significa que el sismo no exista. En el caso de Lurín del 19 de agosto de 2026 la
+hora del post coincide al segundo con la del catálogo del IGP, así que es el mismo evento.
+Lo que no se puede verificar es el número: 4.60 no coincide con el IGP (4.8) ni con el
+USGS (4.4), y la publicación no dice de dónde lo toma. Por eso el registro guarda
+`claimedSourceCited` junto a la magnitud, y la ficha enlaza cada lectura oficial a su
+catálogo para que el lector compare por su cuenta.
+
 ### El problema de la escala
 
 Las predicciones publican un rango de magnitud sin declarar en qué escala está. Los

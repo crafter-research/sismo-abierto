@@ -309,6 +309,19 @@ export function PredictionReportTable({
                                   ({alegado.claimedMagnitudeScale})
                                 </span>
                               ) : null}
+                              <span
+                                className="text-gray-800"
+                                title={
+                                  alegado.claimedSourceCited
+                                    ? undefined
+                                    : "La publicación muestra una captura de una aplicación de terceros sin nombrar qué agencia calculó la magnitud."
+                                }
+                              >
+                                {" · "}
+                                {alegado.claimedSourceCited
+                                  ? `cita ${alegado.claimedSourceCited}`
+                                  : "sin fuente citada"}
+                              </span>
                             </p>
                             {alegado.sources.some(
                               (source) => source.magnitude > 0,
@@ -331,9 +344,13 @@ export function PredictionReportTable({
                                         <span className="font-mono tabular-nums">
                                           M{source.magnitude.toFixed(1)}
                                         </span>{" "}
-                                        <span className="text-gray-800">
+                                        <a
+                                          href={source.url}
+                                          rel="noreferrer"
+                                          className="text-official underline underline-offset-2"
+                                        >
                                           {source.sourceName.split(" · ").pop()}
-                                        </span>{" "}
+                                        </a>{" "}
                                         <span
                                           className={
                                             dentro

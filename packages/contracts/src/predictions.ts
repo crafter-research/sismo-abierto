@@ -78,6 +78,10 @@ export interface ClaimedValidation {
   longitude: number;
   claimedMagnitude: number | null;
   claimedMagnitudeScale: string | null;
+  // Qué fuente cita la publicación para su propia cifra. null cuando el post no
+  // nombra ninguna, que es el caso en nueve de diez reclamos: muestran una
+  // captura de una app de terceros sin decir qué agencia calculó la magnitud.
+  claimedSourceCited: string | null;
   sources: ClaimedValidationSource[];
   assessment:
     | "OUTSIDE_FROZEN_MAGNITUDE"
