@@ -11,3 +11,8 @@ docs/evidence/
 apps/web/next-env.d.ts
 .vercel
 .env*
+
+# recon artifacts (HARs carry live tokens)
+recon/*.har
+recon/*.png
+tmp/

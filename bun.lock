@@ -130,6 +130,13 @@
         "zod": "^4.0.5",
       },
     },
+    "packages/terrain": {
+      "name": "@sismo/terrain",
+      "version": "0.1.0",
+      "dependencies": {
+        "@sismo/geo": "workspace:*",
+      },
+    },
     "packages/volcanoes": {
       "name": "@sismo/volcanoes",
       "version": "0.1.0",
@@ -447,6 +454,8 @@
     "@sismo/incidents": ["@sismo/incidents@workspace:packages/incidents"],
 
     "@sismo/source-health": ["@sismo/source-health@workspace:packages/source-health"],
+
+    "@sismo/terrain": ["@sismo/terrain@workspace:packages/terrain"],
 
     "@sismo/volcanoes": ["@sismo/volcanoes@workspace:packages/volcanoes"],
 
