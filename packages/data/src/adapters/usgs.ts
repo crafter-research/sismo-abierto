@@ -63,11 +63,38 @@ export async function fetchUsgsEvents(
     params.set("maxlongitude", String(query.maxLongitude));
   const url = `${USGS_BASE}?${params.toString()}`;
 
-  return cached(`usgs:${url}`, 600_000, async () => {
-    const data = await fetchJson<UsgsFeatureCollection>(url, {
-      sourceId: "usgs-fdsn",
-      timeoutMs: 20_000,
+  // El servicio FDSN responde 429 cuando una corrida de auditoría lo consulta sin
+  // pausa. Se serializa el acceso y se deja un intervalo mínimo entre peticiones:
+  // es más lento, pero es lo que el servicio pide y evita perder la corrida entera.
+  const MIN_INTERVAL_MS = 220;
+  let usgsQueue: Promise<unknown> = Promise.resolve();
+  let lastRequestAt = 0;
+
+  function throttled<T>(task: () => Promise<T>): Promise<T> {
+    const run = usgsQueue.then(async () => {
+      const wait = lastRequestAt + MIN_INTERVAL_MS - Date.now();
+      if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait));
+      try {
+        return await task();
+      } finally {
+        lastRequestAt = Date.now();
+      }
     });
+    usgsQueue = run.catch(() => undefined);
+    return run;
+  }
+
+  return cached(`usgs:${url}`, 600_000, async () => {
+    const data = await throttled(() =>
+      fetchJson<UsgsFeatureCollection>(url, {
+        sourceId: "usgs-fdsn",
+        timeoutMs: 20_000,
+        // La auditoría consulta el catálogo una vez por destino y por ventana, así
+        // que una corrida completa dispara cientos de peticiones y el servicio
+        // responde 429. Se reintenta con espera creciente en vez de abortar.
+        retries: 4,
+      }),
+    );
     if (!Array.isArray(data.features)) {
       throw new SourceError({
         kind: "schema",

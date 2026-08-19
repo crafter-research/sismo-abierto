@@ -183,8 +183,31 @@ describe("geografía determinista", () => {
     const limaCallao = matchersForTarget("Lima-Callao")[0] as RegionMatcher;
     expect(matchRegion(limaCallao, -12.06, -77.13)).toBe("inside");
   });
+  test("un destino resuelto a departamentos usa polígonos oficiales", () => {
+    for (const target of [
+      "Perú central",
+      "Arequipa-Tacna",
+      "frontera Cusco-Puno",
+    ]) {
+      const matchers = matchersForTarget(target);
+      expect(matchers.length).toBeGreaterThan(0);
+      for (const matcher of matchers) {
+        expect(matcher.kind).toBe("peru-department");
+        expect(matcher.departments?.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  test("un destino solo se resuelve en la mitad que la fuente define", () => {
+    const matchers = matchersForTarget("norte de Perú y sur de Ecuador");
+    expect(matchers.some((m) => m.kind === "peru-department")).toBe(true);
+    expect(matchers.some((m) => m.kind === "vague")).toBe(true);
+  });
+
   test("las zonas vagas no reciben frontera inventada", () => {
-    const vagueMatcher = matchersForTarget("Perú central")[0] as RegionMatcher;
+    const vagueMatcher = matchersForTarget(
+      "Chile central y frontera con Argentina",
+    )[0] as RegionMatcher;
     expect(vagueMatcher?.kind).toBe("vague");
     expect(matchRegion(vagueMatcher, -12.0, -75.0)).toBe("vague");
   });
