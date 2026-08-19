@@ -1,4 +1,5 @@
 import { LESSONS } from "@sismo/aula-content";
+import { coverage } from "@sismo/terrain";
 import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://sismo.crafter.run";
@@ -47,6 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
     },
     { path: "/api", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/terreno", priority: 0.8, changeFrequency: "monthly" as const },
     ...(sgcEnabled
       ? [
           {
@@ -73,6 +75,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: lastContentUpdate,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
+    })),
+    ...coverage().cities.map((city) => ({
+      url: `${BASE_URL}/terreno/${city.slug}`,
+      lastModified: lastContentUpdate,
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
     })),
     ...LESSONS.map((lesson) => ({
       url: `${BASE_URL}/aula/${lesson.slug}`,

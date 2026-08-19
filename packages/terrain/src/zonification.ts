@@ -70,6 +70,7 @@ export function zoneAt(
 
 export interface CoverageCity {
   city: string;
+  slug: string;
   department: string;
   zoneCount: number;
 }
@@ -97,7 +98,12 @@ export function coverage(): TerrainCoverage {
       entry.zoneCount += 1;
       continue;
     }
-    byCity.set(key, { city: ciudad, department, zoneCount: 1 });
+    byCity.set(key, {
+      city: ciudad,
+      slug: citySlug(ciudad),
+      department,
+      zoneCount: 1,
+    });
   }
 
   return {
@@ -107,6 +113,67 @@ export function coverage(): TerrainCoverage {
     departments: [...departments].sort((a, b) => a.localeCompare(b, "es")),
     featureCount: features.length,
     provenance: TERRAIN_PROVENANCE,
+  };
+}
+
+/** Slug estable para rutas de ciudad: "Cañete" → "canete", "Alto Alianza" → "alto-alianza". */
+export function citySlug(city: string): string {
+  return city
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export interface CityTerrain {
+  city: string;
+  slug: string;
+  department: string;
+  zones: { zone: string; studyYear: string | null; polygonCount: number }[];
+  provenance: TerrainProvenance;
+  disclaimer: string;
+}
+
+/** Zonas publicadas para una ciudad, por slug. `null` si no hay estudio. */
+export function cityTerrain(slug: string): CityTerrain | null {
+  const zones = new Map<
+    string,
+    { zone: string; studyYear: string | null; polygonCount: number }
+  >();
+  let city = "";
+  let department = "";
+
+  for (const feature of features) {
+    const props = feature.properties;
+    if (!props.ciudad || citySlug(props.ciudad) !== slug) continue;
+    city = props.ciudad;
+    department = props.departamento ?? "";
+    if (!props.zona) continue;
+    const entry = zones.get(props.zona);
+    if (entry) {
+      entry.polygonCount += 1;
+      continue;
+    }
+    zones.set(props.zona, {
+      zone: props.zona,
+      studyYear: props.fecha == null ? null : String(props.fecha),
+      polygonCount: 1,
+    });
+  }
+
+  if (!city) return null;
+
+  return {
+    city,
+    slug,
+    department,
+    zones: [...zones.values()].sort((a, b) =>
+      a.zone.localeCompare(b.zone, "es"),
+    ),
+    provenance: TERRAIN_PROVENANCE,
+    disclaimer: TERRAIN_DISCLAIMER,
   };
 }
 
