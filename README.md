@@ -196,6 +196,14 @@ El contrato público está en `GET /api/v1/incidents/{slug}` y en
 `sismo incident INCIDENT_SLUG --json`. El procedimiento de revisión, los payloads privados y
 la migración están documentados en [`docs/incidents.md`](docs/incidents.md).
 
+## De dónde salen las fuentes
+
+Antes de consumir un servicio se le hace recon y se escribe un reporte con lo
+observado. La capa de terreno existe porque uno de esos reportes encontró un
+GeoServer WFS abierto del IGP que no estaba documentado en ninguna parte.
+
+El índice, con el veredicto de cada uno, está en [`recon/README.md`](recon/README.md).
+
 ## Roadmap
 
 Ver [ROADMAP.md](ROADMAP.md).
