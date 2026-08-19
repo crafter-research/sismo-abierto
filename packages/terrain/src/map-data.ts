@@ -21,13 +21,20 @@ export function soilClassOf(zone: string): SoilClass {
  * El color ordena rigidez y período de vibración, no peligro. Un suelo
  * flexible no significa que una construcción vaya a fallar, y la leyenda
  * nombra el criterio real para que el color no se lea como alarma.
+ *
+ * Los valores están muestreados de la leyenda del mapa oficial de riesgo
+ * sísmico de Lima (UNI/CISMID, 2021), exportado desde ArcMap. Se toma su
+ * rampa verde→rojo por continuidad visual con la cartografía peruana, pero
+ * **rotula tipo de suelo, no nivel de daño**: aquel mapa clasifica daño
+ * esperado a edificaciones (I sin daño … V colapso) y esta capa clasifica
+ * respuesta del terreno (S1 rígido … S4 flexible). Son variables distintas.
  */
 export const SOIL_COLORS: Record<SoilClass, string> = {
-  S1: "#2f9e44",
-  S2: "#f2c037",
-  S3: "#f08c00",
-  S4: "#e03131",
-  amplificacion: "#c2255c",
+  S1: "#38A800",
+  S2: "#55FF00",
+  S3: "#FFBF00",
+  S4: "#FF0000",
+  amplificacion: "#FFFF69",
   otro: "#868e96",
 };
 
