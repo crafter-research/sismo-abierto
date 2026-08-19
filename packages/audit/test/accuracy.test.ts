@@ -8,6 +8,7 @@ import {
   openWindowState,
   principalSource,
   scoreClaim,
+  sourceConsensus,
 } from "../src/index.ts";
 
 describe("error de magnitud", () => {
@@ -194,5 +195,40 @@ describe("procedencia de la cifra que publica la cuenta", () => {
         expect(source.url).toMatch(/^https:\/\//);
       }
     }
+  });
+});
+
+describe("consenso entre fuentes", () => {
+  test("cuenta cuántas fuentes dejan el evento dentro del rango", async () => {
+    const claims = await loadClaimedValidations();
+    const claim = claims.find((c) => c.predictionId === "W20260817-P1");
+    const prediction = await getPrediction("W20260817-P1");
+    if (!claim || !prediction) throw new Error("falta W20260817-P1");
+    const consenso = sourceConsensus(claim, prediction);
+    // USGS 4.4 y EMSC 4.4 caen en 4.1-4.5; el IGP 4.8 no.
+    expect(consenso.inside).toBe(2);
+    expect(consenso.total).toBe(3);
+    expect(consenso.minError).toBe(0);
+    expect(consenso.maxError).toBe(0.3);
+  });
+
+  test("el veredicto sigue usando la fuente principal aunque la mayoría difiera", async () => {
+    const claims = await loadClaimedValidations();
+    const claim = claims.find((c) => c.predictionId === "W20260817-P1");
+    const prediction = await getPrediction("W20260817-P1");
+    if (!claim || !prediction) throw new Error("falta W20260817-P1");
+    const consenso = sourceConsensus(claim, prediction);
+    // Dos de tres fuentes dicen que entra, pero el protocolo manda IGP para el
+    // Perú. Las dos lecturas se publican para que la decisión no quede oculta.
+    expect(consenso.principalSourceId).toBe("igp-censis-catalogo");
+    expect(consenso.principalError).toBe(0.3);
+  });
+
+  test("sin ninguna fuente dentro del rango el consenso lo refleja", async () => {
+    const claims = await loadClaimedValidations();
+    const claim = claims.find((c) => c.predictionId === "W20260817-P5");
+    const prediction = await getPrediction("W20260817-P5");
+    if (!claim || !prediction) throw new Error("falta W20260817-P5");
+    expect(sourceConsensus(claim, prediction).inside).toBe(0);
   });
 });
