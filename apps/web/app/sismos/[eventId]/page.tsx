@@ -6,6 +6,8 @@ import {
   isSourceError,
   listEventStations,
 } from "@sismo/data";
+import { groupStationsByZone, type TerrainGrouping } from "@sismo/terrain";
+import { getWaveformView } from "@sismo/waveforms";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ClassBadge, SourceBadge } from "../../../components/badges";
@@ -13,6 +15,7 @@ import { CopyLinkButton } from "../../../components/copy-link-button";
 import { SourceErrorState } from "../../../components/error-state";
 import { GlassQr } from "../../../components/glass-qr";
 import { type MapMarker, PeruMap } from "../../../components/peru-map";
+import { TerrainGroups } from "../../../components/terrain-groups";
 import { formatLocalDateTime, formatMagnitude } from "../../../lib/format";
 
 export const dynamic = "force-dynamic";
@@ -85,6 +88,23 @@ export default async function EventDetailPage({
     }
   }
   const accStations = stations.filter((station) => station.kind === "acc");
+
+  let terrainGrouping: TerrainGrouping<EventStation> | null = null;
+  if (stations.length > 0) {
+    const peaks = new Map<string, number>();
+    const waveforms = await Promise.allSettled(
+      accStations.map((station) => getWaveformView(eventId, station.code)),
+    );
+    for (const result of waveforms) {
+      if (result.status !== "fulfilled") continue;
+      const { pga, stationCode } = result.value.header;
+      peaks.set(stationCode, Math.max(pga.z, pga.n, pga.e));
+    }
+    terrainGrouping = groupStationsByZone(
+      stations,
+      (station) => peaks.get(station.code) ?? null,
+    );
+  }
 
   const markers: MapMarker[] = [
     {
@@ -280,6 +300,14 @@ export default async function EventDetailPage({
                 descargable · {stations.length - accStations.length} estaciones
                 sísmicas de contexto.
               </p>
+              {terrainGrouping ? (
+                <div className="mt-6">
+                  <TerrainGroups
+                    grouping={terrainGrouping}
+                    eventId={event.id}
+                  />
+                </div>
+              ) : null}
             </div>
           ) : stationsError ? (
             isSourceError(stationsError) &&
