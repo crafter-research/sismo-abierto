@@ -1,6 +1,6 @@
 # Auditoría retrospectiva de informes históricos
 
-Corrida UTC: `2026-08-07T04:18:26.718Z`
+Corrida UTC: `2026-08-19T15:51:26.361Z`
 
 Estos informes se incorporaron retrospectivamente desde capturas aportadas por el usuario. No constituyen un registro preinscrito antes de los resultados. Una coincidencia literal no establece capacidad predictiva y los porcentajes declarados no se interpretan como probabilidades calibradas.
 
