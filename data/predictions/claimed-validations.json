@@ -117,5 +117,124 @@
       }
     ],
     "assessment": "UNVERIFIABLE_IN_OFFICIAL_SOURCES"
+  },
+  {
+    "predictionId": "W20260810-P6",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-16T00:00:00-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: la cuenta declara que la energía de Afganistán migró a la zona norte de Colombia y titula el evento como Santander M4.4",
+    "eventTimeUtc": "2026-08-16T00:18:14Z",
+    "eventPlace": "11 km al SSO de Piedecuesta, Santander, Colombia",
+    "latitude": 6.8902,
+    "longitude": -73.0936,
+    "sources": [
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 4.2,
+        "depthKm": 151,
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-15&endtime=2026-08-17&minmagnitude=3.0&minlatitude=5&maxlatitude=12&minlongitude=-76&maxlongitude=-70"
+      }
+    ],
+    "assessment": "OUTSIDE_FROZEN_GEOGRAPHY"
+  },
+  {
+    "predictionId": "W20260810-P1",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-15T19:48:00-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: la cuenta declara que la energía de Vanuatu migró a la zona central de Perú y titula el evento como Pisco M4.4",
+    "eventTimeUtc": "2026-08-16T00:48:54Z",
+    "eventPlace": "85 km al sur de Pisco, Ica, Perú",
+    "latitude": -14.44,
+    "longitude": -76.46,
+    "sources": [
+      {
+        "sourceId": "igp-censis-catalogo",
+        "sourceName": "IGP · CENSIS",
+        "magnitude": 4.2,
+        "depthKm": 16,
+        "url": "https://censis.igp.gob.pe/repositorio/datos-sismicos"
+      }
+    ],
+    "assessment": "OUTSIDE_FROZEN_MAGNITUDE"
+  },
+  {
+    "predictionId": "W20260810-P4",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-17T19:02:00-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: la cuenta declara que la energía de Islas Galápagos migró al norte de Sudamérica o México",
+    "eventTimeUtc": "2026-08-18T00:02:00Z",
+    "eventPlace": "95 km al SO de Puerto Madero, Chiapas, México",
+    "latitude": 14.2298,
+    "longitude": -93.1475,
+    "sources": [
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 5.7,
+        "depthKm": 10,
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-17&endtime=2026-08-19&minmagnitude=4.5&minlatitude=12&maxlatitude=18&minlongitude=-96&maxlongitude=-90"
+      }
+    ],
+    "assessment": "OUTSIDE_FROZEN_MAGNITUDE"
+  },
+  {
+    "predictionId": "W20260817-P5",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-18T02:07:00-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: la cuenta declara que la energía de Tayikistán migró al norte de Venezuela y cita un boletín del Servicio Geológico Colombiano con M4.8",
+    "eventTimeUtc": "2026-08-18T06:07:00Z",
+    "eventPlace": "8 km al NNE de Catia La Mar, Venezuela",
+    "latitude": 10.6791,
+    "longitude": -67.0068,
+    "sources": [
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 3.8,
+        "depthKm": 10,
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-17&endtime=2026-08-19&minmagnitude=3.5&minlatitude=8&maxlatitude=13&minlongitude=-70&maxlongitude=-64"
+      },
+      {
+        "sourceId": "sgc-colombia",
+        "sourceName": "Servicio Geológico Colombiano",
+        "magnitude": 4.8,
+        "depthKm": 30,
+        "url": "https://www.sgc.gov.co/sismos"
+      }
+    ],
+    "assessment": "OUTSIDE_FROZEN_MAGNITUDE"
+  },
+  {
+    "predictionId": "W20260817-P1",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-19T05:28:02-05:00",
+    "sourceEvidence": "Captura aportada por el usuario el 2026-08-19: la cuenta declara que la energía de Colima migró a Ica o Lima y titula el evento como Lurín M4.6",
+    "eventTimeUtc": "2026-08-19T10:28:02Z",
+    "eventPlace": "42 km al SO de Lurín, Lima, Perú",
+    "latitude": -12.46,
+    "longitude": -77.2,
+    "sources": [
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 4.4,
+        "depthKm": 42,
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-19&endtime=2026-08-20&minmagnitude=3.5&minlatitude=-14&maxlatitude=-10&minlongitude=-79&maxlongitude=-75"
+      },
+      {
+        "sourceId": "igp-censis-catalogo",
+        "sourceName": "IGP · CENSIS",
+        "magnitude": 4.8,
+        "depthKm": 42,
+        "url": "https://censis.igp.gob.pe/repositorio/datos-sismicos"
+      }
+    ],
+    "assessment": "SOURCE_DISAGREEMENT_ON_MAGNITUDE"
   }
 ]
