@@ -102,6 +102,25 @@ oculta cuando el resto discrepa.
 
 El error se mide como distancia al borde más cercano del rango, 0 si el valor cae dentro.
 
+**No es un porcentaje ni un puntaje sobre 100.** Se expresa en unidades de magnitud, que
+es la unidad en la que la afirmación está escrita, y no existe un máximo natural contra el
+cual normalizarlo: un rango puede fallarse por 0.1 o por 3.0. Inventar un denominador para
+convertirlo en porcentaje daría una precisión que el dato no tiene.
+
+Sí se publica una segunda cifra que responde "¿es mucho o poco?": **cuántas veces el error
+cabe en el ancho del rango publicado**. Ese denominador no es inventado, lo eligió la
+propia cuenta al fijar su ventana de tolerancia.
+
+| Reclamo | Rango | Ancho | Error | En anchos |
+| --- | --- | ---: | ---: | ---: |
+| W20260817-P1 | 4.1-4.5 | 0.4 | 0.30 | 0.75× |
+| W20260817-P5 | 4.3-4.7 | 0.4 | 0.50 | 1.25× |
+| W20260810-P4 | 5.0-5.5 | 0.5 | 0.20 | 0.40× |
+
+Un valor mayor que 1 significa errar por más de lo que mide la propia ventana. Esto también
+hace visible una asimetría: una predicción con un rango más ancho es más difícil de fallar,
+y la cifra relativa lo refleja sin necesidad de penalizarla aparte.
+
 ### Tercera fuente de contraste
 
 Además de IGP/CENSIS y USGS, el registro consulta el **EMSC** (European-Mediterranean
