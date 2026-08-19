@@ -1,6 +1,8 @@
+import { zoneAt } from "@sismo/terrain";
 import Link from "next/link";
 import { ClassBadge, SourceBadge } from "../../../../../components/badges";
 import { SourceErrorState } from "../../../../../components/error-state";
+import { TerrainZoneCard } from "../../../../../components/terrain-zone";
 import { WaveformViewer } from "../../../../../components/waveform-viewer";
 import { getWaveformView } from "../../../../../lib/waveform";
 
@@ -43,6 +45,7 @@ export default async function StationWaveformPage({
   }
 
   const { header } = waveform;
+  const terrainZone = zoneAt(header.stationLongitude, header.stationLatitude);
 
   return (
     <div className="space-y-6">
@@ -119,6 +122,8 @@ export default async function StationWaveformPage({
           <SourceBadge provenance={waveform.provenance} />
         </div>
       </header>
+
+      <TerrainZoneCard zone={terrainZone} cityFallback={header.stationName} />
 
       <section aria-labelledby="ondas-titulo">
         <div className="mb-2 flex flex-wrap items-center gap-3">

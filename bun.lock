@@ -49,6 +49,7 @@
         "@sismo/geo": "workspace:*",
         "@sismo/incidents": "workspace:*",
         "@sismo/source-health": "workspace:*",
+        "@sismo/terrain": "workspace:*",
         "@sismo/volcanoes": "workspace:*",
         "@sismo/waveforms": "workspace:*",
         "@trigger.dev/sdk": "^4.0.0",
