@@ -23,7 +23,19 @@ type FlagId =
   | "ve"
   | "ec"
   | "pt"
-  | "gb";
+  | "gb"
+  | "gt"
+  | "cr"
+  | "pa"
+  | "do"
+  | "pr"
+  | "ar"
+  | "pg"
+  | "kr"
+  | "in"
+  | "tr"
+  | "gr"
+  | "ru";
 
 /**
  * El texto de origen viene del reel y no es un código de país. Se resuelve por
@@ -305,6 +317,127 @@ function Flag({ id, title }: { id: FlagId; title: string }) {
           <path stroke="#C8102E" strokeWidth="3" d="M12 0v16M0 8h24" />
         </svg>
       );
+    case "gt":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#4997D0" d="M0 0h8v16H0zM16 0h8v16h-8z" />
+          <path fill="#fff" d="M8 0h8v16H8z" />
+        </svg>
+      );
+    case "cr":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#002B7F" d="M0 0h24v16H0z" />
+          <path fill="#fff" d="M0 3h24v10H0z" />
+          <path fill="#CE1126" d="M0 6h24v4H0z" />
+        </svg>
+      );
+    case "pa":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#fff" d="M0 0h24v16H0z" />
+          <path fill="#DA121A" d="M12 0h12v8H12z" />
+          <path fill="#072357" d="M0 8h12v8H0z" />
+        </svg>
+      );
+    case "do":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#002D62" d="M0 0h24v16H0z" />
+          <path fill="#CE1126" d="M0 8h11v8H0zM13 0h11v8H13z" />
+          <path fill="#fff" d="M11 0h2v16h-2zM0 7h24v2H0z" />
+        </svg>
+      );
+    case "pr":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#fff" d="M0 0h24v16H0z" />
+          <path
+            fill="#ED0000"
+            d="M0 0h24v3.2H0zm0 6.4h24v3.2H0zm0 6.4h24V16H0z"
+          />
+          <path fill="#0050F0" d="M0 0l11 8L0 16z" />
+        </svg>
+      );
+    case "ar":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#74ACDF" d="M0 0h24v16H0z" />
+          <path fill="#fff" d="M0 5.3h24v5.4H0z" />
+          <circle cx="12" cy="8" r="1.6" fill="#F6B40E" />
+        </svg>
+      );
+    case "pg":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#CE1126" d="M0 0h24v16H0z" />
+          <path fill="#000" d="M0 16V0h24z" />
+        </svg>
+      );
+    case "kr":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#fff" d="M0 0h24v16H0z" />
+          <path fill="#CD2E3A" d="M12 4.8a3.2 3.2 0 010 6.4z" />
+          <path fill="#0047A0" d="M12 4.8a3.2 3.2 0 000 6.4z" />
+        </svg>
+      );
+    case "in":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#FF9933" d="M0 0h24v5.3H0z" />
+          <path fill="#fff" d="M0 5.3h24v5.4H0z" />
+          <path fill="#138808" d="M0 10.7h24V16H0z" />
+          <circle
+            cx="12"
+            cy="8"
+            r="1.6"
+            fill="none"
+            stroke="#000080"
+            strokeWidth="0.6"
+          />
+        </svg>
+      );
+    case "tr":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#E30A17" d="M0 0h24v16H0z" />
+          <circle cx="9" cy="8" r="3.2" fill="#fff" />
+          <circle cx="10.2" cy="8" r="2.6" fill="#E30A17" />
+        </svg>
+      );
+    case "gr":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#0D5EAF" d="M0 0h24v16H0z" />
+          <path
+            fill="#fff"
+            d="M0 1.8h24v1.8H0zm0 3.6h24v1.8H0zm0 3.6h24v1.8H0zm0 3.6h24v1.8H0z"
+          />
+          <path fill="#0D5EAF" d="M0 0h9v9H0z" />
+          <path fill="#fff" d="M3.6 0h1.8v9H3.6zM0 3.6h9v1.8H0z" />
+        </svg>
+      );
+    case "ru":
+      return (
+        <svg {...common}>
+          <title>{`Bandera de ${title}`}</title>
+          <path fill="#fff" d="M0 0h24v5.3H0z" />
+          <path fill="#0039A6" d="M0 5.3h24v5.4H0z" />
+          <path fill="#D52B1E" d="M0 10.7h24V16H0z" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -345,4 +478,58 @@ export function OriginFlag({ origin }: { origin: string }) {
     if (pattern.test(origin)) return <Flag id={id} title={title} />;
   }
   return <OceanMark />;
+}
+
+/** Países que un destino puede nombrar y que no aparecen como origen. */
+const EXTRA_FLAGS: Array<[RegExp, FlagId, string]> = [
+  // Departamentos peruanos: un destino puede nombrarlos sin nombrar al país.
+  [
+    /\b(ica|lima|callao|loreto|tumbes|piura|áncash|ancash|la libertad|arequipa|tacna|cusco|puno|moquegua|junín|junin|huancavelica|ayacucho|pasco|huánuco|huanuco|lambayeque|cajamarca|amazonas|san martín|san martin)\b/i,
+    "pe",
+    "Perú",
+  ],
+  [/guatemala/i, "gt", "Guatemala"],
+  [/costa rica/i, "cr", "Costa Rica"],
+  [/panamá|panama/i, "pa", "Panamá"],
+  [/república dominicana|republica dominicana/i, "do", "República Dominicana"],
+  [/puerto rico/i, "pr", "Puerto Rico"],
+  [/argentina/i, "ar", "Argentina"],
+  [/papúa nueva guinea|papua nueva guinea/i, "pg", "Papúa Nueva Guinea"],
+  [/corea/i, "kr", "Corea del Sur"],
+  [/india/i, "in", "India"],
+  [/turquía|turquia/i, "tr", "Turquía"],
+  [/grecia/i, "gr", "Grecia"],
+  [/rusia/i, "ru", "Rusia"],
+];
+
+/**
+ * Un destino puede nombrar varios países en una frase ("México o Panamá e islas
+ * del Caribe"). Devuelve una bandera por país nombrado, sin repetir, en el orden
+ * en que aparecen. Los términos que no son un país no reciben bandera: la celda
+ * ya muestra el texto completo.
+ */
+export function TargetFlags({
+  target,
+  max = 4,
+}: {
+  target: string;
+  max?: number;
+}) {
+  const seen = new Set<FlagId>();
+  const found: Array<{ id: FlagId; title: string; at: number }> = [];
+  for (const [pattern, id, title] of [...ORIGIN_FLAGS, ...EXTRA_FLAGS]) {
+    const hit = pattern.exec(target);
+    if (!hit || seen.has(id)) continue;
+    seen.add(id);
+    found.push({ id, title, at: hit.index });
+  }
+  if (found.length === 0) return null;
+  const shown = found.sort((a, b) => a.at - b.at).slice(0, max);
+  return (
+    <span className="mr-1.5 inline-flex shrink-0 items-center gap-0.5 align-[-2px]">
+      {shown.map((flag) => (
+        <Flag key={flag.id} id={flag.id} title={flag.title} />
+      ))}
+    </span>
+  );
 }

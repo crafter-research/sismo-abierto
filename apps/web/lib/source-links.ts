@@ -26,6 +26,19 @@ function nextDay(eventTimeUtc: string): string {
  * enlaza su repositorio: es el lugar real donde se comprueba el dato. Nunca se
  * fabrica un enlace por evento para una fuente que no lo ofrece.
  */
+export function sourceLinksFor(
+  sourceId: string,
+  eventTimeUtc: string,
+  magnitude: number,
+): SourceLink[] {
+  // Un candidato confirmado por dos catálogos llega como "a+b". Cada fuente
+  // recibe su propio enlace en vez de perder una de las dos.
+  return sourceId
+    .split("+")
+    .map((id) => sourceLinkFor(id, eventTimeUtc, magnitude))
+    .filter((link): link is SourceLink => link !== null);
+}
+
 export function sourceLinkFor(
   sourceId: string,
   eventTimeUtc: string,
