@@ -69,6 +69,26 @@ de momento, que no son la misma medida.
 Un reclamo no altera el veredicto del protocolo congelado. Se registra aparte, con la
 consulta que lo comprueba, para que cualquiera pueda repetirla.
 
+### El problema de la escala
+
+Las predicciones publican un rango de magnitud sin declarar en qué escala está. Los
+reclamos posteriores, en cambio, citan tres escalas distintas: momento en seis casos,
+Richter en tres y onda de cuerpo en uno. Esto importa porque las escalas no son
+intercambiables y una misma sacudida recibe cifras distintas según cuál se use.
+
+El sismo de Catia La Mar del 18 de agosto de 2026 lo ilustra:
+
+| Fuente | Magnitud | Escala |
+| --- | --- | --- |
+| USGS | 3.8 | `mb`, ondas de cuerpo |
+| Servicio Geológico Colombiano | 4.8 | red propia |
+| La cuenta | 4.60 | no declarada |
+
+Las dos lecturas oficiales caen fuera del rango publicado, una por debajo y otra por
+encima. La única cifra que cae dentro es la que publica la propia cuenta. Un rango sin
+escala declarada admite que la escala se elija después de conocido el resultado, y por eso
+el registro conserva las tres cifras por separado en vez de quedarse con una.
+
 ### Precisión por dimensión
 
 `assessment` es una etiqueta única y por eso oculta los aciertos parciales: un reclamo

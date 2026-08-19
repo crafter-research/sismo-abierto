@@ -5,6 +5,7 @@ import {
   loadHistoricalReportRegistry,
   loadPanoramaReportRegistry,
   magnitudeError,
+  openWindowState,
   principalSource,
   scoreClaim,
 } from "../src/index.ts";
@@ -138,5 +139,31 @@ describe("sismo alegado", () => {
     for (const claim of sinCandidato) {
       expect(claim.eventTimeUtc).toMatch(/^\d{4}-\d{2}-\d{2}T/);
     }
+  });
+});
+
+describe("estado de una ventana abierta", () => {
+  test("sin reclamo no se dice nada más que pendiente", async () => {
+    const prediction = await getPrediction("W20260817-P2");
+    if (!prediction) throw new Error("falta W20260817-P2");
+    expect(openWindowState(null, prediction)).toBe("NO_CLAIM_YET");
+  });
+
+  test("un reclamo cuyas fuentes discrepan se marca dividido", async () => {
+    const claims = await loadClaimedValidations();
+    const claim = claims.find((c) => c.predictionId === "W20260817-P1");
+    const prediction = await getPrediction("W20260817-P1");
+    if (!claim || !prediction) throw new Error("falta W20260817-P1");
+    // USGS 4.4 cae dentro de 4.1-4.5 y el IGP 4.8 queda fuera.
+    expect(openWindowState(claim, prediction)).toBe("CLAIM_SOURCES_SPLIT");
+  });
+
+  test("un reclamo con todas las fuentes fuera del rango se marca como tal", async () => {
+    const claims = await loadClaimedValidations();
+    const claim = claims.find((c) => c.predictionId === "W20260817-P5");
+    const prediction = await getPrediction("W20260817-P5");
+    if (!claim || !prediction) throw new Error("falta W20260817-P5");
+    // USGS 3.8 y SGC 4.8 caen fuera de 4.3-4.7, por lados opuestos.
+    expect(openWindowState(claim, prediction)).toBe("CLAIM_OUTSIDE_RANGE");
   });
 });
