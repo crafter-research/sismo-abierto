@@ -1,6 +1,6 @@
 # Auditoría de predicciones sísmicas
 
-Corte UTC: `2026-08-19T17:35:14.435Z`
+Corte UTC: `2026-08-19T18:34:30.102Z`
 
 Este informe aplica el protocolo congelado antes de conocer los resultados. Las afirmaciones provienen de sismos.en.peru, no del IGP. IGP/CENSIS y USGS se usan como fuentes de comprobación. Las ventanas abiertas permanecen pendientes hasta su deadline.
 
@@ -9,8 +9,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 | Veredicto | Cantidad |
 | --- | ---: |
 | STRICT_HIT | 7 |
-| NO_MATCH | 6 |
-| AMBIGUOUS_GEOGRAPHY | 36 |
+| NO_MATCH | 7 |
+| AMBIGUOUS_GEOGRAPHY | 35 |
 | SOURCE_DISAGREEMENT | 0 |
 | PENDING | 9 |
 
@@ -20,11 +20,11 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 | --- | ---: | --- | --- |
 | W20260629-P3 | 34.1% | Posibilidad moderada sin predicción | No establecida |
 | P1 | 7.4% | Poco esperable según el histórico | No establecida |
-| P4 | 76.5% | Esperable sin predicción | No establecida |
-| P5 | 37.4% | Posibilidad moderada sin predicción | No establecida |
+| P4 | 77.2% | Esperable sin predicción | No establecida |
+| P5 | 41.9% | Posibilidad moderada sin predicción | No establecida |
 | P6 | 79.1% | Esperable sin predicción | No establecida |
 | W20260727-P3 | 32.6% | Posibilidad moderada sin predicción | No establecida |
-| W20260727-P8 | 79.4% | Esperable sin predicción | No establecida |
+| W20260727-P8 | 80.0% | Muy esperable sin predicción | No establecida |
 
 ## Resultados
 
@@ -45,14 +45,14 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-06-29T00:00:00-05:00 a 2026-07-07T23:59:59-05:00
-- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
-- Control contra azar: Tasa base no disponible para una geografía inequívoca.
-- Lectura descriptiva: Tasa base no disponible.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 30.9% de probabilidad base de al menos un evento en 9 días, estimada con 15 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
-#### Candidatos (0)
+#### Candidatos (1)
 
-- Ningún evento candidato.
+- 2026-07-01T02:00:37Z · M5 · CENSIS · Huánuco (departamento) · igp-censis-catalogo+usgs-fdsn
 
 ### W20260629-P3 · Coincidencia estricta
 
@@ -72,9 +72,9 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-06-29T00:00:00-05:00 a 2026-07-07T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
-- Control contra azar: 11.6% de probabilidad base de al menos un evento en 9 días, estimada con 5 eventos en los 365 días previos.
-- Lectura descriptiva: Poco esperable según el histórico.
+- Geografías ambiguas conservadas: Sur de Ecuador (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
+- Control contra azar: 23.8% de probabilidad base de al menos un evento en 9 días, estimada con 11 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
 #### Candidatos (0)
@@ -85,8 +85,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-06-25T00:00:00-05:00 a 2026-07-02T23:59:59-05:00
-- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
-- Control contra azar: 35.5% de probabilidad base de al menos un evento en 8 días, estimada con 20 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Chile (sin límites definidos)
+- Control contra azar: 42.2% de probabilidad base de al menos un evento en 8 días, estimada con 25 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -124,21 +124,21 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-13T23:59:59-05:00
-- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
-- Control contra azar: Tasa base no disponible para una geografía inequívoca.
-- Lectura descriptiva: Tasa base no disponible.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 29.6% de probabilidad base de al menos un evento en 8 días, estimada con 16 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
-#### Candidatos (0)
+#### Candidatos (1)
 
-- Ningún evento candidato.
+- 2026-07-08T05:00:29Z · M4.5 · CENSIS · Pasco (departamento) · igp-censis-catalogo+usgs-fdsn
 
 ### W20260706-P3 · Geografía ambigua
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-05T00:00:00-05:00 a 2026-07-17T23:59:59-05:00
-- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
-- Control contra azar: 71.3% de probabilidad base de al menos un evento en 13 días, estimada con 35 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 72.3% de probabilidad base de al menos un evento en 13 días, estimada con 36 eventos en los 365 días previos.
 - Lectura descriptiva: Esperable sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -163,8 +163,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-18T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos); Norte de Perú y sur de Ecuador (sin límites definidos); Islas del Caribe (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
-- Control contra azar: 13.3% de probabilidad base de al menos un evento en 13 días, estimada con 4 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos); Sur de Ecuador (sin límites definidos); Islas del Caribe (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
+- Control contra azar: 16.3% de probabilidad base de al menos un evento en 13 días, estimada con 5 eventos en los 365 días previos.
 - Lectura descriptiva: Poco esperable según el histórico.
 - Capacidad predictiva: no establecida.
 
@@ -176,8 +176,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-14T23:59:59-05:00
-- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
-- Control contra azar: 27.4% de probabilidad base de al menos un evento en 9 días, estimada con 13 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Chile (sin límites definidos)
+- Control contra azar: 30.9% de probabilidad base de al menos un evento en 9 días, estimada con 15 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -217,9 +217,9 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-21T23:59:59-05:00
-- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos); Perú central (sin límites definidos)
-- Control contra azar: Tasa base no disponible para una geografía inequívoca.
-- Lectura descriptiva: Tasa base no disponible.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 13.8% de probabilidad base de al menos un evento en 9 días, estimada con 6 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
 - Capacidad predictiva: no establecida.
 
 #### Candidatos (0)
@@ -230,14 +230,14 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-06T00:00:00-05:00 a 2026-07-18T23:59:59-05:00
-- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
-- Control contra azar: 71.3% de probabilidad base de al menos un evento en 13 días, estimada con 35 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 72.3% de probabilidad base de al menos un evento en 13 días, estimada con 36 eventos en los 365 días previos.
 - Lectura descriptiva: Esperable sin predicción.
 - Capacidad predictiva: no establecida.
 
-#### Candidatos (0)
+#### Candidatos (1)
 
-- Ningún evento candidato.
+- 2026-07-19T02:24:34Z · M5.4 · CENSIS · Huancavelica (departamento) · igp-censis-catalogo+usgs-fdsn
 
 ### W20260713-P4 · Sin coincidencia
 
@@ -256,9 +256,9 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-21T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
-- Control contra azar: 15.9% de probabilidad base de al menos un evento en 9 días, estimada con 7 eventos en los 365 días previos.
-- Lectura descriptiva: Poco esperable según el histórico.
+- Geografías ambiguas conservadas: Sur de Ecuador (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
+- Control contra azar: 29.2% de probabilidad base de al menos un evento en 9 días, estimada con 14 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
 #### Candidatos (1)
@@ -269,8 +269,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-13T00:00:00-05:00 a 2026-07-21T23:59:59-05:00
-- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
-- Control contra azar: 27.4% de probabilidad base de al menos un evento en 9 días, estimada con 13 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Chile (sin límites definidos)
+- Control contra azar: 29.2% de probabilidad base de al menos un evento en 9 días, estimada con 14 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -323,14 +323,14 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-20T00:00:00-05:00 a 2026-07-28T23:59:59-05:00
-- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos); Perú central (sin límites definidos)
-- Control contra azar: Tasa base no disponible para una geografía inequívoca.
-- Lectura descriptiva: Tasa base no disponible.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 30.9% de probabilidad base de al menos un evento en 9 días, estimada con 15 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
-#### Candidatos (0)
+#### Candidatos (1)
 
-- Ningún evento candidato.
+- 2026-07-27T22:36:40Z · M4.6 · CENSIS · Huánuco (departamento) · igp-censis-catalogo+usgs-fdsn
 
 ### P3 · Geografía ambigua
 
@@ -349,8 +349,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `STRICT_HIT`
 - Ventana: 2026-07-20T00:00:00-05:00 a 2026-07-30T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos); Norte de Perú y sur de Ecuador (sin límites definidos); Islas del Caribe (sin límites definidos)
-- Control contra azar: 76.5% de probabilidad base de al menos un evento en 11 días, estimada con 48 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos); Sur de Ecuador (sin límites definidos); Islas del Caribe (sin límites definidos)
+- Control contra azar: 77.2% de probabilidad base de al menos un evento en 11 días, estimada con 49 eventos en los 365 días previos.
 - Lectura descriptiva: Esperable sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -367,8 +367,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `STRICT_HIT`
 - Ventana: 2026-07-20T00:00:00-05:00 a 2026-07-28T23:59:59-05:00
-- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
-- Control contra azar: 37.4% de probabilidad base de al menos un evento en 9 días, estimada con 19 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Chile (sin límites definidos)
+- Control contra azar: 41.9% de probabilidad base de al menos un evento en 9 días, estimada con 22 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -434,14 +434,14 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-04T23:59:59-05:00
-- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
-- Control contra azar: Tasa base no disponible para una geografía inequívoca.
-- Lectura descriptiva: Tasa base no disponible.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 21.9% de probabilidad base de al menos un evento en 9 días, estimada con 10 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
-#### Candidatos (0)
+#### Candidatos (1)
 
-- Ningún evento candidato.
+- 2026-08-03T01:42:22Z · M5.7 · CENSIS · Huánuco (departamento) · igp-censis-catalogo+usgs-fdsn
 
 ### W20260727-P3 · Coincidencia estricta
 
@@ -460,9 +460,9 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-04T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
-- Control contra azar: 11.6% de probabilidad base de al menos un evento en 9 días, estimada con 5 eventos en los 365 días previos.
-- Lectura descriptiva: Poco esperable según el histórico.
+- Geografías ambiguas conservadas: Sur de Ecuador (sin límites definidos); Islas Kermadec y zonas aledañas (sin límites definidos)
+- Control contra azar: 23.8% de probabilidad base de al menos un evento en 9 días, estimada con 11 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
 #### Candidatos (1)
@@ -473,8 +473,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-07-27T00:00:00-05:00 a 2026-08-03T23:59:59-05:00
-- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
-- Control contra azar: 35.5% de probabilidad base de al menos un evento en 8 días, estimada con 20 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Chile (sin límites definidos)
+- Control contra azar: 39.6% de probabilidad base de al menos un evento en 8 días, estimada con 23 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -512,9 +512,9 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `STRICT_HIT`
 - Ventana: 2026-07-21T00:00:00-05:00 a 2026-08-01T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos); Norte de Perú y sur de Ecuador (sin límites definidos); Islas del Caribe (sin límites definidos)
-- Control contra azar: 79.4% de probabilidad base de al menos un evento en 12 días, estimada con 48 eventos en los 365 días previos.
-- Lectura descriptiva: Esperable sin predicción.
+- Geografías ambiguas conservadas: Norte de Colombia (sin límites definidos); Sur de Ecuador (sin límites definidos); Islas del Caribe (sin límites definidos)
+- Control contra azar: 80.0% de probabilidad base de al menos un evento en 12 días, estimada con 49 eventos en los 365 días previos.
+- Lectura descriptiva: Muy esperable sin predicción.
 - Capacidad predictiva: no establecida.
 
 #### Candidatos (7)
@@ -545,8 +545,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-12T23:59:59-05:00
-- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos); Perú central (sin límites definidos)
-- Control contra azar: 60.6% de probabilidad base de al menos un evento en 10 días, estimada con 34 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 62.7% de probabilidad base de al menos un evento en 10 días, estimada con 36 eventos en los 365 días previos.
 - Lectura descriptiva: Esperable sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -558,9 +558,9 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-10T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos)
-- Control contra azar: Tasa base no disponible para una geografía inequívoca.
-- Lectura descriptiva: Tasa base no disponible.
+- Geografías ambiguas conservadas: Sur de Ecuador (sin límites definidos)
+- Control contra azar: 14.2% de probabilidad base de al menos un evento en 8 días, estimada con 7 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
 - Capacidad predictiva: no establecida.
 
 #### Candidatos (0)
@@ -571,8 +571,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-12T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Norte de Colombia (sin límites definidos); Islas del Caribe (sin límites definidos)
-- Control contra azar: 28.0% de probabilidad base de al menos un evento en 10 días, estimada con 12 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Sur de Ecuador (sin límites definidos); Norte de Colombia (sin límites definidos); Islas del Caribe (sin límites definidos)
+- Control contra azar: 33.7% de probabilidad base de al menos un evento en 10 días, estimada con 15 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -610,8 +610,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-08-03T00:00:00-05:00 a 2026-08-10T23:59:59-05:00
-- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos); Norte de Chile (sin límites definidos)
-- Control contra azar: 36.9% de probabilidad base de al menos un evento en 8 días, estimada con 21 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Chile (sin límites definidos)
+- Control contra azar: 40.9% de probabilidad base de al menos un evento en 8 días, estimada con 24 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -623,9 +623,9 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-17T23:59:59-05:00
-- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
-- Control contra azar: Tasa base no disponible para una geografía inequívoca.
-- Lectura descriptiva: Tasa base no disponible.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 36.9% de probabilidad base de al menos un evento en 8 días, estimada con 21 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
 #### Candidatos (0)
@@ -636,8 +636,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `PENDING`
 - Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-20T23:59:59-05:00
-- Geografías ambiguas conservadas: Perú central (sin límites definidos); Norte de Chile y sur de Perú (sin límites definidos)
-- Control contra azar: 69.1% de probabilidad base de al menos un evento en 11 días, estimada con 39 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Chile y sur de Perú (sin límites definidos)
+- Control contra azar: 70.9% de probabilidad base de al menos un evento en 11 días, estimada con 41 eventos en los 365 días previos.
 - Lectura descriptiva: Esperable sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -649,21 +649,22 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
 - Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-17T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos)
-- Control contra azar: Tasa base no disponible para una geografía inequívoca.
-- Lectura descriptiva: Tasa base no disponible.
+- Geografías ambiguas conservadas: Sur de Ecuador (sin límites definidos)
+- Control contra azar: 16.1% de probabilidad base de al menos un evento en 8 días, estimada con 8 eventos en los 365 días previos.
+- Lectura descriptiva: Poco esperable según el histórico.
 - Capacidad predictiva: no establecida.
 
-#### Candidatos (0)
+#### Candidatos (2)
 
-- Ningún evento candidato.
+- 2026-08-15T20:05:35Z · M4.5 · CENSIS · Piura (departamento) · igp-censis-catalogo
+- 2026-08-11T08:00:28Z · M4.9 · CENSIS · Piura (departamento) · igp-censis-catalogo+usgs-fdsn
 
 ### W20260810-P4 · Pendiente
 
 - Veredicto del protocolo congelado: `PENDING`
 - Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-20T23:59:59-05:00
-- Geografías ambiguas conservadas: Norte de Perú y sur de Ecuador (sin límites definidos); Norte de Venezuela (sin límites definidos); Norte de Colombia (sin límites definidos); Islas del Caribe (sin límites definidos)
-- Control contra azar: 26.0% de probabilidad base de al menos un evento en 11 días, estimada con 10 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Sur de Ecuador (sin límites definidos); Norte de Venezuela (sin límites definidos); Norte de Colombia (sin límites definidos); Islas del Caribe (sin límites definidos)
+- Control contra azar: 32.4% de probabilidad base de al menos un evento en 11 días, estimada con 13 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -671,12 +672,12 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Ningún evento candidato.
 
-### W20260810-P5 · Geografía ambigua
+### W20260810-P5 · Sin coincidencia
 
-- Veredicto del protocolo congelado: `AMBIGUOUS_GEOGRAPHY`
+- Veredicto del protocolo congelado: `NO_MATCH`
 - Ventana: 2026-08-10T00:00:00-05:00 a 2026-08-17T23:59:59-05:00
-- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos)
-- Control contra azar: 36.9% de probabilidad base de al menos un evento en 8 días, estimada con 21 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 40.9% de probabilidad base de al menos un evento en 8 días, estimada con 24 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -727,9 +728,9 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `PENDING`
 - Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-24T23:59:59-05:00
-- Geografías ambiguas conservadas: Perú central (sin límites definidos); Chile central y frontera con Argentina (sin límites definidos)
-- Control contra azar: Tasa base no disponible para una geografía inequívoca.
-- Lectura descriptiva: Tasa base no disponible.
+- Geografías ambiguas conservadas: Chile central y frontera con Argentina (sin límites definidos)
+- Control contra azar: 32.6% de probabilidad base de al menos un evento en 8 días, estimada con 18 eventos en los 365 días previos.
+- Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 
 #### Candidatos (0)
@@ -740,8 +741,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `PENDING`
 - Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-27T23:59:59-05:00
-- Geografías ambiguas conservadas: Perú central (sin límites definidos); Norte de Chile y sur de Perú (sin límites definidos)
-- Control contra azar: 70.9% de probabilidad base de al menos un evento en 11 días, estimada con 41 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Norte de Chile y sur de Perú (sin límites definidos)
+- Control contra azar: 72.6% de probabilidad base de al menos un evento en 11 días, estimada con 43 eventos en los 365 días previos.
 - Lectura descriptiva: Esperable sin predicción.
 - Capacidad predictiva: no establecida.
 
@@ -779,8 +780,8 @@ Este informe aplica el protocolo congelado antes de conocer los resultados. Las 
 
 - Veredicto del protocolo congelado: `PENDING`
 - Ventana: 2026-08-17T00:00:00-05:00 a 2026-08-24T23:59:59-05:00
-- Geografías ambiguas conservadas: Frontera Cusco-Puno (zona limítrofe sin límites definidos)
-- Control contra azar: 36.9% de probabilidad base de al menos un evento en 8 días, estimada con 21 eventos en los 365 días previos.
+- Geografías ambiguas conservadas: Ninguna.
+- Control contra azar: 40.9% de probabilidad base de al menos un evento en 8 días, estimada con 24 eventos en los 365 días previos.
 - Lectura descriptiva: Posibilidad moderada sin predicción.
 - Capacidad predictiva: no establecida.
 

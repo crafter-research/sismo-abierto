@@ -18,6 +18,90 @@ export interface RegionMatcher {
 const BOUNDARY_MARGIN_DEG = 0.25;
 
 const REGION_CATALOG: Record<string, RegionMatcher> = {
+  junin: {
+    key: "junin",
+    departments: ["Junin"],
+    label: "Junín (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -12.65, maxLat: -10.67, minLon: -76.52, maxLon: -73.36 },
+  },
+  huancavelica: {
+    key: "huancavelica",
+    departments: ["Huancavelica"],
+    label: "Huancavelica (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -14.13, maxLat: -11.98, minLon: -75.81, maxLon: -74.27 },
+  },
+  ayacucho: {
+    key: "ayacucho",
+    departments: ["Ayacucho"],
+    label: "Ayacucho (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -15.63, maxLat: -12.17, minLon: -75.14, maxLon: -72.85 },
+  },
+  pasco: {
+    key: "pasco",
+    departments: ["Pasco"],
+    label: "Pasco (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -11.15, maxLat: -9.43, minLon: -76.72, maxLon: -74.13 },
+  },
+  huanuco: {
+    key: "huanuco",
+    departments: ["Huanuco"],
+    label: "Huánuco (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -10.49, maxLat: -8.32, minLon: -77.32, maxLon: -74.53 },
+  },
+  cusco: {
+    key: "cusco",
+    departments: ["Cusco"],
+    label: "Cusco (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -15.45, maxLat: -11.2, minLon: -73.98, maxLon: -70.39 },
+  },
+  puno: {
+    key: "puno",
+    departments: ["Puno"],
+    label: "Puno (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -17.3, maxLat: -13.0, minLon: -71.11, maxLon: -68.81 },
+  },
+  moquegua: {
+    key: "moquegua",
+    departments: ["Moquegua"],
+    label: "Moquegua (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -17.82, maxLat: -15.98, minLon: -71.49, maxLon: -70.0 },
+  },
+  amazonas: {
+    key: "amazonas",
+    departments: ["Amazonas"],
+    label: "Amazonas (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -6.99, maxLat: -2.99, minLon: -78.71, maxLon: -77.13 },
+  },
+  cajamarca: {
+    key: "cajamarca",
+    departments: ["Cajamarca"],
+    label: "Cajamarca (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -7.76, maxLat: -4.62, minLon: -79.45, maxLon: -77.74 },
+  },
+  lambayeque: {
+    key: "lambayeque",
+    departments: ["Lambayeque"],
+    label: "Lambayeque (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -7.18, maxLat: -5.49, minLon: -80.63, maxLon: -79.12 },
+  },
+  "san-martin": {
+    key: "san-martin",
+    departments: ["San Martin"],
+    label: "San Martín (departamento)",
+    kind: "peru-department",
+    bbox: { minLat: -8.8, maxLat: -5.41, minLon: -77.77, maxLon: -75.49 },
+  },
   ica: {
     key: "ica",
     departments: ["Ica"],
@@ -349,8 +433,17 @@ export const TARGET_MAPPINGS: Record<string, RegionMatcher[]> = {
       "Chile central y frontera con Argentina (sin límites definidos)",
     ),
   ],
+  // "Perú central" se traduce a los departamentos de la sierra y costa centrales
+  // según la división administrativa del INEI. La cuenta no publica límites, así
+  // que el criterio queda escrito aquí y es el mismo para todas las evaluaciones.
   "Perú central": [
-    vague("peru-central", "Perú central (sin límites definidos)"),
+    REGION_CATALOG.junin as RegionMatcher,
+    REGION_CATALOG.huancavelica as RegionMatcher,
+    REGION_CATALOG.ayacucho as RegionMatcher,
+    REGION_CATALOG.pasco as RegionMatcher,
+    REGION_CATALOG.huanuco as RegionMatcher,
+    REGION_CATALOG["lima-callao"] as RegionMatcher,
+    REGION_CATALOG.ica as RegionMatcher,
   ],
   "Tumbes o Piura, incluyendo Loreto": [
     REGION_CATALOG.tumbes as RegionMatcher,
@@ -365,11 +458,16 @@ export const TARGET_MAPPINGS: Record<string, RegionMatcher[]> = {
     vague("norte-de-colombia", "Norte de Colombia (sin límites definidos)"),
     REGION_CATALOG.venezuela as RegionMatcher,
   ],
+  // El lado peruano se resuelve con los departamentos del norte según el INEI.
+  // El lado ecuatoriano no tiene polígono en el repositorio, así que se conserva
+  // como vago: media frontera definida no autoriza a inventar la otra mitad.
   "norte de Perú y sur de Ecuador": [
-    vague(
-      "norte-peru-sur-ecuador",
-      "Norte de Perú y sur de Ecuador (sin límites definidos)",
-    ),
+    REGION_CATALOG.tumbes as RegionMatcher,
+    REGION_CATALOG.piura as RegionMatcher,
+    REGION_CATALOG.lambayeque as RegionMatcher,
+    REGION_CATALOG.cajamarca as RegionMatcher,
+    REGION_CATALOG.amazonas as RegionMatcher,
+    vague("sur-de-ecuador", "Sur de Ecuador (sin límites definidos)"),
   ],
   "México o Panamá e islas del Caribe": [
     REGION_CATALOG.mexico as RegionMatcher,
@@ -381,15 +479,15 @@ export const TARGET_MAPPINGS: Record<string, RegionMatcher[]> = {
     REGION_CATALOG.filipinas as RegionMatcher,
     ...INDONESIA_MATCHERS,
   ],
+  // Solo los dos departamentos que la fuente nombra. Agregar Moquegua por
+  // contigüidad geográfica ensancharía el destino a favor de la afirmación.
   "Arequipa-Tacna": [
     REGION_CATALOG.arequipa as RegionMatcher,
     REGION_CATALOG.tacna as RegionMatcher,
   ],
   "frontera Cusco-Puno": [
-    vague(
-      "frontera-cusco-puno",
-      "Frontera Cusco-Puno (zona limítrofe sin límites definidos)",
-    ),
+    REGION_CATALOG.cusco as RegionMatcher,
+    REGION_CATALOG.puno as RegionMatcher,
   ],
   "norte de Chile": [
     vague("norte-de-chile", "Norte de Chile (sin límites definidos)"),
@@ -580,4 +678,4 @@ export function matchRegion(
 }
 
 export const GEOGRAPHY_METHOD_NOTE =
-  "Los departamentos del Perú se evalúan con punto-en-polígono sobre límites INEI simplificados y los países con límites Natural Earth de World Atlas. Un epicentro a menos de 0.25° (~25 km) del límite, hacia adentro o hacia afuera, se trata como coincidencia de frontera y no cuenta como acierto estricto. Las cajas geográficas solo reducen el área de consulta. Las expresiones territoriales vagas del texto original no reciben una frontera inventada.";
+  'Los departamentos del Perú se evalúan con punto-en-polígono sobre límites INEI simplificados y los países con límites Natural Earth de World Atlas. Un epicentro a menos de 0.25° (~25 km) del límite, hacia adentro o hacia afuera, se trata como coincidencia de frontera y no cuenta como acierto estricto. Las cajas geográficas solo reducen el área de consulta. Las expresiones territoriales vagas del texto original no reciben una frontera inventada. Los términos que nombran una zona del Perú sin publicar límites, como "Perú central", se traducen a la unión de departamentos según la división administrativa del INEI y el criterio queda escrito en el código; los que nombran zonas de otros países, como "norte de Colombia", siguen sin límites porque no existe una división oficial equivalente en el repositorio.';

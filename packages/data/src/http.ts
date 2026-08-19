@@ -53,14 +53,22 @@ export async function fetchSource(
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       const response = await attemptFetch(url, policy);
-      if (response.status >= 500 && attempt < maxAttempts) {
+      // 429 es un límite de tasa, no un fallo del contrato: el servidor pide
+      // esperar. Sin este caso una sola respuesta 429 aborta la auditoría
+      // entera, que es exactamente lo que el límite no quiere que hagas.
+      const isRetryable = response.status >= 500 || response.status === 429;
+      if (isRetryable && attempt < maxAttempts) {
         lastError = new SourceError({
           kind: "http",
           sourceId: policy.sourceId,
           message: `HTTP ${response.status} desde ${policy.sourceId}`,
           httpStatus: response.status,
         });
-        await new Promise((resolve) => setTimeout(resolve, 250 * attempt));
+        const retryAfter = Number(response.headers.get("retry-after"));
+        const backoffMs = Number.isFinite(retryAfter)
+          ? Math.min(retryAfter * 1000, 30_000)
+          : 250 * attempt * attempt;
+        await new Promise((resolve) => setTimeout(resolve, backoffMs));
         continue;
       }
       if (!response.ok) {

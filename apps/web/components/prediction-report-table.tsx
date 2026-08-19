@@ -5,6 +5,8 @@ import type {
   PredictionMatchOutcome,
 } from "@sismo/contracts";
 import Link from "next/link";
+import { sourceLinkFor } from "../lib/source-links";
+import { OriginFlag } from "./origin-flag";
 import { OutcomeLabel } from "./verdict-badge";
 
 export interface PredictionReportRow {
@@ -122,13 +124,14 @@ export function PredictionReportTable({
                           {pointLabel}
                         </span>
                       )}
+                      <OriginFlag origin={prediction.origin} />
                       <span className="leading-5">{prediction.origin}</span>
                     </div>
-                    {claimedProbability !== undefined ? (
-                      <span className="mt-1 block text-xs text-gray-800">
-                        {claimedProbability}% declarado
-                      </span>
-                    ) : null}
+                    <span className="mt-1 block text-xs text-gray-800">
+                      {claimedProbability !== undefined
+                        ? `${claimedProbability}% declarado`
+                        : "La fuente no declara un porcentaje para este punto"}
+                    </span>
                   </td>
                   <td className="py-3.5 pr-5 align-top font-mono text-[13px] tabular-nums">
                     {prediction.predictedMagnitudeMin.toFixed(1)}–
@@ -172,6 +175,13 @@ export function PredictionReportTable({
                             ? "—"
                             : `${percentage.toFixed(1)}%`}
                         </p>
+                        {percentage === null ? (
+                          <p className="mt-1 text-xs leading-4 text-gray-800">
+                            Sin tasa base: el destino publicado no tiene límites
+                            definidos, así que no hay área contra la cual contar
+                            los eventos históricos.
+                          </p>
+                        ) : null}
                       </div>
                       <div>
                         <div
@@ -213,6 +223,37 @@ export function PredictionReportTable({
                               >
                                 {candidate.eventTimeUtc.slice(0, 10)} · M
                                 {candidate.magnitude} · {candidate.place}
+                                <span className="ml-1 font-mono text-gray-700">
+                                  ({candidate.latitude.toFixed(2)},{" "}
+                                  {candidate.longitude.toFixed(2)})
+                                </span>
+                                {(() => {
+                                  const link = sourceLinkFor(
+                                    candidate.sourceId,
+                                    candidate.eventTimeUtc,
+                                    candidate.magnitude,
+                                  );
+                                  if (!link) return null;
+                                  return (
+                                    <>
+                                      {" "}
+                                      <a
+                                        href={link.href}
+                                        rel="noreferrer"
+                                        className="text-official underline underline-offset-2"
+                                      >
+                                        {link.label}
+                                      </a>
+                                      {link.precision === "catalog" ? (
+                                        <span className="text-gray-700">
+                                          {" "}
+                                          (el catálogo no publica un enlace por
+                                          evento)
+                                        </span>
+                                      ) : null}
+                                    </>
+                                  );
+                                })()}
                               </li>
                             ))}
                           </ul>
