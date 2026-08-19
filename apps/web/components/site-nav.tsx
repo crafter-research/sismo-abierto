@@ -1,5 +1,14 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "./ui/navigation-menu";
 
 export interface NavLink {
   href: string;
@@ -91,39 +100,52 @@ function NavAnchor({ link, className }: { link: NavLink; className: string }) {
 
 export function DesktopNav() {
   return (
-    <nav
+    <NavigationMenu
       aria-label="Navegación principal"
-      className="hidden items-center gap-x-4 text-[13px] text-gray-900 md:flex"
+      className="hidden md:flex"
       data-testid="desktop-nav"
     >
-      {NAV_ENTRIES.map((entry) =>
-        isGroup(entry) ? (
-          <details key={entry.label} className="group relative">
-            <summary className="flex cursor-pointer list-none items-center gap-1 hover:text-gray-1000">
-              {entry.label}
-              <span aria-hidden className="text-[9px] leading-none">
-                ▾
-              </span>
-            </summary>
-            <div className="absolute top-[calc(100%+0.5rem)] left-0 z-50 min-w-60 overflow-hidden rounded border border-gray-300 bg-background-100 py-1 shadow-sm">
-              {entry.links.map((link) => (
-                <NavAnchor
-                  key={link.href}
-                  link={link}
-                  className="block px-3 py-2 hover:bg-background-200 hover:text-gray-1000"
-                />
-              ))}
-            </div>
-          </details>
-        ) : (
-          <NavAnchor
-            key={entry.href}
-            link={entry}
-            className="hover:text-gray-1000"
-          />
-        ),
-      )}
-    </nav>
+      <NavigationMenuList>
+        {NAV_ENTRIES.map((entry) =>
+          isGroup(entry) ? (
+            <NavigationMenuItem key={entry.label}>
+              <NavigationMenuTrigger>{entry.label}</NavigationMenuTrigger>
+              <NavigationMenuContent className="min-w-64">
+                {entry.links.map((link) => (
+                  <NavigationMenuLink
+                    key={link.href}
+                    render={
+                      link.external ? (
+                        // biome-ignore lint/a11y/useAnchorContent: Base UI inyecta los hijos del enlace
+                        <a href={link.href} rel="noreferrer" />
+                      ) : (
+                        <Link href={link.href} />
+                      )
+                    }
+                  >
+                    <span className="font-medium">{link.label}</span>
+                    {link.hint ? (
+                      <span className="text-muted-foreground text-xs">
+                        {link.hint}
+                      </span>
+                    ) : null}
+                  </NavigationMenuLink>
+                ))}
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ) : (
+            <NavigationMenuItem key={entry.href}>
+              <NavigationMenuLink
+                render={<Link href={entry.href} />}
+                className={navigationMenuTriggerStyle()}
+              >
+                {entry.label}
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          ),
+        )}
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }
 

@@ -34,6 +34,20 @@ export default function TerrainIndexPage() {
         </p>
       </header>
 
+      <Link
+        href="/terreno/mapa"
+        className="block rounded-lg border border-gray-200 p-4 hover:border-gray-600"
+        data-testid="map-entry"
+      >
+        <span className="font-semibold text-official underline">
+          Abrir el mapa interactivo →
+        </span>
+        <span className="mt-1 block text-sm text-gray-900">
+          Zoom hasta tu zona, con los sismos recientes encima y las capas
+          filtrables.
+        </span>
+      </Link>
+
       <section aria-labelledby="ciudades-titulo">
         <div className="mb-3 flex flex-wrap items-center gap-3">
           <h2 id="ciudades-titulo" className="font-semibold">

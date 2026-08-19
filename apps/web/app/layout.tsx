@@ -11,6 +11,10 @@ import { Logo } from "../components/logo";
 import { DesktopNav, MobileNav } from "../components/site-nav";
 import { ThemeToggle } from "../components/theme-toggle";
 import "./globals.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const SGC_PUBLIC =
   process.env.SISMO_SGC_PROVIDER === "true" || process.env.NODE_ENV === "test";
@@ -92,7 +96,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="es"
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      className={cn(
+        GeistSans.variable,
+        GeistMono.variable,
+        "font-sans",
+        geist.variable,
+      )}
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col">

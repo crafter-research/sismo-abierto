@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClassBadge } from "../../../components/badges";
+import { TerrainMap } from "../../../components/terrain-map";
 
 export const dynamic = "force-dynamic";
 
@@ -58,6 +59,12 @@ export default async function CityTerrainPage({
           zonificación sísmica del IGP.
         </p>
       </header>
+
+      <TerrainMap
+        focus={terrain.center}
+        zoom={11}
+        capturedAt={terrain.provenance.capturedAt}
+      />
 
       <section aria-labelledby="zonas-titulo" data-testid="city-zones">
         <h2 id="zonas-titulo" className="mb-3 font-semibold">

@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
     "@sismo/audit",
     "@sismo/volcanoes",
     "@sismo/source-health",
+    "@sismo/terrain",
   ],
 };
 
