@@ -147,3 +147,34 @@ export function scoreClaim(
     daysBeforeWindowClose: Math.max(0, daysBefore),
   };
 }
+
+export type OpenWindowState =
+  | "NO_CLAIM_YET"
+  | "CLAIM_INSIDE_RANGE"
+  | "CLAIM_OUTSIDE_RANGE"
+  | "CLAIM_SOURCES_SPLIT";
+
+/**
+ * Estado de una ventana que todavía no cierra.
+ *
+ * El protocolo congelado no busca coincidencias antes del deadline, y con razón:
+ * cantar un acierto a mitad de la ventana es exactamente lo que se le critica a
+ * la cuenta. Pero cuando ya publicó un reclamo, decir solo "Pendiente" oculta
+ * que hay algo medible. Esto describe el reclamo sin adelantar el veredicto.
+ */
+export function openWindowState(
+  claim: ClaimedValidation | null,
+  prediction: FrozenPrediction,
+): OpenWindowState {
+  if (!claim) return "NO_CLAIM_YET";
+  const usable = claim.sources.filter((source) => source.magnitude > 0);
+  if (usable.length === 0) return "CLAIM_OUTSIDE_RANGE";
+  const inside = usable.filter(
+    (source) =>
+      source.magnitude >= prediction.predictedMagnitudeMin &&
+      source.magnitude <= prediction.predictedMagnitudeMax,
+  );
+  if (inside.length === usable.length) return "CLAIM_INSIDE_RANGE";
+  if (inside.length === 0) return "CLAIM_OUTSIDE_RANGE";
+  return "CLAIM_SOURCES_SPLIT";
+}

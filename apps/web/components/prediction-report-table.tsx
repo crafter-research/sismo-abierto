@@ -1,4 +1,4 @@
-import { BASELINE_BAND_LABELS } from "@sismo/audit";
+import { BASELINE_BAND_LABELS, openWindowState } from "@sismo/audit";
 import type {
   ClaimedValidation,
   FrozenPrediction,
@@ -26,6 +26,28 @@ export interface PredictionReportRow {
  * fuentes oficiales. La ficha del punto trae el detalle completo; acá solo hace
  * falta que se vea, desde la tabla, que hubo un reclamo y en qué quedó.
  */
+/**
+ * Qué decir de una ventana abierta que ya tiene un reclamo publicado. Describe
+ * lo observado sin adelantar el veredicto, que sigue siendo del protocolo.
+ */
+const OPEN_WINDOW_LABELS: Record<string, string> = {
+  NO_CLAIM_YET: "Pendiente",
+  CLAIM_INSIDE_RANGE: "Pendiente · coincidencia parcial",
+  CLAIM_OUTSIDE_RANGE: "Pendiente · reclamo no califica",
+  CLAIM_SOURCES_SPLIT: "Pendiente · fuentes divididas",
+};
+
+const OPEN_WINDOW_TITLES: Record<string, string> = {
+  NO_CLAIM_YET:
+    "La ventana sigue abierta. El protocolo no busca coincidencias hasta el deadline.",
+  CLAIM_INSIDE_RANGE:
+    "La cuenta ya declaró esta proyección cumplida y el evento que invoca cae dentro del rango y del plazo publicados. El veredicto final espera al cierre de la ventana.",
+  CLAIM_OUTSIDE_RANGE:
+    "La cuenta ya declaró esta proyección cumplida, pero el evento que invoca queda fuera del rango publicado según las fuentes oficiales.",
+  CLAIM_SOURCES_SPLIT:
+    "La cuenta ya declaró esta proyección cumplida. Una fuente oficial deja el evento dentro del rango publicado y la otra lo deja fuera.",
+};
+
 const CLAIM_SUMMARY: Record<ClaimedValidation["assessment"], string> = {
   MATCHES_FROZEN_CLAIM: "coincide",
   OUTSIDE_FROZEN_MAGNITUDE: "magnitud fuera",
@@ -111,7 +133,7 @@ export function PredictionReportTable({
               Punto y origen
             </th>
             <th scope="col" className="pb-2 pr-5 font-semibold">
-              Magnitud
+              Magnitud predicha
             </th>
             <th scope="col" className="pb-2 pr-5 font-semibold">
               Migración declarada
@@ -261,11 +283,6 @@ export function PredictionReportTable({
                               Sismo alegado por la cuenta
                             </p>
                             <p className="flex flex-wrap items-center gap-x-1.5">
-                              <span className="font-mono font-semibold tabular-nums">
-                                {alegado.claimedMagnitude === null
-                                  ? "M?"
-                                  : `M${alegado.claimedMagnitude.toFixed(2)}`}
-                              </span>
                               <span className="text-gray-900">
                                 {alegado.eventTimeUtc.slice(0, 10)}
                               </span>
@@ -277,19 +294,64 @@ export function PredictionReportTable({
                                 {alegado.eventPlace}
                               </span>
                             </p>
-                            <p className="text-gray-800">
-                              {alegado.sources.some(
-                                (source) => source.magnitude > 0,
-                              )
-                                ? `Oficial: ${alegado.sources
-                                    .filter((source) => source.magnitude > 0)
-                                    .map(
-                                      (source) =>
-                                        `${source.sourceName.split(" · ").pop()} M${source.magnitude.toFixed(1)}`,
-                                    )
-                                    .join(", ")}`
-                                : "Sin registro en fuentes oficiales"}
+                            <p className="text-gray-900">
+                              <span className="text-gray-800">
+                                Magnitud según la cuenta:
+                              </span>{" "}
+                              <span className="font-mono tabular-nums">
+                                {alegado.claimedMagnitude === null
+                                  ? "M?"
+                                  : `M${alegado.claimedMagnitude.toFixed(2)}`}
+                              </span>
+                              {alegado.claimedMagnitudeScale ? (
+                                <span className="text-gray-800">
+                                  {" "}
+                                  ({alegado.claimedMagnitudeScale})
+                                </span>
+                              ) : null}
                             </p>
+                            {alegado.sources.some(
+                              (source) => source.magnitude > 0,
+                            ) ? (
+                              <p className="text-gray-900">
+                                <span className="text-gray-800">
+                                  Medido oficialmente:
+                                </span>{" "}
+                                {alegado.sources
+                                  .filter((source) => source.magnitude > 0)
+                                  .map((source, index) => {
+                                    const dentro =
+                                      source.magnitude >=
+                                        prediction.predictedMagnitudeMin &&
+                                      source.magnitude <=
+                                        prediction.predictedMagnitudeMax;
+                                    return (
+                                      <span key={source.sourceId}>
+                                        {index > 0 ? ", " : ""}
+                                        <span className="font-mono tabular-nums">
+                                          M{source.magnitude.toFixed(1)}
+                                        </span>{" "}
+                                        <span className="text-gray-800">
+                                          {source.sourceName.split(" · ").pop()}
+                                        </span>{" "}
+                                        <span
+                                          className={
+                                            dentro
+                                              ? "text-official"
+                                              : "text-amber-800"
+                                          }
+                                        >
+                                          {dentro ? "dentro" : "fuera"}
+                                        </span>
+                                      </span>
+                                    );
+                                  })}
+                              </p>
+                            ) : (
+                              <p className="text-gray-800">
+                                Sin registro en fuentes oficiales
+                              </p>
+                            )}
                             {linksAlegado.length > 0 ? (
                               <p className="mt-0.5 flex flex-wrap gap-x-2">
                                 {linksAlegado.map((link) => (
@@ -361,11 +423,47 @@ export function PredictionReportTable({
                       <div>
                         <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           {outcome ? (
-                            <OutcomeLabel outcome={outcome} />
+                            outcome === "PENDING" ? (
+                              (() => {
+                                const state = openWindowState(
+                                  claimedValidation ?? null,
+                                  prediction,
+                                );
+                                return (
+                                  <span
+                                    className="inline-flex font-semibold text-gray-900 text-xs"
+                                    title={OPEN_WINDOW_TITLES[state]}
+                                    data-testid="open-window-state"
+                                  >
+                                    {OPEN_WINDOW_LABELS[state]}
+                                  </span>
+                                );
+                              })()
+                            ) : (
+                              <OutcomeLabel outcome={outcome} />
+                            )
                           ) : (
-                            <span className="inline-flex rounded bg-gray-200 px-2 py-1 font-semibold text-xs text-gray-900">
-                              {statusLabel ?? "Sin auditoría"}
-                            </span>
+                            (() => {
+                              const state = openWindowState(
+                                claimedValidation ?? null,
+                                prediction,
+                              );
+                              const abierta = statusLabel === "Ventana abierta";
+                              return (
+                                <span
+                                  className="inline-flex rounded bg-gray-200 px-2 py-1 font-semibold text-xs text-gray-900"
+                                  title={
+                                    abierta
+                                      ? OPEN_WINDOW_TITLES[state]
+                                      : undefined
+                                  }
+                                >
+                                  {abierta
+                                    ? OPEN_WINDOW_LABELS[state]
+                                    : (statusLabel ?? "Sin auditoría")}
+                                </span>
+                              );
+                            })()
                           )}
                           {claimedValidation ? (
                             <span
