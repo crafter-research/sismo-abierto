@@ -68,3 +68,23 @@ de momento, que no son la misma medida.
 
 Un reclamo no altera el veredicto del protocolo congelado. Se registra aparte, con la
 consulta que lo comprueba, para que cualquiera pueda repetirla.
+
+### Precisión por dimensión
+
+`assessment` es una etiqueta única y por eso oculta los aciertos parciales: un reclamo
+puede acertar la magnitud y fallar el destino, y una sola etiqueta no lo muestra. Cada
+reclamo se informa además en tres dimensiones separadas, sin combinarlas en un puntaje.
+
+- **Magnitud**: distancia al borde más cercano del rango publicado, 0 si cae dentro. Se
+  mide contra la fuente principal que fija el protocolo: IGP/CENSIS para epicentros en
+  el Perú, USGS para el resto. Con una sola fuente no hay margen para elegir la que
+  convenga.
+- **Geografía**: se reutiliza la clasificación punto-en-polígono de la auditoría. Un
+  destino sin límites definidos queda `sin resolver`, no `falla`: el protocolo no le
+  inventa una frontera y por lo tanto tampoco puede medir una distancia.
+- **Plazo**: días fuera de la ventana publicada, 0 si el evento cae dentro.
+
+No se publica un puntaje único ponderado porque no existe una ponderación justificable
+entre las tres. Se registra también cuántos días antes del cierre de la ventana se
+publicó el reclamo: un evento dentro del plazo cuenta igual, pero la ventana todavía
+podía cerrarse sin más coincidencias.

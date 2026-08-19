@@ -4,6 +4,7 @@ import {
   findPanoramaByPredictionId,
   GEOGRAPHY_METHOD_NOTE,
   getPrediction,
+  scoreClaim,
 } from "@sismo/audit";
 import type {
   BaselineProbabilityBand,
@@ -38,6 +39,12 @@ function interpretationMessage(
   }
   return "Sin una tasa base honesta no se puede interpretar la coincidencia contra el azar.";
 }
+
+const DIMENSION_LABELS: Record<string, string> = {
+  within: "acierta",
+  outside: "falla",
+  undetermined: "sin resolver",
+};
 
 const CLAIM_BADGES: Record<ClaimedValidation["assessment"], string> = {
   OUTSIDE_FROZEN_MAGNITUDE: "No cumple el rango congelado",
@@ -203,10 +210,50 @@ export default async function ClaimAuditPage({
               </li>
             ))}
           </ul>
+          {(() => {
+            const accuracy = scoreClaim(claimedValidation, prediction);
+            const rows = [
+              { label: "Magnitud", score: accuracy.magnitude },
+              { label: "Geografía", score: accuracy.geography },
+              { label: "Plazo", score: accuracy.window },
+            ];
+            return (
+              <div className="mt-3" data-testid="claim-accuracy">
+                <h3 className="text-xs font-semibold">
+                  Qué acierta y qué no, dimensión por dimensión
+                </h3>
+                <dl className="mt-2 space-y-1 text-xs">
+                  {rows.map((row) => (
+                    <div key={row.label} className="flex flex-wrap gap-2">
+                      <dt className="w-20 shrink-0 font-semibold">
+                        {row.label}
+                      </dt>
+                      <dd className="text-gray-900">
+                        <span className="font-mono">
+                          {DIMENSION_LABELS[row.score.status]}
+                        </span>{" "}
+                        {row.score.detail}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                {accuracy.publishedBeforeWindowClosed ? (
+                  <p className="mt-2 text-xs text-amber-900">
+                    El reclamo se publicó{" "}
+                    {accuracy.daysBeforeWindowClose.toFixed(0)} días antes de
+                    que cerrara la ventana. Un evento dentro del plazo cuenta
+                    igual, pero la ventana todavía podía cerrarse sin más
+                    coincidencias.
+                  </p>
+                ) : null}
+              </div>
+            );
+          })()}
           <p className="mt-3 text-xs text-gray-800">
-            Un reclamo publicado por la cuenta no altera el veredicto del
-            protocolo congelado. Cada afirmación se evalúa contra el texto que
-            quedó registrado antes de conocer el resultado.
+            Las tres dimensiones se informan por separado y no se combinan en un
+            puntaje único: no existe una ponderación justificable entre
+            magnitud, geografía y plazo. Un reclamo publicado por la cuenta no
+            altera el veredicto del protocolo congelado.
           </p>
         </section>
       ) : null}
