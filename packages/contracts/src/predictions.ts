@@ -76,6 +76,8 @@ export interface ClaimedValidation {
   eventPlace: string;
   latitude: number;
   longitude: number;
+  claimedMagnitude: number | null;
+  claimedMagnitudeScale: string | null;
   sources: ClaimedValidationSource[];
   assessment:
     | "OUTSIDE_FROZEN_MAGNITUDE"

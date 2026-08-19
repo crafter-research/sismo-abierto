@@ -59,5 +59,12 @@ campo `assessment` registra en qué falla o coincide cada reclamo:
 | `SOURCE_DISAGREEMENT_ON_MAGNITUDE` | IGP y USGS no coinciden y el rango publicado queda dentro con una fuente y fuera con la otra. |
 | `UNVERIFIABLE_IN_OFFICIAL_SOURCES` | El evento no aparece en los catálogos oficiales consultados para esa fecha, magnitud y área. |
 
+Cada reclamo conserva además `claimedMagnitude` y `claimedMagnitudeScale`: la magnitud y
+la escala tal como las publica la cuenta, junto a las magnitudes de las fuentes oficiales.
+Se guardan por separado porque a menudo no coinciden, y esa diferencia solo es visible si
+ambos números quedan registrados. La escala importa: varias publicaciones rotulan "escala
+de Richter" o "magnitud de onda de cuerpo" eventos que los catálogos reportan en magnitud
+de momento, que no son la misma medida.
+
 Un reclamo no altera el veredicto del protocolo congelado. Se registra aparte, con la
 consulta que lo comprueba, para que cualquiera pueda repetirla.
