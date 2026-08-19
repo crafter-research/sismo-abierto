@@ -1,0 +1,8 @@
+{
+  "capturedAt": "2026-08-19T01:24:34.949Z",
+  "sourceUrl": "https://ide.igp.gob.pe/geoserver/ows",
+  "typeName": "ZonificacionSismica:zonificacion_sismica",
+  "featureCount": 544,
+  "license": "Fees: NONE / AccessConstraints: NONE (declarado en GetCapabilities del IGP)",
+  "provider": "Instituto Geofísico del Perú"
+}

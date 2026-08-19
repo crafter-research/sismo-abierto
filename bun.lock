@@ -49,6 +49,7 @@
         "@sismo/geo": "workspace:*",
         "@sismo/incidents": "workspace:*",
         "@sismo/source-health": "workspace:*",
+        "@sismo/terrain": "workspace:*",
         "@sismo/volcanoes": "workspace:*",
         "@sismo/waveforms": "workspace:*",
         "@trigger.dev/sdk": "^4.0.0",
@@ -128,6 +129,13 @@
         "@sismo/contracts": "workspace:*",
         "@sismo/data": "workspace:*",
         "zod": "^4.0.5",
+      },
+    },
+    "packages/terrain": {
+      "name": "@sismo/terrain",
+      "version": "0.1.0",
+      "dependencies": {
+        "@sismo/geo": "workspace:*",
       },
     },
     "packages/volcanoes": {
@@ -447,6 +455,8 @@
     "@sismo/incidents": ["@sismo/incidents@workspace:packages/incidents"],
 
     "@sismo/source-health": ["@sismo/source-health@workspace:packages/source-health"],
+
+    "@sismo/terrain": ["@sismo/terrain@workspace:packages/terrain"],
 
     "@sismo/volcanoes": ["@sismo/volcanoes@workspace:packages/volcanoes"],
 

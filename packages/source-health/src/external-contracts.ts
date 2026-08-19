@@ -3,6 +3,7 @@ import { z } from "zod";
 export type ExternalContract =
   | "arcgis-latest"
   | "wfs-latest"
+  | "wfs-zonificacion"
   | "instrumental"
   | "volcanoes"
   | "aceldat-reports"
@@ -29,6 +30,39 @@ const latestProperties = z.object({
   referencia: z.string(),
   epicentro: z.string().optional(),
   ubicacion: z.string().optional(),
+});
+
+/**
+ * Zonificación viene como MultiPolygon, no como punto: su geometría anida
+ * coordenadas varios niveles más que los feeds de epicentros, así que no
+ * puede compartir el esquema de FeatureCollection de los demás contratos.
+ */
+function polygonCollectionSchema(properties: z.ZodObject) {
+  return z.object({
+    type: z.literal("FeatureCollection"),
+    features: z
+      .array(
+        z.object({
+          geometry: z
+            .object({
+              type: z.string(),
+              coordinates: z.array(z.unknown()).min(1),
+            })
+            .nullable(),
+          properties,
+        }),
+      )
+      .min(1),
+  });
+}
+
+const zonificacionProperties = z.object({
+  ciudad: z.string(),
+  departamento: z.string(),
+  zona: z.string(),
+  fecha: z.number(),
+  st_area_sh: z.number().optional(),
+  st_length_: z.number().optional(),
 });
 
 const volcanoProperties = z.object({
@@ -180,6 +214,19 @@ const CONTRACTS: Record<
 > = {
   "arcgis-latest": fcSpec(latestProperties, ["objectid"]),
   "wfs-latest": fcSpec(latestProperties),
+  "wfs-zonificacion": {
+    ...fcSpec(zonificacionProperties),
+    schema: polygonCollectionSchema(zonificacionProperties),
+    // La sonda pide un solo registro para no descargar la capa entera; el
+    // total real viaja en numberMatched, así que un cambio de volumen se
+    // detecta igual sin traer megabytes en cada chequeo.
+    countRecords: (payload) => {
+      const matched = (payload as { numberMatched?: unknown })?.numberMatched;
+      if (typeof matched === "number") return matched;
+      const features = (payload as { features?: unknown[] })?.features;
+      return Array.isArray(features) ? features.length : null;
+    },
+  },
   instrumental: fcSpec(instrumentalProperties),
   volcanoes: fcSpec(volcanoProperties),
   "aceldat-reports": {

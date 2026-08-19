@@ -31,6 +31,11 @@ export const SOURCES = {
     name: "IGP · IDE GeoServer WFS · Actividad volcánica",
     url: "https://ide.igp.gob.pe/geoserver/CTS_alertavolcan/ows",
   },
+  "igp-wfs-zonificacion": {
+    id: "igp-wfs-zonificacion",
+    name: "IGP · IDE GeoServer WFS · Zonificación sísmica (suelos)",
+    url: "https://ide.igp.gob.pe/geoserver/ows",
+  },
   "igp-regen": {
     id: "igp-regen",
     name: "IGP · REGEN · Repositorio Geofísico Nacional (DSpace)",
