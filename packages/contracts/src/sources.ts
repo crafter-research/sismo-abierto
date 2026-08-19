@@ -56,6 +56,11 @@ export const SOURCES = {
     name: "USGS · FDSN Event API (contraste global)",
     url: "https://earthquake.usgs.gov/fdsnws/event/1/",
   },
+  "emsc-seismicportal": {
+    id: "emsc-seismicportal",
+    name: "EMSC · European-Mediterranean Seismological Centre (contraste global)",
+    url: "https://www.seismicportal.eu/fdsnws/event/1/",
+  },
   "sgc-sismos": {
     id: "sgc-sismos",
     name: "SGC · Servicio Geológico Colombiano · Sismos",

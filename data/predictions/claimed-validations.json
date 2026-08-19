@@ -150,6 +150,13 @@
         "magnitude": 4.2,
         "depthKm": 151,
         "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-15&endtime=2026-08-17&minmagnitude=3.0&minlatitude=5&maxlatitude=12&minlongitude=-76&maxlongitude=-70"
+      },
+      {
+        "sourceId": "emsc-seismicportal",
+        "sourceName": "EMSC · Seismic Portal",
+        "magnitude": 4.2,
+        "depthKm": 151,
+        "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-15T20:00:00&endtime=2026-08-16T06:00:00&minlat=5&maxlat=9&minlon=-75&maxlon=-71"
       }
     ],
     "assessment": "OUTSIDE_FROZEN_GEOGRAPHY",
@@ -229,6 +236,13 @@
         "magnitude": 4.8,
         "depthKm": 30,
         "url": "https://www.sgc.gov.co/sismos"
+      },
+      {
+        "sourceId": "emsc-seismicportal",
+        "sourceName": "EMSC · Seismic Portal",
+        "magnitude": 3.8,
+        "depthKm": 10,
+        "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-18T04:00:00&endtime=2026-08-18T08:00:00&minlat=9&maxlat=12&minlon=-69&maxlon=-65"
       }
     ],
     "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
@@ -260,6 +274,13 @@
         "magnitude": 4.8,
         "depthKm": 42,
         "url": "https://censis.igp.gob.pe/repositorio/datos-sismicos"
+      },
+      {
+        "sourceId": "emsc-seismicportal",
+        "sourceName": "EMSC · Seismic Portal",
+        "magnitude": 4.4,
+        "depthKm": 54,
+        "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-19T09:00:00&endtime=2026-08-19T12:00:00&minlat=-14&maxlat=-11&minlon=-79&maxlon=-75"
       }
     ],
     "assessment": "SOURCE_DISAGREEMENT_ON_MAGNITUDE",

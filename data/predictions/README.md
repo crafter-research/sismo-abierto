@@ -84,6 +84,28 @@ USGS (4.4), y la publicación no dice de dónde lo toma. Por eso el registro gua
 `claimedSourceCited` junto a la magnitud, y la ficha enlaza cada lectura oficial a su
 catálogo para que el lector compare por su cuenta.
 
+### Tercera fuente de contraste
+
+Además de IGP/CENSIS y USGS, el registro consulta el **EMSC** (European-Mediterranean
+Seismological Centre). Con dos fuentes no se distingue "las agencias discrepan entre sí"
+de "la cifra publicada no sale de ninguna agencia". Con tres, sí.
+
+Para el sismo de Lurín del 19 de agosto de 2026:
+
+| Fuente | Magnitud | Tipo |
+| --- | --- | --- |
+| USGS | 4.4 | `mb` |
+| EMSC | 4.4 | `mb` |
+| IGP CENSIS | 4.8 | no publicado |
+| La cuenta | 4.60 | "onda de cuerpo" |
+
+USGS y EMSC coinciden porque ambas derivan del NEIC. El IGP calcula con su propia red. El
+4.60 de la publicación no coincide con ninguna de las tres.
+
+EMSC devuelve `null` en vez de una colección vacía cuando la consulta no tiene resultados,
+y conserva el tipo de magnitud (`mb`, `mw`, `ml`), que es el dato que las publicaciones
+omiten.
+
 ### El problema de la escala
 
 Las predicciones publican un rango de magnitud sin declarar en qué escala está. Los

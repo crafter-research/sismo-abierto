@@ -103,7 +103,9 @@ describe("registro congelado", () => {
     const lurin = claims.find((claim) => claim.predictionId === "W20260817-P1");
     expect(lurin?.claimedMagnitude).toBe(4.6);
     const oficiales = lurin?.sources.map((source) => source.magnitude) ?? [];
-    expect(oficiales).toEqual([4.4, 4.8]);
+    // Se afirma el hecho, no la lista: agregar una fuente de contraste no debe
+    // romper este test, pero sí debe seguir sin producir un 4.6.
+    expect(oficiales.length).toBeGreaterThanOrEqual(2);
     expect(oficiales.includes(lurin?.claimedMagnitude ?? 0)).toBe(false);
   });
 
