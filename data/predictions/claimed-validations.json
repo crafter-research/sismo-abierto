@@ -27,7 +27,8 @@
     ],
     "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
     "claimedMagnitude": 5.4,
-    "claimedMagnitudeScale": "escala de momento"
+    "claimedMagnitudeScale": "escala de momento",
+    "claimedSourceCited": null
   },
   {
     "predictionId": "R255-P2",
@@ -50,7 +51,8 @@
     ],
     "assessment": "OUTSIDE_FROZEN_GEOGRAPHY",
     "claimedMagnitude": 7.4,
-    "claimedMagnitudeScale": "escala de momento"
+    "claimedMagnitudeScale": "escala de momento",
+    "claimedSourceCited": null
   },
   {
     "predictionId": "R256-P3",
@@ -73,7 +75,8 @@
     ],
     "assessment": "MATCHES_FROZEN_CLAIM",
     "claimedMagnitude": 7.7,
-    "claimedMagnitudeScale": "escala de momento"
+    "claimedMagnitudeScale": "escala de momento",
+    "claimedSourceCited": null
   },
   {
     "predictionId": "W20260810-P3",
@@ -103,7 +106,8 @@
     ],
     "assessment": "SOURCE_DISAGREEMENT_ON_MAGNITUDE",
     "claimedMagnitude": 4.8,
-    "claimedMagnitudeScale": "escala de momento"
+    "claimedMagnitudeScale": "escala de momento",
+    "claimedSourceCited": null
   },
   {
     "predictionId": "W20260803-P5",
@@ -126,7 +130,8 @@
     ],
     "assessment": "UNVERIFIABLE_IN_OFFICIAL_SOURCES",
     "claimedMagnitude": 4.36,
-    "claimedMagnitudeScale": "escala de Richter"
+    "claimedMagnitudeScale": "escala de Richter",
+    "claimedSourceCited": null
   },
   {
     "predictionId": "W20260810-P6",
@@ -149,7 +154,8 @@
     ],
     "assessment": "OUTSIDE_FROZEN_GEOGRAPHY",
     "claimedMagnitude": 4.32,
-    "claimedMagnitudeScale": "escala de Richter"
+    "claimedMagnitudeScale": "escala de Richter",
+    "claimedSourceCited": null
   },
   {
     "predictionId": "W20260810-P1",
@@ -172,7 +178,8 @@
     ],
     "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
     "claimedMagnitude": 4.4,
-    "claimedMagnitudeScale": "escala de Richter"
+    "claimedMagnitudeScale": "escala de Richter",
+    "claimedSourceCited": null
   },
   {
     "predictionId": "W20260810-P4",
@@ -195,7 +202,8 @@
     ],
     "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
     "claimedMagnitude": 5.7,
-    "claimedMagnitudeScale": "escala de momento"
+    "claimedMagnitudeScale": "escala de momento",
+    "claimedSourceCited": null
   },
   {
     "predictionId": "W20260817-P5",
@@ -225,7 +233,8 @@
     ],
     "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
     "claimedMagnitude": 4.6,
-    "claimedMagnitudeScale": "escala de momento"
+    "claimedMagnitudeScale": "escala de momento",
+    "claimedSourceCited": "Servicio Geológico Colombiano"
   },
   {
     "predictionId": "W20260817-P1",
@@ -255,6 +264,7 @@
     ],
     "assessment": "SOURCE_DISAGREEMENT_ON_MAGNITUDE",
     "claimedMagnitude": 4.6,
-    "claimedMagnitudeScale": "magnitud de onda de cuerpo"
+    "claimedMagnitudeScale": "magnitud de onda de cuerpo",
+    "claimedSourceCited": null
   }
 ]
