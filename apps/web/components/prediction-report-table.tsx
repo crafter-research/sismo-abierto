@@ -27,6 +27,15 @@ export interface PredictionReportRow {
  * falta que se vea, desde la tabla, que hubo un reclamo y en qué quedó.
  */
 const CLAIM_SUMMARY: Record<ClaimedValidation["assessment"], string> = {
+  MATCHES_FROZEN_CLAIM: "coincide",
+  OUTSIDE_FROZEN_MAGNITUDE: "magnitud fuera",
+  OUTSIDE_FROZEN_GEOGRAPHY: "epicentro fuera",
+  SOURCE_DISAGREEMENT_ON_MAGNITUDE: "fuentes discrepan",
+  UNVERIFIABLE_IN_OFFICIAL_SOURCES: "sin registro oficial",
+};
+
+/** Texto completo para el title, que es donde hay espacio para explicarlo. */
+const CLAIM_SUMMARY_FULL: Record<ClaimedValidation["assessment"], string> = {
   MATCHES_FROZEN_CLAIM: "coincide con lo publicado",
   OUTSIDE_FROZEN_MAGNITUDE: "magnitud fuera del rango publicado",
   OUTSIDE_FROZEN_GEOGRAPHY: "epicentro fuera del destino publicado",
@@ -143,11 +152,11 @@ export function PredictionReportTable({
                       <OriginFlag origin={prediction.origin} />
                       <span className="leading-5">{prediction.origin}</span>
                     </div>
-                    <span className="mt-1 block text-xs text-gray-800">
-                      {claimedProbability !== undefined
-                        ? `${claimedProbability}% declarado`
-                        : "La fuente no declara un porcentaje para este punto"}
-                    </span>
+                    {claimedProbability !== undefined ? (
+                      <span className="mt-1 block text-xs text-gray-800">
+                        {claimedProbability}% declarado
+                      </span>
+                    ) : null}
                   </td>
                   <td className="py-3.5 pr-5 align-top font-mono text-[13px] tabular-nums">
                     {prediction.predictedMagnitudeMin.toFixed(1)}–
@@ -179,38 +188,37 @@ export function PredictionReportTable({
                   <td className="py-3.5 align-top">
                     <div className="grid grid-cols-[minmax(8.5rem,0.9fr)_minmax(8rem,1.15fr)] items-center gap-4">
                       <div>
-                        {outcome ? (
-                          <OutcomeLabel outcome={outcome} />
-                        ) : (
-                          <span className="inline-flex rounded bg-gray-200 px-2 py-1 font-semibold text-xs text-gray-900">
-                            {statusLabel ?? "Sin auditoría"}
-                          </span>
-                        )}
-                        {claimedValidation ? (
-                          <span
-                            className="mt-1.5 flex flex-wrap items-baseline gap-1 rounded border border-amber-300 bg-amber-50 px-2 py-1 text-[11px] leading-4 text-amber-950"
-                            data-testid="row-claimed-validation"
-                          >
-                            <strong className="font-semibold">
-                              La cuenta la declaró cumplida
-                            </strong>
-                            <span>
-                              · {CLAIM_SUMMARY[claimedValidation.assessment]}
+                        <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                          {outcome ? (
+                            <OutcomeLabel outcome={outcome} />
+                          ) : (
+                            <span className="inline-flex rounded bg-gray-200 px-2 py-1 font-semibold text-xs text-gray-900">
+                              {statusLabel ?? "Sin auditoría"}
                             </span>
-                          </span>
-                        ) : null}
-                        <p className="mt-1 font-mono text-2xl font-bold tabular-nums leading-none">
+                          )}
+                          {claimedValidation ? (
+                            <span
+                              className="inline-flex w-fit shrink-0 items-center gap-1 whitespace-nowrap rounded-full border border-amber-300 bg-amber-50 px-2 py-0.5 text-[11px] leading-4 text-amber-950"
+                              data-testid="row-claimed-validation"
+                              title={`La cuenta declaró esta proyección cumplida: ${CLAIM_SUMMARY_FULL[claimedValidation.assessment]}`}
+                            >
+                              <span aria-hidden="true">◆</span>
+                              {CLAIM_SUMMARY[claimedValidation.assessment]}
+                            </span>
+                          ) : null}
+                        </span>
+                        <p
+                          className="mt-1 font-mono text-xl font-bold tabular-nums leading-none"
+                          title={
+                            percentage === null
+                              ? "Sin tasa base: el destino publicado no tiene límites definidos, así que no hay área contra la cual contar los eventos históricos."
+                              : undefined
+                          }
+                        >
                           {percentage === null
                             ? "—"
                             : `${percentage.toFixed(1)}%`}
                         </p>
-                        {percentage === null ? (
-                          <p className="mt-1 text-xs leading-4 text-gray-800">
-                            Sin tasa base: el destino publicado no tiene límites
-                            definidos, así que no hay área contra la cual contar
-                            los eventos históricos.
-                          </p>
-                        ) : null}
                       </div>
                       <div>
                         <div

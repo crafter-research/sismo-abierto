@@ -132,7 +132,11 @@ export default async function PanoramaReportPage({
           </h2>
           <p className="mt-1 text-xs text-gray-800">
             Cada fila conserva origen, magnitud, destinos y plazo declarados en
-            el Reel. La tasa base mide coincidencias esperables sin predicción.
+            el Reel. La tasa base mide coincidencias esperables sin predicción y
+            queda vacía cuando el destino publicado no tiene límites definidos.
+            Los panoramas semanales no declaran un porcentaje por punto, a
+            diferencia de los informes numerados. Un punto marcado con ◆ es uno
+            que la cuenta declaró cumplido en una publicación posterior.
           </p>
         </div>
         <PredictionReportTable
