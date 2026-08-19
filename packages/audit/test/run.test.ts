@@ -59,6 +59,9 @@ describe("artefactos de auditoría final", () => {
       place: "49 km W of Turangi, New Zealand",
       matchedRegion: "Nueva Zelanda",
       regionIsAmbiguous: false,
+      match: "inside",
+      sourceDisagreement: false,
+      disagreementDetail: null,
     });
     const audits = [strictHit, audit("P2", "NO_MATCH")];
     const runAt = "2026-08-02T05:00:00.000Z";

@@ -6,8 +6,8 @@ import type {
   PredictionMatchOutcome,
 } from "@sismo/contracts";
 import Link from "next/link";
-import { sourceLinkFor } from "../lib/source-links";
-import { OriginFlag } from "./origin-flag";
+import { sourceLinksFor } from "../lib/source-links";
+import { OriginFlag, TargetFlags } from "./origin-flag";
 import { OutcomeLabel } from "./verdict-badge";
 
 export interface PredictionReportRow {
@@ -42,6 +42,24 @@ const CLAIM_SUMMARY_FULL: Record<ClaimedValidation["assessment"], string> = {
   SOURCE_DISAGREEMENT_ON_MAGNITUDE: "las fuentes oficiales discrepan",
   UNVERIFIABLE_IN_OFFICIAL_SOURCES: "sin registro en fuentes oficiales",
 };
+
+/**
+ * De todos los candidatos, el que mejor representa la comparación: primero uno
+ * que haya caído dentro de una región inequívoca, si no el de mayor magnitud.
+ * Los demás siguen listados completos en "Ver evidencia".
+ */
+function leadCandidate(
+  audit: PredictionAudit | null,
+): PredictionAudit["candidates"][number] | null {
+  if (!audit || audit.candidates.length === 0) return null;
+  const inside = audit.candidates.filter(
+    (candidate) => candidate.match === "inside",
+  );
+  const pool = inside.length > 0 ? inside : audit.candidates;
+  return pool.reduce((best, candidate) =>
+    candidate.magnitude > best.magnitude ? candidate : best,
+  );
+}
 
 function formatDeadlineLima(value: string): string {
   return new Intl.DateTimeFormat("es-PE", {
@@ -80,11 +98,12 @@ export function PredictionReportTable({
           Predicciones del reporte con resultado y tasa base
         </caption>
         <colgroup>
-          <col className="w-[17%]" />
+          <col className="w-[15%]" />
+          <col className="w-[8%]" />
+          <col className="w-[22%]" />
           <col className="w-[10%]" />
-          <col className="w-[30%]" />
-          <col className="w-[13%]" />
-          <col className="w-[30%]" />
+          <col className="w-[22%]" />
+          <col className="w-[23%]" />
         </colgroup>
         <thead>
           <tr className="border-gray-300 border-b text-left text-xs text-gray-900">
@@ -99,6 +118,9 @@ export function PredictionReportTable({
             </th>
             <th scope="col" className="pb-2 pr-5 font-semibold">
               Deadline Lima
+            </th>
+            <th scope="col" className="pb-2 pr-5 font-semibold">
+              Sismo comparado
             </th>
             <th scope="col" className="pb-2 font-semibold">
               Resultado y tasa base
@@ -163,7 +185,14 @@ export function PredictionReportTable({
                     {prediction.predictedMagnitudeMax.toFixed(1)}
                   </td>
                   <td className="py-3.5 pr-5 align-top">
-                    <p className="leading-5">{visible.join(" · ")}</p>
+                    <ul className="space-y-0.5 leading-5">
+                      {visible.map((target) => (
+                        <li key={target} className="flex flex-wrap items-start">
+                          <TargetFlags target={target} />
+                          <span>{target}</span>
+                        </li>
+                      ))}
+                    </ul>
                     {hidden.length > 0 ? (
                       <details className="mt-1.5 text-xs">
                         <summary className="w-fit cursor-pointer rounded border border-gray-300 bg-background-100 px-2 py-1 text-gray-900 hover:border-gray-600">
@@ -171,7 +200,13 @@ export function PredictionReportTable({
                         </summary>
                         <ul className="mt-2 space-y-1 border-gray-300 border-l pl-3 text-gray-900">
                           {hidden.map((target) => (
-                            <li key={target}>{target}</li>
+                            <li
+                              key={target}
+                              className="flex flex-wrap items-start"
+                            >
+                              <TargetFlags target={target} />
+                              <span>{target}</span>
+                            </li>
                           ))}
                         </ul>
                       </details>
@@ -184,6 +219,65 @@ export function PredictionReportTable({
                     >
                       {formatDeadlineLima(prediction.deadlineEndLima)}
                     </time>
+                  </td>
+                  <td className="py-3.5 pr-5 align-top">
+                    {(() => {
+                      const lead = leadCandidate(audit);
+                      if (!lead) {
+                        return (
+                          <span className="text-xs text-gray-800">
+                            Ningún sismo cumplió magnitud y plazo
+                          </span>
+                        );
+                      }
+                      const links = sourceLinksFor(
+                        lead.sourceId,
+                        lead.eventTimeUtc,
+                        lead.magnitude,
+                      );
+                      const extra = (audit?.candidates.length ?? 1) - 1;
+                      return (
+                        <div className="text-xs leading-5">
+                          <p className="font-mono font-semibold tabular-nums">
+                            M{lead.magnitude.toFixed(1)}
+                            <span className="ml-1.5 font-normal text-gray-900">
+                              {lead.eventTimeUtc.slice(0, 10)}
+                            </span>
+                          </p>
+                          <p className="flex flex-wrap items-center text-gray-900">
+                            <TargetFlags target={lead.matchedRegion} max={1} />
+                            <span>{lead.matchedRegion}</span>
+                          </p>
+                          <p className="font-mono text-[11px] text-gray-800">
+                            {lead.latitude.toFixed(2)},{" "}
+                            {lead.longitude.toFixed(2)}
+                          </p>
+                          <p className="mt-0.5 flex flex-wrap gap-x-2">
+                            {links.map((link) => (
+                              <a
+                                key={link.href}
+                                href={link.href}
+                                rel="noreferrer"
+                                className="text-official underline underline-offset-2"
+                                title={
+                                  link.precision === "catalog"
+                                    ? "El catálogo no publica un enlace por evento"
+                                    : undefined
+                                }
+                              >
+                                {link.label}
+                              </a>
+                            ))}
+                          </p>
+                          {extra > 0 ? (
+                            <p className="text-[11px] text-gray-800">
+                              +{extra} candidato{extra > 1 ? "s" : ""} en la
+                              evidencia
+                            </p>
+                          ) : null}
+                        </div>
+                      );
+                    })()}
                   </td>
                   <td className="py-3.5 align-top">
                     <div className="grid grid-cols-[minmax(8.5rem,0.9fr)_minmax(8rem,1.15fr)] items-center gap-4">
@@ -265,29 +359,31 @@ export function PredictionReportTable({
                                   {candidate.longitude.toFixed(2)})
                                 </span>
                                 {(() => {
-                                  const link = sourceLinkFor(
+                                  const links = sourceLinksFor(
                                     candidate.sourceId,
                                     candidate.eventTimeUtc,
                                     candidate.magnitude,
                                   );
-                                  if (!link) return null;
+                                  if (links.length === 0) return null;
                                   return (
                                     <>
-                                      {" "}
-                                      <a
-                                        href={link.href}
-                                        rel="noreferrer"
-                                        className="text-official underline underline-offset-2"
-                                      >
-                                        {link.label}
-                                      </a>
-                                      {link.precision === "catalog" ? (
-                                        <span className="text-gray-700">
+                                      {links.map((link) => (
+                                        <span key={link.href}>
                                           {" "}
-                                          (el catálogo no publica un enlace por
-                                          evento)
+                                          <a
+                                            href={link.href}
+                                            rel="noreferrer"
+                                            className="text-official underline underline-offset-2"
+                                            title={
+                                              link.precision === "catalog"
+                                                ? "El catálogo no publica un enlace por evento"
+                                                : undefined
+                                            }
+                                          >
+                                            {link.label}
+                                          </a>
                                         </span>
-                                      ) : null}
+                                      ))}
                                     </>
                                   );
                                 })()}

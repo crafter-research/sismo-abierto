@@ -22,11 +22,7 @@ import {
 
 const PAIRING_TOLERANCE_MS = 90_000;
 
-export interface RawCandidate extends CandidateEvent {
-  match: "inside" | "boundary";
-  sourceDisagreement: boolean;
-  disagreementDetail: string | null;
-}
+export type RawCandidate = CandidateEvent;
 
 export function classifyVerdict(options: {
   windowClosed: boolean;

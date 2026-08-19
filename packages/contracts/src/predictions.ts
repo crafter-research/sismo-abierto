@@ -136,6 +136,12 @@ export interface CandidateEvent {
   place: string;
   matchedRegion: string;
   regionIsAmbiguous: boolean;
+  // El evaluador ya guardaba estos tres campos en los artefactos; el contrato
+  // no los declaraba, así que quien leyera un candidato veía menos de lo que
+  // el archivo contiene.
+  match: "inside" | "boundary";
+  sourceDisagreement: boolean;
+  disagreementDetail: string | null;
 }
 
 export interface BaselineEstimate {
