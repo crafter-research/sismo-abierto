@@ -1,12 +1,20 @@
 # Provider Colombia: Servicio Geológico Colombiano
 
-Estado: implementado y validado localmente, desactivado por defecto en producción.
+Estado: implementado y **activo en producción** desde el merge del PR #11.
+`sismo.crafter.run/colombia` responde 200 y sirve datos del SGC (verificado 2026-08-19).
+
+El gate es `SISMO_SGC_PROVIDER === "true"` (`packages/data/src/adapters/sgc.ts:267`), y esa
+variable está puesta en el entorno de producción. En tests el provider se enciende solo.
 
 ## Decisión
 
-La integración es técnicamente viable. No debe activarse en producción hasta recibir
-autorización escrita del Servicio Geológico Colombiano para ingestión automatizada, caché,
-transformación y republicación.
+La integración es técnicamente viable y está encendida. **La autorización escrita del
+Servicio Geológico Colombiano para ingestión automatizada, caché, transformación y
+republicación sigue pendiente**: el provider se activó sin ella.
+
+Esto queda registrado como deuda abierta, no como estado deseado. Las opciones son pedir la
+autorización al SGC o apagar `SISMO_SGC_PROVIDER` hasta tenerla. Comparar con el provider de
+CENEPRED, cuyo gate se abrió recién con permiso por escrito (`docs/cenepred-provider.md`).
 
 El nombre oficial es **Servicio Geológico Colombiano (SGC)**. La aplicación debe presentarse
 como independiente, sin usar el logo del SGC y sin sugerir respaldo institucional.

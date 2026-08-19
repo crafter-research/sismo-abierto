@@ -8,8 +8,13 @@ import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
 import { GlobalProviderSwitcher } from "../components/global-provider-switcher";
 import { Logo } from "../components/logo";
+import { DesktopNav, MobileNav } from "../components/site-nav";
 import { ThemeToggle } from "../components/theme-toggle";
 import "./globals.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const SGC_PUBLIC =
   process.env.SISMO_SGC_PROVIDER === "true" || process.env.NODE_ENV === "test";
@@ -71,14 +76,6 @@ export const metadata: Metadata = {
   },
 };
 
-const NAV_ITEMS = [
-  { href: "/peru", label: "Sismos" },
-  { href: "/volcanes", label: "Volcanes" },
-  { href: "/aula", label: "Aula" },
-  { href: "/verifica", label: "Verifica" },
-  { href: "/developers", label: "Developers" },
-];
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   const sgcEnabled = SGC_PUBLIC;
   const structuredData = {
@@ -99,7 +96,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="es"
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      className={cn(
+        GeistSans.variable,
+        GeistMono.variable,
+        "font-sans",
+        geist.variable,
+      )}
       suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col">
@@ -119,28 +121,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <Logo size={22} />
                 Sismo Abierto
               </Link>
-              <nav
-                aria-label="Navegación principal"
-                className="hidden items-center gap-x-4 text-[13px] text-gray-900 md:flex"
-                data-testid="desktop-nav"
-              >
-                {NAV_ITEMS.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="hover:text-gray-1000"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                <a
-                  href="https://github.com/crafter-research/sismo-abierto"
-                  className="hover:text-gray-1000"
-                  rel="noreferrer"
-                >
-                  GitHub
-                </a>
-              </nav>
+              <DesktopNav />
               <div className="ml-auto hidden xl:block">
                 <GlobalProviderSwitcher sgcEnabled={sgcEnabled} />
               </div>
@@ -151,31 +132,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 >
                   Menú
                 </summary>
-                <nav
-                  aria-label="Navegación móvil"
-                  className="absolute top-[calc(100%+0.5rem)] right-0 min-w-48 overflow-hidden rounded border border-gray-300 bg-background-100 py-1 text-sm shadow-sm"
-                  data-testid="mobile-nav"
-                >
-                  {NAV_ITEMS.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block px-3 py-2 text-gray-900 hover:bg-background-200 hover:text-gray-1000"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                  <a
-                    href="https://github.com/crafter-research/sismo-abierto"
-                    className="block px-3 py-2 text-gray-900 hover:bg-background-200 hover:text-gray-1000"
-                    rel="noreferrer"
-                  >
-                    GitHub
-                  </a>
-                  <div className="border-gray-200 border-t px-3 py-2">
-                    <GlobalProviderSwitcher sgcEnabled={sgcEnabled} />
-                  </div>
-                </nav>
+                <MobileNav
+                  footer={<GlobalProviderSwitcher sgcEnabled={sgcEnabled} />}
+                />
               </details>
               <span>
                 <ThemeToggle />

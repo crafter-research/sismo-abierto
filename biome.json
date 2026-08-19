@@ -13,7 +13,9 @@
       "!docs/evidence",
       "!**/fixtures",
       "!data",
-      "!apps/web/app/globals.css"
+      "!apps/web/app/globals.css",
+      "!apps/web/components/ui/map.tsx",
+      "!packages/terrain/data"
     ]
   },
   "formatter": {

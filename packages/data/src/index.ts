@@ -1,4 +1,5 @@
 export * from "./adapters/aceldat.ts";
+export * from "./adapters/cenepred.ts";
 export * from "./adapters/censis.ts";
 export * from "./adapters/instrumental.ts";
 export * from "./adapters/latest.ts";

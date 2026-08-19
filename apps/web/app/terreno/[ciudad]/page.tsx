@@ -1,8 +1,9 @@
-import { cityTerrain, coverage } from "@sismo/terrain";
+import { cityBearingCapacity, cityTerrain, coverage } from "@sismo/terrain";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClassBadge } from "../../../components/badges";
+import { TerrainMap } from "../../../components/terrain-map";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,7 @@ export default async function CityTerrainPage({
   if (!terrain) notFound();
 
   const totalCities = coverage().cities.length;
+  const bearing = await cityBearingCapacity(ciudad);
 
   return (
     <div className="space-y-6">
@@ -59,6 +61,12 @@ export default async function CityTerrainPage({
         </p>
       </header>
 
+      <TerrainMap
+        focus={terrain.center}
+        zoom={11}
+        capturedAt={terrain.provenance.capturedAt}
+      />
+
       <section aria-labelledby="zonas-titulo" data-testid="city-zones">
         <h2 id="zonas-titulo" className="mb-3 font-semibold">
           Tipos de suelo
@@ -84,6 +92,48 @@ export default async function CityTerrainPage({
           ))}
         </div>
       </section>
+
+      {bearing ? (
+        <section
+          aria-labelledby="portante-titulo"
+          data-testid="city-bearing-capacity"
+        >
+          <h2 id="portante-titulo" className="mb-3 font-semibold">
+            Capacidad portante
+          </h2>
+          <p className="mb-3 text-sm text-gray-900">
+            Cuánta carga resiste el suelo por unidad de área, según el estudio
+            del IGP. Es una propiedad del terreno: no dice si una construcción
+            concreta está bien cimentada.
+          </p>
+          <div className="space-y-3">
+            {bearing.zones.map((zone) => (
+              <div
+                key={`${zone.capacity}-${zone.rating}`}
+                className="rounded-lg border border-gray-200 p-3"
+              >
+                <div className="flex flex-wrap items-baseline gap-x-2">
+                  <p className="font-mono text-sm text-official">
+                    {zone.capacity}
+                  </p>
+                  {zone.rating ? (
+                    <span className="text-xs text-gray-800">
+                      capacidad {zone.rating.toLowerCase()}
+                    </span>
+                  ) : null}
+                </div>
+                <p className="mt-1 text-xs text-gray-800">
+                  {zone.polygonCount}{" "}
+                  {zone.polygonCount === 1
+                    ? "polígono en el estudio"
+                    : "polígonos en el estudio"}
+                  {zone.studyYear ? ` · estudio de ${zone.studyYear}` : ""}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section
         aria-labelledby="que-hacer-titulo"

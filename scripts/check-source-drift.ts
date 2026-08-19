@@ -12,7 +12,7 @@ const EXPECTED_UNKNOWN = new Set(["igp-wfs-volcanes"]);
 let broken = 0;
 let degraded = 0;
 
-console.log("Fuente".padEnd(26) + "Estado".padEnd(19) + "Evidencia");
+console.log(`${"Fuente".padEnd(26)}${"Estado".padEnd(19)}Evidencia`);
 console.log("-".repeat(90));
 for (const check of checks) {
   console.log(

@@ -131,6 +131,8 @@ export interface CityTerrain {
   city: string;
   slug: string;
   department: string;
+  /** Centro aproximado de los polígonos de la ciudad, para encuadrar el mapa. */
+  center: [number, number];
   zones: { zone: string; studyYear: string | null; polygonCount: number }[];
   provenance: TerrainProvenance;
   disclaimer: string;
@@ -144,12 +146,29 @@ export function cityTerrain(slug: string): CityTerrain | null {
   >();
   let city = "";
   let department = "";
+  let minLon = Number.POSITIVE_INFINITY;
+  let maxLon = Number.NEGATIVE_INFINITY;
+  let minLat = Number.POSITIVE_INFINITY;
+  let maxLat = Number.NEGATIVE_INFINITY;
+
+  const trackPoint = (coordinates: unknown): void => {
+    if (Array.isArray(coordinates) && typeof coordinates[0] === "number") {
+      const [lon, lat] = coordinates as [number, number];
+      minLon = Math.min(minLon, lon);
+      maxLon = Math.max(maxLon, lon);
+      minLat = Math.min(minLat, lat);
+      maxLat = Math.max(maxLat, lat);
+      return;
+    }
+    for (const item of (coordinates ?? []) as unknown[]) trackPoint(item);
+  };
 
   for (const feature of features) {
     const props = feature.properties;
     if (!props.ciudad || citySlug(props.ciudad) !== slug) continue;
     city = props.ciudad;
     department = props.departamento ?? "";
+    if (feature.geometry) trackPoint(feature.geometry.coordinates);
     if (!props.zona) continue;
     const entry = zones.get(props.zona);
     if (entry) {
@@ -169,6 +188,7 @@ export function cityTerrain(slug: string): CityTerrain | null {
     city,
     slug,
     department,
+    center: [(minLon + maxLon) / 2, (minLat + maxLat) / 2],
     zones: [...zones.values()].sort((a, b) =>
       a.zone.localeCompare(b.zone, "es"),
     ),

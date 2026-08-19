@@ -36,10 +36,20 @@ export const SOURCES = {
     name: "IGP · IDE GeoServer WFS · Zonificación sísmica (suelos)",
     url: "https://ide.igp.gob.pe/geoserver/ows",
   },
+  "igp-wfs-capacidad-portante": {
+    id: "igp-wfs-capacidad-portante",
+    name: "IGP · IDE GeoServer WFS · Capacidad portante del suelo",
+    url: "https://ide.igp.gob.pe/geoserver/ows",
+  },
   "igp-regen": {
     id: "igp-regen",
     name: "IGP · REGEN · Repositorio Geofísico Nacional (DSpace)",
     url: "https://repositorio.igp.gob.pe/",
+  },
+  "cenepred-sigrid": {
+    id: "cenepred-sigrid",
+    name: "CENEPRED · SIGRID · Microzonificación sísmica CISMID (Lima)",
+    url: "https://sigrid.cenepred.gob.pe/sigridv3/",
   },
   "usgs-fdsn": {
     id: "usgs-fdsn",
