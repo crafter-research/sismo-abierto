@@ -208,11 +208,30 @@ Tres cosas que salieron de la medicion:
    por construccion, y la suma por ciudad reconcilia exacto con la nacional en cinco de seis
    dimensiones.
 
-3. **La sexta no reconcilia, y es un dato que falta en la fuente.** `zon_barranca` declara
-   `numberMatched=11` y sirve **10** en una peticion simple, de forma reproducible. El poligono
-   que falta es un `Suelo Tipo S4: Excepcionalmente flexible`. Paginando (`count=5` x3) aparecen
-   los 11, con ids unicos. La capa nacional si lo trae, y es de ahi que salio el snapshot en
-   `packages/terrain/data/`, asi que **el dato publicado no esta afectado**.
+3. **La sexta no reconcilia, y es un defecto de la fuente.** `zon_barranca` declara
+   `numberMatched=11` y sirve **10**, reproducible. El poligono que falta es un
+   `Suelo Tipo S4: Excepcionalmente flexible`.
+
+   **Corregido 2026-08-20 (segunda medicion).** La primera lectura decia que paginar recuperaba
+   los 11 y por lo tanto que alcanzaba con paginar. Es mas raro que eso: el resultado depende del
+   **tamaño de pagina**, no de paginar.
+
+   | Pagina | Features unicos | Trae el S4 |
+   |---|---|---|
+   | 5 | 11 | si |
+   | 10 | 11 | si |
+   | 11 | 10 | no |
+   | 50 | 10 | no |
+   | 100 | 10 | no |
+
+   Con una pagina menor al total de la capa (10 features) el servidor entrega las 11; con una
+   pagina que podria traerlo todo de una, pierde una. Verificado que **no es general**: `zon_tacna`
+   (8), `zon_chosica` (29) y `geologia_barranca` (9) dan identico con pagina 3 y con pagina 100.
+   Es un caso puntual de esta capa.
+
+   La capa nacional si trae el poligono, y de ahi salio el snapshot en `packages/terrain/data/`,
+   asi que **el dato publicado no esta afectado**. La ingesta usa pagina 100 y cuenta el faltante
+   en `shortfall` en vez de tumbar la corrida.
 
 **Rate limit, re-medido.** De las 348 capas pedidas con 1.2s de pausa, 145 devolvieron el cuerpo
 sin `features` (el fallo silencioso ya conocido). Reintentadas con 3s de pausa: **145/145 OK**.

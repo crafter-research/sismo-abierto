@@ -109,32 +109,102 @@ describe("rate limit silencioso del WFS", () => {
 });
 
 describe("tope de 100 features por petición", () => {
-  test("una respuesta truncada no se acepta como capa completa", async () => {
-    const truncated = {
-      numberMatched: 436,
-      features: Array.from({ length: 100 }, () => ({ properties: {} })),
-    };
-    const fetchImpl = (async () =>
-      jsonResponse(truncated)) as unknown as typeof fetch;
+  test("pagina hasta juntar la capa entera", async () => {
+    const total = 436;
+    const calls: string[] = [];
+    const fetchImpl = (async (input: string) => {
+      const url = new URL(String(input));
+      calls.push(url.searchParams.get("startIndex") ?? "0");
+      const start = Number(url.searchParams.get("startIndex") ?? 0);
+      const size = Math.max(0, Math.min(100, total - start));
+      return jsonResponse({
+        numberMatched: total,
+        features: Array.from({ length: size }, () => ({ properties: {} })),
+      });
+    }) as unknown as typeof fetch;
 
-    await expect(
-      fetchLayer("Geologia:geologia", fetchImpl, FAST),
-    ).rejects.toThrow(/100 de 436/);
+    const result = await fetchLayer("Geologia:geologia", fetchImpl, FAST);
+
+    expect(result.features).toHaveLength(total);
+    expect(result.matched).toBe(total);
+    expect(calls).toEqual(["0", "100", "200", "300", "400"]);
   });
 
-  test("una capa que llega entera sí pasa", async () => {
-    const fetchImpl = (async () =>
-      jsonResponse({
-        numberMatched: 2,
-        features: [{ properties: {} }, { properties: {} }],
-      })) as unknown as typeof fetch;
+  test("no pide una segunda página cuando la capa entra en una", async () => {
+    let calls = 0;
+    const fetchImpl = (async () => {
+      calls++;
+      return jsonResponse({
+        numberMatched: 8,
+        features: Array.from({ length: 8 }, () => ({ properties: {} })),
+      });
+    }) as unknown as typeof fetch;
 
     const result = await fetchLayer(
-      "Geologia:geologia_barranca",
+      "ZonificacionSismica:zon_tacna",
       fetchImpl,
       FAST,
     );
-    expect(result.matched).toBe(2);
-    expect(result.features).toHaveLength(2);
+    expect(result.features).toHaveLength(8);
+    expect(calls).toBe(1);
+  });
+
+  test("una capa no listada que entrega de menos corta la corrida", async () => {
+    const fetchImpl = (async (input: string) => {
+      const start = Number(
+        new URL(String(input)).searchParams.get("startIndex") ?? 0,
+      );
+      return jsonResponse({
+        numberMatched: 11,
+        features:
+          start === 0
+            ? Array.from({ length: 10 }, () => ({ properties: {} }))
+            : [],
+      });
+    }) as unknown as typeof fetch;
+
+    await expect(
+      fetchLayer("ZonificacionSismica:zon_chosica", fetchImpl, FAST),
+    ).rejects.toThrow(/10 de 11/);
+  });
+
+  test("el hueco medido de zon_barranca se cuenta, no tumba la corrida", async () => {
+    // Medido 2026-08-20: declara 11 y sirve 10 con cualquier página >= 11.
+    const fetchImpl = (async (input: string) => {
+      const start = Number(
+        new URL(String(input)).searchParams.get("startIndex") ?? 0,
+      );
+      return jsonResponse({
+        numberMatched: 11,
+        features:
+          start === 0
+            ? Array.from({ length: 10 }, () => ({ properties: {} }))
+            : [],
+      });
+    }) as unknown as typeof fetch;
+
+    const result = await fetchLayer(
+      "ZonificacionSismica:zon_barranca",
+      fetchImpl,
+      FAST,
+    );
+    expect(result.features).toHaveLength(10);
+    expect(result.matched).toBe(11);
+    expect(result.shortfall).toBe(1);
+  });
+
+  test("una capa sana no reporta hueco", async () => {
+    const fetchImpl = (async () =>
+      jsonResponse({
+        numberMatched: 8,
+        features: Array.from({ length: 8 }, () => ({ properties: {} })),
+      })) as unknown as typeof fetch;
+
+    const result = await fetchLayer(
+      "ZonificacionSismica:zon_tacna",
+      fetchImpl,
+      FAST,
+    );
+    expect(result.shortfall).toBe(0);
   });
 });
