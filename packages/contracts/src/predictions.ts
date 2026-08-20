@@ -1,3 +1,5 @@
+import type { SourceId } from "./sources";
+
 export type PredictionVerdict =
   | "PENDING"
   | "STRICT_HIT"
@@ -59,7 +61,7 @@ export interface PanoramaReport {
 }
 
 export interface ClaimedValidationSource {
-  sourceId: string;
+  sourceId: SourceId;
   sourceName: string;
   magnitude: number;
   depthKm: number;
