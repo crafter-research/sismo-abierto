@@ -30,13 +30,23 @@ export const TERRAIN_DIMENSIONS = [
 export type TerrainDimension = (typeof TERRAIN_DIMENSIONS)[number];
 
 /**
- * Capas agregadas nacionales: se excluyen de la ingesta porque una petición sin
- * paginar las corta en 100 sin avisar. Sus datos ya vienen completos por ciudad.
+ * Capas agregadas nacionales: cada dimensión publica una, con los mismos
+ * polígonos que sus capas por ciudad. Ingerir ambas duplica todo — medido en un
+ * dry-run de `Geodinamica`, que dio 572 features en vez de 286.
+ *
+ * Las seis se excluyen y la ingesta va siempre ciudad por ciudad. Hasta
+ * 2026-08-20 solo estaba listada la de `CapacidadPortante`, así que las otras
+ * cinco dimensiones se habrían duplicado al ingerirse.
  *
  * Excepción medida: ver `LAYERS_WITH_SOURCE_SHORTFALL` abajo.
  */
 export const AGGREGATE_LAYERS = new Set([
   "CapacidadPortante:capacidad_portante",
+  "ZonificacionSismica:zonificacion_sismica",
+  "Suelos:suelos",
+  "Geologia:geologia",
+  "Geomorfologia:geomorfologia",
+  "Geodinamica:geodinamica",
 ]);
 
 /**

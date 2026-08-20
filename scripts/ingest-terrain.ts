@@ -17,7 +17,18 @@ import {
   type TerrainDimension,
 } from "../packages/terrain/src/index.ts";
 
-const SOURCE_ID = "igp-wfs-capacidad-portante";
+/**
+ * Un id de procedencia por dimensión. Estaba fijo en `capacidad-portante`, así
+ * que toda dimensión ingerida quedaba etiquetada con la fuente equivocada.
+ */
+const SOURCE_IDS: Record<TerrainDimension, string> = {
+  CapacidadPortante: "igp-wfs-capacidad-portante",
+  ZonificacionSismica: "igp-wfs-zonificacion",
+  Suelos: "igp-wfs-suelos",
+  Geologia: "igp-wfs-geologia",
+  Geomorfologia: "igp-wfs-geomorfologia",
+  Geodinamica: "igp-wfs-geodinamica",
+};
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
@@ -51,7 +62,7 @@ if (store) {
   await store.startRun({
     id: runId,
     dimension,
-    sourceId: SOURCE_ID,
+    sourceId: SOURCE_IDS[dimension],
     startedAt,
     layersExpected: layers.length,
   });
@@ -71,7 +82,7 @@ try {
       await store.replaceLayer(
         result.layer,
         result.features,
-        SOURCE_ID,
+        SOURCE_IDS[dimension],
         new Date().toISOString(),
       );
     }
