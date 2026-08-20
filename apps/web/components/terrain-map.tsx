@@ -3,12 +3,14 @@
 import { SOIL_COLORS, SOIL_LEGEND } from "@sismo/terrain";
 import type * as MapLibreGL from "maplibre-gl";
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Map as MapCanvas,
   MapClusterLayer,
   MapControls,
   MapGeoJSON,
+  MapPopup,
+  useMap,
 } from "./ui/map";
 
 const soilFillColor = [
@@ -19,6 +21,79 @@ const soilFillColor = [
 ] as unknown as MapLibreGL.ExpressionSpecification;
 
 const PERU_CENTER: [number, number] = [-76.5, -10.5];
+
+// 4 decimales ≈ 11 metros de precisión, de sobra para ubicar un punto en un
+// mapa de zonificación cuyo polígono más chico mide cientos de metros.
+const COORDINATE_PRECISION = 4;
+
+// Capas que ya consumen su propio click (clusters de sismos y puntos
+// individuales). Si el click cayó en una de estas, el popup de "ver este
+// punto" cede el paso al comportamiento propio de la capa (zoom al cluster).
+const QUAKE_LAYER_PREFIXES = [
+  "clusters-",
+  "cluster-count-",
+  "unclustered-point-",
+];
+
+function formatCoordinate(value: number): string {
+  return value.toFixed(COORDINATE_PRECISION);
+}
+
+// Escucha clicks crudos del mapa (no de una capa específica) y muestra un
+// popup de confirmación antes de navegar a la ficha del punto. Vive como
+// componente aparte porque `useMap()` exige estar dentro de `MapContext`,
+// que solo existe una vez que `<MapCanvas>` montó su instancia de MapLibre.
+function MapClickToPoint() {
+  const { map } = useMap();
+  const [clicked, setClicked] = useState<[number, number] | null>(null);
+
+  useEffect(() => {
+    if (!map) return;
+
+    const handleClick = (e: MapLibreGL.MapMouseEvent) => {
+      const hits = map.queryRenderedFeatures(e.point);
+      const hitQuakeLayer = hits.some((feature) =>
+        QUAKE_LAYER_PREFIXES.some((prefix) =>
+          String(feature.layer.id).startsWith(prefix),
+        ),
+      );
+      if (hitQuakeLayer) return;
+
+      setClicked([e.lngLat.lng, e.lngLat.lat]);
+    };
+
+    map.on("click", handleClick);
+    return () => {
+      map.off("click", handleClick);
+    };
+  }, [map]);
+
+  if (!clicked) return null;
+
+  const [lon, lat] = clicked;
+  const href = `/terreno/punto?lon=${formatCoordinate(lon)}&lat=${formatCoordinate(lat)}`;
+
+  return (
+    <MapPopup
+      longitude={lon}
+      latitude={lat}
+      closeButton
+      onClose={() => setClicked(null)}
+    >
+      <div className="space-y-2 text-xs">
+        <p className="font-mono text-[11px] text-gray-900">
+          {formatCoordinate(lat)}, {formatCoordinate(lon)}
+        </p>
+        <a
+          href={href}
+          className="inline-flex items-center rounded bg-official px-2 py-1 font-medium text-official-soft hover:opacity-90"
+        >
+          Ver terreno acá
+        </a>
+      </div>
+    </MapPopup>
+  );
+}
 
 export function TerrainMap({
   quakesUrl,
@@ -43,7 +118,7 @@ export function TerrainMap({
       <div className="relative overflow-hidden rounded-lg border border-gray-200">
         <MapCanvas
           theme={resolvedTheme === "dark" ? "dark" : "light"}
-          className="h-[28rem] w-full sm:h-[34rem]"
+          className="h-[28rem] w-full cursor-pointer sm:h-[34rem]"
           center={focus ?? PERU_CENTER}
           zoom={zoom}
         >
@@ -70,6 +145,7 @@ export function TerrainMap({
           {showQuakes && quakesUrl ? (
             <MapClusterLayer data={quakesUrl} clusterRadius={40} />
           ) : null}
+          <MapClickToPoint />
         </MapCanvas>
         {hovered ? (
           <div className="pointer-events-none absolute bottom-2 left-2 rounded bg-background-100/95 px-2 py-1 font-mono text-[11px] text-gray-1000 shadow-sm">
@@ -77,6 +153,11 @@ export function TerrainMap({
           </div>
         ) : null}
       </div>
+
+      <p className="text-[11px] text-gray-800">
+        Hacé click en cualquier punto del mapa para ver la ficha de terreno de
+        esa ubicación.
+      </p>
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
         <label className="flex items-center gap-1.5">
