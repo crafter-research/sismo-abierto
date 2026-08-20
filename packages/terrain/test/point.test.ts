@@ -5,11 +5,18 @@ interface MockRow {
   [key: string]: unknown;
 }
 
-function mockSql(igpRows: MockRow[], ingemmetRows: MockRow[]) {
+function mockSql(
+  igpRows: MockRow[],
+  ingemmetRows: MockRow[],
+  faultRows: MockRow[] = [],
+) {
   const calls: { text: string; params: unknown[] }[] = [];
   const sql = {
     query: (text: string, params: unknown[] = []) => {
       calls.push({ text, params });
+      // nearestFaults también consulta ingemmet_features pero con `<->`, no
+      // `ST_Contains`: hay que distinguirla antes de caer al branch de IGP.
+      if (text.includes("<->")) return Promise.resolve(faultRows);
       const rows = text.includes("terrain_features") ? igpRows : ingemmetRows;
       return Promise.resolve(rows);
     },
@@ -152,15 +159,21 @@ describe("queryPoint", () => {
     expect(result.igp[0]?.studyYear).toBe("2018");
   });
 
-  test("pasa lon/lat como parámetros $1 $2 a ambas consultas", async () => {
+  test("pasa lon/lat como parámetros $1 $2 a las tres consultas", async () => {
     const { sql, calls } = mockSql([], []);
 
     await queryPoint(-77.03, -12.05, sql);
 
-    expect(calls).toHaveLength(2);
-    for (const call of calls) {
-      expect(call.params).toEqual([-77.03, -12.05]);
-      expect(call.text).toContain("ST_Contains");
+    expect(calls).toHaveLength(3);
+    const containsCalls = calls.filter((call) =>
+      call.text.includes("ST_Contains"),
+    );
+    const nearestCalls = calls.filter((call) => call.text.includes("<->"));
+    expect(containsCalls).toHaveLength(2);
+    expect(nearestCalls).toHaveLength(1);
+    for (const call of [...containsCalls, ...nearestCalls]) {
+      expect(call.params[0]).toBe(-77.03);
+      expect(call.params[1]).toBe(-12.05);
     }
   });
 });

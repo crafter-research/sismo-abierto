@@ -1,4 +1,5 @@
 import { type NeonQueryFunction, neon } from "@neondatabase/serverless";
+import { type NearestFault, nearestFaults } from "./faults.ts";
 
 export interface IgpPointMatch {
   dimension: string;
@@ -23,6 +24,8 @@ export interface PointTerrain {
   studyLevel: StudyLevel;
   /** Ciudades del IGP cuyos polígonos contienen el punto (puede ser >1). */
   cities: string[];
+  /** Fallas de INGEMMET más cercanas, ordenadas por distancia ascendente. */
+  nearestFaults: NearestFault[];
 }
 
 /** Texto en español para que la UI no invente copy sobre lo que significa cada nivel. */
@@ -95,15 +98,18 @@ function citiesOf(igp: IgpPointMatch[]): string[] {
  * Terreno en un punto: cruza `terrain_features` (IGP) e `ingemmet_features`
  * (INGEMMET) por `ST_Contains(geom, punto)`, cada tabla en su propia consulta
  * para no forzar un shape de columnas común entre dos esquemas distintos.
- * Ambas corren en paralelo — medido ~350ms el par, así que serializar
- * duplicaría la latencia sin motivo.
+ * Suma la falla más cercana (`nearestFaults`, vecino más cercano vía `<->`,
+ * no `ST_Contains`: una falla es geometría lineal, "adentro" casi nunca pasa).
+ * Las tres corren en paralelo — medido contra prod (ver `faults.ts`): sumar
+ * `nearestFaults` no movió la latencia total porque ya corría solapada con
+ * las otras dos, mientras que serializarla la hubiera casi duplicado.
  */
 export async function queryPoint(
   lon: number,
   lat: number,
   sql: NeonSql = neon(process.env.DATABASE_URL ?? ""),
 ): Promise<PointTerrain> {
-  const [igpRows, ingemmetRows] = (await Promise.all([
+  const [igpRows, ingemmetRows, faults] = (await Promise.all([
     sql.query(
       `SELECT dimension, city, properties
          FROM terrain_features
@@ -116,7 +122,8 @@ export async function queryPoint(
         WHERE ST_Contains(geom, ST_SetSRID(ST_MakePoint($1, $2), 4326))`,
       [lon, lat],
     ),
-  ])) as unknown as [IgpRow[], IngemmetRow[]];
+    nearestFaults(lon, lat, sql),
+  ])) as unknown as [IgpRow[], IngemmetRow[], NearestFault[]];
 
   const igp = igpRows.map(toIgpMatch);
   const ingemmet = ingemmetRows.map(toIngemmetMatch);
@@ -126,5 +133,6 @@ export async function queryPoint(
     ingemmet,
     studyLevel: studyLevelOf(igp, ingemmet),
     cities: citiesOf(igp),
+    nearestFaults: faults,
   };
 }
