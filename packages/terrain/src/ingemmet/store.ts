@@ -14,6 +14,8 @@ import { INGEMMET_ATTRIBUTION } from "./source.ts";
  * Viajan con la fila para que ningún consumidor pueda publicar el dato sin ellas.
  */
 export const INGEMMET_SCHEMA_SQL = `
+CREATE EXTENSION IF NOT EXISTS postgis;
+
 CREATE TABLE IF NOT EXISTS ingemmet_features (
   id TEXT PRIMARY KEY,
   layer_id TEXT NOT NULL,
@@ -23,7 +25,12 @@ CREATE TABLE IF NOT EXISTS ingemmet_features (
   attribution TEXT NOT NULL,
   fetched_at TIMESTAMPTZ NOT NULL
 );
+-- CREATE TABLE IF NOT EXISTS no agrega columnas a una tabla ya existente, y
+-- ingemmet_features ya existe en producción: la columna necesita su propio ADD.
+ALTER TABLE ingemmet_features ADD COLUMN IF NOT EXISTS geom geometry;
 CREATE INDEX IF NOT EXISTS ingemmet_features_layer ON ingemmet_features (layer_id);
+CREATE INDEX IF NOT EXISTS ingemmet_geom_gix
+  ON ingemmet_features USING GIST (geom);
 
 CREATE TABLE IF NOT EXISTS ingemmet_ingest_runs (
   id TEXT PRIMARY KEY,
@@ -128,11 +135,15 @@ export class IngemmetStore {
         feature.geometry === null ? null : JSON.stringify(feature.geometry),
         fetchedAt,
       );
-      return `($${base + 1}, $${base + 2}, $${base + 3}, $${base + 4}, $${base + 5}, '${INGEMMET_ATTRIBUTION.replace(/'/g, "''")}', $${base + 6})`;
+      // $base+5 (geometry) se reusa para geom: mismo GeoJSON, sin un séptimo
+      // placeholder por fila.
+      return `($${base + 1}, $${base + 2}, $${base + 3}, $${base + 4}, $${base + 5}, '${INGEMMET_ATTRIBUTION.replace(/'/g, "''")}', $${base + 6},
+        CASE WHEN $${base + 5}::jsonb IS NULL THEN NULL
+             ELSE ST_SetSRID(ST_GeomFromGeoJSON($${base + 5}::text), 4326) END)`;
     });
     await this.sql.query(
       `INSERT INTO ingemmet_features
-         (id, layer_id, object_id, properties, geometry, attribution, fetched_at)
+         (id, layer_id, object_id, properties, geometry, attribution, fetched_at, geom)
        VALUES ${rows.join(", ")}
        ON CONFLICT (id) DO NOTHING`,
       values,

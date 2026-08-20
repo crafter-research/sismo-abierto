@@ -8,5 +8,6 @@ export * from "./ingemmet/store.ts";
 export * from "./ingest.ts";
 export * from "./map-data.ts";
 export * from "./neon-store.ts";
+export * from "./point/index.ts";
 export * from "./refresh.ts";
 export * from "./zonification.ts";

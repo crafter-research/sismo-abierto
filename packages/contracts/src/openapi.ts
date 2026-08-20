@@ -5,6 +5,7 @@ import {
   eventListResponseSchema,
   incidentViewResponseSchema,
   latestEventResponseSchema,
+  pointTerrainResponseSchema,
   sourceDetailResponseSchema,
   sourcesResponseSchema,
   stationListResponseSchema,
@@ -193,6 +194,30 @@ const ENDPOINTS: EndpointSpec[] = [
     ],
     responseSchema: volcanoDetailResponseSchema,
     responseName: "VolcanoDetailResponse",
+  },
+  {
+    path: "/v1/terreno/punto",
+    summary: "Terreno en un punto",
+    description:
+      "Cruza microzonificación urbana del IGP y cobertura geomorfológica nacional de INGEMMET para un punto lon/lat. Que igp venga vacío es el caso normal: solo Lima y pocas ciudades más tienen microzonificación publicada. La atribución y fecha de descarga de INGEMMET viajan siempre en la respuesta.",
+    parameters: [
+      {
+        name: "lon",
+        in: "query",
+        required: true,
+        description: "Longitud en grados decimales, entre -180 y 180",
+        schema: { type: "number" },
+      },
+      {
+        name: "lat",
+        in: "query",
+        required: true,
+        description: "Latitud en grados decimales, entre -90 y 90",
+        schema: { type: "number" },
+      },
+    ],
+    responseSchema: pointTerrainResponseSchema,
+    responseName: "PointTerrainResponse",
   },
   {
     path: "/v1/sources",

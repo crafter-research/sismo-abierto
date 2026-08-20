@@ -28,10 +28,30 @@ export interface LayerIngestResult {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+/**
+ * Typos de la fuente en el nombre de capa, normalizados a la ciudad correcta.
+ *
+ * `Geologia:geologia_chaclacacayo` y `Suelos:suelos_chaclacacayo` traen "caca"
+ * repetido; las otras tres capas de Chaclacayo (CapacidadPortante, Geodinamica,
+ * Geomorfologia) están bien escritas. Sin esto, `cityFromLayerName` parte
+ * Chaclacayo en dos ciudades incompletas. Barrido de las 348 capas
+ * (`recon/evidence/igp-layer-counts-2026-08-20.txt`, distancia de Levenshtein
+ * <=2 entre nombres derivados) no encontró otro typo: el resto de pares
+ * cercanos (asia/casma, chala/chilca, chala/mala, ilo/ite) son ciudades
+ * distintas, no errores de tipeo.
+ */
+const CITY_TYPOS: Record<string, string> = {
+  chaclacacayo: "chaclacayo",
+};
+
 /** `CapacidadPortante:cap_por_alto_alianza` -> `alto_alianza` */
 export function cityFromLayerName(layer: string): string {
   const local = layer.slice(layer.indexOf(":") + 1);
-  return local.replace(/^(cap_por|suelos|geo[a-z]*|zon(?:a|ificacion)?)_/, "");
+  const city = local.replace(
+    /^(cap_por|suelos|geo[a-z]*|zon(?:a|ificacion)?)_/,
+    "",
+  );
+  return CITY_TYPOS[city] ?? city;
 }
 
 export function buildGetCapabilitiesUrl(): string {

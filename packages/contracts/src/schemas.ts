@@ -220,6 +220,29 @@ export const sourcesResponseSchema = z.object({
   disclaimer: z.string(),
 });
 
+export const igpPointMatchSchema = z.object({
+  dimension: z.string(),
+  city: z.string(),
+  properties: z.record(z.string(), z.unknown()),
+  studyYear: z.string().nullable(),
+});
+
+export const ingemmetPointMatchSchema = z.object({
+  layer: z.string(),
+  properties: z.record(z.string(), z.unknown()),
+  attribution: z.string(),
+  fetchedAt: z.string(),
+});
+
+export const pointTerrainResponseSchema = z.object({
+  igp: z.array(igpPointMatchSchema),
+  ingemmet: z.array(ingemmetPointMatchSchema),
+  studyLevel: z.enum(["microzonificacion", "nacional", "ninguno"]),
+  cities: z.array(z.string()),
+  attribution: z.string(),
+  disclaimer: z.string(),
+});
+
 export const sourceDetailResponseSchema = z.object({
   source: sourceStateResponseSchema,
   recentChecks: z.array(
