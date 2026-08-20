@@ -77,6 +77,25 @@ describe("descubrimiento de capas", () => {
     );
   });
 
+  test("normaliza el typo de la fuente en Chaclacayo", () => {
+    // Geologia y Suelos publican "chaclacacayo" (con "caca" repetido); el resto
+    // de dimensiones publica "chaclacayo" bien escrito. Sin normalizar, la
+    // misma ciudad queda partida en dos.
+    expect(cityFromLayerName("Geologia:geologia_chaclacacayo")).toBe(
+      "chaclacayo",
+    );
+    expect(cityFromLayerName("Suelos:suelos_chaclacacayo")).toBe("chaclacayo");
+    expect(cityFromLayerName("CapacidadPortante:cap_por_chaclacayo")).toBe(
+      "chaclacayo",
+    );
+    expect(cityFromLayerName("Geodinamica:geodinamica_chaclacayo")).toBe(
+      "chaclacayo",
+    );
+    expect(cityFromLayerName("Geomorfologia:geomorfologia_chaclacayo")).toBe(
+      "chaclacayo",
+    );
+  });
+
   test("pide GeoJSON al WFS", () => {
     const url = buildFeatureUrl("CapacidadPortante:cap_por_tacna");
     expect(url).toContain("outputFormat=application%2Fjson");

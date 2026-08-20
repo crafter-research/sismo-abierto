@@ -7,6 +7,8 @@ import type { TerrainFeature } from "./ingest.ts";
  * antes de habilitar la ingesta en producción, igual que `packages/incidents`.
  */
 export const TERRAIN_SCHEMA_SQL = `
+CREATE EXTENSION IF NOT EXISTS postgis;
+
 CREATE TABLE IF NOT EXISTS terrain_features (
   id TEXT PRIMARY KEY,
   dimension TEXT NOT NULL,
@@ -17,8 +19,13 @@ CREATE TABLE IF NOT EXISTS terrain_features (
   source_id TEXT NOT NULL,
   ingested_at TIMESTAMPTZ NOT NULL
 );
+-- CREATE TABLE IF NOT EXISTS no agrega columnas a una tabla ya existente, y
+-- terrain_features ya existe en producción: la columna necesita su propio ADD.
+ALTER TABLE terrain_features ADD COLUMN IF NOT EXISTS geom geometry;
 CREATE INDEX IF NOT EXISTS terrain_features_dimension_city
   ON terrain_features (dimension, city);
+CREATE INDEX IF NOT EXISTS terrain_geom_gix
+  ON terrain_features USING GIST (geom);
 
 CREATE TABLE IF NOT EXISTS terrain_ingest_runs (
   id TEXT PRIMARY KEY,
@@ -71,6 +78,10 @@ export class NeonTerrainStore {
    * Reemplaza la capa entera dentro de una transacción: el borrado y la
    * inserción viajan juntos, así una corrida interrumpida no deja la ciudad
    * vacía en la base.
+   *
+   * `geom` se puebla en el mismo INSERT desde `geometry` (GeoJSON) en vez de en
+   * un paso aparte: el dato nace correcto y no hay ventana donde una fila tenga
+   * `geometry` sin su `geom` equivalente.
    */
   async replaceLayer(
     layer: string,
@@ -83,8 +94,11 @@ export class NeonTerrainStore {
       ...features.map((feature, index) =>
         this.sql.query(
           `INSERT INTO terrain_features
-             (id, dimension, layer, city, properties, geometry, source_id, ingested_at)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+             (id, dimension, layer, city, properties, geometry, geom, source_id, ingested_at)
+           VALUES ($1, $2, $3, $4, $5, $6,
+             CASE WHEN $6::jsonb IS NULL THEN NULL
+                  ELSE ST_SetSRID(ST_GeomFromGeoJSON($6::text), 4326) END,
+             $7, $8)`,
           [
             `${layer}#${index}`,
             feature.dimension,
