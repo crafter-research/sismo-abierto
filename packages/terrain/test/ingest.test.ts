@@ -1,5 +1,9 @@
 import { describe, expect, test } from "bun:test";
-import { AGGREGATE_LAYERS, TERRAIN_DIMENSIONS } from "../src/dimensions.ts";
+import {
+  AGGREGATE_LAYERS,
+  TERRAIN_DIMENSIONS,
+  type TerrainDimension,
+} from "../src/dimensions.ts";
 import {
   buildFeatureUrl,
   cityFromLayerName,
@@ -29,6 +33,29 @@ describe("descubrimiento de capas", () => {
       "CapacidadPortante:cap_por_barranca",
       "CapacidadPortante:cap_por_tacna",
     ]);
+  });
+
+  test("cada dimensión excluye su capa nacional", () => {
+    // Estaba listada solo la de CapacidadPortante: las otras cinco se habrían
+    // ingerido junto a sus capas por ciudad, duplicando todo.
+    const nacionales: [TerrainDimension, string][] = [
+      ["CapacidadPortante", "CapacidadPortante:capacidad_portante"],
+      ["ZonificacionSismica", "ZonificacionSismica:zonificacion_sismica"],
+      ["Suelos", "Suelos:suelos"],
+      ["Geologia", "Geologia:geologia"],
+      ["Geomorfologia", "Geomorfologia:geomorfologia"],
+      ["Geodinamica", "Geodinamica:geodinamica"],
+    ];
+    for (const [dimension, layer] of nacionales) {
+      expect(AGGREGATE_LAYERS.has(layer)).toBe(true);
+      const caps = `<WFS_Capabilities>
+        <FeatureType><Name>${layer}</Name></FeatureType>
+        <FeatureType><Name>${dimension}:algo_ciudad</Name></FeatureType>
+      </WFS_Capabilities>`;
+      expect(layersForDimension(caps, dimension)).toEqual([
+        `${dimension}:algo_ciudad`,
+      ]);
+    }
   });
 
   test("excluye la capa nacional agregada que el servidor trunca en 100", () => {
