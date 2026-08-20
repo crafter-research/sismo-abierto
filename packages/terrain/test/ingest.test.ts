@@ -62,9 +62,9 @@ describe("rate limit silencioso del WFS", () => {
     let calls = 0;
     const fetchImpl = (async () => {
       calls++;
-      if (calls === 1) return jsonResponse({ numberMatched: 2 });
+      if (calls === 1) return jsonResponse({ numberMatched: 1 });
       return jsonResponse({
-        numberMatched: 2,
+        numberMatched: 1,
         features: [{ properties: { zona: "II" }, geometry: null }],
       });
     }) as unknown as typeof fetch;
@@ -105,5 +105,36 @@ describe("rate limit silencioso del WFS", () => {
         FAST,
       ),
     ).rejects.toThrow(/tacna/);
+  });
+});
+
+describe("tope de 100 features por petición", () => {
+  test("una respuesta truncada no se acepta como capa completa", async () => {
+    const truncated = {
+      numberMatched: 436,
+      features: Array.from({ length: 100 }, () => ({ properties: {} })),
+    };
+    const fetchImpl = (async () =>
+      jsonResponse(truncated)) as unknown as typeof fetch;
+
+    await expect(
+      fetchLayer("Geologia:geologia", fetchImpl, FAST),
+    ).rejects.toThrow(/100 de 436/);
+  });
+
+  test("una capa que llega entera sí pasa", async () => {
+    const fetchImpl = (async () =>
+      jsonResponse({
+        numberMatched: 2,
+        features: [{ properties: {} }, { properties: {} }],
+      })) as unknown as typeof fetch;
+
+    const result = await fetchLayer(
+      "Geologia:geologia_barranca",
+      fetchImpl,
+      FAST,
+    );
+    expect(result.matched).toBe(2);
+    expect(result.features).toHaveLength(2);
   });
 });

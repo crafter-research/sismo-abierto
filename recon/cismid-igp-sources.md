@@ -174,10 +174,49 @@ Confirma con evidencia directa (no solo inferencia del nombre del proyecto): **S
 - ArcGIS REST de MVCS detras del WAF (`geo.vivienda.gob.pe/arcgis/rest/services`) — probar con navegador real via agent-browser en vez de curl.
 - Contenido completo del listado de 18 geoportales en GEOIDEP (solo se capturaron 4-5 entradas del extracto de texto).
 - Busquedas alternativas en `datosabiertos.gob.pe` con terminos distintos a "microzonificacion" ("peligro sismico", "suelos", "vulnerabilidad", "zonificacion").
-- Suelos, Geologia, Geomorfologia, Geodinamica del WFS de IGP — se confirmo la existencia de las capas y su schema por analogia con CapacidadPortante/ZonificacionSismica, pero no se corrio `GetFeature` real sobre estas cuatro especificamente.
+- ~~Suelos, Geologia, Geomorfologia, Geodinamica del WFS de IGP — no se corrio `GetFeature` real sobre estas cuatro.~~ **Medido 2026-08-20**: `GetFeature` real sobre las 348 capas de terreno. Ver seccion "Tope de 100 features por peticion" y `recon/evidence/igp-layer-counts-2026-08-20.txt`.
 - `SENCICO` — no explorado en absoluto mas alla de confirmar que resuelve.
 - `INDECI` — dominio propio no resuelve; falta encontrar si tiene geoportal bajo otro dominio.
 - `IMP` (Lima) — dominio resuelve pero no cargo consistentemente; no se confirmo si tiene geoportal.
+
+## Tope de 100 features por peticion (medido 2026-08-20)
+
+El WFS del IGP sirve **como maximo 100 features por peticion, en cualquier capa**. No es un
+tope del dato: `numberMatched` trae el total verdadero y el resto se alcanza paginando con
+`startIndex`. Se midieron las **348 capas** de las seis dimensiones de terreno con `GetFeature`
+real (evidencia cruda en `recon/evidence/igp-layer-counts-2026-08-20.txt`).
+
+| Dimension | Total real | Suma por ciudad | Ciudades | Capa mas grande | Trunca la nacional? |
+|---|---|---|---|---|---|
+| ZonificacionSismica | 544 | 543 | 57 | 35 | no |
+| Geologia | 436 | 436 | 57 | 16 | **si, a 100** |
+| Geomorfologia | 424 | 424 | 57 | 16 | no |
+| Suelos | 330 | 330 | 57 | 15 | **si, a 100** |
+| Geodinamica | 286 | 286 | 57 | 42 | **si, a 100** |
+| CapacidadPortante | 174 | 174 | 57 | 10 | **si, a 100** |
+
+Tres cosas que salieron de la medicion:
+
+1. **`resultType=hits` miente.** Pedido asi, `numberMatched` devuelve `100` para cuatro de las
+   seis capas nacionales. El mismo conteo pedido con un `GetFeature` normal (`count=1` basta)
+   devuelve el total verdadero. El aviso que arrastraban los handoffs ("100 exacto huele a
+   limite del servidor") era correcto en el sintoma y equivocado en la causa: el tope no esta
+   en el dato ni en el conteo, esta en el camino `hits`. Los probes de `source-health` ya usan
+   `count=1`, asi que no estaban afectados.
+
+2. **Ninguna capa por ciudad pasa de 42 features.** La ingesta ciudad por ciudad esquiva el tope
+   por construccion, y la suma por ciudad reconcilia exacto con la nacional en cinco de seis
+   dimensiones.
+
+3. **La sexta no reconcilia, y es un dato que falta en la fuente.** `zon_barranca` declara
+   `numberMatched=11` y sirve **10** en una peticion simple, de forma reproducible. El poligono
+   que falta es un `Suelo Tipo S4: Excepcionalmente flexible`. Paginando (`count=5` x3) aparecen
+   los 11, con ids unicos. La capa nacional si lo trae, y es de ahi que salio el snapshot en
+   `packages/terrain/data/`, asi que **el dato publicado no esta afectado**.
+
+**Rate limit, re-medido.** De las 348 capas pedidas con 1.2s de pausa, 145 devolvieron el cuerpo
+sin `features` (el fallo silencioso ya conocido). Reintentadas con 3s de pausa: **145/145 OK**.
+Confirma que el modo de falla es throttling, no capas rotas.
 
 ## Veredicto por fuente
 

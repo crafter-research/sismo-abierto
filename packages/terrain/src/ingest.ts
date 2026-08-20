@@ -104,12 +104,17 @@ export async function fetchLayer(
       lastError = "respuesta sin `features` (rate limit silencioso del WFS)";
       continue;
     }
+    const matched = Number(body.numberMatched ?? body.features.length);
+    if (Number.isFinite(matched) && body.features.length < matched) {
+      lastError = `el WFS sirvió ${body.features.length} de ${matched} features (tope por petición); falta paginar con startIndex`;
+      continue;
+    }
     const city = cityFromLayerName(layer);
     const dimension = layer.slice(0, layer.indexOf(":")) as TerrainDimension;
     return {
       layer,
       city,
-      matched: Number(body.numberMatched ?? body.features.length),
+      matched,
       features: body.features.map((feature) => ({
         dimension,
         layer,
