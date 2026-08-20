@@ -234,11 +234,18 @@ export const ingemmetPointMatchSchema = z.object({
   fetchedAt: z.string(),
 });
 
+export const nearestFaultSchema = z.object({
+  description: z.string(),
+  distanceMeters: z.number(),
+  isConfirmedFault: z.boolean(),
+});
+
 export const pointTerrainResponseSchema = z.object({
   igp: z.array(igpPointMatchSchema),
   ingemmet: z.array(ingemmetPointMatchSchema),
   studyLevel: z.enum(["microzonificacion", "nacional", "ninguno"]),
   cities: z.array(z.string()),
+  nearestFaults: z.array(nearestFaultSchema),
   attribution: z.string(),
   disclaimer: z.string(),
 });

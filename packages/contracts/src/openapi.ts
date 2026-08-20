@@ -199,7 +199,7 @@ const ENDPOINTS: EndpointSpec[] = [
     path: "/v1/terreno/punto",
     summary: "Terreno en un punto",
     description:
-      "Cruza microzonificación urbana del IGP y cobertura geomorfológica nacional de INGEMMET para un punto lon/lat. Que igp venga vacío es el caso normal: solo Lima y pocas ciudades más tienen microzonificación publicada. La atribución y fecha de descarga de INGEMMET viajan siempre en la respuesta.",
+      "Cruza microzonificación urbana del IGP y cobertura geomorfológica nacional de INGEMMET para un punto lon/lat, y suma las fallas de INGEMMET más cercanas por distancia real (no por contención: una falla es geometría lineal). Que igp venga vacío es el caso normal: solo Lima y pocas ciudades más tienen microzonificación publicada. `nearestFaults` incluye lineamientos con `isConfirmedFault: false` porque no son fallas confirmadas. La atribución y fecha de descarga de INGEMMET viajan siempre en la respuesta.",
     parameters: [
       {
         name: "lon",

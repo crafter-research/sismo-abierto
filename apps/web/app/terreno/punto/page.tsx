@@ -1,6 +1,7 @@
 import {
   describeIgpMatch,
   describeIngemmetMatch,
+  type NearestFault,
   queryPoint,
   type StudyLevel,
   studyLevelLabel,
@@ -8,7 +9,7 @@ import {
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ClassBadge } from "../../../components/badges";
-import { formatFetchedAt } from "../../../lib/format";
+import { formatDistanceMeters, formatFetchedAt } from "../../../lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -118,6 +119,8 @@ export default async function PointTerrainPage({
           ) : null}
         </p>
       </header>
+
+      <FaultProximitySection faults={terrain.nearestFaults} />
 
       {terrain.studyLevel === "ninguno" ? (
         <section
@@ -250,6 +253,51 @@ export default async function PointTerrainPage({
         </section>
       ) : null}
     </div>
+  );
+}
+
+/**
+ * Proximidad a fallas de INGEMMET, independiente del `studyLevel`: una falla
+ * puede estar cerca de un punto sin microzonificación ni cobertura geomorfológica.
+ * Copy deliberadamente sin alarmismo: la escala 1:100 000 de INGEMMET implica
+ * cientos de metros de incertidumbre en la posición de la línea, y estar cerca
+ * de una falla mapeada no es sinónimo de peligro inmediato.
+ */
+function FaultProximitySection({ faults }: { faults: NearestFault[] }) {
+  if (faults.length === 0) return null;
+
+  const nearest = faults[0];
+  if (!nearest) return null;
+
+  return (
+    <section
+      className="rounded-lg border border-gray-200 p-4"
+      data-testid="fault-proximity"
+    >
+      <h2 className="mb-2 font-semibold">Proximidad a fallas geológicas</h2>
+      <p className="text-sm text-gray-900" data-testid="nearest-fault">
+        {nearest.isConfirmedFault
+          ? `${nearest.description} a ${formatDistanceMeters(nearest.distanceMeters)}`
+          : `${nearest.description} (rasgo lineal sin confirmar como falla) a ${formatDistanceMeters(nearest.distanceMeters)}`}
+      </p>
+      {faults.length > 1 ? (
+        <ul className="mt-1 space-y-0.5 text-xs text-gray-800">
+          {faults.slice(1).map((fault) => (
+            <li key={`${fault.description}-${fault.distanceMeters}`}>
+              {fault.description}
+              {fault.isConfirmedFault ? "" : " (sin confirmar)"} a{" "}
+              {formatDistanceMeters(fault.distanceMeters)}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      <p className="mt-2 text-xs text-gray-800">
+        Estar cerca de una falla mapeada no significa peligro inmediato: la
+        mayoría de fallas no rompen la superficie en un sismo. El mapeo de
+        INGEMMET es a escala 1:100 000, así que la posición de la línea tiene
+        una incertidumbre de cientos de metros.
+      </p>
+    </section>
   );
 }
 
