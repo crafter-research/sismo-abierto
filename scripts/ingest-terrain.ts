@@ -59,9 +59,12 @@ if (store) {
 
 let featureCount = 0;
 let ingested = 0;
+let shortfall = 0;
 try {
   const results = await ingestDimension(layers, fetch, (result) => {
-    console.log(`  ${result.city}: ${result.features.length}`);
+    const gap =
+      result.shortfall > 0 ? ` (faltan ${result.shortfall} en la fuente)` : "";
+    console.log(`  ${result.city}: ${result.features.length}${gap}`);
   });
   for (const result of results) {
     if (store) {
@@ -73,6 +76,7 @@ try {
       );
     }
     featureCount += result.features.length;
+    shortfall += result.shortfall;
     ingested++;
   }
 } catch (error) {
@@ -90,12 +94,23 @@ try {
   process.exit(1);
 }
 
+if (shortfall > 0) {
+  console.warn(
+    `\nAviso: la fuente declaró ${shortfall} feature(s) que nunca entregó (ver LAYERS_WITH_SOURCE_SHORTFALL).`,
+  );
+}
+
 if (store) {
   await store.finishRun(runId, {
     finishedAt: new Date().toISOString(),
     layersIngested: ingested,
     featureCount,
     status: "ok",
+    ...(shortfall > 0
+      ? {
+          note: `${shortfall} feature(s) declarados y no entregados por la fuente`,
+        }
+      : {}),
   });
 }
 

@@ -33,13 +33,28 @@ export type TerrainDimension = (typeof TERRAIN_DIMENSIONS)[number];
  * Capas agregadas nacionales: se excluyen de la ingesta porque una petición sin
  * paginar las corta en 100 sin avisar. Sus datos ya vienen completos por ciudad.
  *
- * Excepción medida: `zon_barranca` declara `numberMatched=11` y sirve 10 en una
- * petición simple. El polígono que falta ("Suelo Tipo S4: Excepcionalmente
- * flexible") solo aparece paginando. La capa nacional sí lo trae, y es de ahí
- * que salió el snapshot en `data/`.
+ * Excepción medida: ver `LAYERS_WITH_SOURCE_SHORTFALL` abajo.
  */
 export const AGGREGATE_LAYERS = new Set([
   "CapacidadPortante:capacidad_portante",
+]);
+
+/**
+ * Capas donde la fuente declara más features de los que entrega, medido y
+ * reproducible. No es truncamiento nuestro: paginar no las completa.
+ *
+ * `zon_barranca` declara 11 y sirve 10 con cualquier página >= 11. Con páginas
+ * menores (5, 10) el servidor sí devuelve las 11, así que el polígono existe;
+ * la capa por ciudad simplemente lo pierde cuando una sola petición podría
+ * traerlo todo. El polígono faltante es un `Suelo Tipo S4: Excepcionalmente
+ * flexible` que la capa nacional sí trae, y de la nacional salió el snapshot en
+ * `data/`, así que el dato publicado no está afectado.
+ *
+ * Se listan para que la ingesta no se caiga por un defecto de la fuente, pero
+ * el hueco queda visible en `LayerIngestResult.shortfall`.
+ */
+export const LAYERS_WITH_SOURCE_SHORTFALL = new Set([
+  "ZonificacionSismica:zon_barranca",
 ]);
 
 /**
@@ -50,6 +65,13 @@ export const AGGREGATE_LAYERS = new Set([
  * El modo de falla es silencioso: no llega un error HTTP, llega un cuerpo sin
  * el conteo. Por eso el ingestor falla ruidoso en lugar de asumir cero.
  */
+/**
+ * El servidor sirve 100 features por petición como máximo y no honra un `count`
+ * mayor: medido con count=100/200/500/1000 sobre `Geologia:geologia`, las cuatro
+ * devolvieron 100. Por eso la página es 100 y no un número elegido.
+ */
+export const WFS_PAGE_SIZE = 100;
+
 export const WFS_REQUEST_DELAY_MS = 1_200;
 export const WFS_MAX_ATTEMPTS = 3;
 export const WFS_RETRY_BACKOFF_MS = 3_000;
