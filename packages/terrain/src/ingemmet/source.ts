@@ -82,6 +82,15 @@ export const INGEMMET_MIN_BATCH_SIZE = 25;
  */
 export const INGEMMET_REQUEST_DELAY_MS = 1_200;
 
+/**
+ * Timeout por petición.
+ *
+ * Sin esto, `fetch` espera indefinidamente: una corrida quedó 9 minutos con 0%
+ * de CPU y una conexión abierta, sin avanzar ni fallar. Un lote sano tarda
+ * segundos y uno rechazado responde 500 en ~20s, así que 90s es holgado.
+ */
+export const INGEMMET_TIMEOUT_MS = 90_000;
+
 export const INGEMMET_MAX_ATTEMPTS = 5;
 export const INGEMMET_RETRY_BACKOFF_MS = 8_000;
 

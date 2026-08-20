@@ -95,7 +95,7 @@ describe("capa entera", () => {
   test("entrega los lotes a medida que llegan y cuenta el total", async () => {
     const ids = Array.from({ length: 1200 }, (_, i) => i + 1);
     const fetchImpl = (async (_input: string, init?: RequestInit) => {
-      if (!init) return jsonResponse({ objectIds: ids });
+      if (!init?.body) return jsonResponse({ objectIds: ids });
       const asked = new URLSearchParams(String(init.body)).get("objectIds");
       const list = (asked ?? "").split(",").filter(Boolean);
       return jsonResponse({
@@ -127,7 +127,7 @@ describe("lotes que el servicio rechaza por peso", () => {
     const ids = Array.from({ length: 500 }, (_, i) => i + 1);
     const sizesAsked: number[] = [];
     const fetchImpl = (async (_input: string, init?: RequestInit) => {
-      if (!init) return jsonResponse({ objectIds: ids });
+      if (!init?.body) return jsonResponse({ objectIds: ids });
       const list = (
         new URLSearchParams(String(init.body)).get("objectIds") ?? ""
       )
@@ -168,7 +168,7 @@ describe("lotes que el servicio rechaza por peso", () => {
   test("un lote que falla ya en el piso se propaga", async () => {
     const ids = [1, 2, 3];
     const fetchImpl = (async (_input: string, init?: RequestInit) => {
-      if (!init) return jsonResponse({ objectIds: ids });
+      if (!init?.body) return jsonResponse({ objectIds: ids });
       return new Response("boom", { status: 500 });
     }) as unknown as typeof fetch;
 
@@ -183,7 +183,7 @@ describe("reanudar una corrida cortada", () => {
     const ids = Array.from({ length: 1000 }, (_, i) => i + 1);
     const asked: number[] = [];
     const fetchImpl = (async (_input: string, init?: RequestInit) => {
-      if (!init) return jsonResponse({ objectIds: ids });
+      if (!init?.body) return jsonResponse({ objectIds: ids });
       const list = (
         new URLSearchParams(String(init.body)).get("objectIds") ?? ""
       )

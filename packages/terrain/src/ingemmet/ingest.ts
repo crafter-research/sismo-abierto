@@ -6,6 +6,7 @@ import {
   INGEMMET_MIN_BATCH_SIZE,
   INGEMMET_REQUEST_DELAY_MS,
   INGEMMET_RETRY_BACKOFF_MS,
+  INGEMMET_TIMEOUT_MS,
   type IngemmetLayer,
   idsUrl,
 } from "./source.ts";
@@ -67,7 +68,9 @@ export async function fetchObjectIds(
   return withRetry(
     `ids de ${layer.id}`,
     async () => {
-      const response = await fetchImpl(idsUrl(layer));
+      const response = await fetchImpl(idsUrl(layer), {
+        signal: AbortSignal.timeout(INGEMMET_TIMEOUT_MS),
+      });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const body = (await response.json()) as { objectIds?: number[] };
       if (!Array.isArray(body.objectIds)) {
@@ -101,6 +104,7 @@ export async function fetchBatch(
         method: "POST",
         headers: { "content-type": "application/x-www-form-urlencoded" },
         body: featuresBody(layer, ids).toString(),
+        signal: AbortSignal.timeout(INGEMMET_TIMEOUT_MS),
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const body = (await response.json()) as {
