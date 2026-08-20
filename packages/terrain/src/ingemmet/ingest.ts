@@ -3,7 +3,6 @@ import {
   featuresUrl,
   INGEMMET_BATCH_SIZE,
   INGEMMET_MAX_ATTEMPTS,
-  INGEMMET_MIN_BATCH_SIZE,
   INGEMMET_REQUEST_DELAY_MS,
   INGEMMET_RETRY_BACKOFF_MS,
   INGEMMET_TIMEOUT_MS,
@@ -34,22 +33,35 @@ export function batchIds(
   return out;
 }
 
+/**
+ * Marca un fallo como "este lote es demasiado pesado" en vez de "el servicio
+ * tuvo un mal momento".
+ *
+ * Distinguirlos importa por tiempo: reintentar un lote que el servidor no puede
+ * componer cuesta ~36s por intento y nunca funciona. Partirlo, sí. Medido sobre
+ * geomorfología: 5 intentos con backoff antes de partir dan ~4 minutos por
+ * nivel de recursión, y la corrida parece colgada.
+ */
+class BatchTooHeavyError extends Error {}
+
 async function withRetry<T>(
   what: string,
   attempt: () => Promise<T>,
   retryBackoffMs: number,
+  attempts = INGEMMET_MAX_ATTEMPTS,
 ): Promise<T> {
   let lastError = "";
-  for (let i = 1; i <= INGEMMET_MAX_ATTEMPTS; i++) {
+  for (let i = 1; i <= attempts; i++) {
     if (i > 1) await sleep(retryBackoffMs);
     try {
       return await attempt();
     } catch (error) {
+      if (error instanceof BatchTooHeavyError) throw error;
       lastError = error instanceof Error ? error.message : String(error);
     }
   }
   throw new Error(
-    `GEOCATMIN falló en ${what} tras ${INGEMMET_MAX_ATTEMPTS} intentos: ${lastError}`,
+    `GEOCATMIN falló en ${what} tras ${attempts} intentos: ${lastError}`,
   );
 }
 
@@ -106,6 +118,11 @@ export async function fetchBatch(
         body: featuresBody(layer, ids).toString(),
         signal: AbortSignal.timeout(INGEMMET_TIMEOUT_MS),
       });
+      // 500 en un POST de lote es el servicio diciendo que no puede componer esa
+      // respuesta. No se reintenta: se parte.
+      if (response.status >= 500) {
+        throw new BatchTooHeavyError(`HTTP ${response.status}`);
+      }
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const body = (await response.json()) as {
         features?: {
@@ -151,7 +168,9 @@ async function fetchAdaptive(
   try {
     return await fetchBatch(layer, ids, fetchImpl, timing);
   } catch (error) {
-    if (ids.length <= INGEMMET_MIN_BATCH_SIZE) throw error;
+    // Solo se parte por peso. Cualquier otro fallo ya agotó sus reintentos.
+    if (!(error instanceof BatchTooHeavyError)) throw error;
+    if (ids.length <= 1) throw error;
     const mid = Math.ceil(ids.length / 2);
     const out: IngemmetFeature[] = [];
     for (const half of [ids.slice(0, mid), ids.slice(mid)]) {

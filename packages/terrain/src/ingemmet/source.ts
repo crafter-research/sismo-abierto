@@ -59,8 +59,6 @@ export const INGEMMET_LAYERS: IngemmetLayer[] = [
 export const INGEMMET_BATCH_SIZE = 500;
 
 /**
- * Piso al que se puede partir un lote antes de darse por vencido.
- *
  * El límite real de GEOCATMIN no es la cantidad de features sino el **peso de la
  * respuesta**: medido 2026-08-20 sobre geomorfología, un lote de 500 devolvió
  * 12.9MB y otro murió con HTTP 500 y `Error performing query operation`, mientras
@@ -68,9 +66,8 @@ export const INGEMMET_BATCH_SIZE = 500;
  *
  * Los polígonos con muchos vértices son los que pesan, y no hay forma de saber
  * cuánto pesa un lote antes de pedirlo. Por eso el lote se parte al fallar en vez
- * de fijar un tamaño chico para todos: la mayoría entra bien en 500.
- */
-export const INGEMMET_MIN_BATCH_SIZE = 25;
+ * de fijar un tamaño chico para todos: la mayoría entra bien en 500, y el que no
+ * se parte hasta que entre — un solo polígono puede ser el pesado.
 
 /**
  * Pausa entre lotes y política de reintento.
