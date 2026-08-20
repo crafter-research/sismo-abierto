@@ -61,6 +61,11 @@ export const SOURCES = {
     name: "EMSC · European-Mediterranean Seismological Centre (contraste global)",
     url: "https://www.seismicportal.eu/fdsnws/event/1/",
   },
+  "gfz-geofon": {
+    id: "gfz-geofon",
+    name: "GFZ · GEOFON · Helmholtz-Zentrum Potsdam (contraste global)",
+    url: "https://geofon.gfz.de/fdsnws/event/1/",
+  },
   "sgc-sismos": {
     id: "sgc-sismos",
     name: "SGC · Servicio Geológico Colombiano · Sismos",

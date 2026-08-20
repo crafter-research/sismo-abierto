@@ -287,5 +287,50 @@
     "claimedMagnitude": 4.6,
     "claimedMagnitudeScale": "magnitud de onda de cuerpo",
     "claimedSourceCited": null
+  },
+  {
+    "predictionId": "W20260817-P3",
+    "sourceAccount": "sismos.en.peru",
+    "claimText": "Proyección cumplida",
+    "sourcePublishedAtLima": "2026-08-20T15:00:00-05:00",
+    "sourceEvidence": "Dos publicaciones aportadas por el usuario el 2026-08-20: la primera titula el evento como 6.5 en escala de momento y la segunda lo corrige a 6.5-6.7 citando USGS, EMSC y GFZ. La captura muestra identificadores truncados (us6000tm8, gfz2026qhk) y una fila de GFZ 5.4 en 8.39 S 121.43 E, que corresponde a un evento de Indonesia, no a este.",
+    "eventTimeUtc": "2026-08-20T18:00:18Z",
+    "eventPlace": "31 km al NO de Aniso, Ayacucho, Perú",
+    "latitude": -14.6414,
+    "longitude": -73.5236,
+    "sources": [
+      {
+        "sourceId": "usgs-fdsn",
+        "sourceName": "USGS · ComCat",
+        "magnitude": 6.7,
+        "depthKm": 99,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tm81"
+      },
+      {
+        "sourceId": "emsc-seismicportal",
+        "sourceName": "EMSC · Seismic Portal",
+        "magnitude": 6.7,
+        "depthKm": 70.2,
+        "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-20T17:30:00&endtime=2026-08-20T18:30:00&minmag=6&minlat=-18&maxlat=-10&minlon=-78&maxlon=-70"
+      },
+      {
+        "sourceId": "gfz-geofon",
+        "sourceName": "GFZ · GEOFON",
+        "magnitude": 6.58,
+        "depthKm": 98,
+        "url": "https://geofon.gfz.de/fdsnws/event/1/query?format=text&starttime=2026-08-20T17:00:00&endtime=2026-08-20T19:00:00&minmagnitude=6&minlatitude=-18&maxlatitude=-10&minlongitude=-78&maxlongitude=-70"
+      },
+      {
+        "sourceId": "igp-censis-catalogo",
+        "sourceName": "IGP · CENSIS",
+        "magnitude": 7.2,
+        "depthKm": 108,
+        "url": "https://censis.igp.gob.pe/api/ultimo-sismo/descargar-datos?tipoCatalogo=Instrumental&fechaInicio=2026-08-19&fechaFin=2026-08-21&minimaMagnitud=6&maximaMagnitud=9&minimaProfundidad=0&maximaProfundidad=900&latitudNorte=-8&latitudSur=-20&longitudEste=-68&longitudOeste=-80"
+      }
+    ],
+    "assessment": "OUTSIDE_FROZEN_MAGNITUDE",
+    "claimedMagnitude": 6.5,
+    "claimedMagnitudeScale": "escala de momento",
+    "claimedSourceCited": "USGS, EMSC y GFZ"
   }
 ]
