@@ -118,7 +118,7 @@ describe("capa entera", () => {
     );
 
     expect(seen).toEqual([500, 500, 200]);
-    expect(result).toEqual({ total: 1200, ingested: 1200 });
+    expect(result).toEqual({ total: 1200, ingested: 1200, skipped: 0 });
   });
 });
 
@@ -159,7 +159,7 @@ describe("lotes que el servicio rechaza por peso", () => {
       FAST,
     );
 
-    expect(result).toEqual({ total: 500, ingested: 500 });
+    expect(result).toEqual({ total: 500, ingested: 500, skipped: 0 });
     expect(collected).toEqual(ids);
     expect(Math.max(...sizesAsked)).toBe(500);
     expect(Math.min(...sizesAsked)).toBeLessThanOrEqual(125);
@@ -175,5 +175,38 @@ describe("lotes que el servicio rechaza por peso", () => {
     await expect(
       ingestLayer(LAYER, async () => {}, fetchImpl, FAST),
     ).rejects.toThrow(/500/);
+  });
+});
+
+describe("reanudar una corrida cortada", () => {
+  test("pide solo los ids que faltan y cuenta los saltados", async () => {
+    const ids = Array.from({ length: 1000 }, (_, i) => i + 1);
+    const asked: number[] = [];
+    const fetchImpl = (async (_input: string, init?: RequestInit) => {
+      if (!init) return jsonResponse({ objectIds: ids });
+      const list = (
+        new URLSearchParams(String(init.body)).get("objectIds") ?? ""
+      )
+        .split(",")
+        .filter(Boolean)
+        .map(Number);
+      asked.push(...list);
+      return jsonResponse({
+        features: list.map((id) => ({ id, properties: {}, geometry: null })),
+      });
+    }) as unknown as typeof fetch;
+
+    // Simula una corrida que murió a los 600 (fue un corte de Neon, no del origen).
+    const already = new Set(ids.slice(0, 600));
+    const result = await ingestLayer(
+      LAYER,
+      async () => {},
+      fetchImpl,
+      FAST,
+      already,
+    );
+
+    expect(result).toEqual({ total: 1000, ingested: 400, skipped: 600 });
+    expect(asked).toEqual(ids.slice(600));
   });
 });

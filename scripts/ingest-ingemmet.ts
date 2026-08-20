@@ -19,6 +19,7 @@ import {
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
+const resume = args.includes("--resume");
 const wanted = args.find((arg) => !arg.startsWith("--"));
 
 const layer = INGEMMET_LAYERS.find((candidate) => candidate.id === wanted);
@@ -38,6 +39,7 @@ if (!databaseUrl && !dryRun) {
 const store = databaseUrl && !dryRun ? new IngemmetStore(databaseUrl) : null;
 const capturedAt = new Date().toISOString();
 const runId = `${layer.id}-${capturedAt}`;
+let skip = new Set<number>();
 
 console.log(`${layer.label} (${layer.id})`);
 if (store) {
@@ -45,20 +47,32 @@ if (store) {
   // El id lleva el timestamp: cada corrida queda como fila propia en vez de
   // pisar la anterior, así el historial de ingestas sobrevive.
   await store.startRun({ id: runId, layerId: layer.id, startedAt: capturedAt });
-  await store.clearLayer(layer.id);
+  if (resume) {
+    skip = await store.existingObjectIds(layer.id);
+    console.log(`  reanudando: ${skip.size} features ya guardados`);
+  } else {
+    await store.clearLayer(layer.id);
+  }
 }
 
 let written = 0;
 let declared = 0;
+const declaredTotal = () => declared || 0;
 try {
-  const result = await ingestLayer(layer, async (features, done, total) => {
-    declared = total;
-    if (store) await store.insertBatch(features, capturedAt);
-    written += features.length;
-    if (done % 5_000 < features.length || done === total) {
-      console.log(`  ${done}/${total}`);
-    }
-  });
+  const result = await ingestLayer(
+    layer,
+    async (features, done) => {
+      if (store) await store.insertBatch(features, capturedAt);
+      written += features.length;
+      const total = declaredTotal();
+      if (done % 5_000 < features.length) {
+        console.log(`  ${done + skip.size}/${total}`);
+      }
+    },
+    fetch,
+    {},
+    skip,
+  );
   declared = result.total;
 } catch (error) {
   const note = error instanceof Error ? error.message : String(error);

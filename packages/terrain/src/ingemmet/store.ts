@@ -63,6 +63,21 @@ export class IngemmetStore {
     );
   }
 
+  /**
+   * OBJECTID ya guardados de una capa.
+   *
+   * Permite reanudar: una corrida de 62k features tarda ~40 min y un corte de
+   * red del lado de Neon perdía todo el avance. Con esto se piden solo los que
+   * faltan.
+   */
+  async existingObjectIds(layerId: string): Promise<Set<number>> {
+    const rows = (await this.sql.query(
+      `SELECT object_id FROM ingemmet_features WHERE layer_id = $1`,
+      [layerId],
+    )) as unknown as { object_id: number }[];
+    return new Set(rows.map((row) => Number(row.object_id)));
+  }
+
   /** Vacía la capa antes de reescribirla. Se llama una vez por corrida. */
   async clearLayer(layerId: string): Promise<void> {
     await this.sql.query(`DELETE FROM ingemmet_features WHERE layer_id = $1`, [

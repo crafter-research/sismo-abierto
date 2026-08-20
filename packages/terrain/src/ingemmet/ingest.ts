@@ -180,9 +180,12 @@ export async function ingestLayer(
   ) => Promise<void>,
   fetchImpl: typeof fetch = fetch,
   timing: IngemmetTiming = {},
-): Promise<{ total: number; ingested: number }> {
+  /** OBJECTID ya guardados, para reanudar una corrida cortada. */
+  skip: Set<number> = new Set(),
+): Promise<{ total: number; ingested: number; skipped: number }> {
   const requestDelayMs = timing.requestDelayMs ?? INGEMMET_REQUEST_DELAY_MS;
-  const ids = await fetchObjectIds(layer, fetchImpl, timing);
+  const all = await fetchObjectIds(layer, fetchImpl, timing);
+  const ids = skip.size ? all.filter((id) => !skip.has(id)) : all;
   const batches = batchIds(ids);
   let ingested = 0;
   for (const [index, batch] of batches.entries()) {
@@ -202,5 +205,5 @@ export async function ingestLayer(
       `${layer.id}: se ingirieron ${ingested} de ${ids.length} features declarados`,
     );
   }
-  return { total: ids.length, ingested };
+  return { total: all.length, ingested, skipped: all.length - ids.length };
 }
