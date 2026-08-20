@@ -37,6 +37,12 @@ CREATE TABLE IF NOT EXISTS ingemmet_ingest_runs (
 );
 `;
 
+/**
+ * Techo por INSERT, con margen contra el límite duro de 64MB de Neon: al JSON de
+ * la geometría se le suman propiedades, nombres de columna y placeholders.
+ */
+const INSERT_MAX_BYTES = 20 * 1024 * 1024;
+
 export class IngemmetStore {
   private sql: ReturnType<typeof neon>;
 
@@ -96,6 +102,21 @@ export class IngemmetStore {
     fetchedAt: string,
   ): Promise<void> {
     if (features.length === 0) return;
+    // Neon rechaza un request de más de 64MB (HTTP 413). Los polígonos de
+    // geomorfología con muchos vértices llegan ahí con pocos cientos de filas,
+    // así que el corte va por bytes de geometría, no por cantidad.
+    if (features.length > 1) {
+      const bytes = features.reduce(
+        (sum, feature) => sum + JSON.stringify(feature.geometry ?? null).length,
+        0,
+      );
+      if (bytes > INSERT_MAX_BYTES) {
+        const mid = Math.ceil(features.length / 2);
+        await this.insertBatch(features.slice(0, mid), fetchedAt);
+        await this.insertBatch(features.slice(mid), fetchedAt);
+        return;
+      }
+    }
     const values: unknown[] = [];
     const rows = features.map((feature, index) => {
       const base = index * 6;
