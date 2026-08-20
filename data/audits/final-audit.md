@@ -1,6 +1,6 @@
 # Auditoría de predicciones sísmicas
 
-Corte UTC: `2026-08-20T03:20:12.559Z`
+Corte UTC: `2026-08-20T22:48:38.376Z`
 
 Este informe aplica el protocolo congelado antes de conocer los resultados. Las afirmaciones provienen de sismos.en.peru, no del IGP. IGP/CENSIS y USGS se usan como fuentes de comprobación. Las ventanas abiertas permanecen pendientes hasta su deadline.
 
