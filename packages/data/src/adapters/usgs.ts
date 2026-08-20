@@ -67,15 +67,30 @@ export async function fetchUsgsEvents(
   // pausa. Se serializa el acceso y se deja un intervalo mínimo entre peticiones:
   // es más lento, pero es lo que el servicio pide y evita perder la corrida entera.
   const MIN_INTERVAL_MS = 220;
+  // Cuando el servicio ya empezó a rechazar, seguir al mismo ritmo garantiza más
+  // rechazos. El intervalo sube para el resto de la corrida en vez de que cada
+  // petición agote sus reintentos por separado.
+  const THROTTLED_INTERVAL_MS = 1_500;
   let usgsQueue: Promise<unknown> = Promise.resolve();
   let lastRequestAt = 0;
+  let throttledUntil = 0;
 
   function throttled<T>(task: () => Promise<T>): Promise<T> {
     const run = usgsQueue.then(async () => {
-      const wait = lastRequestAt + MIN_INTERVAL_MS - Date.now();
+      const interval =
+        Date.now() < throttledUntil ? THROTTLED_INTERVAL_MS : MIN_INTERVAL_MS;
+      const wait = lastRequestAt + interval - Date.now();
       if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait));
       try {
         return await task();
+      } catch (error) {
+        if (
+          error instanceof SourceError &&
+          (error as { httpStatus?: number }).httpStatus === 429
+        ) {
+          throttledUntil = Date.now() + 120_000;
+        }
+        throw error;
       } finally {
         lastRequestAt = Date.now();
       }
