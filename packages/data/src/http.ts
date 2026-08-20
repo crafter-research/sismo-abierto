@@ -65,9 +65,12 @@ export async function fetchSource(
           httpStatus: response.status,
         });
         const retryAfter = Number(response.headers.get("retry-after"));
+        // Un 429 sostenido necesita esperas de segundos, no de milisegundos.
+        // El backoff anterior sumaba 7.5s en total y no alcanzaba para las
+        // ventanas largas de la auditoría histórica, que consultan 80 días.
         const backoffMs = Number.isFinite(retryAfter)
-          ? Math.min(retryAfter * 1000, 30_000)
-          : 250 * attempt * attempt;
+          ? Math.min(retryAfter * 1000, 60_000)
+          : Math.min(1_000 * 2 ** (attempt - 1), 30_000);
         await new Promise((resolve) => setTimeout(resolve, backoffMs));
         continue;
       }
