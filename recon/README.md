@@ -12,7 +12,7 @@ sin decirlo cuesta un día al que lo lee.
 
 | Reporte | Fecha | Veredicto | Qué destrabó |
 |---|---|---|---|
-| [cismid-igp-sources](cismid-igp-sources.md) | 2026-08-18/19 | **Construir** | El WFS abierto del IGP, hoy en producción |
+| [cismid-igp-sources](cismid-igp-sources.md) | 2026-08-18/19 · medido 2026-08-20 | **Construir** | El WFS abierto del IGP, hoy en producción |
 | [sigrid-public-surface](sigrid-public-surface.md) | 2026-08-18 | Construir acotado | Qué de CENEPRED es público y qué no |
 | [sigrid-visor-dataflow](sigrid-visor-dataflow.md) | 2026-08-19 | Bloqueado sin permiso | Cómo el visor acuña su token |
 | [hazard-models](hazard-models-2026-08-19.md) | 2026-08-19 | Construir acotado | WMTS de OpenQuake, sin valores por punto |
