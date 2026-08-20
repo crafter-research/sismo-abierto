@@ -17,6 +17,7 @@ sin decirlo cuesta un día al que lo lee.
 | [sigrid-visor-dataflow](sigrid-visor-dataflow.md) | 2026-08-19 | Bloqueado sin permiso | Cómo el visor acuña su token |
 | [hazard-models](hazard-models-2026-08-19.md) | 2026-08-19 | Construir acotado | WMTS de OpenQuake, sin valores por punto |
 | [indeci](indeci-2026-08-19.md) | 2026-08-19 | **No construir** | No existe dataset de zonas seguras |
+| [ingemmet](ingemmet-2026-08-20.md) | 2026-08-20 | **Construir** | `/query` libre, reuso autorizado; cubre Lima, que el IGP no |
 
 `friction.md` acompaña a los reportes: recoge dónde el propio método falló, y es el
 único insumo que mejora el skill de recon.
