@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { nearestFaults } from "../src/point/faults.ts";
+import { FAULT_MAX_DISTANCE_M, nearestFaults } from "../src/point/faults.ts";
 
 interface MockRow {
   [key: string]: unknown;
@@ -76,7 +76,7 @@ describe("nearestFaults", () => {
 
     await nearestFaults(-77.03, -12.05, sql, 5);
 
-    expect(calls[0]?.params).toEqual([-77.03, -12.05, 5]);
+    expect(calls[0]?.params).toEqual([-77.03, -12.05, 5, FAULT_MAX_DISTANCE_M]);
   });
 
   test("limit por defecto es 3", async () => {
@@ -84,7 +84,7 @@ describe("nearestFaults", () => {
 
     await nearestFaults(-77.03, -12.05, sql);
 
-    expect(calls[0]?.params).toEqual([-77.03, -12.05, 3]);
+    expect(calls[0]?.params).toEqual([-77.03, -12.05, 3, FAULT_MAX_DISTANCE_M]);
   });
 
   test("array vacío cuando no hay fallas cercanas", async () => {
@@ -93,5 +93,32 @@ describe("nearestFaults", () => {
     const result = await nearestFaults(-70.0, -10.0, sql);
 
     expect(result).toEqual([]);
+  });
+});
+
+describe("corte por distancia", () => {
+  test("acota la búsqueda al radio medido", async () => {
+    let sqlText = "";
+    let params: unknown[] = [];
+    const sql = {
+      query: async (text: string, values: unknown[]) => {
+        sqlText = text;
+        params = values;
+        return [];
+      },
+    } as unknown as Parameters<typeof nearestFaults>[2];
+
+    await nearestFaults(-80.5, -12.0, sql);
+
+    expect(sqlText).toContain("ST_DWithin");
+    expect(params).toContain(FAULT_MAX_DISTANCE_M);
+  });
+
+  test("un punto sin fallas dentro del radio devuelve lista vacía", async () => {
+    const sql = {
+      query: async () => [],
+    } as unknown as Parameters<typeof nearestFaults>[2];
+
+    expect(await nearestFaults(-80.5, -12.0, sql)).toEqual([]);
   });
 });

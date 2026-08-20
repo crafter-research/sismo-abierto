@@ -45,7 +45,18 @@ function toNearestFault(row: NearestFaultRow): NearestFault {
  * `Lineamiento` SÍ se incluye porque es información real de proximidad, pero
  * viaja con `isConfirmedFault: false` para que la UI no lo trate como una
  * falla activa confirmada.
+ *
+ * El corte de 50 km sale de medir, no de elegir: sobre doce ciudades reales
+ * (Lima, Callao, Arequipa, Trujillo, Cusco, Chiclayo, Huancayo, Iquitos, Piura,
+ * Tacna, Pucallpa, Puerto Maldonado) la falla más cercana está a 8.3 km de
+ * mediana y a 35.7 km en el peor caso (Piura). Sin corte, un punto en el océano
+ * a 300 km de la costa devuelve una falla a 322 km, que como dato es ruido:
+ * decir "la falla más cercana está a 322 km" no ayuda a nadie y ensucia la
+ * ficha. 50 km cubre todo el territorio poblado con margen sobre el peor caso.
  */
+/** Radio máximo de búsqueda. Ver la nota de medición en `nearestFaults`. */
+export const FAULT_MAX_DISTANCE_M = 50_000;
+
 export async function nearestFaults(
   lon: number,
   lat: number,
@@ -60,9 +71,14 @@ export async function nearestFaults(
         AND properties->>'DESCRIP' IS NOT NULL
         AND trim(properties->>'DESCRIP') <> ''
         AND properties->>'DESCRIP' <> 'Flechas'
+        AND ST_DWithin(
+              geom::geography,
+              ST_SetSRID(ST_Point($1,$2),4326)::geography,
+              $4
+            )
       ORDER BY geom <-> ST_SetSRID(ST_Point($1,$2),4326)
       LIMIT $3`,
-    [lon, lat, limit],
+    [lon, lat, limit, FAULT_MAX_DISTANCE_M],
   )) as unknown as NearestFaultRow[];
 
   return rows.map(toNearestFault);
