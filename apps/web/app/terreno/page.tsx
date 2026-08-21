@@ -22,6 +22,9 @@ export default async function TerrainIndexPage() {
   const { cities, departments, featureCount, provenance } = coverage();
   const withBearing = await bearingCapacityCoverage();
   const soilBreakdown = citySoilBreakdown();
+  const citiesWithBearing = cities.filter((city) =>
+    withBearing.has(city.slug),
+  ).length;
 
   const byDepartment = new Map<string, typeof cities>();
   for (const city of cities) {
@@ -122,7 +125,21 @@ export default async function TerrainIndexPage() {
           <ClassBadge value="official" />
         </div>
 
-        <div className="space-y-4" data-testid="city-index">
+        {/*
+          `bearingCapacityCoverage()` devuelve mas slugs que ciudades (63 contra
+          57) porque incluye alias, asi que el conteo sale de las ciudades que
+          realmente se listan.
+        */}
+        {citiesWithBearing > 0 ? (
+          <p className="mt-1 text-xs text-gray-800">
+            {citiesWithBearing === cities.length
+              ? "Las 57 tienen capacidad portante publicada en kg/cm²."
+              : `${citiesWithBearing} de ${cities.length} tienen capacidad portante publicada en kg/cm².`}{" "}
+            La barra muestra la proporción de cada tipo de suelo.
+          </p>
+        ) : null}
+
+        <div className="mt-3 space-y-4" data-testid="city-index">
           {[...byDepartment.entries()].map(([department, list]) => (
             <div key={department}>
               <h3 className="text-xs uppercase tracking-wide text-gray-800">
@@ -149,14 +166,6 @@ export default async function TerrainIndexPage() {
                         {city.zoneCount}{" "}
                         {city.zoneCount === 1 ? "polígono" : "polígonos"}
                       </span>
-                      {withBearing.has(city.slug) ? (
-                        <span
-                          className="rounded bg-official-soft px-1 py-0.5 text-[10px] text-official"
-                          title="Con capacidad portante publicada"
-                        >
-                          capacidad portante
-                        </span>
-                      ) : null}
                     </li>
                   );
                 })}
