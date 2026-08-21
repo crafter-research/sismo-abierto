@@ -49,6 +49,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     { path: "/api", priority: 0.6, changeFrequency: "monthly" as const },
     { path: "/terreno", priority: 0.8, changeFrequency: "monthly" as const },
+    {
+      path: "/terreno/lima",
+      priority: 0.9,
+      changeFrequency: "monthly" as const,
+    },
     ...(sgcEnabled
       ? [
           {

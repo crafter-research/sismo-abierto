@@ -15,6 +15,7 @@
       "!data",
       "!apps/web/app/globals.css",
       "!apps/web/components/ui/map.tsx",
+      "!apps/web/components/ui/input-group.tsx",
       "!packages/terrain/data"
     ]
   },

@@ -1,21 +1,41 @@
-import {
-  funderLabel,
-  LimaRiskStore,
-  RISK_LEVELS,
-  romanLevel,
-} from "@sismo/terrain";
+import { LimaRiskStore, RISK_LEVELS, romanLevel } from "@sismo/terrain";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DistrictRanking } from "@/components/lima-district-ranking";
-import { LimaRiskMap } from "@/components/lima-risk-map";
+import { LimaRiskExplorer } from "@/components/lima-risk-explorer";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Riesgo sísmico de Lima, manzana por manzana",
+  title: "Riesgo sísmico de Lima: mapa por manzana de los 50 distritos",
   description:
-    "El mapa de riesgo sísmico del CISMID-UNI, navegable. 86,792 manzanas de 50 distritos de Lima y Callao con su nivel estimado de daño ante un sismo severo.",
+    "Buscá tu distrito y mirá cuánto daño se espera en tu manzana ante un sismo severo. 84,784 manzanas de Lima y Callao del estudio del CISMID-UNI, navegable y con la fuente citada.",
+  keywords: [
+    "riesgo sísmico Lima",
+    "mapa sísmico Lima",
+    "microzonificación sísmica Lima",
+    "CISMID",
+    "sismo Lima distritos",
+    "vulnerabilidad sísmica vivienda",
+    "zona de riesgo sísmico Callao",
+  ],
+  alternates: { canonical: "/terreno/lima" },
+  openGraph: {
+    type: "article",
+    title: "Riesgo sísmico de Lima, manzana por manzana",
+    description:
+      "84,784 manzanas de 50 distritos de Lima y Callao con su nivel estimado de daño ante un sismo severo. Estudio del CISMID-UNI.",
+    url: "/terreno/lima",
+    locale: "es_PE",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Riesgo sísmico de Lima, manzana por manzana",
+    description:
+      "Buscá tu distrito y mirá el nivel de daño esperado en tu manzana. Estudio del CISMID-UNI, navegable.",
+  },
 };
+
+const SITE_URL = "https://sismo.crafter.run";
 
 const SOURCE_PDF =
   "https://www.cismid.uni.edu.pe/wp-content/uploads/2026/06/R01_RIESGO_SISMICO_LIMA_A0-ultimo.pdf";
@@ -28,16 +48,104 @@ function requireDatabaseUrl(): string {
 
 export default async function LimaRiskPage() {
   const store = new LimaRiskStore(requireDatabaseUrl());
-  const [totals, districts] = await Promise.all([
+  const [totals, districts, outlines] = await Promise.all([
     store.totals(),
     store.districts(),
+    store.outlines(),
   ]);
 
   const highRisk = (totals.byLevel[3] ?? 0) + (totals.byLevel[4] ?? 0);
   const pctHigh = totals.features ? (highRisk / totals.features) * 100 : 0;
+  const worst = districts[0];
+
+  const datasetSchema = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    name: "Riesgo sísmico de Lima Metropolitana y Callao, por manzana",
+    description: `Nivel estimado de daño ante un sismo severo para ${totals.features.toLocaleString("es-PE")} manzanas de ${totals.districts} distritos de Lima y Callao, según los estudios de microzonificación y vulnerabilidad del CISMID-UNI realizados entre ${totals.yearRange[0]} y ${totals.yearRange[1]}.`,
+    url: `${SITE_URL}/terreno/lima`,
+    license: "https://www.cismid.uni.edu.pe/",
+    spatialCoverage: {
+      "@type": "Place",
+      name: "Lima Metropolitana y Callao, Perú",
+      geo: {
+        "@type": "GeoShape",
+        box: "-12.52 -77.20 -11.55 -76.68",
+      },
+    },
+    temporalCoverage: `${totals.yearRange[0]}/${totals.yearRange[1]}`,
+    variableMeasured: RISK_LEVELS.map((spec) => ({
+      "@type": "PropertyValue",
+      name: `Nivel ${romanLevel(spec.level)}`,
+      description: `${spec.damage}. Costo de reparación estimado: ${spec.repairCost} del valor de la vivienda.`,
+    })),
+    creator: {
+      "@type": "ResearchOrganization",
+      name: "CISMID, Facultad de Ingeniería Civil, Universidad Nacional de Ingeniería",
+      url: "https://www.cismid.uni.edu.pe/",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Crafter Research",
+      url: "https://crafter.run",
+    },
+    isBasedOn: SOURCE_PDF,
+    keywords: [
+      "riesgo sísmico",
+      "microzonificación sísmica",
+      "Lima",
+      "Callao",
+      "vulnerabilidad de viviendas",
+    ],
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "¿Cómo sé en qué nivel de riesgo sísmico está mi casa en Lima?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Buscá tu distrito en el mapa y tocá tu manzana. El estudio del CISMID-UNI clasifica ${totals.features.toLocaleString("es-PE")} manzanas de ${totals.districts} distritos de Lima y Callao en cinco niveles, del I (sin daño o daño superficial) al V (colapso). Es una estimación por zona y no reemplaza la evaluación técnica de una vivienda concreta.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Qué distrito de Lima tiene mayor riesgo sísmico?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: worst
+            ? `Según el estudio del CISMID, ${worst.district} tiene la mayor proporción de manzanas con daño severo o colapso esperado: ${worst.pctHigh.toFixed(1)}% de sus ${worst.total.toLocaleString("es-PE")} manzanas evaluadas. En el conjunto de Lima y Callao el ${pctHigh.toFixed(1)}% de las manzanas están en nivel IV o V.`
+            : "El estudio del CISMID ordena los distritos por proporción de manzanas con daño severo o colapso esperado.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿Qué diferencia hay entre microzonificación sísmica y riesgo sísmico?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "La microzonificación describe cómo responde el suelo durante un sismo: dónde las ondas se amplifican por las características del terreno. El riesgo sísmico integra eso con la vulnerabilidad de las construcciones para estimar el daño que podrían sufrir las viviendas. Este mapa muestra riesgo sísmico, no solo suelo.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "¿De dónde salen estos datos?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Del mapa de riesgo sísmico que publica el CISMID de la Universidad Nacional de Ingeniería, con fondos del Ministerio de Vivienda, el Ministerio de Economía y CENEPRED. Los estudios se hicieron distrito por distrito entre ${totals.yearRange[0]} y ${totals.yearRange[1]}, combinando tipo de suelo con datos de campo y ensayos de laboratorio sobre viviendas típicas limeñas.`,
+        },
+      },
+    ],
+  };
 
   return (
     <main className="mx-auto w-full max-w-5xl px-4 py-8 sm:py-12">
+      <script type="application/ld+json">
+        {JSON.stringify(datasetSchema)}
+      </script>
+      <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       <header className="mb-8">
         <p className="mb-2 font-medium text-gray-800 text-xs uppercase tracking-wide">
           CISMID · Universidad Nacional de Ingeniería
@@ -56,12 +164,11 @@ export default async function LimaRiskPage() {
         </p>
       </header>
 
-      <section aria-labelledby="mapa-titulo" className="mb-10">
-        <h2 id="mapa-titulo" className="sr-only">
-          Mapa interactivo
-        </h2>
-        <LimaRiskMap />
-      </section>
+      <LimaRiskExplorer
+        districts={districts}
+        outlines={outlines}
+        levelTotals={totals.byLevel}
+      />
 
       <section aria-labelledby="resumen-titulo" className="mb-10">
         <h2
@@ -119,52 +226,6 @@ export default async function LimaRiskPage() {
             </div>
           </dl>
         </div>
-      </section>
-
-      <section aria-labelledby="distritos-titulo" className="mb-10">
-        <h2
-          id="distritos-titulo"
-          className="mb-1 font-semibold text-gray-1000 text-lg"
-        >
-          Distrito por distrito
-        </h2>
-        <p className="mb-4 text-gray-800 text-sm">
-          Ordenados por porcentaje de manzanas con daño severo o colapso
-          esperado. Buscá el tuyo.
-        </p>
-        <DistrictRanking districts={districts} />
-      </section>
-
-      <section
-        aria-labelledby="leyenda-titulo"
-        className="mb-10 rounded-lg border border-gray-300 p-4"
-      >
-        <h2
-          id="leyenda-titulo"
-          className="mb-3 font-semibold text-gray-1000 text-base"
-        >
-          Los cinco niveles
-        </h2>
-        <ul className="space-y-2">
-          {RISK_LEVELS.map((spec) => (
-            <li key={spec.level} className="flex items-start gap-3">
-              <span
-                aria-hidden
-                className="mt-1 size-3 shrink-0 rounded-[3px]"
-                style={{ backgroundColor: spec.ui }}
-              />
-              <div className="min-w-0">
-                <p className="font-medium text-gray-1000 text-sm">
-                  Nivel {romanLevel(spec.level)} · {spec.damage}
-                </p>
-                <p className="text-gray-800 text-xs">
-                  Costo de reparación estimado: {spec.repairCost} del valor de
-                  la vivienda · Riesgo {spec.risk.toLowerCase()}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <section

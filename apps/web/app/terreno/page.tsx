@@ -195,7 +195,7 @@ export default async function TerrainIndexPage() {
           vivienda construida sobre él.
         </p>
         <p className="mt-2 text-sm text-gray-900">
-          Son 86,792 manzanas de 50 distritos de Lima y Callao, con estudios
+          Son 84,784 manzanas de 50 distritos de Lima y Callao, con estudios
           hechos entre 2010 y 2021.
         </p>
         <Link

@@ -68,3 +68,62 @@ describe en prosa. Contraste medido:
 El CISMID lista a Villa El Salvador y San Juan de Lurigancho entre los distritos
 de mayor exposición y no menciona a San Isidro. Si una corrida futura no
 reproduce ese orden, la lectura de color se rompió.
+
+## Paso obligatorio: resolver solapamientos
+
+Los estudios se hicieron distrito por distrito en años distintos, y los vecinos
+se pisan en los bordes. Medido sobre la ingesta cruda de 2026-08-21: **7,696
+pares de polígonos solapados, 24.29 km²**, el 4.2% de la capa. Los peores:
+Pachacamac 2018 contra Villa María del Triunfo 2019 (1,643 pares) y Lurín 2013
+contra Pachacamac 2018 (1,237).
+
+Sin resolverlo el mapa se ve sucio (dos colores translúcidos superpuestos) y,
+peor, un click puede devolver el polígono equivocado.
+
+**Regla: gana el estudio más reciente.** Un estudio posterior revisa al
+anterior, así que el viejo cede el área compartida.
+
+```sql
+-- respaldo antes de tocar nada
+ALTER TABLE lima_riesgo_features ADD COLUMN geom_raw geometry(MultiPolygon,4326);
+UPDATE lima_riesgo_features SET geom_raw = geom;
+
+-- plan: por cada polígono, la unión de todos los que le ganan
+CREATE TABLE clip_plan AS
+SELECT a.id AS victim_id, ST_UnaryUnion(ST_Collect(b.geom_raw)) AS winner_geom
+FROM lima_riesgo_features a
+JOIN lima_riesgo_features b
+  ON a.id <> b.id AND a.geom_raw && b.geom_raw
+ AND (b.study_year, b.id) > (a.study_year, a.id)
+ AND ST_Area(ST_Intersection(a.geom_raw, b.geom_raw)) > 1e-12
+GROUP BY a.id;
+
+-- aplicar por lotes de 500 (el compute de Neon no aguanta todo junto)
+UPDATE lima_riesgo_features f SET geom = sub.g
+FROM (SELECT c.victim_id AS id,
+             ST_CollectionExtract(ST_MakeValid(ST_Difference(f2.geom_raw, c.winner_geom)),3) AS g
+      FROM clip_plan c JOIN lima_riesgo_features f2 ON f2.id=c.victim_id
+      WHERE c.rn > :lo AND c.rn <= :hi) sub
+WHERE f.id = sub.id;
+
+DELETE FROM lima_riesgo_features WHERE ST_IsEmpty(geom);
+```
+
+Resultado medido: **0 pares solapados, 0 m²**. Quedan 84,784 polígonos (se
+borran 2,008 que un estudio posterior cubrió por completo) y 552 km².
+
+**El predicado importa.** Un primer intento usó `ST_Overlaps`, que en PostGIS
+es **falso** cuando un polígono contiene a otro o cuando solo comparten borde.
+El plan nunca incluyó esos casos y el solapamiento apenas bajó de 7,696 a 5,661.
+La condición correcta es `ST_Area(ST_Intersection(...)) > 0`.
+
+El recorte no cambia el criterio de aceptación: Villa El Salvador sigue en 57.7%
+nivel V y San Isidro en 1.6%. Solo toca bordes entre distritos.
+
+## Contorno de distrito para la UI
+
+`store.outlines()` no hace `ST_Union` directo de las manzanas: eso deja un hueco
+por cada calle. Medido en Villa El Salvador daba **3,058 anillos**, y dibujarlos
+todos con línea gruesa pinta el distrito de negro en vez de bordearlo. Con un
+buffer de ~66 m antes de unir y otro negativo después quedan **4 anillos y 138
+puntos** en una sola pieza.
