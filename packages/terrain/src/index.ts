@@ -1,6 +1,7 @@
 export * from "./bearing-capacity.ts";
 export * from "./constants.ts";
 export * from "./dimensions.ts";
+export * from "./geomorphology.ts";
 export * from "./grouping.ts";
 export * from "./ingemmet/ingest.ts";
 export * from "./ingemmet/source.ts";
@@ -10,4 +11,6 @@ export * from "./map-data.ts";
 export * from "./neon-store.ts";
 export * from "./point/index.ts";
 export * from "./refresh.ts";
+export * from "./tile-config.ts";
+export * from "./tile-store.ts";
 export * from "./zonification.ts";
