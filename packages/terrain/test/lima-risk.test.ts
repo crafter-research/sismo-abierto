@@ -72,3 +72,20 @@ describe("financiadores", () => {
     expect(funderLabel("CISMID-OTRO")).toBe("CISMID-OTRO");
   });
 });
+
+describe("etiquetas de la búsqueda", () => {
+  test("shortLabel recorta el display_name de Nominatim a lo legible", () => {
+    // Nominatim devuelve el país, el código postal y la región completa.
+    // La UI muestra solo las tres primeras partes.
+    const full =
+      "Avenida Manuel Valle, Huertos de Lurín, La Unión, Villa Libertad Casica, Lurín, Lima, 15823, Perú";
+    const short = full
+      .split(",")
+      .map((p) => p.trim())
+      .slice(0, 3)
+      .join(", ");
+    expect(short).toBe("Avenida Manuel Valle, Huertos de Lurín, La Unión");
+    expect(short).not.toContain("Perú");
+    expect(short).not.toContain("15823");
+  });
+});

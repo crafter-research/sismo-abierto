@@ -51,12 +51,29 @@ export class LimaRiskStore {
    * Qué dice el estudio sobre un punto. Devuelve null cuando el punto cae
    * fuera de los 50 distritos estudiados, que es la mitad de la respuesta:
    * "no hay estudio acá" es información, no un error.
+   *
+   * `snapMeters` existe para las direcciones geocodificadas. Un geocoder
+   * devuelve el centro de la calle, y las calles son exactamente los huecos
+   * entre manzanas: medido contra Nominatim, 3 de 4 direcciones de Lima caían
+   * a 2, 13 y 90 m del polígono más cercano en vez de adentro. Con snap 0 (el
+   * default) el comportamiento es intersección estricta, que es lo correcto
+   * para un click en el mapa, donde el hueco significa "no hay manzana acá".
    */
-  async atPoint(lon: number, lat: number): Promise<LimaRiskMatch | null> {
+  async atPoint(
+    lon: number,
+    lat: number,
+    options: { snapMeters?: number } = {},
+  ): Promise<LimaRiskMatch | null> {
+    const snap = options.snapMeters ?? 0;
     const rows = (await this.sql`
       SELECT district, funder, study_year, level, damage, repair_cost, risk
       FROM lima_riesgo_features
-      WHERE ST_Intersects(geom, ST_SetSRID(ST_Point(${lon}, ${lat}), 4326))
+      WHERE ST_DWithin(
+              geom::geography,
+              ST_SetSRID(ST_Point(${lon}, ${lat}), 4326)::geography,
+              ${snap}
+            )
+      ORDER BY geom <-> ST_SetSRID(ST_Point(${lon}, ${lat}), 4326)
       LIMIT 1
     `) as Array<{
       district: string;

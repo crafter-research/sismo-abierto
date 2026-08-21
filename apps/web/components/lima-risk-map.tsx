@@ -14,15 +14,17 @@ import {
 } from "@sismo/terrain";
 import type * as MapLibreGL from "maplibre-gl";
 import { useTheme } from "next-themes";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   Map as MapCanvas,
   MapControls,
   MapGeoJSON,
+  MapMarker,
   MapPopup,
   MapVectorTile,
+  MarkerContent,
   useMap,
 } from "./ui/map";
 
@@ -101,12 +103,31 @@ function ClickInspector({
   return null;
 }
 
-/** Vuela al distrito elegido. Separado porque `useMap` exige estar dentro del canvas. */
-function FlyToDistrict({ outline }: { outline: DistrictOutline | null }) {
+/**
+ * Mueve la cámara. Separado porque `useMap` exige estar dentro del canvas.
+ *
+ * Una dirección concreta gana sobre el distrito: si alguien buscó su casa,
+ * quiere ver su cuadra, no el distrito entero.
+ */
+function FlyTo({
+  outline,
+  address,
+}: {
+  outline: DistrictOutline | null;
+  address: { lon: number; lat: number } | null;
+}) {
   const { map, isLoaded } = useMap();
 
   useEffect(() => {
     if (!map || !isLoaded) return;
+    if (address) {
+      map.easeTo({
+        center: [address.lon, address.lat],
+        zoom: 15.5,
+        duration: 1000,
+      });
+      return;
+    }
     if (!outline) {
       map.easeTo({ center: LIMA_CENTER, zoom: 10.2, duration: 700 });
       return;
@@ -116,7 +137,7 @@ function FlyToDistrict({ outline }: { outline: DistrictOutline | null }) {
       duration: 900,
       maxZoom: 14,
     });
-  }, [map, isLoaded, outline]);
+  }, [map, isLoaded, outline, address]);
 
   return null;
 }
@@ -127,12 +148,14 @@ export function LimaRiskMap({
   onSelectDistrict,
   activeLevels,
   onActiveLevelsChange,
+  address,
 }: {
   outlines: DistrictOutline[];
   selectedDistrict?: string | null;
   onSelectDistrict?: (district: string | null) => void;
   activeLevels: string[];
   onActiveLevelsChange: (levels: string[]) => void;
+  address?: { lon: number; lat: number; label: string } | null;
 }) {
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme === "dark" ? "dark" : "light";
@@ -147,6 +170,23 @@ export function LimaRiskMap({
     },
     [onSelectDistrict],
   );
+
+  /**
+   * El popup muere cuando la selección cambia desde afuera del mapa.
+   *
+   * Sin esto: tocás Surquillo en el mapa, después elegís Villa María del
+   * Triunfo en la lista, y el popup de Surquillo sigue abierto sobre un mapa
+   * que ya voló a otro distrito. El popup describe una manzana concreta, así
+   * que en cuanto la vista deja de ser la de esa manzana, deja de ser cierto.
+   */
+  const lastDistrict = useRef(selectedDistrict);
+  useEffect(() => {
+    if (lastDistrict.current === selectedDistrict) return;
+    lastDistrict.current = selectedDistrict;
+    setPicked((current) =>
+      current && current.district !== selectedDistrict ? null : current,
+    );
+  }, [selectedDistrict]);
 
   const spec = picked ? riskLevelSpec(picked.level) : null;
   const selectedOutline = useMemo(
@@ -233,7 +273,18 @@ export function LimaRiskMap({
 
           <MapControls />
           <ClickInspector onPick={handlePick} />
-          <FlyToDistrict outline={selectedOutline} />
+          <FlyTo outline={selectedOutline} address={address ?? null} />
+
+          {address ? (
+            <MapMarker longitude={address.lon} latitude={address.lat}>
+              <MarkerContent>
+                <span className="relative flex size-4">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gray-1000 opacity-30" />
+                  <span className="relative inline-flex size-4 rounded-full border-2 border-map-paper bg-gray-1000 shadow-md" />
+                </span>
+              </MarkerContent>
+            </MapMarker>
+          ) : null}
 
           {picked && spec ? (
             <MapPopup
