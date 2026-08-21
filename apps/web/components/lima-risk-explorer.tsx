@@ -22,10 +22,12 @@ export function LimaRiskExplorer({
   districts,
   outlines,
   levelTotals,
+  quakesUrl,
 }: {
   districts: DistrictRiskSummary[];
   outlines: DistrictOutline[];
   levelTotals: number[];
+  quakesUrl?: string;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [activeLevels, setActiveLevels] = useState<string[]>([]);
@@ -97,6 +99,7 @@ export function LimaRiskExplorer({
           levelTotals={levelTotals}
           address={address}
           flyToken={flyToken}
+          quakesUrl={quakesUrl}
         />
       </section>
 

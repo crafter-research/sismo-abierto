@@ -3,6 +3,12 @@
 import {
   GEOMORPH_COLORS,
   GEOMORPH_LEGEND,
+  LIMA_CENTER,
+  LIMA_RISK_MAX_ZOOM,
+  LIMA_RISK_MIN_ZOOM,
+  LIMA_RISK_SOURCE_LAYER,
+  LIMA_RISK_TILE_URL_TEMPLATE,
+  RISK_LEVELS,
   SOIL_COLORS,
   SOIL_LEGEND,
   TERRAIN_TILE_URL_TEMPLATE,
@@ -48,6 +54,19 @@ const IGP_PREVIEW_CENTER: [number, number] = [-80.68, -5.15];
 const IGP_PREVIEW_ZOOM = 8.5;
 
 /**
+ * El preview de Lima usa los vector tiles del riesgo sísmico, que a zoom 10.4
+ * llenan la tarjeta con las 84 mil manzanas del estudio. Es la misma densidad
+ * visual que hace legible el preview de geomorfología: una capa que cubre todo
+ * el encuadre, no manchas sueltas sobre un basemap vacío.
+ */
+const limaRiskFillColor = [
+  "match",
+  ["get", "level"],
+  ...RISK_LEVELS.flatMap((spec) => [spec.level, spec.ui]),
+  "#9ca3af",
+] as unknown as MapLibreGL.ExpressionSpecification;
+
+/**
  * Previsualización chica y sin interacción del mapa de suelos del IGP o de
  * geomorfología nacional (INGEMMET), para usar dentro de una tarjeta de
  * entrada. `interactive={false}` apaga scroll/drag/dblclick de MapLibre: no
@@ -57,7 +76,11 @@ const IGP_PREVIEW_ZOOM = 8.5;
  * vector tiles de R2) para no duplicar payload ni mantener un snapshot
  * aparte.
  */
-export function TerrainPreviewMap({ kind }: { kind: "igp" | "geomorfologia" }) {
+export function TerrainPreviewMap({
+  kind,
+}: {
+  kind: "igp" | "geomorfologia" | "lima";
+}) {
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme === "dark" ? "dark" : "light";
 
@@ -70,12 +93,30 @@ export function TerrainPreviewMap({ kind }: { kind: "igp" | "geomorfologia" }) {
       <MapCanvas
         theme={theme}
         className="h-full w-full"
-        center={kind === "igp" ? IGP_PREVIEW_CENTER : PERU_CENTER}
-        zoom={kind === "igp" ? IGP_PREVIEW_ZOOM : 5}
+        center={
+          kind === "igp"
+            ? IGP_PREVIEW_CENTER
+            : kind === "lima"
+              ? LIMA_CENTER
+              : PERU_CENTER
+        }
+        zoom={kind === "igp" ? IGP_PREVIEW_ZOOM : kind === "lima" ? 10.4 : 5}
         interactive={false}
         attributionControl={false}
       >
-        {kind === "igp" ? (
+        {kind === "lima" ? (
+          <MapVectorTile
+            tiles={LIMA_RISK_TILE_URL_TEMPLATE}
+            sourceLayer={LIMA_RISK_SOURCE_LAYER}
+            minzoom={LIMA_RISK_MIN_ZOOM}
+            maxzoom={LIMA_RISK_MAX_ZOOM}
+            fillPaint={{
+              "fill-color": limaRiskFillColor,
+              "fill-opacity": 0.85,
+            }}
+            linePaint={false}
+          />
+        ) : kind === "igp" ? (
           <MapGeoJSON
             data="/api/v1/terreno"
             fillPaint={{ "fill-color": soilFillColor, "fill-opacity": 0.6 }}

@@ -10,6 +10,8 @@ import {
   RISK_LEVELS,
   riskLevelSpec,
   romanLevel,
+  SOIL_COLORS,
+  SOIL_LEGEND,
   whatItMeans,
 } from "@sismo/terrain";
 import type * as MapLibreGL from "maplibre-gl";
@@ -18,6 +20,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   Map as MapCanvas,
+  MapClusterLayer,
   MapControls,
   MapGeoJSON,
   MapMarker,
@@ -42,6 +45,19 @@ const fillColor = [
   ["get", "level"],
   ...RISK_LEVELS.flatMap((spec) => [spec.level, spec.ui]),
   "#9ca3af",
+] as unknown as MapLibreGL.ExpressionSpecification;
+
+/**
+ * La capa del IGP mide otra cosa: el tipo de suelo, no el daño esperado a la
+ * vivienda. En el este de Lima las dos se superponen (medido: 2,958 pares en
+ * Huaycán/Ate, 1,377 en Chosica), y ahí es donde comparar sirve: el mismo
+ * territorio con un estudio de suelo y uno de vulnerabilidad encima.
+ */
+const soilFillColor = [
+  "match",
+  ["get", "suelo"],
+  ...SOIL_LEGEND.flatMap((entry) => [entry.soil, SOIL_COLORS[entry.soil]]),
+  SOIL_COLORS.otro,
 ] as unknown as MapLibreGL.ExpressionSpecification;
 
 interface PickedFeature {
@@ -165,6 +181,7 @@ export function LimaRiskMap({
   levelTotals,
   address,
   flyToken,
+  quakesUrl,
 }: {
   outlines: DistrictOutline[];
   selectedDistrict?: string | null;
@@ -176,10 +193,14 @@ export function LimaRiskMap({
   address?: { lon: number; lat: number; label: string } | null;
   /** Se incrementa cuando la persona elige distrito o dirección; ver `FlyTo`. */
   flyToken: number;
+  /** Sismos recientes del IGP, para superponerlos. */
+  quakesUrl?: string;
 }) {
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme === "dark" ? "dark" : "light";
   const [picked, setPicked] = useState<PickedFeature | null>(null);
+  const [showSoil, setShowSoil] = useState(false);
+  const [showQuakes, setShowQuakes] = useState(false);
 
   const handlePick = useCallback(
     (state: PickedFeature | null) => {
@@ -289,6 +310,22 @@ export function LimaRiskMap({
             />
           ) : null}
 
+          {showSoil ? (
+            <MapGeoJSON
+              id="lima-suelo-igp"
+              data="/api/v1/terreno"
+              fillPaint={{
+                "fill-color": soilFillColor,
+                "fill-opacity": 0.5,
+              }}
+              linePaint={{ "line-color": "#00000033", "line-width": 0.4 }}
+            />
+          ) : null}
+
+          {showQuakes && quakesUrl ? (
+            <MapClusterLayer data={quakesUrl} clusterRadius={40} />
+          ) : null}
+
           <MapControls />
           <ClickInspector onPick={handlePick} />
           <FlyTo
@@ -365,6 +402,31 @@ export function LimaRiskMap({
           <div className="pointer-events-none absolute top-3 left-3 rounded-md bg-map-paper/90 px-2.5 py-1.5 text-[11px] text-gray-900 shadow-sm backdrop-blur">
             Tocá cualquier manzana para ver su nivel
           </div>
+        ) : null}
+      </div>
+
+      {/* Capas encima del mapa: son fuentes distintas midiendo cosas distintas
+          sobre el mismo territorio, no variantes del mismo dato. Apagadas por
+          defecto para que la primera lectura sea una sola. */}
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
+        <span className="text-gray-800">Superponer:</span>
+        <label className="flex cursor-pointer items-center gap-1.5 text-gray-1000">
+          <input
+            type="checkbox"
+            checked={showSoil}
+            onChange={(event) => setShowSoil(event.target.checked)}
+          />
+          Tipo de suelo del IGP
+        </label>
+        {quakesUrl ? (
+          <label className="flex cursor-pointer items-center gap-1.5 text-gray-1000">
+            <input
+              type="checkbox"
+              checked={showQuakes}
+              onChange={(event) => setShowQuakes(event.target.checked)}
+            />
+            Sismos recientes
+          </label>
         ) : null}
       </div>
 
