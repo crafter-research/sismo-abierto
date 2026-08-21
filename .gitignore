@@ -16,3 +16,6 @@ apps/web/next-env.d.ts
 recon/*.har
 recon/*.png
 tmp/
+
+# vector tiles pregenerados (scripts/build-terrain-tiles.ts) — media pesada, no a git
+apps/web/public/tiles/
