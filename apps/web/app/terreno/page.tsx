@@ -128,7 +128,7 @@ export default async function TerrainIndexPage() {
               <h3 className="text-xs uppercase tracking-wide text-gray-800">
                 {department}
               </h3>
-              <ul className="mt-1 space-y-1 text-sm">
+              <ul className="mt-1 grid gap-x-4 gap-y-1 text-sm sm:grid-cols-2 lg:grid-cols-3">
                 {list.map((city) => {
                   const breakdown = soilBreakdown.get(city.slug);
                   return (
@@ -151,10 +151,10 @@ export default async function TerrainIndexPage() {
                       </span>
                       {withBearing.has(city.slug) ? (
                         <span
-                          className="text-xs text-official"
+                          className="rounded bg-official-soft px-1 py-0.5 text-[10px] text-official"
                           title="Con capacidad portante publicada"
                         >
-                          · kg/cm²
+                          capacidad portante
                         </span>
                       ) : null}
                     </li>
