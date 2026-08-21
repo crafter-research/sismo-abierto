@@ -2,6 +2,7 @@ import {
   bearingCapacityCoverage,
   citySoilBreakdown,
   coverage,
+  LimaRiskStore,
 } from "@sismo/terrain";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -18,7 +19,24 @@ export const metadata: Metadata = {
   alternates: { canonical: "/terreno" },
 };
 
+/**
+ * Los totales de Lima salen de la base, no de una constante: si se reingiere
+ * el PDF del CISMID el número cambia y la página no debe quedar mintiendo.
+ * Falla en silencio porque esta fila es un complemento del índice del IGP, no
+ * la razón por la que existe la página.
+ */
+async function limaTotals() {
+  const url = process.env.DATABASE_URL;
+  if (!url) return null;
+  try {
+    return await new LimaRiskStore(url).totals();
+  } catch {
+    return null;
+  }
+}
+
 export default async function TerrainIndexPage() {
+  const lima = await limaTotals();
   const { cities, departments, featureCount, provenance } = coverage();
   const withBearing = await bearingCapacityCoverage();
   const soilBreakdown = citySoilBreakdown();
@@ -141,6 +159,35 @@ export default async function TerrainIndexPage() {
           </p>
         ) : null}
 
+        {/* Lima va arriba y aparte: es otro estudio, de otra institución, y su
+            unidad es la manzana, no el polígono de zonificación. Ponerla como
+            una fila más de la lista sugeriría que mide lo mismo. */}
+        {lima ? (
+          <Link
+            href="/terreno/lima"
+            className="mb-4 block rounded-lg border border-gray-300 p-3 transition-colors hover:border-gray-600"
+            data-testid="lima-index-entry"
+          >
+            <span className="flex flex-wrap items-baseline gap-x-2">
+              <span className="font-semibold text-gray-1000">
+                Lima Metropolitana y Callao
+              </span>
+              <span className="text-gray-800 text-xs">
+                CISMID · Universidad Nacional de Ingeniería
+              </span>
+            </span>
+            <span className="mt-1 block text-gray-900 text-sm">
+              {lima.districts} distritos ·{" "}
+              {lima.features.toLocaleString("es-PE")} manzanas con su nivel de
+              daño esperado, de estudios entre {lima.yearRange[0]} y{" "}
+              {lima.yearRange[1]}.
+            </span>
+            <span className="mt-1 block font-medium text-official text-sm underline">
+              Ver el mapa por manzana →
+            </span>
+          </Link>
+        ) : null}
+
         <div className="mt-3 space-y-4" data-testid="city-index">
           {[...byDepartment.entries()].map(([department, list]) => (
             <div key={department}>
@@ -175,37 +222,6 @@ export default async function TerrainIndexPage() {
             </div>
           ))}
         </div>
-      </section>
-
-      <section
-        aria-labelledby="lima-titulo"
-        className="rounded-lg border border-gray-200 p-4"
-        data-testid="lima-notice"
-      >
-        <div className="flex flex-wrap items-baseline gap-x-3">
-          <h2 id="lima-titulo" className="font-semibold">
-            Lima Metropolitana tiene su propia capa
-          </h2>
-          <ClassBadge value="official" />
-        </div>
-        <p className="mt-2 text-sm text-gray-900">
-          En el departamento de Lima esta capa del IGP cubre Barranca, Huacho,
-          Chancay, Chosica, Huaycán, Chaclacayo, Cañete y otras ciudades, pero
-          ningún distrito de Lima Metropolitana. Para Lima el estudio lo publica
-          el CISMID de la Universidad Nacional de Ingeniería, y mide algo
-          distinto: no el suelo, sino cuánto daño se espera que sufra una
-          vivienda construida sobre él.
-        </p>
-        <p className="mt-2 text-sm text-gray-900">
-          Son 84,784 manzanas de 50 distritos de Lima y Callao, con estudios
-          hechos entre 2010 y 2021.
-        </p>
-        <Link
-          href="/terreno/lima"
-          className="mt-2 inline-block font-medium text-official text-sm underline"
-        >
-          Ver el riesgo sísmico de Lima manzana por manzana →
-        </Link>
       </section>
 
       <section
