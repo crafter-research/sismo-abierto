@@ -128,7 +128,7 @@ todos con línea gruesa pinta el distrito de negro en vez de bordearlo. Con un
 buffer de ~66 m antes de unir y otro negativo después quedan **4 anillos y 138
 puntos** en una sola pieza.
 
-## Precalcular los contornos (obligatorio, es performance)
+## Precalcular contornos y estadísticas (obligatorio, es performance)
 
 `store.outlines()` lee `lima_riesgo_outlines`. Calcular esos contornos al vuelo
 cuesta **3.5 s medidos** y era la causa de un TTFB de 2.3 s en `/terreno/lima`.
@@ -145,3 +145,30 @@ SELECT district,
 FROM lima_riesgo_features GROUP BY district;
 ALTER TABLE lima_riesgo_outlines ADD PRIMARY KEY (district);
 ```
+
+La misma razón vale para las estadísticas por distrito. Agrupar y sumar
+`ST_Area(geom::geography)` sobre las 84 mil manzanas cuesta **930 ms** medidos
+con `EXPLAIN ANALYZE`; leer la tabla precalculada cuesta **0.04 ms**.
+
+```sql
+ALTER TABLE lima_riesgo_features ADD COLUMN IF NOT EXISTS area_m2 double precision;
+UPDATE lima_riesgo_features SET area_m2 = ST_Area(geom::geography) WHERE area_m2 IS NULL;
+
+DROP TABLE IF EXISTS lima_riesgo_stats;
+CREATE TABLE lima_riesgo_stats AS
+SELECT district, funder, study_year,
+       count(*)::int AS total,
+       count(*) FILTER (WHERE level=1)::int AS l1,
+       count(*) FILTER (WHERE level=2)::int AS l2,
+       count(*) FILTER (WHERE level=3)::int AS l3,
+       count(*) FILTER (WHERE level=4)::int AS l4,
+       count(*) FILTER (WHERE level=5)::int AS l5,
+       round((sum(area_m2)/1e6)::numeric,2)::float8 AS area_km2
+FROM lima_riesgo_features GROUP BY district, funder, study_year;
+ALTER TABLE lima_riesgo_stats ADD PRIMARY KEY (district);
+```
+
+**Las tres consultas de la página leen tablas precalculadas.** Un primer intento
+solo precalculó los contornos y el TTFB no mejoró: `districts()` y `totals()`
+seguían recorriendo las 84 mil geometrías. Medir cada consulta por separado fue
+lo que lo delató.

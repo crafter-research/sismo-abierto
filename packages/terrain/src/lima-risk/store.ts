@@ -81,20 +81,19 @@ export class LimaRiskStore {
     };
   }
 
-  /** Resumen por distrito, ordenado por exposición descendente. */
+  /**
+   * Resumen por distrito, ordenado por exposición descendente.
+   *
+   * Lee `lima_riesgo_stats`, precalculada por la ingesta. Agrupar y sumar
+   * `ST_Area(geom::geography)` sobre las 84 mil manzanas cuesta 930 ms medidos
+   * con EXPLAIN ANALYZE; leer la tabla cuesta 0.04 ms. El dato solo cambia
+   * cuando se reingiere el PDF.
+   */
   async districts(): Promise<DistrictRiskSummary[]> {
     const rows = (await this.sql`
-      SELECT district, funder, study_year,
-             count(*)::int AS total,
-             count(*) FILTER (WHERE level = 1)::int AS l1,
-             count(*) FILTER (WHERE level = 2)::int AS l2,
-             count(*) FILTER (WHERE level = 3)::int AS l3,
-             count(*) FILTER (WHERE level = 4)::int AS l4,
-             count(*) FILTER (WHERE level = 5)::int AS l5,
-             round((sum(ST_Area(geom::geography)) / 1e6)::numeric, 2)::float8 AS area_km2
-      FROM lima_riesgo_features
-      GROUP BY district, funder, study_year
-      ORDER BY (count(*) FILTER (WHERE level >= 4))::float / count(*) DESC
+      SELECT district, funder, study_year, total, l1, l2, l3, l4, l5, area_km2
+      FROM lima_riesgo_stats
+      ORDER BY (l4 + l5)::float / NULLIF(total, 0) DESC
     `) as Array<{
       district: string;
       funder: string;
@@ -170,7 +169,7 @@ export class LimaRiskStore {
     return all.find((entry) => entry.district.toLowerCase() === target) ?? null;
   }
 
-  /** Totales de toda la capa, para la cabecera. */
+  /** Totales de toda la capa. Se derivan de `lima_riesgo_stats`, no del detalle. */
   async totals(): Promise<{
     features: number;
     districts: number;
@@ -179,17 +178,13 @@ export class LimaRiskStore {
     yearRange: [number, number];
   }> {
     const rows = (await this.sql`
-      SELECT count(*)::int AS features,
-             count(DISTINCT district)::int AS districts,
-             round((sum(ST_Area(geom::geography)) / 1e6)::numeric, 1)::float8 AS area_km2,
-             count(*) FILTER (WHERE level = 1)::int AS l1,
-             count(*) FILTER (WHERE level = 2)::int AS l2,
-             count(*) FILTER (WHERE level = 3)::int AS l3,
-             count(*) FILTER (WHERE level = 4)::int AS l4,
-             count(*) FILTER (WHERE level = 5)::int AS l5,
-             min(study_year)::int AS min_year,
-             max(study_year)::int AS max_year
-      FROM lima_riesgo_features
+      SELECT sum(total)::int AS features,
+             count(*)::int AS districts,
+             round(sum(area_km2)::numeric, 1)::float8 AS area_km2,
+             sum(l1)::int AS l1, sum(l2)::int AS l2, sum(l3)::int AS l3,
+             sum(l4)::int AS l4, sum(l5)::int AS l5,
+             min(study_year)::int AS min_year, max(study_year)::int AS max_year
+      FROM lima_riesgo_stats
     `) as Array<{
       features: number;
       districts: number;
