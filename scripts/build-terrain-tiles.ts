@@ -36,10 +36,23 @@ const zoomArg =
 let minZoom = TILE_MIN_ZOOM;
 let maxZoom = TILE_MAX_ZOOM;
 if (zoomArg) {
-  const [lo, hi] = zoomArg.split("-").map(Number);
-  if (Number.isFinite(lo)) minZoom = lo;
-  if (Number.isFinite(hi)) maxZoom = hi;
-  else if (Number.isFinite(lo)) maxZoom = lo;
+  // Un argumento mal formado no puede caer al rango completo en silencio: son
+  // ~45 minutos de generacion que nadie pidio. `--zoom 5,6,7` daba NaN y
+  // terminaba corriendo z5-z9 entero.
+  const parts = zoomArg.split("-").map(Number);
+  const [lo, hi] = parts;
+  if (parts.length > 2 || !parts.every((n) => Number.isInteger(n))) {
+    console.error(
+      `Rango de zoom invalido: "${zoomArg}". Se espera "8" o "5-7", no una lista.`,
+    );
+    process.exit(1);
+  }
+  minZoom = lo as number;
+  maxZoom = hi === undefined ? (lo as number) : hi;
+  if (minZoom > maxZoom) {
+    console.error(`Rango de zoom invertido: "${zoomArg}".`);
+    process.exit(1);
+  }
 }
 
 const databaseUrl = process.env.DATABASE_URL;
