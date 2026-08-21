@@ -4,6 +4,7 @@ import type { DistrictOutline, DistrictRiskSummary } from "@sismo/terrain";
 import { useCallback, useRef, useState } from "react";
 import { type AddressHit, LimaAddressSearch } from "./lima-address-search";
 import { LimaDistrictRanking } from "./lima-district-ranking";
+import { LimaLevelFilter } from "./lima-level-filter";
 import { LimaLevelLegend } from "./lima-level-legend";
 import { LimaRiskMap } from "./lima-risk-map";
 
@@ -30,6 +31,9 @@ export function LimaRiskExplorer({
   const [selected, setSelected] = useState<string | null>(null);
   const [activeLevels, setActiveLevels] = useState<string[]>([]);
   const [address, setAddress] = useState<AddressHit | null>(null);
+  // Ver `FlyTo` en el mapa: solo una elección explícita mueve la cámara.
+  const [flyToken, setFlyToken] = useState(0);
+  const requestFly = useCallback(() => setFlyToken((n) => n + 1), []);
   const mapRef = useRef<HTMLDivElement | null>(null);
 
   /**
@@ -38,14 +42,35 @@ export function LimaRiskExplorer({
    * lista hasta la fila (que es lo que hacía antes) desplazaba media pantalla
    * para mostrar el elemento en el que la persona acababa de hacer click.
    */
-  const selectFromList = useCallback((district: string | null) => {
-    setSelected(district);
-    // Elegir un distrito descarta la dirección: el mapa no puede estar
-    // encuadrado en una cuadra y en un distrito entero al mismo tiempo.
-    setAddress(null);
-    if (!district) return;
-    mapRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
-  }, []);
+  const selectFromList = useCallback(
+    (district: string | null) => {
+      setSelected(district);
+      // Elegir un distrito descarta la dirección: el mapa no puede estar
+      // encuadrado en una cuadra y en un distrito entero al mismo tiempo.
+      setAddress(null);
+      requestFly();
+      if (!district) return;
+      mapRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+    },
+    [requestFly],
+  );
+
+  /** Desde el buscador: elegir distrito o dirección sí mueve la cámara. */
+  const selectDistrictFromSearch = useCallback(
+    (district: string | null) => {
+      setSelected(district);
+      requestFly();
+    },
+    [requestFly],
+  );
+
+  const selectAddress = useCallback(
+    (hit: AddressHit | null) => {
+      setAddress(hit);
+      requestFly();
+    },
+    [requestFly],
+  );
 
   return (
     <div className="space-y-8">
@@ -57,34 +82,41 @@ export function LimaRiskExplorer({
         <h2 id="mapa-titulo" className="sr-only">
           Mapa interactivo
         </h2>
-        <LimaAddressSearch
-          districts={districts}
-          selectedDistrict={selected}
-          onSelectDistrict={setSelected}
-          onSelectAddress={setAddress}
-          activeAddress={address}
-        />
+        {/* Buscador y filtro juntos: es la barra de control del mapa, así que
+            vive pegada a él y no repartida arriba y abajo. */}
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-start">
+          <div className="min-w-0 flex-1">
+            <LimaAddressSearch
+              districts={districts}
+              selectedDistrict={selected}
+              onSelectDistrict={selectDistrictFromSearch}
+              onSelectAddress={selectAddress}
+              activeAddress={address}
+            />
+          </div>
+          <LimaLevelFilter
+            totals={levelTotals}
+            active={activeLevels}
+            onChange={setActiveLevels}
+          />
+        </div>
         <LimaRiskMap
           outlines={outlines}
           selectedDistrict={selected}
           onSelectDistrict={setSelected}
           activeLevels={activeLevels}
-          onActiveLevelsChange={setActiveLevels}
           address={address}
+          flyToken={flyToken}
         />
       </section>
 
       <section aria-labelledby="distritos-titulo">
         <h2
           id="distritos-titulo"
-          className="mb-1 font-semibold text-gray-1000 text-lg"
+          className="mb-3 font-semibold text-gray-1000 text-lg"
         >
           Distrito por distrito
         </h2>
-        <p className="mb-4 text-gray-800 text-sm">
-          Ordenados por porcentaje de manzanas con daño severo o colapso
-          esperado.
-        </p>
         <LimaDistrictRanking
           districts={districts}
           selected={selected}

@@ -7,10 +7,10 @@ import { Separator } from "@/components/ui/separator";
 /**
  * La leyenda, que además filtra.
  *
- * En el PDF la leyenda es un recuadro impreso al costado del plano: la mirás,
- * memorizás el color y volvés al mapa. Acá cada nivel es un control: tocarlo
- * resalta esas manzanas en el mapa y atenúa el resto, así que la leyenda deja
- * de ser una nota al pie y pasa a ser la forma de leer el mapa.
+ * El filtro principal vive junto al buscador, donde la persona ya está
+ * mirando. Esta versión de abajo existe para quien llega leyendo la página en
+ * orden: es la explicación de qué significa cada nivel, y de paso también
+ * resalta, para no obligar a subir hasta el control.
  */
 export function LimaLevelLegend({
   totals,
