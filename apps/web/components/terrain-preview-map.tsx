@@ -33,6 +33,21 @@ const geomorphFillColor = [
 const PERU_CENTER: [number, number] = [-76.5, -10.5];
 
 /**
+ * El preview del IGP no puede mostrar el pais entero. Medido 2026-08-21 contra
+ * la base: la capa `igp-wfs-zonificacion` suma 802 km2, el 0.06% del territorio
+ * peruano, repartidos en manchas urbanas de pocos kilometros. A zoom 5 esos
+ * poligonos ocupan una fraccion de pixel y la tarjeta se ve negra: no es la
+ * rampa de color, es la escala. INGEMMET si se ve a zoom 5 porque cubre
+ * 1,287,041 km2, 1600 veces mas superficie.
+ *
+ * Se encuadra el conjunto Piura / Castilla / Sullana / Union, el cluster con
+ * mas area publicada (bbox medido 0.199 lon x 0.534 lat). Lima Metropolitana
+ * no sirve de encuadre: el IGP no cubre ninguno de sus distritos.
+ */
+const IGP_PREVIEW_CENTER: [number, number] = [-80.68, -5.15];
+const IGP_PREVIEW_ZOOM = 8.5;
+
+/**
  * Previsualización chica y sin interacción del mapa de suelos del IGP o de
  * geomorfología nacional (INGEMMET), para usar dentro de una tarjeta de
  * entrada. `interactive={false}` apaga scroll/drag/dblclick de MapLibre: no
@@ -55,8 +70,8 @@ export function TerrainPreviewMap({ kind }: { kind: "igp" | "geomorfologia" }) {
       <MapCanvas
         theme={theme}
         className="h-full w-full"
-        center={PERU_CENTER}
-        zoom={5}
+        center={kind === "igp" ? IGP_PREVIEW_CENTER : PERU_CENTER}
+        zoom={kind === "igp" ? IGP_PREVIEW_ZOOM : 5}
         interactive={false}
         attributionControl={false}
       >
