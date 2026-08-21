@@ -15,8 +15,6 @@ import {
 import type * as MapLibreGL from "maplibre-gl";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   Map as MapCanvas,
   MapControls,
@@ -112,18 +110,33 @@ function ClickInspector({
 function FlyTo({
   outline,
   address,
+  token,
 }: {
   outline: DistrictOutline | null;
   address: { lon: number; lat: number } | null;
+  /**
+   * Cambia solo cuando la persona pidió explícitamente moverse: eligió un
+   * distrito en la lista o una dirección en el buscador. Un click sobre el
+   * mapa también selecciona distrito, pero no incrementa el token, así que la
+   * cámara se queda donde estaba.
+   */
+  token: number;
 }) {
   const { map, isLoaded } = useMap();
+  const lastToken = useRef(0);
 
   useEffect(() => {
     if (!map || !isLoaded) return;
+    // Sin esto, hacer click en una manzana con el mapa en zoom 15 disparaba un
+    // fitBounds al distrito entero y le sacaba a la persona el zoom que acababa
+    // de elegir a mano. La cámara solo se mueve cuando se lo piden.
+    if (token === lastToken.current) return;
+    lastToken.current = token;
+
     if (address) {
       map.easeTo({
         center: [address.lon, address.lat],
-        zoom: 15.5,
+        zoom: Math.max(map.getZoom(), 15.5),
         duration: 1000,
       });
       return;
@@ -137,7 +150,7 @@ function FlyTo({
       duration: 900,
       maxZoom: 14,
     });
-  }, [map, isLoaded, outline, address]);
+  }, [map, isLoaded, outline, address, token]);
 
   return null;
 }
@@ -147,15 +160,16 @@ export function LimaRiskMap({
   selectedDistrict,
   onSelectDistrict,
   activeLevels,
-  onActiveLevelsChange,
   address,
+  flyToken,
 }: {
   outlines: DistrictOutline[];
   selectedDistrict?: string | null;
   onSelectDistrict?: (district: string | null) => void;
   activeLevels: string[];
-  onActiveLevelsChange: (levels: string[]) => void;
   address?: { lon: number; lat: number; label: string } | null;
+  /** Se incrementa cuando la persona elige distrito o dirección; ver `FlyTo`. */
+  flyToken: number;
 }) {
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme === "dark" ? "dark" : "light";
@@ -230,8 +244,6 @@ export function LimaRiskMap({
     ] as unknown as number;
   }, [activeLevels, selectedDistrict]);
 
-  const activeCount = activeLevels.length;
-
   return (
     <div>
       <div className="relative h-[60vh] min-h-[420px] w-full overflow-hidden rounded-lg border border-gray-300">
@@ -273,7 +285,11 @@ export function LimaRiskMap({
 
           <MapControls />
           <ClickInspector onPick={handlePick} />
-          <FlyTo outline={selectedOutline} address={address ?? null} />
+          <FlyTo
+            outline={selectedOutline}
+            address={address ?? null}
+            token={flyToken}
+          />
 
           {address ? (
             <MapMarker longitude={address.lon} latitude={address.lat}>
@@ -343,41 +359,6 @@ export function LimaRiskMap({
           <div className="pointer-events-none absolute top-3 left-3 rounded-md bg-map-paper/90 px-2.5 py-1.5 text-[11px] text-gray-900 shadow-sm backdrop-blur">
             Tocá cualquier manzana para ver su nivel
           </div>
-        ) : null}
-      </div>
-
-      <div className="mt-3 flex flex-wrap items-center gap-2">
-        <ToggleGroup
-          value={activeLevels}
-          onValueChange={onActiveLevelsChange}
-          variant="outline"
-          size="sm"
-          aria-label="Filtrar por nivel de daño"
-        >
-          {RISK_LEVELS.map((spec) => (
-            <ToggleGroupItem
-              key={spec.level}
-              value={String(spec.level)}
-              aria-label={`Nivel ${romanLevel(spec.level)}, ${spec.damage}`}
-              className="gap-1.5"
-            >
-              <span
-                aria-hidden
-                className="size-2.5 rounded-[2px]"
-                style={{ backgroundColor: spec.ui }}
-              />
-              <span>{romanLevel(spec.level)}</span>
-              <span className="hidden lg:inline">{spec.damage}</span>
-            </ToggleGroupItem>
-          ))}
-        </ToggleGroup>
-
-        {activeCount > 0 ? (
-          <Badge variant="secondary" className="tabular-nums">
-            {activeCount === 1
-              ? "1 nivel resaltado"
-              : `${activeCount} niveles resaltados`}
-          </Badge>
         ) : null}
       </div>
     </div>

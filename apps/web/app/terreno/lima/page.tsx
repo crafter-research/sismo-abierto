@@ -176,7 +176,7 @@ export default async function LimaRiskPage() {
         levelTotals={totals.byLevel}
       />
 
-      <section aria-labelledby="resumen-titulo" className="mb-10">
+      <section aria-labelledby="resumen-titulo" className="mt-12 mb-10">
         <h2
           id="resumen-titulo"
           className="mb-3 font-semibold text-gray-1000 text-lg"
