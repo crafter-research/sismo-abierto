@@ -15,6 +15,7 @@ import {
 import type * as MapLibreGL from "maplibre-gl";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   Map as MapCanvas,
   MapControls,
@@ -160,6 +161,8 @@ export function LimaRiskMap({
   selectedDistrict,
   onSelectDistrict,
   activeLevels,
+  onActiveLevelsChange,
+  levelTotals,
   address,
   flyToken,
 }: {
@@ -167,6 +170,9 @@ export function LimaRiskMap({
   selectedDistrict?: string | null;
   onSelectDistrict?: (district: string | null) => void;
   activeLevels: string[];
+  onActiveLevelsChange: (levels: string[]) => void;
+  /** Conteo por nivel, índice 0 = nivel 1. Va en cada toggle. */
+  levelTotals: number[];
   address?: { lon: number; lat: number; label: string } | null;
   /** Se incrementa cuando la persona elige distrito o dirección; ver `FlyTo`. */
   flyToken: number;
@@ -360,6 +366,44 @@ export function LimaRiskMap({
             Tocá cualquier manzana para ver su nivel
           </div>
         ) : null}
+      </div>
+
+      {/* Los toggles viven debajo del mapa, que es donde se leen contra lo que
+          acaban de resaltar. Cada uno lleva su conteo: la leyenda y el filtro
+          son la misma cosa, y separarlos obligaba a buscar el número en otro
+          lado de la página. */}
+      <div className="mt-3">
+        <ToggleGroup
+          value={activeLevels}
+          onValueChange={onActiveLevelsChange}
+          variant="outline"
+          size="sm"
+          aria-label="Resaltar niveles de daño en el mapa"
+          className="flex-wrap"
+        >
+          {RISK_LEVELS.map((spec, index) => {
+            const count = levelTotals[index] ?? 0;
+            return (
+              <ToggleGroupItem
+                key={spec.level}
+                value={String(spec.level)}
+                aria-label={`Nivel ${romanLevel(spec.level)}, ${spec.damage}, ${count} manzanas`}
+                className="gap-1.5"
+              >
+                <span
+                  aria-hidden
+                  className="size-2.5 rounded-[2px]"
+                  style={{ backgroundColor: spec.ui }}
+                />
+                <span>{romanLevel(spec.level)}</span>
+                <span className="hidden sm:inline">{spec.damage}</span>
+                <span className="text-muted-foreground text-xs tabular-nums">
+                  {count.toLocaleString("es-PE")}
+                </span>
+              </ToggleGroupItem>
+            );
+          })}
+        </ToggleGroup>
       </div>
     </div>
   );

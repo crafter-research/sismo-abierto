@@ -4,7 +4,6 @@ import type { DistrictOutline, DistrictRiskSummary } from "@sismo/terrain";
 import { useCallback, useRef, useState } from "react";
 import { type AddressHit, LimaAddressSearch } from "./lima-address-search";
 import { LimaDistrictRanking } from "./lima-district-ranking";
-import { LimaLevelFilter } from "./lima-level-filter";
 import { LimaLevelLegend } from "./lima-level-legend";
 import { LimaRiskMap } from "./lima-risk-map";
 
@@ -82,29 +81,20 @@ export function LimaRiskExplorer({
         <h2 id="mapa-titulo" className="sr-only">
           Mapa interactivo
         </h2>
-        {/* Buscador y filtro juntos: es la barra de control del mapa, así que
-            vive pegada a él y no repartida arriba y abajo. */}
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-start">
-          <div className="min-w-0 flex-1">
-            <LimaAddressSearch
-              districts={districts}
-              selectedDistrict={selected}
-              onSelectDistrict={selectDistrictFromSearch}
-              onSelectAddress={selectAddress}
-              activeAddress={address}
-            />
-          </div>
-          <LimaLevelFilter
-            totals={levelTotals}
-            active={activeLevels}
-            onChange={setActiveLevels}
-          />
-        </div>
+        <LimaAddressSearch
+          districts={districts}
+          selectedDistrict={selected}
+          onSelectDistrict={selectDistrictFromSearch}
+          onSelectAddress={selectAddress}
+          activeAddress={address}
+        />
         <LimaRiskMap
           outlines={outlines}
           selectedDistrict={selected}
           onSelectDistrict={setSelected}
           activeLevels={activeLevels}
+          onActiveLevelsChange={setActiveLevels}
+          levelTotals={levelTotals}
           address={address}
           flyToken={flyToken}
         />
