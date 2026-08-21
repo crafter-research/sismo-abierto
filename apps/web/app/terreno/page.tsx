@@ -182,24 +182,28 @@ export default async function TerrainIndexPage() {
       >
         <div className="flex flex-wrap items-baseline gap-x-3">
           <h2 id="lima-titulo" className="font-semibold">
-            Lima Metropolitana no está en esta capa
+            Lima Metropolitana tiene su propia capa
           </h2>
-          <ClassBadge value="unavailable" />
+          <ClassBadge value="official" />
         </div>
         <p className="mt-2 text-sm text-gray-900">
-          En el departamento de Lima esta capa cubre Barranca, Huacho, Chancay,
-          Chosica, Huaycán, Chaclacayo, Cañete y otras ciudades, pero ningún
-          distrito de Lima Metropolitana. El estudio que sí cubre Lima manzana
-          por manzana lo publica el CISMID de la Universidad Nacional de
-          Ingeniería, por ahora solo como plano descargable.
+          En el departamento de Lima esta capa del IGP cubre Barranca, Huacho,
+          Chancay, Chosica, Huaycán, Chaclacayo, Cañete y otras ciudades, pero
+          ningún distrito de Lima Metropolitana. Para Lima el estudio lo publica
+          el CISMID de la Universidad Nacional de Ingeniería, y mide algo
+          distinto: no el suelo, sino cuánto daño se espera que sufra una
+          vivienda construida sobre él.
         </p>
-        <a
-          href="https://www.cismid.uni.edu.pe/mapa-de-riesgo-sismico-de-lima-cuan-vulnerables-son-nuestras-viviendas/"
-          className="mt-2 inline-block text-sm font-medium text-official underline"
-          rel="noreferrer"
+        <p className="mt-2 text-sm text-gray-900">
+          Son 86,792 manzanas de 50 distritos de Lima y Callao, con estudios
+          hechos entre 2010 y 2021.
+        </p>
+        <Link
+          href="/terreno/lima"
+          className="mt-2 inline-block font-medium text-official text-sm underline"
         >
-          Mapa de microzonificación de Lima en el CISMID →
-        </a>
+          Ver el riesgo sísmico de Lima manzana por manzana →
+        </Link>
       </section>
 
       <section
