@@ -1,5 +1,5 @@
 import snapshot from "../data/zonificacion-sismica.json";
-import { TERRAIN_PROVENANCE } from "./zonification.ts";
+import { citySlug, TERRAIN_PROVENANCE } from "./zonification.ts";
 
 /** Familia de suelo S1–S4 derivada de la etiqueta larga del IGP. */
 export type SoilClass = "S1" | "S2" | "S3" | "S4" | "amplificacion" | "otro";
@@ -96,4 +96,42 @@ export function buildMapCollection() {
     sourceUrl: TERRAIN_PROVENANCE.sourceUrl,
     features,
   };
+}
+
+export interface CitySoilBreakdown {
+  slug: string;
+  /** Cuántos polígonos de cada clase de suelo tiene la ciudad. */
+  counts: Partial<Record<SoilClass, number>>;
+  /** Total de polígonos clasificados para la ciudad. */
+  total: number;
+}
+
+/**
+ * Composición de tipos de suelo por ciudad, contando polígonos por clase
+ * S1-S4/amplificación/otro. Sirve para mostrar una barra de color junto al
+ * nombre de cada ciudad en el índice, en vez de solo el conteo total: dos
+ * ciudades pueden tener el mismo número de polígonos y una composición de
+ * suelo completamente distinta.
+ */
+export function citySoilBreakdown(): Map<string, CitySoilBreakdown> {
+  const byCity = new Map<string, CitySoilBreakdown>();
+
+  for (const feature of (
+    snapshot as {
+      features: {
+        properties: { ciudad: string | null; zona: string | null };
+      }[];
+    }
+  ).features) {
+    const { ciudad, zona } = feature.properties;
+    if (!ciudad || !zona) continue;
+    const slug = citySlug(ciudad);
+    const soil = soilClassOf(zona);
+    const entry = byCity.get(slug) ?? { slug, counts: {}, total: 0 };
+    entry.counts[soil] = (entry.counts[soil] ?? 0) + 1;
+    entry.total += 1;
+    byCity.set(slug, entry);
+  }
+
+  return byCity;
 }

@@ -1,6 +1,8 @@
 import { describe, expect, test } from "bun:test";
 import {
   buildMapCollection,
+  citySoilBreakdown,
+  coverage,
   SOIL_COLORS,
   SOIL_LEGEND,
   soilClassOf,
@@ -66,6 +68,28 @@ describe("buildMapCollection", () => {
   test("declara la fecha de captura junto a los datos", () => {
     expect(collection.capturedAt).toMatch(/^\d{4}-\d{2}-\d{2}/);
     expect(collection.sourceUrl).toContain("ide.igp.gob.pe");
+  });
+});
+
+describe("citySoilBreakdown", () => {
+  const breakdown = citySoilBreakdown();
+  const { cities } = coverage();
+
+  test("una entrada por cada ciudad con estudio publicado", () => {
+    expect(breakdown.size).toBe(cities.length);
+  });
+
+  test("el total de una ciudad coincide con su zoneCount", () => {
+    for (const city of cities.slice(0, 5)) {
+      expect(breakdown.get(city.slug)?.total).toBe(city.zoneCount);
+    }
+  });
+
+  test("las cuentas por clase suman el total", () => {
+    for (const entry of breakdown.values()) {
+      const sum = Object.values(entry.counts).reduce((a, b) => a + b, 0);
+      expect(sum).toBe(entry.total);
+    }
   });
 });
 
