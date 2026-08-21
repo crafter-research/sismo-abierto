@@ -1,7 +1,13 @@
-import { bearingCapacityCoverage, coverage } from "@sismo/terrain";
+import {
+  bearingCapacityCoverage,
+  citySoilBreakdown,
+  coverage,
+} from "@sismo/terrain";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ClassBadge } from "../../components/badges";
+import { SoilBreakdownBar } from "../../components/soil-breakdown-bar";
+import { TerrainPreviewMap } from "../../components/terrain-preview-map";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +21,7 @@ export const metadata: Metadata = {
 export default async function TerrainIndexPage() {
   const { cities, departments, featureCount, provenance } = coverage();
   const withBearing = await bearingCapacityCoverage();
+  const soilBreakdown = citySoilBreakdown();
 
   const byDepartment = new Map<string, typeof cities>();
   for (const city of cities) {
@@ -35,33 +42,77 @@ export default async function TerrainIndexPage() {
         </p>
       </header>
 
-      <Link
-        href="/terreno/mapa"
-        className="block rounded-lg border border-gray-200 p-4 hover:border-gray-600"
-        data-testid="map-entry"
-      >
-        <span className="font-semibold text-official underline">
-          Abrir el mapa interactivo →
-        </span>
-        <span className="mt-1 block text-sm text-gray-900">
-          Zoom hasta tu zona, con los sismos recientes encima y las capas
-          filtrables.
-        </span>
-      </Link>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Link
+          href="/terreno/mapa"
+          className="block rounded-lg border border-gray-200 p-3 hover:border-gray-600"
+          data-testid="map-entry"
+        >
+          <TerrainPreviewMap kind="igp" />
+          <span className="mt-3 block font-semibold text-official underline">
+            Abrir el mapa interactivo →
+          </span>
+          <span className="mt-1 block text-sm text-gray-900">
+            Zoom hasta tu zona, con los sismos recientes encima y las capas
+            filtrables. {cities.length} ciudades, escala urbana.
+          </span>
+        </Link>
 
-      <Link
-        href="/terreno/geomorfologia"
-        className="block rounded-lg border border-gray-200 p-4 hover:border-gray-600"
-        data-testid="geomorphology-entry"
+        <Link
+          href="/terreno/geomorfologia"
+          className="block rounded-lg border border-gray-200 p-3 hover:border-gray-600"
+          data-testid="geomorphology-entry"
+        >
+          <TerrainPreviewMap kind="geomorfologia" />
+          <span className="mt-3 block font-semibold text-official underline">
+            Ver geomorfología nacional →
+          </span>
+          <span className="mt-1 block text-sm text-gray-900">
+            62,109 polígonos de INGEMMET. Cobertura de todo el país a escala
+            1:100&nbsp;000, incluida Lima.
+          </span>
+        </Link>
+      </div>
+
+      <section
+        aria-labelledby="contraste-titulo"
+        className="rounded-lg border border-gray-200 p-4"
+        data-testid="coverage-contrast"
       >
-        <span className="font-semibold text-official underline">
-          Ver geomorfología nacional →
-        </span>
-        <span className="mt-1 block text-sm text-gray-900">
-          62,109 polígonos de INGEMMET, cobertura de todo el país, no solo las
-          ciudades con estudio del IGP.
-        </span>
-      </Link>
+        <h2 id="contraste-titulo" className="sr-only">
+          Contraste entre las dos capas
+        </h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <p className="text-2xl font-bold text-gray-1000">
+              {cities.length}
+              <span className="ml-1 text-sm font-normal text-gray-800">
+                ciudades
+              </span>
+            </p>
+            <p className="text-xs text-gray-800">
+              IGP · zonificación urbana detallada, {featureCount} polígonos
+            </p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold text-gray-1000">
+              1
+              <span className="ml-1 text-sm font-normal text-gray-800">
+                país entero
+              </span>
+            </p>
+            <p className="text-xs text-gray-800">
+              INGEMMET · geomorfología a escala 1:100&nbsp;000, 62,109 polígonos
+            </p>
+          </div>
+        </div>
+        <p className="mt-3 text-sm text-gray-900">
+          Las dos capas no compiten: donde el IGP tiene estudio urbano, es la
+          fuente más precisa. Donde no lo tiene —incluida toda Lima
+          Metropolitana— la geomorfología de INGEMMET es la única capa
+          disponible.
+        </p>
+      </section>
 
       <section aria-labelledby="ciudades-titulo">
         <div className="mb-3 flex flex-wrap items-center gap-3">
@@ -77,29 +128,38 @@ export default async function TerrainIndexPage() {
               <h3 className="text-xs uppercase tracking-wide text-gray-800">
                 {department}
               </h3>
-              <ul className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                {list.map((city) => (
-                  <li key={`${department}-${city.slug}`}>
-                    <Link
-                      href={`/terreno/${city.slug}`}
-                      className="font-medium text-official underline"
+              <ul className="mt-1 space-y-1 text-sm">
+                {list.map((city) => {
+                  const breakdown = soilBreakdown.get(city.slug);
+                  return (
+                    <li
+                      key={`${department}-${city.slug}`}
+                      className="flex flex-wrap items-center gap-x-2 gap-y-1"
                     >
-                      {city.city}
-                    </Link>{" "}
-                    <span className="text-xs text-gray-800">
-                      {city.zoneCount}{" "}
-                      {city.zoneCount === 1 ? "polígono" : "polígonos"}
-                    </span>
-                    {withBearing.has(city.slug) ? (
-                      <span
-                        className="ml-1 text-xs text-official"
-                        title="Con capacidad portante publicada"
+                      {breakdown ? (
+                        <SoilBreakdownBar breakdown={breakdown} />
+                      ) : null}
+                      <Link
+                        href={`/terreno/${city.slug}`}
+                        className="font-medium text-official underline"
                       >
-                        · kg/cm²
+                        {city.city}
+                      </Link>
+                      <span className="text-xs text-gray-800">
+                        {city.zoneCount}{" "}
+                        {city.zoneCount === 1 ? "polígono" : "polígonos"}
                       </span>
-                    ) : null}
-                  </li>
-                ))}
+                      {withBearing.has(city.slug) ? (
+                        <span
+                          className="text-xs text-official"
+                          title="Con capacidad portante publicada"
+                        >
+                          · kg/cm²
+                        </span>
+                      ) : null}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

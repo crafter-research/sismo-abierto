@@ -31,7 +31,26 @@ function isGroup(entry: NavEntry): entry is NavGroup {
 export const NAV_ENTRIES: NavEntry[] = [
   { href: "/peru", label: "Sismos" },
   { href: "/volcanes", label: "Volcanes" },
-  { href: "/terreno", label: "Terreno" },
+  {
+    label: "Terreno",
+    links: [
+      {
+        href: "/terreno",
+        label: "Resumen",
+        hint: "Qué ciudades tienen estudio de suelo",
+      },
+      {
+        href: "/terreno/mapa",
+        label: "Mapa interactivo",
+        hint: "IGP, detalle por manzana en 57 ciudades. No cubre Lima Metropolitana.",
+      },
+      {
+        href: "/terreno/geomorfologia",
+        label: "Mapa nacional",
+        hint: "INGEMMET, todo el país a escala 1:100 000, no reemplaza un estudio local.",
+      },
+    ],
+  },
   {
     label: "Aula",
     links: [
