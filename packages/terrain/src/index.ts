@@ -7,6 +7,7 @@ export * from "./ingemmet/ingest.ts";
 export * from "./ingemmet/source.ts";
 export * from "./ingemmet/store.ts";
 export * from "./ingest.ts";
+export * from "./lima-risk/index.ts";
 export * from "./map-data.ts";
 export * from "./neon-store.ts";
 export * from "./point/index.ts";

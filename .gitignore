@@ -20,3 +20,6 @@ tmp/
 # vector tiles pregenerados (scripts/build-terrain-tiles.ts) — media pesada, no a git
 apps/web/public/tiles/
 recon/**/*.pdf
+recon/**/*.geojson
+recon/**/*.mbtiles
+recon/**/tiles-*/

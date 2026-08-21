@@ -1,10 +1,14 @@
 import {
   describeIgpMatch,
   describeIngemmetMatch,
+  LimaRiskStore,
   type NearestFault,
   queryPoint,
+  riskLevelSpec,
+  romanLevel,
   type StudyLevel,
   studyLevelLabel,
+  whatItMeans,
 } from "@sismo/terrain";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -84,7 +88,14 @@ export default async function PointTerrainPage({
 
   if (!process.env.DATABASE_URL) return <MissingDatabaseState point={point} />;
 
-  const terrain = await queryPoint(point.lon, point.lat);
+  const databaseUrl = process.env.DATABASE_URL;
+  const [terrain, limaRisk] = await Promise.all([
+    queryPoint(point.lon, point.lat),
+    // El estudio del CISMID solo cubre Lima y Callao: fuera de ahí devuelve
+    // null y la sección no se renderiza.
+    new LimaRiskStore(databaseUrl).atPoint(point.lon, point.lat),
+  ]);
+  const limaSpec = limaRisk ? riskLevelSpec(limaRisk.level) : null;
 
   return (
     <div className="space-y-6">
@@ -138,6 +149,67 @@ export default async function PointTerrainPage({
           >
             Ver ciudades con estudio →
           </Link>
+        </section>
+      ) : null}
+
+      {limaRisk && limaSpec ? (
+        <section aria-labelledby="lima-riesgo-titulo" data-testid="lima-risk">
+          <h2 id="lima-riesgo-titulo" className="mb-3 font-semibold">
+            Riesgo sísmico de la vivienda
+          </h2>
+          <div className="rounded-lg border border-gray-300 p-4">
+            <div className="flex items-start gap-3">
+              <span
+                aria-hidden
+                className="mt-1 size-4 shrink-0 rounded-[3px]"
+                style={{ backgroundColor: limaSpec.ui }}
+              />
+              <div className="min-w-0 space-y-2">
+                <p className="font-semibold text-gray-1000">
+                  Nivel {romanLevel(limaSpec.level)} · {limaSpec.damage}
+                </p>
+                <p className="text-gray-900 text-sm leading-relaxed">
+                  {whatItMeans(limaSpec.level)}
+                </p>
+                <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs sm:grid-cols-4">
+                  <div>
+                    <dt className="text-gray-800">Costo de reparación</dt>
+                    <dd className="font-medium text-gray-1000">
+                      {limaSpec.repairCost}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-800">Distrito</dt>
+                    <dd className="font-medium text-gray-1000">
+                      {limaRisk.district}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-800">Año del estudio</dt>
+                    <dd className="font-medium text-gray-1000">
+                      {limaRisk.studyYear}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-800">Riesgo</dt>
+                    <dd className="font-medium text-gray-1000">
+                      {limaRisk.risk}
+                    </dd>
+                  </div>
+                </dl>
+                <p className="text-gray-800 text-xs leading-snug">
+                  Estudio del CISMID-UNI. Es una estimación por zona: no
+                  reemplaza la evaluación técnica de una vivienda concreta.{" "}
+                  <Link
+                    href="/terreno/lima"
+                    className="underline underline-offset-2 hover:text-gray-1000"
+                  >
+                    Ver el mapa completo
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
       ) : null}
 

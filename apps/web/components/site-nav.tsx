@@ -40,6 +40,11 @@ export const NAV_ENTRIES: NavEntry[] = [
         hint: "Qué ciudades tienen estudio de suelo",
       },
       {
+        href: "/terreno/lima",
+        label: "Riesgo en Lima",
+        hint: "CISMID, 86,792 manzanas de Lima y Callao con su nivel de daño esperado.",
+      },
+      {
         href: "/terreno/mapa",
         label: "Mapa interactivo",
         hint: "IGP, detalle por manzana en 57 ciudades. No cubre Lima Metropolitana.",
