@@ -61,8 +61,22 @@ export function tileRelativePath(z: number, x: number, y: number): string {
   return `tiles/terreno/geomorfologia/${z}/${x}/${y}.mvt`;
 }
 
+/**
+ * Los tiles viven en R2, no en el repo ni en el build.
+ *
+ * Son 401 archivos y 18 MB de binarios regenerables: commitearlos mas que
+ * duplicaria el repo (14 MB hoy), y generarlos en cada build cuesta ~45 minutos
+ * y 401 consultas a Neon por deploy. Se regeneran cuando cambia el dato de
+ * INGEMMET, que es casi nunca, asi que el ciclo de vida no es el del deploy.
+ *
+ * Se suben con `aws s3 sync apps/web/public/tiles/ s3://sismo-tiles/` contra el
+ * endpoint de R2. El bucket sirve publico con `Cache-Control: immutable`.
+ */
+export const TERRAIN_TILE_BASE_URL =
+  process.env.NEXT_PUBLIC_TERRAIN_TILE_BASE_URL ??
+  "https://pub-dabfdbdeaded4c529b6daa87686899dc.r2.dev";
+
 /** Plantilla de URL que consume MapLibre (`{z}/{x}/{y}`) para la capa nacional. */
-export const TERRAIN_TILE_URL_TEMPLATE =
-  "/tiles/terreno/geomorfologia/{z}/{x}/{y}.mvt";
+export const TERRAIN_TILE_URL_TEMPLATE = `${TERRAIN_TILE_BASE_URL}/terreno/geomorfologia/{z}/{x}/{y}.mvt`;
 
 export const INGEMMET_TILE_ATTRIBUTION = "INGEMMET · GEOCATMIN";
