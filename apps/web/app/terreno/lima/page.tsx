@@ -3,6 +3,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LimaRiskExplorer } from "@/components/lima-risk-explorer";
 
+/**
+ * Bajo demanda, no en build: los datos viven en Neon y `DATABASE_URL` no existe
+ * durante el build de CI, así que prerenderizar falla. El costo por request se
+ * controla del lado del dato (`lima_riesgo_outlines` está precalculada) en vez
+ * de con ISR.
+ */
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {

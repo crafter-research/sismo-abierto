@@ -127,3 +127,21 @@ por cada calle. Medido en Villa El Salvador daba **3,058 anillos**, y dibujarlos
 todos con línea gruesa pinta el distrito de negro en vez de bordearlo. Con un
 buffer de ~66 m antes de unir y otro negativo después quedan **4 anillos y 138
 puntos** en una sola pieza.
+
+## Precalcular los contornos (obligatorio, es performance)
+
+`store.outlines()` lee `lima_riesgo_outlines`. Calcular esos contornos al vuelo
+cuesta **3.5 s medidos** y era la causa de un TTFB de 2.3 s en `/terreno/lima`.
+Correr después de cada ingesta o recorte:
+
+```sql
+DROP TABLE IF EXISTS lima_riesgo_outlines;
+CREATE TABLE lima_riesgo_outlines AS
+SELECT district,
+       ST_SimplifyPreserveTopology(
+         ST_Buffer(ST_Union(ST_Buffer(geom, 0.0006)), -0.0004), 0.0002) AS geom,
+       ST_XMin(ST_Extent(geom)) AS min_lon, ST_YMin(ST_Extent(geom)) AS min_lat,
+       ST_XMax(ST_Extent(geom)) AS max_lon, ST_YMax(ST_Extent(geom)) AS max_lat
+FROM lima_riesgo_features GROUP BY district;
+ALTER TABLE lima_riesgo_outlines ADD PRIMARY KEY (district);
+```

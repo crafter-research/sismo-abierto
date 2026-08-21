@@ -129,27 +129,22 @@ export class LimaRiskStore {
    * *estudio*, que no siempre coincide con el límite político y es el que la
    * gente necesita ver para saber hasta dónde llega el dato.
    *
-   * El buffer de ~66 m cierra las calles antes de unir. Sin él, `ST_Union` de
-   * las manzanas deja un hueco por cada calle: medido en Villa El Salvador
-   * daba 3,058 anillos, y dibujar todos con línea gruesa pinta el distrito de
-   * negro en vez de bordearlo. Con el buffer quedan 4 anillos en una sola
-   * pieza y 138 puntos, que es el contorno que la gente espera ver.
+   * Lee `lima_riesgo_outlines`, precalculada por la ingesta. Calcularla al
+   * vuelo cuesta 3.5 s medidos (50 buffers + uniones sobre 84 mil polígonos) y
+   * era la causa de un TTFB de 2.3 s en esta página. La geometría solo cambia
+   * cuando se reingiere el PDF, así que no hay razón para recalcularla por
+   * request.
+   *
+   * El buffer de ~66 m que usa esa tabla cierra las calles antes de unir. Sin
+   * él, `ST_Union` de las manzanas deja un hueco por cada calle: medido en
+   * Villa El Salvador daba 3,058 anillos, y dibujar todos con línea gruesa
+   * pinta el distrito de negro en vez de bordearlo.
    */
   async outlines(): Promise<DistrictOutline[]> {
     const rows = (await this.sql`
-      SELECT district,
-             ST_AsGeoJSON(
-               ST_SimplifyPreserveTopology(
-                 ST_Buffer(ST_Union(ST_Buffer(geom, 0.0006)), -0.0004),
-                 0.0002
-               )
-             ) AS geojson,
-             ST_XMin(ST_Extent(geom)) AS min_lon,
-             ST_YMin(ST_Extent(geom)) AS min_lat,
-             ST_XMax(ST_Extent(geom)) AS max_lon,
-             ST_YMax(ST_Extent(geom)) AS max_lat
-      FROM lima_riesgo_features
-      GROUP BY district
+      SELECT district, ST_AsGeoJSON(geom) AS geojson,
+             min_lon, min_lat, max_lon, max_lat
+      FROM lima_riesgo_outlines
     `) as Array<{
       district: string;
       geojson: string;
