@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  type DistrictOutline,
   LIMA_CENTER,
   LIMA_RISK_MAX_ZOOM,
   LIMA_RISK_MIN_ZOOM,
@@ -14,9 +15,12 @@ import {
 import type * as MapLibreGL from "maplibre-gl";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   Map as MapCanvas,
   MapControls,
+  MapGeoJSON,
   MapPopup,
   MapVectorTile,
   useMap,
@@ -39,7 +43,7 @@ const fillColor = [
   "#9ca3af",
 ] as unknown as MapLibreGL.ExpressionSpecification;
 
-interface HoverState {
+interface PickedFeature {
   lon: number;
   lat: number;
   level: number;
@@ -50,7 +54,7 @@ interface HoverState {
 function ClickInspector({
   onPick,
 }: {
-  onPick: (state: HoverState | null) => void;
+  onPick: (state: PickedFeature | null) => void;
 }) {
   const { map } = useMap();
 
@@ -97,31 +101,76 @@ function ClickInspector({
   return null;
 }
 
+/** Vuela al distrito elegido. Separado porque `useMap` exige estar dentro del canvas. */
+function FlyToDistrict({ outline }: { outline: DistrictOutline | null }) {
+  const { map, isLoaded } = useMap();
+
+  useEffect(() => {
+    if (!map || !isLoaded) return;
+    if (!outline) {
+      map.easeTo({ center: LIMA_CENTER, zoom: 10.2, duration: 700 });
+      return;
+    }
+    map.fitBounds(outline.bounds, {
+      padding: { top: 40, bottom: 40, left: 40, right: 40 },
+      duration: 900,
+      maxZoom: 14,
+    });
+  }, [map, isLoaded, outline]);
+
+  return null;
+}
+
 export function LimaRiskMap({
-  initialCenter,
-  initialZoom,
-  className,
+  outlines,
+  selectedDistrict,
+  onSelectDistrict,
+  activeLevels,
+  onActiveLevelsChange,
 }: {
-  initialCenter?: [number, number];
-  initialZoom?: number;
-  className?: string;
+  outlines: DistrictOutline[];
+  selectedDistrict?: string | null;
+  onSelectDistrict?: (district: string | null) => void;
+  activeLevels: string[];
+  onActiveLevelsChange: (levels: string[]) => void;
 }) {
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme === "dark" ? "dark" : "light";
-  const [picked, setPicked] = useState<HoverState | null>(null);
-  const [activeLevel, setActiveLevel] = useState<number | null>(null);
+  const [picked, setPicked] = useState<PickedFeature | null>(null);
 
-  const handlePick = useCallback((state: HoverState | null) => {
-    setPicked(state);
-  }, []);
+  const handlePick = useCallback(
+    (state: PickedFeature | null) => {
+      setPicked(state);
+      // Tocar una manzana también selecciona su distrito: es el gesto natural
+      // cuando alguien busca el suyo y no sabe cómo se escribe.
+      if (state && onSelectDistrict) onSelectDistrict(state.district);
+    },
+    [onSelectDistrict],
+  );
 
   const spec = picked ? riskLevelSpec(picked.level) : null;
+  const selectedOutline = useMemo(
+    () => outlines.find((entry) => entry.district === selectedDistrict) ?? null,
+    [outlines, selectedDistrict],
+  );
 
-  // Atenuar en vez de ocultar. Un filtro que borra los otros niveles deja al
-  // usuario sin referencia de dónde está mirando; bajar la opacidad mantiene
-  // la silueta de la ciudad mientras resalta el nivel elegido.
+  /**
+   * Atenuar en vez de ocultar, en dos ejes que se combinan: el nivel elegido en
+   * los toggles y el distrito elegido en el buscador. Un filtro que borra el
+   * resto deja a la persona sin referencia de dónde está mirando; bajar la
+   * opacidad mantiene la silueta de la ciudad alrededor de lo que resaltó.
+   */
   const fillOpacity = useMemo(() => {
-    if (activeLevel === null) {
+    const levels = activeLevels.map(Number);
+    const levelMatch: unknown =
+      levels.length === 0
+        ? true
+        : ["in", ["get", "level"], ["literal", levels]];
+    const districtMatch: unknown = selectedDistrict
+      ? ["==", ["get", "district"], selectedDistrict]
+      : true;
+
+    if (levels.length === 0 && !selectedDistrict) {
       return [
         "interpolate",
         ["linear"],
@@ -132,22 +181,25 @@ export function LimaRiskMap({
         0.85,
       ] as unknown as number;
     }
+
     return [
       "case",
-      ["==", ["get", "level"], activeLevel],
+      ["all", levelMatch, districtMatch],
       0.9,
-      0.06,
+      0.08,
     ] as unknown as number;
-  }, [activeLevel]);
+  }, [activeLevels, selectedDistrict]);
+
+  const activeCount = activeLevels.length;
 
   return (
-    <div className={className}>
+    <div>
       <div className="relative h-[60vh] min-h-[420px] w-full overflow-hidden rounded-lg border border-gray-300">
         <MapCanvas
           theme={theme}
           className="h-full w-full"
-          center={initialCenter ?? LIMA_CENTER}
-          zoom={initialZoom ?? 10.2}
+          center={LIMA_CENTER}
+          zoom={10.2}
           attributionControl={false}
         >
           <MapVectorTile
@@ -160,21 +212,29 @@ export function LimaRiskMap({
               "fill-color": fillColor,
               "fill-opacity": fillOpacity,
             }}
-            linePaint={{
-              "line-color": "#00000022",
-              "line-width": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                12,
-                0,
-                15,
-                0.5,
-              ] as unknown as number,
-            }}
+            linePaint={false}
           />
+
+          {selectedOutline ? (
+            <MapGeoJSON
+              id="lima-distrito-activo"
+              data={{
+                type: "Feature",
+                properties: {},
+                geometry: selectedOutline.geometry,
+              }}
+              fillPaint={false}
+              linePaint={{
+                "line-color": theme === "dark" ? "#ffffff" : "#111111",
+                "line-width": 2.5,
+              }}
+            />
+          ) : null}
+
           <MapControls />
           <ClickInspector onPick={handlePick} />
+          <FlyToDistrict outline={selectedOutline} />
+
           {picked && spec ? (
             <MapPopup
               longitude={picked.lon}
@@ -190,11 +250,11 @@ export function LimaRiskMap({
                     className="size-3 shrink-0 rounded-[3px]"
                     style={{ backgroundColor: spec.ui }}
                   />
-                  <p className="font-semibold text-sm text-gray-1000">
+                  <p className="font-semibold text-gray-1000 text-sm">
                     Nivel {romanLevel(spec.level)} · {spec.damage}
                   </p>
                 </div>
-                <p className="text-xs text-gray-900 leading-relaxed">
+                <p className="text-gray-900 text-xs leading-relaxed">
                   {whatItMeans(spec.level)}
                 </p>
                 <dl className="space-y-0.5 text-[11px] text-gray-800">
@@ -228,51 +288,47 @@ export function LimaRiskMap({
           ) : null}
         </MapCanvas>
 
-        <div className="pointer-events-none absolute top-3 left-3 rounded-md bg-map-paper/90 px-2.5 py-1.5 text-[11px] text-gray-900 shadow-sm backdrop-blur">
-          Tocá cualquier manzana para ver su nivel
-        </div>
+        {!selectedDistrict && !picked ? (
+          <div className="pointer-events-none absolute top-3 left-3 rounded-md bg-map-paper/90 px-2.5 py-1.5 text-[11px] text-gray-900 shadow-sm backdrop-blur">
+            Tocá cualquier manzana para ver su nivel
+          </div>
+        ) : null}
       </div>
 
-      <fieldset className="mt-3">
-        <legend className="sr-only">Filtrar por nivel de daño</legend>
-        <div className="flex flex-wrap gap-1.5">
-          <button
-            type="button"
-            onClick={() => setActiveLevel(null)}
-            aria-pressed={activeLevel === null}
-            className={`rounded-md border px-2.5 py-1.5 text-xs transition-colors ${
-              activeLevel === null
-                ? "border-gray-1000 bg-gray-1000 text-map-paper"
-                : "border-gray-300 text-gray-900 hover:border-gray-500"
-            }`}
-          >
-            Todos
-          </button>
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <ToggleGroup
+          value={activeLevels}
+          onValueChange={onActiveLevelsChange}
+          variant="outline"
+          size="sm"
+          aria-label="Filtrar por nivel de daño"
+        >
           {RISK_LEVELS.map((spec) => (
-            <button
+            <ToggleGroupItem
               key={spec.level}
-              type="button"
-              onClick={() =>
-                setActiveLevel(activeLevel === spec.level ? null : spec.level)
-              }
-              aria-pressed={activeLevel === spec.level}
-              className={`flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs transition-colors ${
-                activeLevel === spec.level
-                  ? "border-gray-1000 text-gray-1000"
-                  : "border-gray-300 text-gray-900 hover:border-gray-500"
-              }`}
+              value={String(spec.level)}
+              aria-label={`Nivel ${romanLevel(spec.level)}, ${spec.damage}`}
+              className="gap-1.5"
             >
               <span
                 aria-hidden
                 className="size-2.5 rounded-[2px]"
                 style={{ backgroundColor: spec.ui }}
               />
-              {romanLevel(spec.level)}
-              <span className="hidden sm:inline">· {spec.damage}</span>
-            </button>
+              <span>{romanLevel(spec.level)}</span>
+              <span className="hidden lg:inline">{spec.damage}</span>
+            </ToggleGroupItem>
           ))}
-        </div>
-      </fieldset>
+        </ToggleGroup>
+
+        {activeCount > 0 ? (
+          <Badge variant="secondary" className="tabular-nums">
+            {activeCount === 1
+              ? "1 nivel resaltado"
+              : `${activeCount} niveles resaltados`}
+          </Badge>
+        ) : null}
+      </div>
     </div>
   );
 }

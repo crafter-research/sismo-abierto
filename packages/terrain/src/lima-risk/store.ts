@@ -5,7 +5,7 @@ import { type RiskLevel, riskLevelSpec } from "./levels.ts";
  * Lectura de `lima_riesgo_features`: el mapa de riesgo sísmico de Lima del
  * CISMID, extraído del PDF vectorial georreferenciado que publican.
  *
- * 86,792 polígonos, 50 distritos de Lima y Callao, estudios de 2010 a 2021.
+ * 84,784 polígonos, 50 distritos de Lima y Callao, estudios de 2010 a 2021.
  * Cada polígono es aproximadamente una manzana.
  */
 
@@ -31,6 +31,13 @@ export interface DistrictRiskSummary {
   /** Porcentaje de manzanas en nivel 4 o 5. Es el número que ordena la lista. */
   pctHigh: number;
   areaKm2: number;
+}
+
+export interface DistrictOutline {
+  district: string;
+  geometry: GeoJSON.Geometry;
+  /** [[minLon, minLat], [maxLon, maxLat]], para el fly-to del mapa. */
+  bounds: [[number, number], [number, number]];
 }
 
 export class LimaRiskStore {
@@ -113,6 +120,48 @@ export class LimaRiskStore {
         areaKm2: row.area_km2,
       };
     });
+  }
+
+  /**
+   * Contorno de cada distrito, para resaltar el elegido en el mapa. Se deriva
+   * de los propios polígonos (`ST_Union`) en vez de traer un shapefile de
+   * límites administrativos aparte: lo que importa acá es el borde del
+   * *estudio*, que no siempre coincide con el límite político y es el que la
+   * gente necesita ver para saber hasta dónde llega el dato.
+   *
+   * Lee `lima_riesgo_outlines`, precalculada por la ingesta. Calcularla al
+   * vuelo cuesta 3.5 s medidos (50 buffers + uniones sobre 84 mil polígonos) y
+   * era la causa de un TTFB de 2.3 s en esta página. La geometría solo cambia
+   * cuando se reingiere el PDF, así que no hay razón para recalcularla por
+   * request.
+   *
+   * El buffer de ~66 m que usa esa tabla cierra las calles antes de unir. Sin
+   * él, `ST_Union` de las manzanas deja un hueco por cada calle: medido en
+   * Villa El Salvador daba 3,058 anillos, y dibujar todos con línea gruesa
+   * pinta el distrito de negro en vez de bordearlo.
+   */
+  async outlines(): Promise<DistrictOutline[]> {
+    const rows = (await this.sql`
+      SELECT district, ST_AsGeoJSON(geom) AS geojson,
+             min_lon, min_lat, max_lon, max_lat
+      FROM lima_riesgo_outlines
+    `) as Array<{
+      district: string;
+      geojson: string;
+      min_lon: number;
+      min_lat: number;
+      max_lon: number;
+      max_lat: number;
+    }>;
+
+    return rows.map((row) => ({
+      district: row.district,
+      geometry: JSON.parse(row.geojson) as GeoJSON.Geometry,
+      bounds: [
+        [row.min_lon, row.min_lat],
+        [row.max_lon, row.max_lat],
+      ],
+    }));
   }
 
   async district(name: string): Promise<DistrictRiskSummary | null> {

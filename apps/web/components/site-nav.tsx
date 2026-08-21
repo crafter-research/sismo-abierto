@@ -42,7 +42,7 @@ export const NAV_ENTRIES: NavEntry[] = [
       {
         href: "/terreno/lima",
         label: "Riesgo en Lima",
-        hint: "CISMID, 86,792 manzanas de Lima y Callao con su nivel de daño esperado.",
+        hint: "CISMID, 84,784 manzanas de Lima y Callao con su nivel de daño esperado.",
       },
       {
         href: "/terreno/mapa",

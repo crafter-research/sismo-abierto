@@ -12,7 +12,7 @@ import { TerrainPreviewMap } from "../../components/terrain-preview-map";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Tipo de suelo por ciudad",
+  title: "Tipo de suelo por ciudad: zonificación sísmica del Perú",
   description:
     "Zonificación sísmica publicada por el IGP para las ciudades del Perú que cuentan con estudio, con procedencia y limitaciones explícitas.",
   alternates: { canonical: "/terreno" },
@@ -195,7 +195,7 @@ export default async function TerrainIndexPage() {
           vivienda construida sobre él.
         </p>
         <p className="mt-2 text-sm text-gray-900">
-          Son 86,792 manzanas de 50 distritos de Lima y Callao, con estudios
+          Son 84,784 manzanas de 50 distritos de Lima y Callao, con estudios
           hechos entre 2010 y 2021.
         </p>
         <Link
