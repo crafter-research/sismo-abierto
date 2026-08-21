@@ -9,7 +9,7 @@ import Link from "next/link";
 import { DistrictRanking } from "@/components/lima-district-ranking";
 import { LimaRiskMap } from "@/components/lima-risk-map";
 
-export const revalidate = 86400;
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Riesgo sísmico de Lima, manzana por manzana",
