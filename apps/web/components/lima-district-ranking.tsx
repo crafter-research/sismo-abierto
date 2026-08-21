@@ -6,7 +6,7 @@ import {
   RISK_LEVELS,
   romanLevel,
 } from "@sismo/terrain";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 
 /**
@@ -55,12 +55,6 @@ export function LimaDistrictRanking({
   onSelect: (district: string | null) => void;
 }) {
   const activeRef = useRef<HTMLLIElement | null>(null);
-
-  // Cuando la selección viene del mapa, la fila puede estar fuera de vista.
-  useEffect(() => {
-    if (!selected || !activeRef.current) return;
-    activeRef.current.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  }, [selected]);
 
   return (
     <ol className="divide-y divide-gray-300 overflow-hidden rounded-lg border border-gray-300">

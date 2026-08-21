@@ -1,9 +1,9 @@
 "use client";
 
 import type { DistrictOutline, DistrictRiskSummary } from "@sismo/terrain";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import { type AddressHit, LimaAddressSearch } from "./lima-address-search";
 import { LimaDistrictRanking } from "./lima-district-ranking";
-import { LimaDistrictSearch } from "./lima-district-search";
 import { LimaLevelLegend } from "./lima-level-legend";
 import { LimaRiskMap } from "./lima-risk-map";
 
@@ -29,17 +29,40 @@ export function LimaRiskExplorer({
 }) {
   const [selected, setSelected] = useState<string | null>(null);
   const [activeLevels, setActiveLevels] = useState<string[]>([]);
+  const [address, setAddress] = useState<AddressHit | null>(null);
+  const mapRef = useRef<HTMLDivElement | null>(null);
+
+  /**
+   * Elegir un distrito desde la lista trae la vista al mapa, no al revés.
+   * El mapa es lo que responde la pregunta; la lista es el índice. Llevar la
+   * lista hasta la fila (que es lo que hacía antes) desplazaba media pantalla
+   * para mostrar el elemento en el que la persona acababa de hacer click.
+   */
+  const selectFromList = useCallback((district: string | null) => {
+    setSelected(district);
+    // Elegir un distrito descarta la dirección: el mapa no puede estar
+    // encuadrado en una cuadra y en un distrito entero al mismo tiempo.
+    setAddress(null);
+    if (!district) return;
+    mapRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+  }, []);
 
   return (
     <div className="space-y-8">
-      <section aria-labelledby="mapa-titulo" className="space-y-3">
+      <section
+        ref={mapRef}
+        aria-labelledby="mapa-titulo"
+        className="scroll-mt-4 space-y-3"
+      >
         <h2 id="mapa-titulo" className="sr-only">
           Mapa interactivo
         </h2>
-        <LimaDistrictSearch
+        <LimaAddressSearch
           districts={districts}
-          selected={selected}
-          onSelect={setSelected}
+          selectedDistrict={selected}
+          onSelectDistrict={setSelected}
+          onSelectAddress={setAddress}
+          activeAddress={address}
         />
         <LimaRiskMap
           outlines={outlines}
@@ -47,6 +70,7 @@ export function LimaRiskExplorer({
           onSelectDistrict={setSelected}
           activeLevels={activeLevels}
           onActiveLevelsChange={setActiveLevels}
+          address={address}
         />
       </section>
 
@@ -64,7 +88,7 @@ export function LimaRiskExplorer({
         <LimaDistrictRanking
           districts={districts}
           selected={selected}
-          onSelect={setSelected}
+          onSelect={selectFromList}
         />
       </section>
 
