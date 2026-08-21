@@ -12,7 +12,7 @@ import { TerrainPreviewMap } from "../../components/terrain-preview-map";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Tipo de suelo por ciudad",
+  title: "Tipo de suelo por ciudad: zonificación sísmica del Perú",
   description:
     "Zonificación sísmica publicada por el IGP para las ciudades del Perú que cuentan con estudio, con procedencia y limitaciones explícitas.",
   alternates: { canonical: "/terreno" },
