@@ -163,10 +163,8 @@ export default async function LimaRiskPage() {
           Cuánto daño se espera que sufra una vivienda típica ante un sismo
           severo, según el suelo donde está y cómo están construidas las casas
           de esa zona. El estudio cubre{" "}
-          <strong className="font-semibold text-gray-1000">
-            {totals.features.toLocaleString("es-PE")} manzanas
-          </strong>{" "}
-          en {totals.districts} distritos de Lima y Callao.
+          {totals.features.toLocaleString("es-PE")} manzanas en{" "}
+          {totals.districts} distritos de Lima y Callao.
         </p>
       </header>
 

@@ -56,10 +56,11 @@ export default async function TerrainIndexPage() {
       <header>
         <h1 className="text-xl font-bold">Terreno</h1>
         <p className="text-sm text-gray-900" data-testid="scope-notice">
-          El tipo de suelo describe cómo responde el terreno, no si una
-          construcción resiste. El IGP publica estudios de zonificación sísmica
-          para {cities.length} ciudades en {departments.length} departamentos:
-          el resto del país no está cubierto por esta capa.
+          El tipo de suelo describe cómo se mueve el terreno en un sismo, que es
+          distinto de cuánto resiste una construcción encima. El IGP publica
+          estudios de zonificación para {cities.length} ciudades en{" "}
+          {departments.length} departamentos. El resto del país no está cubierto
+          por esta capa.
         </p>
       </header>
 
@@ -71,12 +72,15 @@ export default async function TerrainIndexPage() {
         >
           <TerrainPreviewMap kind="lima" />
           <span className="mt-3 block font-semibold text-official underline">
-            Abrir el mapa por manzana →
+            Cuánto daño se espera en tu manzana →
           </span>
-          <span className="mt-1 block text-sm text-gray-900">
-            Buscá tu dirección y mirá el nivel de daño esperado en tu manzana.
-            84,784 manzanas de Lima y Callao, con el suelo del IGP y los sismos
-            recientes como capas.
+          <span className="mt-1 block text-gray-900 text-sm">
+            Buscá tu dirección y mirá el nivel estimado de daño ante un sismo
+            severo.{" "}
+            {lima
+              ? `${lima.features.toLocaleString("es-PE")} manzanas de ${lima.districts} distritos de Lima y Callao`
+              : "Lima y Callao, manzana por manzana"}
+            , con el suelo del IGP y los sismos recientes como capas.
           </span>
         </Link>
 
@@ -129,11 +133,11 @@ export default async function TerrainIndexPage() {
           </div>
         </div>
         <p className="mt-3 text-sm text-gray-900">
-          Las capas no compiten, miden cosas distintas. El IGP describe el
-          suelo, el CISMID estima el daño esperado a la vivienda construida
-          sobre él, e INGEMMET cubre el país entero a escala regional. En el
-          este de Lima las tres se superponen y se pueden comparar en el mismo
-          mapa; donde no hay estudio urbano, INGEMMET es la única disponible.
+          Cada capa mide algo distinto. El IGP describe el suelo. El CISMID
+          estima el daño esperado a la vivienda construida sobre ese suelo.
+          INGEMMET cubre el país entero a escala regional. En el este de Lima
+          las tres se superponen y podés compararlas en el mismo mapa. Donde no
+          hay estudio urbano, INGEMMET es la única disponible.
         </p>
       </section>
 
@@ -157,35 +161,6 @@ export default async function TerrainIndexPage() {
               : `${citiesWithBearing} de ${cities.length} tienen capacidad portante publicada en kg/cm².`}{" "}
             La barra muestra la proporción de cada tipo de suelo.
           </p>
-        ) : null}
-
-        {/* Lima va arriba y aparte: es otro estudio, de otra institución, y su
-            unidad es la manzana, no el polígono de zonificación. Ponerla como
-            una fila más de la lista sugeriría que mide lo mismo. */}
-        {lima ? (
-          <Link
-            href="/terreno/lima"
-            className="mb-4 block rounded-lg border border-gray-300 p-3 transition-colors hover:border-gray-600"
-            data-testid="lima-index-entry"
-          >
-            <span className="flex flex-wrap items-baseline gap-x-2">
-              <span className="font-semibold text-gray-1000">
-                Lima Metropolitana y Callao
-              </span>
-              <span className="text-gray-800 text-xs">
-                CISMID · Universidad Nacional de Ingeniería
-              </span>
-            </span>
-            <span className="mt-1 block text-gray-900 text-sm">
-              {lima.districts} distritos ·{" "}
-              {lima.features.toLocaleString("es-PE")} manzanas con su nivel de
-              daño esperado, de estudios entre {lima.yearRange[0]} y{" "}
-              {lima.yearRange[1]}.
-            </span>
-            <span className="mt-1 block font-medium text-official text-sm underline">
-              Ver el mapa por manzana →
-            </span>
-          </Link>
         ) : null}
 
         <div className="mt-3 space-y-4" data-testid="city-index">
