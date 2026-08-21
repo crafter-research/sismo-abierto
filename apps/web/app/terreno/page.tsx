@@ -49,6 +49,20 @@ export default async function TerrainIndexPage() {
         </span>
       </Link>
 
+      <Link
+        href="/terreno/geomorfologia"
+        className="block rounded-lg border border-gray-200 p-4 hover:border-gray-600"
+        data-testid="geomorphology-entry"
+      >
+        <span className="font-semibold text-official underline">
+          Ver geomorfología nacional →
+        </span>
+        <span className="mt-1 block text-sm text-gray-900">
+          62,109 polígonos de INGEMMET, cobertura de todo el país, no solo las
+          ciudades con estudio del IGP.
+        </span>
+      </Link>
+
       <section aria-labelledby="ciudades-titulo">
         <div className="mb-3 flex flex-wrap items-center gap-3">
           <h2 id="ciudades-titulo" className="font-semibold">

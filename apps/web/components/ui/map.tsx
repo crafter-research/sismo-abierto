@@ -1540,6 +1540,175 @@ function MapGeoJSON<
   return null;
 }
 
+type MapVectorTileProps = {
+  /** Tile URL template with `{z}/{x}/{y}` placeholders, e.g. `/tiles/foo/{z}/{x}/{y}.mvt`. */
+  tiles: string;
+  /** `source-layer` name inside the MVT, as written by `ST_AsMVT(..., sourceLayer)`. */
+  sourceLayer: string;
+  /** Optional unique identifier prefix for the source/layers. Auto-generated if not provided. */
+  id?: string;
+  minzoom?: number;
+  maxzoom?: number;
+  /**
+   * Paint for the polygon fill layer. Merged on top of a theme-aware
+   * monochrome surface tone. Pass `false` to omit the fill layer entirely.
+   */
+  fillPaint?: MapFillPaint | false;
+  /**
+   * Paint for the outline layer, merged on top of a hairline default. Pass
+   * `false` to omit the layer.
+   */
+  linePaint?: MapLinePaint | false;
+  /** Optional MapLibre layer id to insert the layers before (z-order control). */
+  beforeId?: string;
+};
+
+/**
+ * Renders a pregenerated vector tileset (MVT over `{z}/{x}/{y}`, e.g. files
+ * under `public/tiles/...`) as fill + outline layers. Sibling to
+ * `<MapGeoJSON>` for the same choropleth use case, but backed by a `vector`
+ * source instead of `geojson` — use this when the dataset is too large to
+ * ship as a single GeoJSON payload and was pregenerated into tiles instead.
+ */
+function MapVectorTile({
+  tiles,
+  sourceLayer,
+  id: propId,
+  minzoom,
+  maxzoom,
+  fillPaint,
+  linePaint,
+  beforeId,
+}: MapVectorTileProps) {
+  const { map, isLoaded, resolvedTheme } = useMap();
+  const autoId = useId();
+  const id = propId ?? autoId;
+  const sourceId = `vector-source-${id}`;
+  const fillLayerId = `vector-fill-${id}`;
+  const lineLayerId = `vector-line-${id}`;
+
+  const defaults = GEOJSON_DEFAULT_COLORS[resolvedTheme];
+  const showFill = fillPaint !== false;
+  const showLine = linePaint !== false;
+
+  const mergedFillPaint = useMemo(
+    () => ({ "fill-color": defaults.fill, ...(fillPaint || {}) }),
+    [defaults.fill, fillPaint],
+  );
+  const mergedLinePaint = useMemo(
+    () => ({
+      "line-color": defaults.line,
+      "line-width": 0.5,
+      ...(linePaint || {}),
+    }),
+    [defaults.line, linePaint],
+  );
+
+  // Add source on mount.
+  useEffect(() => {
+    if (!isLoaded || !map) return;
+
+    // MapLibre fetches tiles from a worker, which has no document base URL:
+    // a relative template ("/tiles/.../{z}/{x}/{y}.mvt") throws "Failed to
+    // construct 'Request'" there even though it works fine on the main
+    // thread. Prefix with location.origin via string concat, not `new
+    // URL(...)`: the URL constructor percent-encodes the literal `{z}`
+    // placeholders MapLibre substitutes later, which silently breaks the
+    // template (0 tile requests, no error).
+    const absoluteTiles = tiles.startsWith("http")
+      ? tiles
+      : `${window.location.origin}${tiles.startsWith("/") ? "" : "/"}${tiles}`;
+
+    map.addSource(sourceId, {
+      type: "vector",
+      tiles: [absoluteTiles],
+      ...(minzoom !== undefined ? { minzoom } : {}),
+      ...(maxzoom !== undefined ? { maxzoom } : {}),
+    });
+
+    return () => {
+      try {
+        if (map.getLayer(lineLayerId)) map.removeLayer(lineLayerId);
+        if (map.getLayer(fillLayerId)) map.removeLayer(fillLayerId);
+        if (map.getSource(sourceId)) map.removeSource(sourceId);
+      } catch {
+        // style may be mid-reload
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoaded, map, tiles, minzoom, maxzoom]);
+
+  // Sync layers and paint when visibility or styling changes.
+  useEffect(() => {
+    if (!isLoaded || !map) return;
+    const source = map.getSource(sourceId);
+    if (!source) return;
+
+    if (showFill && !map.getLayer(fillLayerId)) {
+      map.addLayer(
+        {
+          id: fillLayerId,
+          type: "fill",
+          source: sourceId,
+          "source-layer": sourceLayer,
+          paint: mergedFillPaint,
+        },
+        beforeId,
+      );
+    } else if (!showFill && map.getLayer(fillLayerId)) {
+      map.removeLayer(fillLayerId);
+    }
+
+    if (showLine && !map.getLayer(lineLayerId)) {
+      map.addLayer(
+        {
+          id: lineLayerId,
+          type: "line",
+          source: sourceId,
+          "source-layer": sourceLayer,
+          paint: mergedLinePaint,
+        },
+        beforeId,
+      );
+    } else if (!showLine && map.getLayer(lineLayerId)) {
+      map.removeLayer(lineLayerId);
+    }
+
+    if (showFill && map.getLayer(fillLayerId)) {
+      for (const [key, value] of Object.entries(mergedFillPaint)) {
+        map.setPaintProperty(
+          fillLayerId,
+          key as keyof MapFillPaint,
+          value as never,
+        );
+      }
+    }
+    if (showLine && map.getLayer(lineLayerId)) {
+      for (const [key, value] of Object.entries(mergedLinePaint)) {
+        map.setPaintProperty(
+          lineLayerId,
+          key as keyof MapLinePaint,
+          value as never,
+        );
+      }
+    }
+  }, [
+    isLoaded,
+    map,
+    sourceId,
+    sourceLayer,
+    fillLayerId,
+    lineLayerId,
+    showFill,
+    showLine,
+    mergedFillPaint,
+    mergedLinePaint,
+    beforeId,
+  ]);
+
+  return null;
+}
+
 /** A single arc to render inside <MapArc data={...}>. */
 type MapArcDatum = {
   /** Unique identifier for this arc. Required for hover state tracking and event payloads. */
@@ -2210,6 +2379,7 @@ export type {
   MapRef,
   MapRouteProps,
   MapStyleOption,
+  MapVectorTileProps,
   MapViewport,
   MarkerContentProps,
   MarkerLabelProps,
@@ -2225,6 +2395,7 @@ export {
   MapMarker,
   MapPopup,
   MapRoute,
+  MapVectorTile,
   MarkerContent,
   MarkerLabel,
   MarkerPopup,

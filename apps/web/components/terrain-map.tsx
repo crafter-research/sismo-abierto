@@ -1,6 +1,7 @@
 "use client";
 
 import { SOIL_COLORS, SOIL_LEGEND } from "@sismo/terrain";
+import { MousePointerClick } from "lucide-react";
 import type * as MapLibreGL from "maplibre-gl";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -9,7 +10,9 @@ import {
   MapClusterLayer,
   MapControls,
   MapGeoJSON,
+  MapMarker,
   MapPopup,
+  MarkerContent,
   useMap,
 } from "./ui/map";
 
@@ -37,6 +40,15 @@ const QUAKE_LAYER_PREFIXES = [
 
 function formatCoordinate(value: number): string {
   return value.toFixed(COORDINATE_PRECISION);
+}
+
+// Notación humana con hemisferio: "12.9879° S" en vez de "-12.9879", que es
+// dato crudo sin significado a simple vista. Estándar geográfico, no
+// reverse-geocoding: no inventa una referencia que no tenemos.
+function formatHumanCoordinate(lat: number, lon: number): string {
+  const latHemisphere = lat >= 0 ? "N" : "S";
+  const lonHemisphere = lon >= 0 ? "E" : "O";
+  return `${Math.abs(lat).toFixed(COORDINATE_PRECISION)}° ${latHemisphere}, ${Math.abs(lon).toFixed(COORDINATE_PRECISION)}° ${lonHemisphere}`;
 }
 
 // Escucha clicks crudos del mapa (no de una capa específica) y muestra un
@@ -74,24 +86,38 @@ function MapClickToPoint() {
   const href = `/terreno/punto?lon=${formatCoordinate(lon)}&lat=${formatCoordinate(lat)}`;
 
   return (
-    <MapPopup
-      longitude={lon}
-      latitude={lat}
-      closeButton
-      onClose={() => setClicked(null)}
-    >
-      <div className="space-y-2 text-xs">
-        <p className="font-mono text-[11px] text-gray-900">
-          {formatCoordinate(lat)}, {formatCoordinate(lon)}
-        </p>
-        <a
-          href={href}
-          className="inline-flex items-center rounded bg-official px-2 py-1 font-medium text-official-soft hover:opacity-90"
-        >
-          Ver terreno acá
-        </a>
-      </div>
-    </MapPopup>
+    <>
+      <MapMarker longitude={lon} latitude={lat}>
+        <MarkerContent>
+          <span className="relative flex size-3.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-official opacity-40" />
+            <span className="relative inline-flex size-3.5 rounded-full border-2 border-map-paper bg-official shadow-md" />
+          </span>
+        </MarkerContent>
+      </MapMarker>
+      <MapPopup
+        longitude={lon}
+        latitude={lat}
+        closeButton
+        offset={18}
+        onClose={() => setClicked(null)}
+      >
+        <div className="space-y-2 pr-4 text-xs">
+          <p className="font-medium text-gray-1000">
+            {formatHumanCoordinate(lat, lon)}
+          </p>
+          <p className="font-mono text-[10px] text-gray-800">
+            {formatCoordinate(lat)}, {formatCoordinate(lon)}
+          </p>
+          <a
+            href={href}
+            className="inline-flex items-center rounded bg-official px-2 py-1 font-medium text-official-soft hover:opacity-90"
+          >
+            Ver terreno acá
+          </a>
+        </div>
+      </MapPopup>
+    </>
   );
 }
 
@@ -154,7 +180,8 @@ export function TerrainMap({
         ) : null}
       </div>
 
-      <p className="text-[11px] text-gray-800">
+      <p className="flex items-center gap-1.5 text-[11px] text-gray-800">
+        <MousePointerClick className="size-3.5 shrink-0 text-gray-700" />
         Hacé click en cualquier punto del mapa para ver la ficha de terreno de
         esa ubicación.
       </p>
