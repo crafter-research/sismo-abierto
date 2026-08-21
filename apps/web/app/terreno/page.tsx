@@ -47,17 +47,18 @@ export default async function TerrainIndexPage() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Link
-          href="/terreno/mapa"
+          href="/terreno/lima"
           className="block rounded-lg border border-gray-200 p-3 hover:border-gray-600"
           data-testid="map-entry"
         >
-          <TerrainPreviewMap kind="igp" />
+          <TerrainPreviewMap kind="lima" />
           <span className="mt-3 block font-semibold text-official underline">
-            Abrir el mapa interactivo →
+            Abrir el mapa por manzana →
           </span>
           <span className="mt-1 block text-sm text-gray-900">
-            Zoom hasta tu zona, con los sismos recientes encima y las capas
-            filtrables. {cities.length} ciudades, escala urbana.
+            Buscá tu dirección y mirá el nivel de daño esperado en tu manzana.
+            84,784 manzanas de Lima y Callao, con el suelo del IGP y los sismos
+            recientes como capas.
           </span>
         </Link>
 
@@ -110,10 +111,11 @@ export default async function TerrainIndexPage() {
           </div>
         </div>
         <p className="mt-3 text-sm text-gray-900">
-          Las dos capas no compiten: donde el IGP tiene estudio urbano, es la
-          fuente más precisa. Donde no lo tiene —incluida toda Lima
-          Metropolitana— la geomorfología de INGEMMET es la única capa
-          disponible.
+          Las capas no compiten, miden cosas distintas. El IGP describe el
+          suelo, el CISMID estima el daño esperado a la vivienda construida
+          sobre él, e INGEMMET cubre el país entero a escala regional. En el
+          este de Lima las tres se superponen y se pueden comparar en el mismo
+          mapa; donde no hay estudio urbano, INGEMMET es la única disponible.
         </p>
       </section>
 

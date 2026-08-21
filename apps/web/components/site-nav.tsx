@@ -41,13 +41,8 @@ export const NAV_ENTRIES: NavEntry[] = [
       },
       {
         href: "/terreno/lima",
-        label: "Riesgo en Lima",
-        hint: "CISMID, 84,784 manzanas de Lima y Callao con su nivel de daño esperado.",
-      },
-      {
-        href: "/terreno/mapa",
-        label: "Mapa interactivo",
-        hint: "IGP, detalle por manzana en 57 ciudades. No cubre Lima Metropolitana.",
+        label: "Mapa por manzana",
+        hint: "Riesgo sísmico de Lima del CISMID, con el suelo del IGP y los sismos como capas.",
       },
       {
         href: "/terreno/geomorfologia",
