@@ -13,6 +13,11 @@ import { SourceErrorState } from "../components/error-state";
 import { MajorEarthquakeBanner } from "../components/major-earthquake-banner";
 import { PeruMap } from "../components/peru-map";
 import { ProviderSwitcher } from "../components/provider-switcher";
+import {
+  UserDistanceLayer,
+  UserDistancePanel,
+  UserDistanceProvider,
+} from "../components/user-distance";
 import { MAJOR_EARTHQUAKE_THRESHOLD } from "../lib/emergency";
 import { formatLocalDateTime } from "../lib/format";
 
@@ -91,7 +96,18 @@ export async function CountryHomePage({
         : "https://ultimosismo.igp.gob.pe/",
   };
 
-  return (
+  const distanceEvent =
+    latest && provider === "igp"
+      ? {
+          latitude: latest.latitude,
+          longitude: latest.longitude,
+          depthKm: latest.depthKm,
+          magnitude: latest.magnitude,
+          timeUtc: latest.timeUtc,
+        }
+      : null;
+
+  const page = (
     <div className="flex flex-1 flex-col gap-5">
       <script type="application/ld+json">
         {JSON.stringify(structuredData)}
@@ -169,6 +185,7 @@ export async function CountryHomePage({
                   </div>
                 ) : null}
               </dl>
+              {distanceEvent ? <UserDistancePanel /> : null}
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <Link
                   href={`/sismos/${latest.id}`}
@@ -234,9 +251,26 @@ export async function CountryHomePage({
                   ]
                 : []
             }
+            perception={distanceEvent ?? undefined}
+            overlay={
+              distanceEvent
+                ? (projection) => (
+                    <UserDistanceLayer
+                      projection={projection}
+                      event={distanceEvent}
+                    />
+                  )
+                : undefined
+            }
           />
         </aside>
       </div>
     </div>
+  );
+
+  return distanceEvent ? (
+    <UserDistanceProvider event={distanceEvent}>{page}</UserDistanceProvider>
+  ) : (
+    page
   );
 }
