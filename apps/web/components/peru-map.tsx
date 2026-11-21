@@ -1,16 +1,22 @@
 import {
+  destinationPoint,
+  mmiLabel,
+  mmiRoman,
+  radiusForMmi,
+} from "@sismo/data/intensity";
+import {
   colombiaDepartamentos,
   departamentos,
   type GeoFeature,
   provincias,
 } from "@sismo/geo";
-
-interface Bounds {
-  minLon: number;
-  maxLon: number;
-  minLat: number;
-  maxLat: number;
-}
+import type { ReactNode } from "react";
+import {
+  type Bounds,
+  type MapProjection,
+  projectWith,
+  MAP_WIDTH as WIDTH,
+} from "../lib/map-projection";
 
 type MapCountry = "peru" | "colombia";
 
@@ -30,7 +36,6 @@ const BASE_BOUNDS: Record<MapCountry, Bounds> = {
 };
 const MAX_EXTENSION_DEG = 3;
 const MARKER_PADDING_DEG = 0.6;
-const WIDTH = 640;
 
 function heightFor(bounds: Bounds): number {
   const lonScale = Math.cos(
@@ -40,17 +45,6 @@ function heightFor(bounds: Bounds): number {
     (WIDTH * (bounds.maxLat - bounds.minLat)) /
       ((bounds.maxLon - bounds.minLon) * lonScale),
   );
-}
-
-function projectWith(
-  bounds: Bounds,
-  height: number,
-  lon: number,
-  lat: number,
-): [number, number] {
-  const x = ((lon - bounds.minLon) / (bounds.maxLon - bounds.minLon)) * WIDTH;
-  const y = ((bounds.maxLat - lat) / (bounds.maxLat - bounds.minLat)) * height;
-  return [Math.round(x * 100) / 100, Math.round(y * 100) / 100];
 }
 
 function ringToPath(bounds: Bounds, height: number, ring: number[][]): string {
@@ -317,6 +311,142 @@ function VolcanoTriangle({
   );
 }
 
+export interface PerceptionSource {
+  latitude: number;
+  longitude: number;
+  depthKm: number;
+  magnitude: number;
+}
+
+const PERCEPTION_LEVELS = [5, 4, 3, 2] as const;
+const RING_SEGMENTS = 120;
+// Preferimos etiquetar hacia el este y el sur, donde está casi todo el territorio.
+const LABEL_BEARINGS = Array.from({ length: 36 }, (_, i) => {
+  const step = Math.ceil(i / 2) * 10;
+  return (((i % 2 === 0 ? 100 + step : 100 - step) % 360) + 360) % 360;
+});
+
+function ringContains(ring: number[][], lon: number, lat: number) {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i] as [number, number];
+    const [xj, yj] = ring[j] as [number, number];
+    if (
+      yi > lat !== yj > lat &&
+      lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi
+    )
+      inside = !inside;
+  }
+  return inside;
+}
+
+function onLand(features: GeoFeature[], lon: number, lat: number) {
+  return features.some(({ geometry }) => {
+    const polygons =
+      geometry.type === "Polygon"
+        ? [geometry.coordinates as number[][][]]
+        : geometry.type === "MultiPolygon"
+          ? (geometry.coordinates as number[][][][])
+          : [];
+    return polygons.some(
+      (polygon) =>
+        polygon[0] !== undefined && ringContains(polygon[0], lon, lat),
+    );
+  });
+}
+
+export function perceptionRings(source: PerceptionSource) {
+  return PERCEPTION_LEVELS.flatMap((mmi) => {
+    const radiusKm = radiusForMmi(source.magnitude, source.depthKm, mmi);
+    return radiusKm === null ? [] : [{ mmi, radiusKm }];
+  });
+}
+
+function insideBounds(bounds: Bounds, lon: number, lat: number) {
+  return (
+    lon > bounds.minLon + 0.4 &&
+    lon < bounds.maxLon - 0.4 &&
+    lat > bounds.minLat + 0.4 &&
+    lat < bounds.maxLat - 0.4
+  );
+}
+
+function PerceptionRings({
+  bounds,
+  height,
+  source,
+  clipId,
+}: {
+  bounds: Bounds;
+  height: number;
+  source: PerceptionSource;
+  clipId: string;
+}) {
+  const rings = perceptionRings(source);
+  return (
+    <g data-testid="perception-rings" pointerEvents="none">
+      <g clipPath={`url(#${clipId})`}>
+        {rings.map(({ mmi, radiusKm }, index) => {
+          const d = `${Array.from({ length: RING_SEGMENTS }, (_, i) => {
+            const [lon, lat] = destinationPoint(
+              source.latitude,
+              source.longitude,
+              (i / RING_SEGMENTS) * 360,
+              radiusKm,
+            );
+            const [x, y] = projectWith(bounds, height, lon, lat);
+            return `${i === 0 ? "M" : "L"}${x},${y}`;
+          }).join("")}Z`;
+          return (
+            <path
+              key={mmi}
+              d={d}
+              fill="var(--color-map-ink)"
+              fillOpacity={0.05 + 0.03 * (rings.length - index)}
+              stroke="var(--color-map-ink)"
+              strokeOpacity={0.55}
+              strokeWidth="1"
+              strokeDasharray="3 3"
+            />
+          );
+        })}
+      </g>
+      {rings.map(({ mmi, radiusKm }) => {
+        for (const bearing of LABEL_BEARINGS) {
+          const [lon, lat] = destinationPoint(
+            source.latitude,
+            source.longitude,
+            bearing,
+            radiusKm,
+          );
+          if (!insideBounds(bounds, lon, lat)) continue;
+          if (!onLand(departamentos.features, lon, lat)) continue;
+          const [x, y] = projectWith(bounds, height, lon, lat);
+          return (
+            <text
+              key={mmi}
+              x={x}
+              y={y}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              className="font-mono"
+              fontSize="11"
+              fontWeight="600"
+              fill="var(--color-map-ink)"
+              stroke="var(--color-map-paper)"
+              strokeWidth="3"
+              paintOrder="stroke"
+            >
+              {mmiRoman(mmi)}
+            </text>
+          );
+        }
+        return null;
+      })}
+    </g>
+  );
+}
+
 export function PeruMap({
   markers,
   title,
@@ -324,6 +454,8 @@ export function PeruMap({
   showProvinces = false,
   className,
   country = "peru",
+  perception,
+  overlay,
 }: {
   markers: MapMarker[];
   title: string;
@@ -331,11 +463,15 @@ export function PeruMap({
   showProvinces?: boolean;
   className?: string;
   country?: MapCountry;
+  perception?: PerceptionSource;
+  overlay?: (projection: MapProjection) => ReactNode;
 }) {
   const bounds = boundsForMarkers(markers, country);
   const height = heightFor(bounds);
   const paths = pathsFor(bounds, height, country);
   const canShowProvinces = showProvinces && country === "peru";
+  const clipId = `${country}-map-land`;
+  const rings = perception ? perceptionRings(perception) : [];
 
   return (
     <figure data-testid={`${country}-map`} className={className}>
@@ -372,6 +508,22 @@ export function PeruMap({
             <title>{department.name}</title>
           </path>
         ))}
+        {perception ? (
+          <>
+            <clipPath id={clipId}>
+              {paths.departments.map((department) => (
+                <path key={department.name} d={department.d} />
+              ))}
+            </clipPath>
+            <PerceptionRings
+              bounds={bounds}
+              height={height}
+              source={perception}
+              clipId={clipId}
+            />
+          </>
+        ) : null}
+        {overlay?.({ bounds, height, width: WIDTH })}
         {markers.map((marker) => {
           const [clampedLon, clampedLat] = clampToBounds(
             bounds,
@@ -432,6 +584,18 @@ export function PeruMap({
           </a>
         )}{" "}
         · coordenadas oficiales de la fuente
+        {rings.length > 0 ? (
+          <span className="mt-1 block" data-testid="perception-legend">
+            Percepción estimada:{" "}
+            {rings
+              .map(
+                ({ mmi, radiusKm }) =>
+                  `${mmiRoman(mmi)} ${mmiLabel(mmi)} hasta ~${Math.round(radiusKm)} km`,
+              )
+              .join(" · ")}
+            . Modelo Allen, Wald y Worden (2012), no es una medición.
+          </span>
+        ) : null}
       </figcaption>
     </figure>
   );
