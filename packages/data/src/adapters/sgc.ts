@@ -10,13 +10,15 @@ import { SourceError } from "../errors.ts";
 import { fetchJson } from "../http.ts";
 
 const SGC_API_URL = "https://api.sgc.gov.co/biweekly/biweekly_earthquakes";
-const SGC_LATEST_URL =
-  "https://archive.sgc.gov.co/feed/v1.0.1/summary/five_days_all.json";
 const SGC_DETAIL_BASE = "https://archive.sgc.gov.co/events";
 const SGC_MAX_RANGE_DAYS = 366;
 const SGC_MAX_UNFILTERED_RANGE_DAYS = 31;
 const SGC_LONG_RANGE_MIN_MAGNITUDE = 3;
 const SGC_CHUNK_CONCURRENCY = 4;
+// archive.sgc.gov.co answers 403 to non-browser clients, so recent events and
+// the detail fallback read the official API instead.
+const SGC_RECENT_DAYS = 2;
+const SGC_DETAIL_LOOKBACK_DAYS = 30;
 
 interface SgcFeature {
   type: string;
@@ -281,19 +283,28 @@ export function assertSgcProviderEnabled(): void {
   }
 }
 
+function bogotaDateDaysAgo(days: number): string {
+  return new Date(
+    Date.parse(nowBogotaIso()) - 5 * 3_600_000 - days * 86_400_000,
+  )
+    .toISOString()
+    .slice(0, 10);
+}
+
+async function fetchSgcApiWindow(days: number): Promise<NormalizedEvent[]> {
+  const features = await fetchSgcChunks(
+    dateChunks({ start: bogotaDateDaysAgo(days), end: bogotaDateDaysAgo(0) }),
+  );
+  const deduped = new Map(features.map((feature) => [feature.id, feature]));
+  return parseSgcFeatureCollection({
+    type: "FeatureCollection",
+    features: [...deduped.values()],
+  }).sort((a, b) => (b.timeUtc ?? "").localeCompare(a.timeUtc ?? ""));
+}
+
 export async function fetchSgcRecentEvents(): Promise<NormalizedEvent[]> {
   assertSgcProviderEnabled();
-  return cached("sgc:recent", 60_000, async () => {
-    const data = await fetchJson<SgcFeatureCollection>(SGC_LATEST_URL, {
-      sourceId: "sgc-sismos",
-      timeoutMs: 15_000,
-      cacheSeconds: 60,
-      expectedContentType: "json",
-    });
-    return parseSgcFeatureCollection(data, "latitude-longitude").sort((a, b) =>
-      (b.timeUtc ?? "").localeCompare(a.timeUtc ?? ""),
-    );
-  });
+  return cached("sgc:recent", 60_000, () => fetchSgcApiWindow(SGC_RECENT_DAYS));
 }
 
 export async function fetchSgcLatestEvent(): Promise<NormalizedEvent> {
@@ -320,13 +331,22 @@ export async function fetchSgcEvent(eventId: string): Promise<NormalizedEvent> {
   }
   const url = `${SGC_DETAIL_BASE}/${sourceEventId}/detail.json`;
   return cached(`sgc:detail:${sourceEventId}`, 60_000, async () => {
-    const feature = await fetchJson<SgcFeature>(url, {
-      sourceId: "sgc-sismos",
-      timeoutMs: 15_000,
-      cacheSeconds: 60,
-      expectedContentType: "octet-stream",
-    });
-    return parseSgcFeature(feature, "latitude-longitude");
+    try {
+      const feature = await fetchJson<SgcFeature>(url, {
+        sourceId: "sgc-sismos",
+        timeoutMs: 15_000,
+        cacheSeconds: 60,
+        expectedContentType: "octet-stream",
+      });
+      return parseSgcFeature(feature, "latitude-longitude");
+    } catch (error) {
+      const recent = await fetchSgcApiWindow(SGC_DETAIL_LOOKBACK_DAYS).catch(
+        () => [],
+      );
+      const match = recent.find((event) => event.id === `sgc-${sourceEventId}`);
+      if (match) return match;
+      throw error;
+    }
   });
 }
 
